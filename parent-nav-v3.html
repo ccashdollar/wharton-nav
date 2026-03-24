@@ -88,8 +88,10 @@
       border-left: 1px solid #9A9A9A;
       columns: 2; column-gap: 32px;
     }
-    .desktop-menu__nav-item {
+    .desktop-menu__nav-group {
       break-inside: avoid;
+    }
+    .desktop-menu__nav-item {
       display: flex; align-items: center; gap: 7px;
       padding: 19px 10px 17px; font-size: 24px; color: #383838;
       border-top: 5px solid transparent;
@@ -97,6 +99,28 @@
       transition: color 0.15s;
     }
     .desktop-menu__nav-item:hover { color: var(--wharton-blue); }
+    .desktop-menu__nav-item--expandable {
+      background: none; border: none; cursor: pointer; font-family: inherit;
+      width: 100%; text-align: left;
+    }
+    .desktop-menu__nav-item--expandable .desktop-menu__nav-chevron {
+      transition: transform 0.25s ease;
+    }
+    .desktop-menu__nav-item--expandable.is-expanded .desktop-menu__nav-chevron {
+      transform: rotate(180deg);
+    }
+    .desktop-menu__sub-list {
+      list-style: none; padding: 0 0 8px 18px; margin: 0;
+      max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+    }
+    .desktop-menu__sub-list.is-open {
+      max-height: 500px;
+    }
+    .desktop-menu__sub-link {
+      display: block; padding: 8px 0; font-size: 16px; color: #555;
+      transition: color 0.15s; text-decoration: none;
+    }
+    .desktop-menu__sub-link:hover { color: var(--wharton-blue); }
     .desktop-menu__nav-chevron {
       display: inline-flex; align-items: center;
     }
@@ -443,13 +467,39 @@
         <a href="#"><img src="assets/kw-logo.svg" alt="Knowledge at Wharton"></a>
       </nav>
       <nav class="desktop-menu__main" aria-label="Main navigation">
-        <a href="#" class="desktop-menu__nav-item">About <span class="desktop-menu__nav-chevron"><svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></span></a>
+        <div class="desktop-menu__nav-group">
+          <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="about">About <span class="desktop-menu__nav-chevron"><svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></span></button>
+          <ul class="desktop-menu__sub-list" id="desktop-sub-about">
+            <li><a href="#" class="desktop-menu__sub-link">About Wharton</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">Leadership</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">History</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">Diversity &amp; Inclusion</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">Global Impact</a></li>
+          </ul>
+        </div>
         <a href="#" class="desktop-menu__nav-item">Academics</a>
-        <a href="#" class="desktop-menu__nav-item">Faculty &amp; Research <span class="desktop-menu__nav-chevron"><svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></span></a>
+        <div class="desktop-menu__nav-group">
+          <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="faculty">Faculty &amp; Research <span class="desktop-menu__nav-chevron"><svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></span></button>
+          <ul class="desktop-menu__sub-list" id="desktop-sub-faculty">
+            <li><a href="#" class="desktop-menu__sub-link">Faculty Directory</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">Research Centers</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">Publications</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">Working Papers</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">Departments</a></li>
+          </ul>
+        </div>
         <a href="#" class="desktop-menu__nav-item">News</a>
         <a href="#" class="desktop-menu__nav-item">Recruiters &amp; Corporations</a>
         <a href="#" class="desktop-menu__nav-item">Alumni</a>
-        <a href="#" class="desktop-menu__nav-item">Locations <span class="desktop-menu__nav-chevron"><svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></span></a>
+        <div class="desktop-menu__nav-group">
+          <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="locations">Locations <span class="desktop-menu__nav-chevron"><svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></span></button>
+          <ul class="desktop-menu__sub-list" id="desktop-sub-locations">
+            <li><a href="#" class="desktop-menu__sub-link">Philadelphia</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">San Francisco</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">Beijing</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">All Locations</a></li>
+          </ul>
+        </div>
         <a href="#" class="desktop-menu__nav-item">Wharton Stories</a>
         <a href="#" class="desktop-menu__nav-item">Give to Wharton</a>
         <a href="#" class="desktop-menu__nav-item">Student Life</a>
@@ -755,6 +805,17 @@
       })();
 
     })();
+
+    // Desktop menu accordion
+    document.querySelectorAll('[data-desktop-toggle]').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var id = 'desktop-sub-' + this.getAttribute('data-desktop-toggle');
+        var subList = document.getElementById(id);
+        subList.classList.toggle('is-open');
+        this.classList.toggle('is-expanded');
+      });
+    });
   </script>
 </body>
 </html>
