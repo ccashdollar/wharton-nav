@@ -700,6 +700,23 @@
       margin-bottom: 16px;
     }
 
+    /* ======== COMPACT HEADER ON SCROLL ======== */
+    .universal-bar { transition: height 0.25s ease, opacity 0.25s ease; }
+    .header--compact .universal-bar { height: 0; overflow: hidden; opacity: 0; }
+
+    .identity-bar { transition: min-height 0.25s ease, padding 0.25s ease; }
+    .header--compact .identity-bar {
+      min-height: 56px; padding-top: 0; padding-bottom: 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .header--compact .identity-bar__logo { padding: 10px 0; }
+    .identity-bar__logo-img { transition: height 0.25s ease; }
+    .header--compact .identity-bar__logo-img { height: 30px; }
+    .icon-btn { transition: width 0.25s ease, height 0.25s ease; }
+    .header--compact .icon-btn { width: 48px; height: 48px; }
+    .header--compact .identity-bar__dept-name { font-size: 16px; }
+    .identity-bar__dept-name { transition: font-size 0.25s ease; }
+
     body.menu-open {
       overflow: hidden;
     }
@@ -1325,6 +1342,21 @@
           closeMoreDropdown();
         }
       });
+
+      // Compact header on scroll
+      (function() {
+        var header = document.querySelector('.site-header');
+        var threshold = 120;
+        var isCompact = false;
+        window.addEventListener('scroll', function() {
+          var shouldCompact = window.scrollY > threshold;
+          if (shouldCompact !== isCompact) {
+            isCompact = shouldCompact;
+            header.classList.toggle('header--compact', isCompact);
+          }
+        }, { passive: true });
+      })();
+
     })();
   </script>
 
