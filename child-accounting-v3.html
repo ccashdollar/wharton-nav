@@ -92,9 +92,10 @@
     .desktop-menu__main {
       flex: 1; padding: 18px 48px;
       border-left: 1px solid #9A9A9A;
-      display: flex; flex-direction: column;
+      columns: 2; column-gap: 32px;
     }
     .desktop-menu__nav-item {
+      break-inside: avoid;
       display: flex; align-items: center; gap: 7px;
       padding: 19px 10px 17px; font-size: 24px; color: #383838;
       border-top: 5px solid transparent;
