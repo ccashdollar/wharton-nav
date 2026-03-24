@@ -47,33 +47,35 @@
       padding: 0 24px; min-height: 98px;
       border-bottom: 1px solid #B8B8B8; flex-shrink: 0;
     }
-    .desktop-menu__close {
-      display: flex; align-items: center; justify-content: center;
-      width: 60px; height: 60px; border: 1px solid #ccc;
-      color: #555; cursor: pointer; transition: border-color 0.15s;
+    .desktop-menu__logo-wrap {
+      display: flex; align-items: center; padding: 24px 0;
     }
-    .desktop-menu__close:hover { border-color: #999; }
-    .desktop-menu__close svg { width: 20px; height: 20px; }
     .desktop-menu__logo { height: 50px; width: auto; }
+    .desktop-menu__controls {
+      display: flex; align-items: center;
+    }
+    .desktop-menu__close,
     .desktop-menu__search {
       display: flex; align-items: center; justify-content: center;
       width: 60px; height: 60px; border: 1px solid #ccc;
       color: #555; cursor: pointer; transition: border-color 0.15s;
+      background: #fff;
     }
+    .desktop-menu__close:hover,
     .desktop-menu__search:hover { border-color: #999; }
+    .desktop-menu__close svg { width: 20px; height: 20px; }
     .desktop-menu__search svg { width: 24px; height: 24px; }
 
     .desktop-menu__body {
       display: flex; flex: 1; overflow-y: auto;
     }
     .desktop-menu__sidebar {
-      width: 210px; flex-shrink: 0; padding: 24px;
-      border-right: 1px solid #9A9A9A;
-      display: flex; flex-direction: column; gap: 12px;
+      width: 267px; flex-shrink: 0; padding: 24px;
+      display: flex; flex-direction: column; gap: 14px;
       padding-top: 48px;
     }
     .desktop-menu__sidebar a {
-      font-size: 10px; text-transform: uppercase; color: #5C6266;
+      font-size: 14px; text-transform: uppercase; color: #5C6266;
       letter-spacing: 0.02em; line-height: 21px;
       transition: color 0.15s;
     }
@@ -81,20 +83,22 @@
     .desktop-menu__sidebar img { height: 10px; width: auto; margin-top: 4px; }
 
     .desktop-menu__main {
-      flex: 1; padding: 24px 48px; padding-top: 24px;
+      flex: 1; padding: 18px 48px;
+      border-left: 1px solid #9A9A9A;
       display: flex; flex-direction: column;
     }
     .desktop-menu__nav-item {
-      display: flex; align-items: center; gap: 8px;
-      padding: 19px 10px 17px; font-size: 13px; color: #383838;
+      display: flex; align-items: center; gap: 7px;
+      padding: 19px 10px 17px; font-size: 24px; color: #383838;
       border-top: 5px solid transparent;
+      line-height: 33px;
       transition: color 0.15s;
     }
     .desktop-menu__nav-item:hover { color: var(--wharton-blue); }
     .desktop-menu__nav-chevron {
       display: inline-flex; align-items: center;
     }
-    .desktop-menu__nav-chevron svg { width: 7px; height: 4px; fill: currentColor; }
+    .desktop-menu__nav-chevron svg { width: 10px; height: 6px; fill: currentColor; }
 
     @media (max-width: 791px) {
       .desktop-menu { display: none !important; }
@@ -388,17 +392,21 @@
        ======================================== -->
   <div class="desktop-menu" id="desktopMenu">
     <div class="desktop-menu__header">
-      <button class="desktop-menu__close" id="desktopMenuClose" aria-label="Close menu">
-        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/>
-        </svg>
-      </button>
-      <img class="desktop-menu__logo" src="assets/wharton-logo.svg" alt="Wharton - University of Pennsylvania">
-      <button class="desktop-menu__search" aria-label="Search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-      </button>
+      <div class="desktop-menu__logo-wrap">
+        <img class="desktop-menu__logo" src="assets/wharton-logo.svg" alt="Wharton - University of Pennsylvania">
+      </div>
+      <div class="desktop-menu__controls">
+        <button class="desktop-menu__close" id="desktopMenuClose" aria-label="Close menu">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/>
+          </svg>
+        </button>
+        <button class="desktop-menu__search" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+      </div>
     </div>
     <div class="desktop-menu__body">
       <nav class="desktop-menu__sidebar" aria-label="Programs">
