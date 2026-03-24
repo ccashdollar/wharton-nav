@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wharton Navigation — Parent Theme V2 Prototype</title>
+  <title>Wharton Navigation — Parent Theme V3 Prototype</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -226,7 +226,7 @@
     .more-dropdown__item:hover { background: #f5f5f5; }
 
     /* ======== RESPONSIVE ======== */
-    @media (max-width: 1041px) {
+    @media (max-width: 1100px) {
       .inline-nav { display: none; }
     }
     @media (max-width: 791px) {
@@ -530,21 +530,19 @@
       <span class="version-switcher__label">Prototype:</span>
       <a href="parent-nav.html" class="version-switcher__link">V1 Parent</a>
       <a href="child-nav.html" class="version-switcher__link">V1 Child</a>
-      <a href="parent-nav-v2.html" class="version-switcher__link version-switcher__link--active">V2 Parent</a>
+      <a href="parent-nav-v2.html" class="version-switcher__link">V2 Parent</a>
       <a href="child-nav-v2.html" class="version-switcher__link">V2 Child</a>
-      <a href="parent-nav-v3.html" class="version-switcher__link">V3 Parent</a>
+      <a href="parent-nav-v3.html" class="version-switcher__link version-switcher__link--active">V3 Parent</a>
       <a href="child-nav-v3.html" class="version-switcher__link">V3 Child</a>
     </div>
-    <span class="badge">V2 Parent Theme Prototype</span>
-    <h1>Wharton Navigation — Version 2</h1>
-    <p>This alternate concept consolidates the 3-tier layout into <strong>2 tiers</strong> by merging the primary navigation into the identity bar. The result is a more compact header with fewer visible nav items.</p>
-    <p><strong>Key differences from V1:</strong></p>
+    <span class="badge">V3 Parent Theme Prototype</span>
+    <h1>Wharton Navigation — Version 3</h1>
+    <p>V3 builds on the 2-tier layout from V2 with refined responsive breakpoints to give the logo and nav items more breathing room.</p>
+    <p><strong>Key differences from V2:</strong></p>
     <p>
-      &bull; <strong>2 tiers</strong> instead of 3 — no separate gray primary nav bar<br>
-      &bull; <strong>Nav items right-aligned</strong> in the identity bar alongside hamburger &amp; search<br>
-      &bull; <strong>Fewer inline items</strong> — About, Academics, Faculty &amp; Research, News, More...<br>
-      &bull; <strong>More... dropdown</strong> contains the remaining items (Recruiters, Alumni, Locations, etc.)<br>
-      &bull; <strong>Below 1041px</strong> — nav items disappear entirely, only logo + hamburger + search remain
+      &bull; <strong>Inline nav breakpoint raised</strong> from 1041px to <strong>1100px</strong> — nav items hide sooner to prevent crowding<br>
+      &bull; <strong>Child theme breakpoint</strong> raised further to <strong>1280px</strong> due to wider combined logo<br>
+      &bull; All other V2 features preserved (2-tier layout, More... dropdown, full-viewport desktop menu)
     </p>
   </main>
 

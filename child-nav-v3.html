@@ -3,27 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wharton Navigation — Parent Theme V2 Prototype</title>
+  <title>Wharton Navigation — Child Theme V3 Prototype (Jacobs MSQF)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --identity-bg: #FFFFFF;
-      --identity-text: #333;
-      --identity-border: #B8B8B8;
+      /* Child V2 — dark identity bar */
+      --identity-bg: #3B3B3B;
+      --identity-text: #FFFFFF;
+      --identity-border: #555555;
       --universal-bg: #FFFFFF;
       --universal-text: #5C6266;
       --universal-hover: #004785;
-      --nav-text: #333;
-      --nav-hover-bg: #f0f0f0;
-      --hamburger-line: #555;
-      --search-bg: #FFFFFF;
-      --search-border: #CCCCCC;
-      --search-icon-color: #004785;
+      --nav-text: #FFFFFF;
+      --nav-hover-bg: rgba(255,255,255,0.1);
+      --hamburger-line: #D9D9D9;
+      --search-bg: transparent;
+      --search-border: rgba(255,255,255,0.4);
+      --search-icon-color: #FFFFFF;
       --mobile-bg: #FFFFFF;
       --mobile-text: #222222;
       --mobile-border: #E5E5E5;
-      --mobile-header-bg: #FFFFFF;
+      --mobile-header-bg: #3B3B3B;
       --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       --wharton-blue: #004785;
       --wharton-red: #A90533;
@@ -45,22 +46,23 @@
     .desktop-menu__header {
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 24px; min-height: 98px;
-      border-bottom: 1px solid #B8B8B8; flex-shrink: 0;
+      border-bottom: 1px solid #555; flex-shrink: 0;
+      background: #3B3B3B;
     }
     .desktop-menu__close {
       display: flex; align-items: center; justify-content: center;
-      width: 60px; height: 60px; border: 1px solid #ccc;
-      color: #555; cursor: pointer; transition: border-color 0.15s;
+      width: 60px; height: 60px; border: 1px solid rgba(255,255,255,0.4);
+      color: #fff; cursor: pointer; transition: border-color 0.15s;
     }
-    .desktop-menu__close:hover { border-color: #999; }
+    .desktop-menu__close:hover { border-color: rgba(255,255,255,0.7); }
     .desktop-menu__close svg { width: 20px; height: 20px; }
     .desktop-menu__logo { height: 50px; width: auto; }
     .desktop-menu__search {
       display: flex; align-items: center; justify-content: center;
-      width: 60px; height: 60px; border: 1px solid #ccc;
-      color: #555; cursor: pointer; transition: border-color 0.15s;
+      width: 60px; height: 60px; border: 1px solid rgba(255,255,255,0.4);
+      color: #fff; cursor: pointer; transition: border-color 0.15s;
     }
-    .desktop-menu__search:hover { border-color: #999; }
+    .desktop-menu__search:hover { border-color: rgba(255,255,255,0.7); }
     .desktop-menu__search svg { width: 24px; height: 24px; }
 
     .desktop-menu__body {
@@ -103,33 +105,14 @@
     /* ======== VERSION SWITCHER ======== */
     .version-switcher {
       background: #1a1a2e;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 8px 16px;
-      font-size: 11px;
-      border-radius: 6px;
-      margin-bottom: 24px;
+      display: flex; align-items: center;
+      gap: 4px; padding: 8px 16px; font-size: 11px;
+      border-radius: 6px; margin-bottom: 24px;
     }
-    .version-switcher__label {
-      color: rgba(255,255,255,0.5);
-      margin-right: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-size: 10px;
-    }
-    .version-switcher__link {
-      color: rgba(255,255,255,0.7);
-      padding: 3px 10px;
-      border-radius: 3px;
-      transition: all 0.15s;
-    }
+    .version-switcher__label { color: rgba(255,255,255,0.5); margin-right: 8px; text-transform: uppercase; letter-spacing: 0.05em; font-size: 10px; }
+    .version-switcher__link { color: rgba(255,255,255,0.7); padding: 3px 10px; border-radius: 3px; transition: all 0.15s; }
     .version-switcher__link:hover { color: #fff; background: rgba(255,255,255,0.1); }
-    .version-switcher__link--active {
-      color: #fff;
-      background: var(--wharton-blue);
-      font-weight: 600;
-    }
+    .version-switcher__link--active { color: #fff; background: var(--wharton-blue); font-weight: 600; }
 
     /* ======== SITE HEADER ======== */
     .site-header { position: sticky; top: 0; z-index: 100; width: 100%; }
@@ -171,7 +154,7 @@
       .universal-bar { justify-content: flex-start; }
     }
 
-    /* ======== IDENTITY BAR (V2 — combined with nav) ======== */
+    /* ======== IDENTITY BAR (V2 CHILD — dark, combined with nav) ======== */
     .identity-bar {
       background: var(--identity-bg);
       border-top: 1px solid var(--identity-border);
@@ -181,12 +164,9 @@
     .identity-bar__logo { display: flex; align-items: center; padding: 24px 0; }
     .identity-bar__logo-img { height: 50px; width: auto; }
 
-    /* Right side: nav + hamburger + search */
-    .identity-bar__right {
-      display: flex; align-items: center; gap: 0;
-    }
+    .identity-bar__right { display: flex; align-items: center; gap: 0; }
 
-    /* Inline primary nav items */
+    /* Inline primary nav */
     .inline-nav { display: flex; align-items: center; gap: 0; margin-right: 8px; }
     .inline-nav__item { position: relative; }
     .inline-nav__link {
@@ -203,9 +183,9 @@
     .icon-btn {
       display: flex; align-items: center; justify-content: center;
       width: 60px; height: 60px; border: 1px solid var(--search-border);
-      transition: background-color 0.15s; flex-shrink: 0;
+      background: var(--search-bg); transition: background-color 0.15s; flex-shrink: 0;
     }
-    .icon-btn:hover { background: #f5f5f5; }
+    .icon-btn:hover { background: rgba(255,255,255,0.1); }
     .icon-btn + .icon-btn { border-left: none; }
     .icon-btn svg { width: 24px; height: 24px; color: var(--search-icon-color); }
     .hamburger-icon { display: flex; flex-direction: column; gap: 3px; width: 21px; }
@@ -226,7 +206,7 @@
     .more-dropdown__item:hover { background: #f5f5f5; }
 
     /* ======== RESPONSIVE ======== */
-    @media (max-width: 1041px) {
+    @media (max-width: 1280px) {
       .inline-nav { display: none; }
     }
     @media (max-width: 791px) {
@@ -249,13 +229,13 @@
     .mobile-overlay.is-open .mobile-menu { transform: translateX(0); }
     .mobile-menu__header {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 20px; border-bottom: 1px solid var(--mobile-border);
-      min-height: 60px; flex-shrink: 0;
+      padding: 12px 16px; border-bottom: 1px solid var(--mobile-border);
+      min-height: 60px; flex-shrink: 0; background: var(--mobile-header-bg);
     }
-    .mobile-menu__close { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; color: #333; }
-    .mobile-menu__close:hover { color: #000; }
-    .mobile-menu__logo { height: 36px; width: auto; }
-    .mobile-menu__search { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; color: #555; }
+    .mobile-menu__close { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; color: #fff; }
+    .mobile-menu__close:hover { color: #ddd; }
+    .mobile-menu__logo { height: 36px; width: auto; max-width: 260px; }
+    .mobile-menu__search { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; color: #fff; }
     .mobile-menu__search svg { width: 20px; height: 20px; }
     .mobile-menu__panels { flex: 1; overflow: hidden; position: relative; }
     .mobile-menu__level1 { position: absolute; inset: 0; overflow-y: auto; transition: transform 0.3s ease; }
@@ -296,7 +276,7 @@
     .page-content { max-width: 1200px; margin: 40px auto; padding: 40px; background: #fff; border-radius: 4px; }
     .page-content h1 { font-size: 28px; color: var(--wharton-blue); margin-bottom: 16px; }
     .page-content p { font-size: 16px; line-height: 1.6; color: #555; margin-bottom: 12px; }
-    .page-content .badge { display: inline-block; background: #e8f0fe; color: var(--wharton-blue); padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
+    .page-content .badge { display: inline-block; background: #fce4ec; color: var(--wharton-red); padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
     body.menu-open { overflow: hidden; }
   </style>
 </head>
@@ -304,7 +284,6 @@
 
   <!-- SITE HEADER -->
   <header class="site-header">
-    <!-- UNIVERSAL BAR -->
     <nav class="universal-bar" aria-label="Program navigation">
       <ul class="universal-bar__list">
         <li class="universal-bar__item"><a href="#" class="universal-bar__link">Faculty</a></li>
@@ -320,16 +299,15 @@
       </ul>
     </nav>
 
-    <!-- IDENTITY BAR (V2 — combined with nav) -->
+    <!-- IDENTITY BAR (V2 CHILD — dark background) -->
     <div class="identity-bar">
       <div class="identity-bar__logo">
         <a href="#">
-          <img class="identity-bar__logo-img" src="assets/wharton-logo.svg" alt="Wharton - University of Pennsylvania">
+          <img class="identity-bar__logo-img" src="assets/child-logo.png" alt="Wharton - Dr. Bruce I. Jacobs Master of Science in Quantitative Finance">
         </a>
       </div>
 
       <div class="identity-bar__right">
-        <!-- Inline primary nav -->
         <nav class="inline-nav" aria-label="Main navigation">
           <div class="inline-nav__item">
             <a href="#" class="inline-nav__link">
@@ -341,13 +319,10 @@
             <a href="#" class="inline-nav__link">Academics</a>
           </div>
           <div class="inline-nav__item">
-            <a href="#" class="inline-nav__link">
-              Faculty &amp; Research
-              <span class="inline-nav__chevron"><svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></span>
-            </a>
+            <a href="#" class="inline-nav__link">Careers &amp; Recruiting</a>
           </div>
           <div class="inline-nav__item">
-            <a href="#" class="inline-nav__link">News</a>
+            <a href="#" class="inline-nav__link">Admissions</a>
           </div>
           <div class="inline-nav__item" style="position:relative;">
             <button class="inline-nav__link" id="moreBtn" aria-expanded="false">
@@ -355,20 +330,17 @@
               <span class="inline-nav__chevron"><svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></span>
             </button>
             <div class="more-dropdown" id="moreDropdown">
-              <a href="#" class="more-dropdown__item">Recruiters &amp; Corporations</a>
-              <a href="#" class="more-dropdown__item">Alumni</a>
-              <a href="#" class="more-dropdown__item">Locations</a>
-              <a href="#" class="more-dropdown__item">Wharton Stories</a>
-              <a href="#" class="more-dropdown__item">Give to Wharton</a>
-              <a href="#" class="more-dropdown__item">Student Life</a>
-              <a href="#" class="more-dropdown__item">Conferences</a>
-              <a href="#" class="more-dropdown__item">Wharton Magazine</a>
-              <a href="#" class="more-dropdown__item">Directory</a>
+              <a href="#" class="more-dropdown__item">Why a Jacobs MSQF</a>
+              <a href="#" class="more-dropdown__item">Application Guide</a>
+              <a href="#" class="more-dropdown__item">Events</a>
+              <a href="#" class="more-dropdown__item">FAQ</a>
+              <a href="#" class="more-dropdown__item">Student Resources</a>
+              <a href="#" class="more-dropdown__item">Financial Aid</a>
+              <a href="#" class="more-dropdown__item">Contact Us</a>
             </div>
           </div>
         </nav>
 
-        <!-- Hamburger + Search -->
         <div class="icon-group">
           <button class="icon-btn" id="hamburgerBtn" aria-label="Open menu">
             <span class="hamburger-icon"><span></span><span></span><span></span></span>
@@ -393,7 +365,7 @@
           <line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/>
         </svg>
       </button>
-      <img class="desktop-menu__logo" src="assets/wharton-logo.svg" alt="Wharton - University of Pennsylvania">
+      <img class="desktop-menu__logo" src="assets/child-logo.png" alt="Wharton - Dr. Bruce I. Jacobs Master of Science in Quantitative Finance" style="height: auto; width: 400px; max-width: 50vw;">
       <button class="desktop-menu__search" aria-label="Search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -416,18 +388,16 @@
       </nav>
       <nav class="desktop-menu__main" aria-label="Main navigation">
         <a href="#" class="desktop-menu__nav-item">About <span class="desktop-menu__nav-chevron"><svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></span></a>
+        <a href="#" class="desktop-menu__nav-item">Why a Jacobs MSQF</a>
         <a href="#" class="desktop-menu__nav-item">Academics</a>
-        <a href="#" class="desktop-menu__nav-item">Faculty &amp; Research <span class="desktop-menu__nav-chevron"><svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></span></a>
-        <a href="#" class="desktop-menu__nav-item">News</a>
-        <a href="#" class="desktop-menu__nav-item">Recruiters &amp; Corporations</a>
-        <a href="#" class="desktop-menu__nav-item">Alumni</a>
-        <a href="#" class="desktop-menu__nav-item">Locations <span class="desktop-menu__nav-chevron"><svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></span></a>
-        <a href="#" class="desktop-menu__nav-item">Wharton Stories</a>
-        <a href="#" class="desktop-menu__nav-item">Give to Wharton</a>
-        <a href="#" class="desktop-menu__nav-item">Student Life</a>
-        <a href="#" class="desktop-menu__nav-item">Conferences</a>
-        <a href="#" class="desktop-menu__nav-item">Wharton Magazine</a>
-        <a href="#" class="desktop-menu__nav-item">Directory</a>
+        <a href="#" class="desktop-menu__nav-item">Careers &amp; Recruiting</a>
+        <a href="#" class="desktop-menu__nav-item">Admissions</a>
+        <a href="#" class="desktop-menu__nav-item">Application Guide</a>
+        <a href="#" class="desktop-menu__nav-item">Events</a>
+        <a href="#" class="desktop-menu__nav-item">FAQ</a>
+        <a href="#" class="desktop-menu__nav-item">Student Resources</a>
+        <a href="#" class="desktop-menu__nav-item">Financial Aid</a>
+        <a href="#" class="desktop-menu__nav-item">Contact Us</a>
       </nav>
     </div>
   </div>
@@ -442,7 +412,7 @@
             <line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/>
           </svg>
         </button>
-        <img class="mobile-menu__logo" src="assets/wharton-logo.svg" alt="Wharton - University of Pennsylvania">
+        <img class="mobile-menu__logo" src="assets/child-logo.png" alt="Wharton - Dr. Bruce I. Jacobs Master of Science in Quantitative Finance">
         <button class="mobile-menu__search" aria-label="Search">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -463,26 +433,16 @@
                 <svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1l6 6-6 6"/></svg>
               </button>
             </li>
+            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Why a Jacobs MSQF</a></li>
             <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Academics</a></li>
-            <li class="mobile-menu__nav-item">
-              <button class="mobile-menu__nav-link" data-drill="faculty">Faculty &amp; Research
-                <svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1l6 6-6 6"/></svg>
-              </button>
-            </li>
-            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">News</a></li>
-            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Recruiters &amp; Corporations</a></li>
-            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Alumni</a></li>
-            <li class="mobile-menu__nav-item">
-              <button class="mobile-menu__nav-link" data-drill="locations">Locations
-                <svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1l6 6-6 6"/></svg>
-              </button>
-            </li>
-            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Wharton Stories</a></li>
-            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Give to Wharton</a></li>
-            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Student Life</a></li>
-            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Conferences</a></li>
-            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Wharton Magazine</a></li>
-            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Directory</a></li>
+            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Careers &amp; Recruiting</a></li>
+            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Admissions</a></li>
+            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Application Guide</a></li>
+            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Events</a></li>
+            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">FAQ</a></li>
+            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Student Resources</a></li>
+            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Financial Aid</a></li>
+            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Contact Us</a></li>
           </ul>
         </div>
         <div class="mobile-menu__level2" id="level2-about">
@@ -490,34 +450,11 @@
             <svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 1L1 7l6 6"/></svg>About
           </button>
           <ul class="mobile-menu__sub-list">
-            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">About Wharton</a></li>
+            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">About the Program</a></li>
             <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Leadership</a></li>
-            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">History</a></li>
-            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Diversity &amp; Inclusion</a></li>
-            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Global Impact</a></li>
-          </ul>
-        </div>
-        <div class="mobile-menu__level2" id="level2-faculty">
-          <button class="mobile-menu__back" data-back>
-            <svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 1L1 7l6 6"/></svg>Faculty &amp; Research
-          </button>
-          <ul class="mobile-menu__sub-list">
-            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Faculty Directory</a></li>
-            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Research Centers</a></li>
-            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Publications</a></li>
-            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Working Papers</a></li>
-            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Departments</a></li>
-          </ul>
-        </div>
-        <div class="mobile-menu__level2" id="level2-locations">
-          <button class="mobile-menu__back" data-back>
-            <svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 1L1 7l6 6"/></svg>Locations
-          </button>
-          <ul class="mobile-menu__sub-list">
-            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Philadelphia</a></li>
-            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">San Francisco</a></li>
-            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Beijing</a></li>
-            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">All Locations</a></li>
+            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Faculty</a></li>
+            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Alumni Outcomes</a></li>
+            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Contact</a></li>
           </ul>
         </div>
       </div>
@@ -530,22 +467,16 @@
       <span class="version-switcher__label">Prototype:</span>
       <a href="parent-nav.html" class="version-switcher__link">V1 Parent</a>
       <a href="child-nav.html" class="version-switcher__link">V1 Child</a>
-      <a href="parent-nav-v2.html" class="version-switcher__link version-switcher__link--active">V2 Parent</a>
+      <a href="parent-nav-v2.html" class="version-switcher__link">V2 Parent</a>
       <a href="child-nav-v2.html" class="version-switcher__link">V2 Child</a>
       <a href="parent-nav-v3.html" class="version-switcher__link">V3 Parent</a>
-      <a href="child-nav-v3.html" class="version-switcher__link">V3 Child</a>
+      <a href="child-nav-v3.html" class="version-switcher__link version-switcher__link--active">V3 Child</a>
     </div>
-    <span class="badge">V2 Parent Theme Prototype</span>
-    <h1>Wharton Navigation — Version 2</h1>
-    <p>This alternate concept consolidates the 3-tier layout into <strong>2 tiers</strong> by merging the primary navigation into the identity bar. The result is a more compact header with fewer visible nav items.</p>
-    <p><strong>Key differences from V1:</strong></p>
-    <p>
-      &bull; <strong>2 tiers</strong> instead of 3 — no separate gray primary nav bar<br>
-      &bull; <strong>Nav items right-aligned</strong> in the identity bar alongside hamburger &amp; search<br>
-      &bull; <strong>Fewer inline items</strong> — About, Academics, Faculty &amp; Research, News, More...<br>
-      &bull; <strong>More... dropdown</strong> contains the remaining items (Recruiters, Alumni, Locations, etc.)<br>
-      &bull; <strong>Below 1041px</strong> — nav items disappear entirely, only logo + hamburger + search remain
-    </p>
+    <span class="badge">V3 Child Theme Prototype</span>
+    <h1>Dr. Bruce I. Jacobs — Master of Science in Quantitative Finance</h1>
+    <p>V3 builds on the 2-tier layout from V2 with a raised breakpoint (<strong>1280px</strong>) so the inline nav items hide sooner, giving the wider child logo room to breathe.</p>
+    <p><strong>Child-specific nav items shown inline (above 1280px):</strong> About, Academics, Careers &amp; Recruiting, Admissions, More...</p>
+    <p><strong>"More..." contains:</strong> Why a Jacobs MSQF, Application Guide, Events, FAQ, Student Resources, Financial Aid, Contact Us</p>
   </main>
 
   <!-- JAVASCRIPT -->
@@ -567,7 +498,6 @@
         bar.addEventListener('touchend', function() { isDragging = false; });
       })();
 
-      // Mobile menu
       var hamburgerBtn = document.getElementById('hamburgerBtn');
       var mobileOverlay = document.getElementById('mobileOverlay');
       var mobileBackdrop = document.getElementById('mobileBackdrop');
@@ -575,8 +505,6 @@
       var mobileLevel1 = document.getElementById('mobileLevel1');
       var moreBtn = document.getElementById('moreBtn');
       var moreDropdown = document.getElementById('moreDropdown');
-
-      // Desktop menu
       var desktopMenu = document.getElementById('desktopMenu');
       var desktopMenuClose = document.getElementById('desktopMenuClose');
 
@@ -598,7 +526,6 @@
 
       function isMobile() { return window.innerWidth <= 791; }
 
-      // Viewport-aware hamburger routing
       hamburgerBtn.addEventListener('click', function() {
         if (isMobile()) {
           openMobileMenu();
@@ -611,7 +538,6 @@
       mobileClose.addEventListener('click', closeMobileMenu);
       mobileBackdrop.addEventListener('click', closeMobileMenu);
 
-      // Close desktop menu if resized to mobile
       window.addEventListener('resize', function() {
         if (isMobile() && desktopMenu.classList.contains('is-open')) closeDesktopMenu();
       });
@@ -622,9 +548,14 @@
       document.querySelectorAll('[data-back]').forEach(function(btn) {
         btn.addEventListener('click', function() { mobileLevel1.classList.remove('is-drilled'); var l2 = btn.closest('.mobile-menu__level2'); if (l2) l2.classList.remove('is-active'); });
       });
-      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeMobileMenu(); closeDesktopMenu(); closeMoreDropdown(); } });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeMobileMenu();
+          closeDesktopMenu();
+          closeMoreDropdown();
+        }
+      });
 
-      // More dropdown
       function closeMoreDropdown() { moreDropdown.classList.remove('is-open'); moreBtn.setAttribute('aria-expanded', 'false'); }
       moreBtn.addEventListener('click', function(e) { e.preventDefault(); var isOpen = moreDropdown.classList.contains('is-open'); if (isOpen) closeMoreDropdown(); else { moreDropdown.classList.add('is-open'); moreBtn.setAttribute('aria-expanded', 'true'); } });
       document.addEventListener('click', function(e) { if (!moreBtn.contains(e.target) && !moreDropdown.contains(e.target)) closeMoreDropdown(); });
