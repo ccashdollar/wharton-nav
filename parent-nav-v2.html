@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wharton Navigation — Parent Theme V2 Prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --identity-bg: #FFFFFF;
+      --identity-text: #333;
+      --identity-border: #B8B8B8;
+      --universal-bg: #FFFFFF;
+      --universal-text: #5C6266;
+      --universal-hover: #004785;
+      --nav-text: #333;
+      --nav-hover-bg: #f0f0f0;
+      --hamburger-line: #555;
+      --search-bg: #FFFFFF;
+      --search-border: #CCCCCC;
+      --search-icon-color: #004785;
+      --mobile-bg: #FFFFFF;
+      --mobile-text: #222222;
+      --mobile-border: #E5E5E5;
+      --mobile-header-bg: #FFFFFF;
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --wharton-blue: #004785;
+      --wharton-red: #A90533;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-family); color: #333; background: #f5f5f5; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    button { border: none; background: none; cursor: pointer; font-family: inherit; }
+    ul, li { list-style: none; }
+
+    /* ======== VERSION SWITCHER ======== */
+    .version-switcher {
+      background: #1a1a2e;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 16px;
+      font-size: 11px;
+      border-radius: 6px;
+      margin-bottom: 24px;
+    }
+    .version-switcher__label {
+      color: rgba(255,255,255,0.5);
+      margin-right: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 10px;
+    }
+    .version-switcher__link {
+      color: rgba(255,255,255,0.7);
+      padding: 3px 10px;
+      border-radius: 3px;
+      transition: all 0.15s;
+    }
+    .version-switcher__link:hover { color: #fff; background: rgba(255,255,255,0.1); }
+    .version-switcher__link--active {
+      color: #fff;
+      background: var(--wharton-blue);
+      font-weight: 600;
+    }
+
+    /* ======== SITE HEADER ======== */
+    .site-header { position: sticky; top: 0; z-index: 100; width: 100%; }
+
+    /* ======== UNIVERSAL BAR ======== */
+    .universal-bar {
+      background: var(--universal-bg);
+      display: flex; align-items: center; justify-content: center;
+      height: 35px; padding: 0 25px;
+      position: relative;
+      overflow: hidden; overflow-x: auto;
+      scrollbar-width: none; -ms-overflow-style: none;
+      cursor: grab; user-select: none; -webkit-user-select: none;
+    }
+    .universal-bar::-webkit-scrollbar { display: none; }
+    .universal-bar.is-dragging { cursor: grabbing; }
+    .universal-bar::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 40px;
+      background: linear-gradient(to right, white, transparent);
+      pointer-events: none; z-index: 1; opacity: 0; transition: opacity 0.2s;
+    }
+    .universal-bar.is-scrolled::before { opacity: 1; }
+    .universal-bar__list { display: flex; align-items: center; gap: 0; height: 100%; white-space: nowrap; }
+    .universal-bar__item { height: 100%; display: flex; align-items: center; }
+    .universal-bar__link {
+      display: flex; align-items: center; height: 100%; padding: 0 10px;
+      font-size: 10px; text-transform: uppercase; color: var(--universal-text);
+      letter-spacing: 0.02em; transition: color 0.15s;
+    }
+    .universal-bar__link:hover { color: var(--universal-hover); }
+    .universal-bar__link--kw { color: var(--wharton-blue); font-weight: 600; letter-spacing: 0.05em; }
+    .universal-bar::after {
+      content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 40px;
+      background: linear-gradient(to left, white, transparent);
+      pointer-events: none; z-index: 1; display: none;
+    }
+    @media (max-width: 791px) {
+      .universal-bar::after { display: block; }
+      .universal-bar { justify-content: flex-start; }
+    }
+
+    /* ======== IDENTITY BAR (V2 — combined with nav) ======== */
+    .identity-bar {
+      background: var(--identity-bg);
+      border-top: 1px solid var(--identity-border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px; min-height: 98px;
+    }
+    .identity-bar__logo { display: flex; align-items: center; padding: 24px 0; }
+    .identity-bar__logo-img { height: 50px; width: auto; }
+
+    /* Right side: nav + hamburger + search */
+    .identity-bar__right {
+      display: flex; align-items: center; gap: 0;
+    }
+
+    /* Inline primary nav items */
+    .inline-nav { display: flex; align-items: center; gap: 0; margin-right: 8px; }
+    .inline-nav__item { position: relative; }
+    .inline-nav__link {
+      display: flex; align-items: center; gap: 5px;
+      padding: 8px 14px; color: var(--nav-text); font-size: 14px;
+      white-space: nowrap; border-radius: 4px; transition: background-color 0.15s;
+    }
+    .inline-nav__link:hover { background: var(--nav-hover-bg); }
+    .inline-nav__chevron { width: 8px; height: 8px; display: inline-flex; align-items: center; }
+    .inline-nav__chevron svg { width: 8px; height: 5px; fill: currentColor; }
+
+    /* Hamburger + Search group */
+    .icon-group { display: flex; align-items: center; gap: 0; }
+    .icon-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 60px; height: 60px; border: 1px solid var(--search-border);
+      transition: background-color 0.15s; flex-shrink: 0;
+    }
+    .icon-btn:hover { background: #f5f5f5; }
+    .icon-btn + .icon-btn { border-left: none; }
+    .icon-btn svg { width: 24px; height: 24px; color: var(--search-icon-color); }
+    .hamburger-icon { display: flex; flex-direction: column; gap: 3px; width: 21px; }
+    .hamburger-icon span { display: block; height: 2px; width: 21px; background: var(--hamburger-line); border-radius: 1px; }
+
+    /* "More..." dropdown */
+    .more-dropdown {
+      position: absolute; top: 100%; right: 0; background: #fff;
+      border: 1px solid #ddd; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      min-width: 220px; z-index: 200; display: none;
+    }
+    .more-dropdown.is-open { display: block; }
+    .more-dropdown__item {
+      display: block; padding: 12px 16px; color: #333; font-size: 14px;
+      transition: background-color 0.1s; border-bottom: 1px solid #f0f0f0;
+    }
+    .more-dropdown__item:last-child { border-bottom: none; }
+    .more-dropdown__item:hover { background: #f5f5f5; }
+
+    /* ======== RESPONSIVE ======== */
+    @media (max-width: 1041px) {
+      .inline-nav { display: none; }
+    }
+    @media (max-width: 791px) {
+      .identity-bar__logo-img { height: 40px; }
+      .identity-bar { padding: 0 16px; }
+    }
+
+    /* ======== MOBILE MENU ======== */
+    .mobile-overlay {
+      position: fixed; inset: 0; z-index: 1000;
+      visibility: hidden; opacity: 0; transition: visibility 0s 0.3s, opacity 0.3s;
+    }
+    .mobile-overlay.is-open { visibility: visible; opacity: 1; transition: visibility 0s, opacity 0.3s; }
+    .mobile-overlay__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
+    .mobile-menu {
+      position: absolute; top: 0; left: 0; bottom: 0; width: 100%; max-width: 400px;
+      background: var(--mobile-bg); transform: translateX(-100%); transition: transform 0.3s ease;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    .mobile-overlay.is-open .mobile-menu { transform: translateX(0); }
+    .mobile-menu__header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; border-bottom: 1px solid var(--mobile-border);
+      min-height: 60px; flex-shrink: 0;
+    }
+    .mobile-menu__close { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; color: #333; }
+    .mobile-menu__close:hover { color: #000; }
+    .mobile-menu__logo { height: 36px; width: auto; }
+    .mobile-menu__search { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; color: #555; }
+    .mobile-menu__search svg { width: 20px; height: 20px; }
+    .mobile-menu__panels { flex: 1; overflow: hidden; position: relative; }
+    .mobile-menu__level1 { position: absolute; inset: 0; overflow-y: auto; transition: transform 0.3s ease; }
+    .mobile-menu__level1.is-drilled { transform: translateX(-100%); }
+    .mobile-menu__universal {
+      padding: 12px 20px; border-bottom: 1px solid var(--mobile-border);
+      display: flex; flex-wrap: wrap; gap: 4px 16px;
+    }
+    .mobile-menu__universal a { font-size: 11px; text-transform: uppercase; color: var(--universal-text); padding: 4px 0; letter-spacing: 0.02em; }
+    .mobile-menu__universal a:hover { color: var(--wharton-blue); }
+    .mobile-menu__nav-list { padding: 8px 0; }
+    .mobile-menu__nav-item { border-bottom: 1px solid var(--mobile-border); }
+    .mobile-menu__nav-link {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; font-size: 16px; color: var(--mobile-text);
+      width: 100%; text-align: left; transition: background-color 0.1s;
+    }
+    .mobile-menu__nav-link:hover { background: #f8f8f8; }
+    .mobile-menu__nav-link svg { width: 8px; height: 14px; color: #999; flex-shrink: 0; }
+    .mobile-menu__level2 {
+      position: absolute; inset: 0; overflow-y: auto; background: var(--mobile-bg);
+      transform: translateX(100%); transition: transform 0.3s ease;
+    }
+    .mobile-menu__level2.is-active { transform: translateX(0); }
+    .mobile-menu__back {
+      display: flex; align-items: center; gap: 10px; padding: 16px 20px;
+      font-size: 16px; font-weight: 600; color: var(--mobile-text);
+      border-bottom: 1px solid var(--mobile-border); width: 100%; text-align: left;
+    }
+    .mobile-menu__back:hover { background: #f8f8f8; }
+    .mobile-menu__back svg { width: 8px; height: 14px; color: #666; }
+    .mobile-menu__sub-list { padding: 8px 0; }
+    .mobile-menu__sub-item { border-bottom: 1px solid var(--mobile-border); }
+    .mobile-menu__sub-link { display: block; padding: 14px 20px; font-size: 15px; color: var(--mobile-text); transition: background-color 0.1s; }
+    .mobile-menu__sub-link:hover { background: #f8f8f8; }
+
+    /* ======== PAGE CONTENT ======== */
+    .page-content { max-width: 1200px; margin: 40px auto; padding: 40px; background: #fff; border-radius: 4px; }
+    .page-content h1 { font-size: 28px; color: var(--wharton-blue); margin-bottom: 16px; }
+    .page-content p { font-size: 16px; line-height: 1.6; color: #555; margin-bottom: 12px; }
+    .page-content .badge { display: inline-block; background: #e8f0fe; color: var(--wharton-blue); padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
+    body.menu-open { overflow: hidden; }
+  </style>
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <!-- UNIVERSAL BAR -->
+    <nav class="universal-bar" aria-label="Program navigation">
+      <ul class="universal-bar__list">
+        <li class="universal-bar__item"><a href="#" class="universal-bar__link">Faculty</a></li>
+        <li class="universal-bar__item"><a href="#" class="universal-bar__link">Youth Program</a></li>
+        <li class="universal-bar__item"><a href="#" class="universal-bar__link">Undergrad</a></li>
+        <li class="universal-bar__item"><a href="#" class="universal-bar__link">Jacobs MSQF</a></li>
+        <li class="universal-bar__item"><a href="#" class="universal-bar__link">MBA</a></li>
+        <li class="universal-bar__item"><a href="#" class="universal-bar__link">EMBA</a></li>
+        <li class="universal-bar__item"><a href="#" class="universal-bar__link">PhD</a></li>
+        <li class="universal-bar__item"><a href="#" class="universal-bar__link">Exec Ed</a></li>
+        <li class="universal-bar__item"><a href="#" class="universal-bar__link">Wharton Online</a></li>
+        <li class="universal-bar__item"><a href="#" class="universal-bar__link universal-bar__link--kw"><img src="assets/kw-logo.svg" alt="Knowledge at Wharton" style="height: 10px; width: auto;"></a></li>
+      </ul>
+    </nav>
+
+    <!-- IDENTITY BAR (V2 — combined with nav) -->
+    <div class="identity-bar">
+      <div class="identity-bar__logo">
+        <a href="#">
+          <img class="identity-bar__logo-img" src="assets/wharton-logo.svg" alt="Wharton - University of Pennsylvania">
+        </a>
+      </div>
+
+      <div class="identity-bar__right">
+        <!-- Inline primary nav -->
+        <nav class="inline-nav" aria-label="Main navigation">
+          <div class="inline-nav__item">
+            <a href="#" class="inline-nav__link">
+              About
+              <span class="inline-nav__chevron"><svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></span>
+            </a>
+          </div>
+          <div class="inline-nav__item">
+            <a href="#" class="inline-nav__link">Academics</a>
+          </div>
+          <div class="inline-nav__item">
+            <a href="#" class="inline-nav__link">
+              Faculty &amp; Research
+              <span class="inline-nav__chevron"><svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></span>
+            </a>
+          </div>
+          <div class="inline-nav__item">
+            <a href="#" class="inline-nav__link">News</a>
+          </div>
+          <div class="inline-nav__item" style="position:relative;">
+            <button class="inline-nav__link" id="moreBtn" aria-expanded="false">
+              More...
+              <span class="inline-nav__chevron"><svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></span>
+            </button>
+            <div class="more-dropdown" id="moreDropdown">
+              <a href="#" class="more-dropdown__item">Recruiters &amp; Corporations</a>
+              <a href="#" class="more-dropdown__item">Alumni</a>
+              <a href="#" class="more-dropdown__item">Locations</a>
+              <a href="#" class="more-dropdown__item">Wharton Stories</a>
+              <a href="#" class="more-dropdown__item">Give to Wharton</a>
+              <a href="#" class="more-dropdown__item">Student Life</a>
+              <a href="#" class="more-dropdown__item">Conferences</a>
+              <a href="#" class="more-dropdown__item">Wharton Magazine</a>
+              <a href="#" class="more-dropdown__item">Directory</a>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Hamburger + Search -->
+        <div class="icon-group">
+          <button class="icon-btn" id="hamburgerBtn" aria-label="Open menu">
+            <span class="hamburger-icon"><span></span><span></span><span></span></span>
+          </button>
+          <button class="icon-btn" aria-label="Search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-overlay" id="mobileOverlay">
+    <div class="mobile-overlay__backdrop" id="mobileBackdrop"></div>
+    <div class="mobile-menu">
+      <div class="mobile-menu__header">
+        <button class="mobile-menu__close" id="mobileClose" aria-label="Close menu">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/>
+          </svg>
+        </button>
+        <img class="mobile-menu__logo" src="assets/wharton-logo.svg" alt="Wharton - University of Pennsylvania">
+        <button class="mobile-menu__search" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+      </div>
+      <div class="mobile-menu__panels">
+        <div class="mobile-menu__level1" id="mobileLevel1">
+          <div class="mobile-menu__universal">
+            <a href="#">Faculty</a><a href="#">Youth Program</a><a href="#">Undergrad</a>
+            <a href="#">Jacobs MSQF</a><a href="#">MBA</a><a href="#">EMBA</a>
+            <a href="#">PhD</a><a href="#">Exec Ed</a><a href="#">Wharton Online</a>
+            <a href="#">Knowledge @ Wharton</a>
+          </div>
+          <ul class="mobile-menu__nav-list">
+            <li class="mobile-menu__nav-item">
+              <button class="mobile-menu__nav-link" data-drill="about">About
+                <svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1l6 6-6 6"/></svg>
+              </button>
+            </li>
+            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Academics</a></li>
+            <li class="mobile-menu__nav-item">
+              <button class="mobile-menu__nav-link" data-drill="faculty">Faculty &amp; Research
+                <svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1l6 6-6 6"/></svg>
+              </button>
+            </li>
+            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">News</a></li>
+            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Recruiters &amp; Corporations</a></li>
+            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Alumni</a></li>
+            <li class="mobile-menu__nav-item">
+              <button class="mobile-menu__nav-link" data-drill="locations">Locations
+                <svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1l6 6-6 6"/></svg>
+              </button>
+            </li>
+            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Wharton Stories</a></li>
+            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Give to Wharton</a></li>
+            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Student Life</a></li>
+            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Conferences</a></li>
+            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Wharton Magazine</a></li>
+            <li class="mobile-menu__nav-item"><a href="#" class="mobile-menu__nav-link">Directory</a></li>
+          </ul>
+        </div>
+        <div class="mobile-menu__level2" id="level2-about">
+          <button class="mobile-menu__back" data-back>
+            <svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 1L1 7l6 6"/></svg>About
+          </button>
+          <ul class="mobile-menu__sub-list">
+            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">About Wharton</a></li>
+            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Leadership</a></li>
+            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">History</a></li>
+            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Diversity &amp; Inclusion</a></li>
+            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Global Impact</a></li>
+          </ul>
+        </div>
+        <div class="mobile-menu__level2" id="level2-faculty">
+          <button class="mobile-menu__back" data-back>
+            <svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 1L1 7l6 6"/></svg>Faculty &amp; Research
+          </button>
+          <ul class="mobile-menu__sub-list">
+            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Faculty Directory</a></li>
+            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Research Centers</a></li>
+            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Publications</a></li>
+            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Working Papers</a></li>
+            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Departments</a></li>
+          </ul>
+        </div>
+        <div class="mobile-menu__level2" id="level2-locations">
+          <button class="mobile-menu__back" data-back>
+            <svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 1L1 7l6 6"/></svg>Locations
+          </button>
+          <ul class="mobile-menu__sub-list">
+            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Philadelphia</a></li>
+            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">San Francisco</a></li>
+            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">Beijing</a></li>
+            <li class="mobile-menu__sub-item"><a href="#" class="mobile-menu__sub-link">All Locations</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE CONTENT -->
+  <main class="page-content">
+    <div class="version-switcher">
+      <span class="version-switcher__label">Prototype:</span>
+      <a href="parent-nav.html" class="version-switcher__link">V1 Parent</a>
+      <a href="child-nav.html" class="version-switcher__link">V1 Child</a>
+      <a href="parent-nav-v2.html" class="version-switcher__link version-switcher__link--active">V2 Parent</a>
+      <a href="child-nav-v2.html" class="version-switcher__link">V2 Child</a>
+    </div>
+    <span class="badge">V2 Parent Theme Prototype</span>
+    <h1>Wharton Navigation — Version 2</h1>
+    <p>This alternate concept consolidates the 3-tier layout into <strong>2 tiers</strong> by merging the primary navigation into the identity bar. The result is a more compact header with fewer visible nav items.</p>
+    <p><strong>Key differences from V1:</strong></p>
+    <p>
+      &bull; <strong>2 tiers</strong> instead of 3 — no separate gray primary nav bar<br>
+      &bull; <strong>Nav items right-aligned</strong> in the identity bar alongside hamburger &amp; search<br>
+      &bull; <strong>Fewer inline items</strong> — About, Academics, Faculty &amp; Research, News, More...<br>
+      &bull; <strong>More... dropdown</strong> contains the remaining items (Recruiters, Alumni, Locations, etc.)<br>
+      &bull; <strong>Below 1041px</strong> — nav items disappear entirely, only logo + hamburger + search remain
+    </p>
+  </main>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    (function() {
+      // Drag-to-scroll
+      (function() {
+        var bar = document.querySelector('.universal-bar');
+        if (!bar) return;
+        var isDragging = false, startX = 0, scrollStart = 0, didDrag = false;
+        function updateScrollClass() { bar.classList.toggle('is-scrolled', bar.scrollLeft > 5); }
+        bar.addEventListener('scroll', updateScrollClass);
+        bar.addEventListener('mousedown', function(e) { isDragging = true; didDrag = false; startX = e.pageX; scrollStart = bar.scrollLeft; bar.classList.add('is-dragging'); e.preventDefault(); });
+        document.addEventListener('mousemove', function(e) { if (!isDragging) return; var dx = e.pageX - startX; if (Math.abs(dx) > 3) didDrag = true; bar.scrollLeft = scrollStart - dx; });
+        document.addEventListener('mouseup', function() { if (!isDragging) return; isDragging = false; bar.classList.remove('is-dragging'); });
+        bar.addEventListener('click', function(e) { if (didDrag) { e.preventDefault(); e.stopPropagation(); didDrag = false; } }, true);
+        bar.addEventListener('touchstart', function(e) { isDragging = true; didDrag = false; startX = e.touches[0].pageX; scrollStart = bar.scrollLeft; }, { passive: true });
+        bar.addEventListener('touchmove', function(e) { if (!isDragging) return; var dx = e.touches[0].pageX - startX; if (Math.abs(dx) > 3) didDrag = true; bar.scrollLeft = scrollStart - dx; }, { passive: true });
+        bar.addEventListener('touchend', function() { isDragging = false; });
+      })();
+
+      // Mobile menu
+      var hamburgerBtn = document.getElementById('hamburgerBtn');
+      var mobileOverlay = document.getElementById('mobileOverlay');
+      var mobileBackdrop = document.getElementById('mobileBackdrop');
+      var mobileClose = document.getElementById('mobileClose');
+      var mobileLevel1 = document.getElementById('mobileLevel1');
+      var moreBtn = document.getElementById('moreBtn');
+      var moreDropdown = document.getElementById('moreDropdown');
+
+      function openMobileMenu() { mobileOverlay.classList.add('is-open'); document.body.classList.add('menu-open'); }
+      function closeMobileMenu() {
+        mobileOverlay.classList.remove('is-open'); document.body.classList.remove('menu-open');
+        setTimeout(function() { mobileLevel1.classList.remove('is-drilled'); document.querySelectorAll('.mobile-menu__level2').forEach(function(el) { el.classList.remove('is-active'); }); }, 300);
+      }
+      hamburgerBtn.addEventListener('click', openMobileMenu);
+      mobileClose.addEventListener('click', closeMobileMenu);
+      mobileBackdrop.addEventListener('click', closeMobileMenu);
+
+      document.querySelectorAll('[data-drill]').forEach(function(btn) {
+        btn.addEventListener('click', function() { var t = btn.getAttribute('data-drill'), l2 = document.getElementById('level2-' + t); if (l2) { mobileLevel1.classList.add('is-drilled'); l2.classList.add('is-active'); } });
+      });
+      document.querySelectorAll('[data-back]').forEach(function(btn) {
+        btn.addEventListener('click', function() { mobileLevel1.classList.remove('is-drilled'); var l2 = btn.closest('.mobile-menu__level2'); if (l2) l2.classList.remove('is-active'); });
+      });
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeMobileMenu(); closeMoreDropdown(); } });
+
+      // More dropdown
+      function closeMoreDropdown() { moreDropdown.classList.remove('is-open'); moreBtn.setAttribute('aria-expanded', 'false'); }
+      moreBtn.addEventListener('click', function(e) { e.preventDefault(); var isOpen = moreDropdown.classList.contains('is-open'); if (isOpen) closeMoreDropdown(); else { moreDropdown.classList.add('is-open'); moreBtn.setAttribute('aria-expanded', 'true'); } });
+      document.addEventListener('click', function(e) { if (!moreBtn.contains(e.target) && !moreDropdown.contains(e.target)) closeMoreDropdown(); });
+    })();
+  </script>
+</body>
+</html>
