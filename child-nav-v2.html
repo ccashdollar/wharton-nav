@@ -36,6 +36,72 @@
     button { border: none; background: none; cursor: pointer; font-family: inherit; }
     ul, li { list-style: none; }
 
+    /* ======== DESKTOP FULL-VIEWPORT MENU ======== */
+    .desktop-menu {
+      position: fixed; inset: 0; z-index: 1000;
+      background: #fff; display: none; flex-direction: column;
+    }
+    .desktop-menu.is-open { display: flex; }
+
+    .desktop-menu__header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px; min-height: 98px;
+      border-bottom: 1px solid #555; flex-shrink: 0;
+      background: #3B3B3B;
+    }
+    .desktop-menu__close {
+      display: flex; align-items: center; justify-content: center;
+      width: 60px; height: 60px; border: 1px solid rgba(255,255,255,0.4);
+      color: #fff; cursor: pointer; transition: border-color 0.15s;
+    }
+    .desktop-menu__close:hover { border-color: rgba(255,255,255,0.7); }
+    .desktop-menu__close svg { width: 20px; height: 20px; }
+    .desktop-menu__logo { height: 50px; width: auto; }
+    .desktop-menu__search {
+      display: flex; align-items: center; justify-content: center;
+      width: 60px; height: 60px; border: 1px solid rgba(255,255,255,0.4);
+      color: #fff; cursor: pointer; transition: border-color 0.15s;
+    }
+    .desktop-menu__search:hover { border-color: rgba(255,255,255,0.7); }
+    .desktop-menu__search svg { width: 24px; height: 24px; }
+
+    .desktop-menu__body {
+      display: flex; flex: 1; overflow-y: auto;
+    }
+    .desktop-menu__sidebar {
+      width: 210px; flex-shrink: 0; padding: 24px;
+      border-right: 1px solid #9A9A9A;
+      display: flex; flex-direction: column; gap: 12px;
+      padding-top: 48px;
+    }
+    .desktop-menu__sidebar a {
+      font-size: 10px; text-transform: uppercase; color: #5C6266;
+      letter-spacing: 0.02em; line-height: 21px;
+      transition: color 0.15s;
+    }
+    .desktop-menu__sidebar a:hover { color: var(--wharton-blue); }
+    .desktop-menu__sidebar img { height: 10px; width: auto; margin-top: 4px; }
+
+    .desktop-menu__main {
+      flex: 1; padding: 24px 48px; padding-top: 24px;
+      display: flex; flex-direction: column;
+    }
+    .desktop-menu__nav-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 19px 10px 17px; font-size: 13px; color: #383838;
+      border-top: 5px solid transparent;
+      transition: color 0.15s;
+    }
+    .desktop-menu__nav-item:hover { color: var(--wharton-blue); }
+    .desktop-menu__nav-chevron {
+      display: inline-flex; align-items: center;
+    }
+    .desktop-menu__nav-chevron svg { width: 7px; height: 4px; fill: currentColor; }
+
+    @media (max-width: 791px) {
+      .desktop-menu { display: none !important; }
+    }
+
     /* ======== VERSION SWITCHER ======== */
     .version-switcher {
       background: #1a1a2e;
@@ -289,6 +355,53 @@
     </div>
   </header>
 
+  <!-- ========================================
+       DESKTOP FULL-VIEWPORT MENU
+       ======================================== -->
+  <div class="desktop-menu" id="desktopMenu">
+    <div class="desktop-menu__header">
+      <button class="desktop-menu__close" id="desktopMenuClose" aria-label="Close menu">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/>
+        </svg>
+      </button>
+      <img class="desktop-menu__logo" src="assets/child-logo.png" alt="Wharton - Dr. Bruce I. Jacobs Master of Science in Quantitative Finance" style="height: auto; width: 400px; max-width: 50vw;">
+      <button class="desktop-menu__search" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+    </div>
+    <div class="desktop-menu__body">
+      <nav class="desktop-menu__sidebar" aria-label="Programs">
+        <a href="#">Wharton Home</a>
+        <a href="#">Faculty</a>
+        <a href="#">Youth Program</a>
+        <a href="#">Undergrad</a>
+        <a href="#">Jacobs MSQF</a>
+        <a href="#">MBA</a>
+        <a href="#">EMBA</a>
+        <a href="#">PhD</a>
+        <a href="#">Exec Ed</a>
+        <a href="#">Wharton Online</a>
+        <img src="assets/kw-logo.svg" alt="Knowledge at Wharton">
+      </nav>
+      <nav class="desktop-menu__main" aria-label="Main navigation">
+        <a href="#" class="desktop-menu__nav-item">About <span class="desktop-menu__nav-chevron"><svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></span></a>
+        <a href="#" class="desktop-menu__nav-item">Why a Jacobs MSQF</a>
+        <a href="#" class="desktop-menu__nav-item">Academics</a>
+        <a href="#" class="desktop-menu__nav-item">Careers &amp; Recruiting</a>
+        <a href="#" class="desktop-menu__nav-item">Admissions</a>
+        <a href="#" class="desktop-menu__nav-item">Application Guide</a>
+        <a href="#" class="desktop-menu__nav-item">Events</a>
+        <a href="#" class="desktop-menu__nav-item">FAQ</a>
+        <a href="#" class="desktop-menu__nav-item">Student Resources</a>
+        <a href="#" class="desktop-menu__nav-item">Financial Aid</a>
+        <a href="#" class="desktop-menu__nav-item">Contact Us</a>
+      </nav>
+    </div>
+  </div>
+
   <!-- MOBILE MENU -->
   <div class="mobile-overlay" id="mobileOverlay">
     <div class="mobile-overlay__backdrop" id="mobileBackdrop"></div>
@@ -390,15 +503,42 @@
       var mobileLevel1 = document.getElementById('mobileLevel1');
       var moreBtn = document.getElementById('moreBtn');
       var moreDropdown = document.getElementById('moreDropdown');
+      var desktopMenu = document.getElementById('desktopMenu');
+      var desktopMenuClose = document.getElementById('desktopMenuClose');
 
       function openMobileMenu() { mobileOverlay.classList.add('is-open'); document.body.classList.add('menu-open'); }
       function closeMobileMenu() {
         mobileOverlay.classList.remove('is-open'); document.body.classList.remove('menu-open');
         setTimeout(function() { mobileLevel1.classList.remove('is-drilled'); document.querySelectorAll('.mobile-menu__level2').forEach(function(el) { el.classList.remove('is-active'); }); }, 300);
       }
-      hamburgerBtn.addEventListener('click', openMobileMenu);
+
+      function openDesktopMenu() {
+        desktopMenu.classList.add('is-open');
+        document.body.classList.add('menu-open');
+      }
+
+      function closeDesktopMenu() {
+        desktopMenu.classList.remove('is-open');
+        document.body.classList.remove('menu-open');
+      }
+
+      function isMobile() { return window.innerWidth <= 791; }
+
+      hamburgerBtn.addEventListener('click', function() {
+        if (isMobile()) {
+          openMobileMenu();
+        } else {
+          desktopMenu.classList.contains('is-open') ? closeDesktopMenu() : openDesktopMenu();
+        }
+      });
+
+      desktopMenuClose.addEventListener('click', closeDesktopMenu);
       mobileClose.addEventListener('click', closeMobileMenu);
       mobileBackdrop.addEventListener('click', closeMobileMenu);
+
+      window.addEventListener('resize', function() {
+        if (isMobile() && desktopMenu.classList.contains('is-open')) closeDesktopMenu();
+      });
 
       document.querySelectorAll('[data-drill]').forEach(function(btn) {
         btn.addEventListener('click', function() { var t = btn.getAttribute('data-drill'), l2 = document.getElementById('level2-' + t); if (l2) { mobileLevel1.classList.add('is-drilled'); l2.classList.add('is-active'); } });
@@ -406,7 +546,13 @@
       document.querySelectorAll('[data-back]').forEach(function(btn) {
         btn.addEventListener('click', function() { mobileLevel1.classList.remove('is-drilled'); var l2 = btn.closest('.mobile-menu__level2'); if (l2) l2.classList.remove('is-active'); });
       });
-      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeMobileMenu(); closeMoreDropdown(); } });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeMobileMenu();
+          closeDesktopMenu();
+          closeMoreDropdown();
+        }
+      });
 
       function closeMoreDropdown() { moreDropdown.classList.remove('is-open'); moreBtn.setAttribute('aria-expanded', 'false'); }
       moreBtn.addEventListener('click', function(e) { e.preventDefault(); var isOpen = moreDropdown.classList.contains('is-open'); if (isOpen) closeMoreDropdown(); else { moreDropdown.classList.add('is-open'); moreBtn.setAttribute('aria-expanded', 'true'); } });
