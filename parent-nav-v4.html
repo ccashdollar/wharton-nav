@@ -232,7 +232,8 @@
     }
     .mega-menu__center-item:hover { color: var(--wharton-blue); }
     .mega-menu__center-item.is-active { background: var(--wharton-blue); color: #fff; }
-    .mega-menu__center-item.is-active span { color: #fff; }
+    .mega-menu__center-item.is-active span,
+    button.mega-menu__center-item.is-active span:last-child { color: #fff; }
     button.mega-menu__center-item span:last-child { font-size: 14px; color: #999; }
     .mega-menu__center-item--plain {
       cursor: default;
@@ -240,8 +241,6 @@
     .mega-menu__center-item--plain:hover { color: #383838; }
     a.mega-menu__center-item { display: flex; }
     a.mega-menu__center-item:hover { color: var(--wharton-blue); }
-    .mega-menu__center-item.is-active { background: var(--wharton-blue); color: #fff; }
-    .mega-menu__center-item.is-active span { color: #fff; }
 
     /* All Wharton sub-items (smaller, uppercase) */
     .mega-menu__center-sub { display: none; }
