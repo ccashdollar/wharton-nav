@@ -822,12 +822,13 @@
         </div>
 
         <!-- Promo stays outside tabs -->
-        <div style="height: 1px; background: #e5e5e5; margin: 12px 20px;"></div>
-        <div style="font-size: 11px; text-transform: uppercase; color: #999; letter-spacing: 0.08em; padding: 8px 20px;">Audience</div>
+
+        <div class="mobile-menu__tab-content" id="mobileTabAudience">
           <a href="#" class="mobile-menu__nav-item">Students</a>
           <a href="#" class="mobile-menu__nav-item">Faculty</a>
           <a href="#" class="mobile-menu__nav-item">Alumni</a>
           <a href="#" class="mobile-menu__nav-item">Recruiters & Employers</a>
+        </div>
 
         <div class="mobile-menu__promo">Promotional content area</div>
       </div>
@@ -1212,8 +1213,9 @@
         document.querySelectorAll('.mobile-menu__tab-content').forEach(c => c.classList.remove('is-active'));
         tab.classList.add('is-active');
         const target = tab.dataset.mobileTab;
-        const content = document.getElementById(target === 'school' ? 'mobileTabSchool' : 'mobileTabWharton');
-        if (content) content.classList.add('is-active');
+        const tabMap = { school: 'mobileTabSchool', wharton: 'mobileTabWharton', audience: 'mobileTabAudience' };
+        const contentEl = document.getElementById(tabMap[target]);
+        if (contentEl) contentEl.classList.add('is-active');
       });
     });
 
