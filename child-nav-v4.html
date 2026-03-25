@@ -400,11 +400,11 @@
     .mobile-menu__nav-item svg { width: 8px; height: 14px; color: #999; flex-shrink: 0; }
     a.mobile-menu__nav-item { display: flex; }
     .mobile-menu__tabs {
-      display: flex; gap: 24px; padding: 16px 20px 0;
+      display: flex; gap: 20px; padding: 16px 20px 0; overflow-x: auto; -webkit-overflow-scrolling: touch;
       border-bottom: 1px solid #e5e5e5;
     }
     .mobile-menu__tab {
-      padding: 8px 0 12px; font-size: 14px; letter-spacing: 0.02em;
+      padding: 8px 0 12px; font-size: 13px; letter-spacing: 0.02em; white-space: nowrap; flex-shrink: 0;
       color: #888; background: none; border: none; border-bottom: 2px solid transparent;
       cursor: pointer; font-family: inherit; transition: color 0.15s;
     }
