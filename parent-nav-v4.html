@@ -231,6 +231,8 @@
       width: 100%; text-align: left; border: none; background: none; font-family: inherit;
     }
     .mega-menu__center-item:hover { color: var(--wharton-blue); }
+    .mega-menu__center-item.is-active { background: var(--wharton-blue); color: #fff; }
+    .mega-menu__center-item.is-active span { color: #fff; }
     button.mega-menu__center-item span:last-child { font-size: 14px; color: #999; }
     .mega-menu__center-item--plain {
       cursor: default;
@@ -238,6 +240,8 @@
     .mega-menu__center-item--plain:hover { color: #383838; }
     a.mega-menu__center-item { display: flex; }
     a.mega-menu__center-item:hover { color: var(--wharton-blue); }
+    .mega-menu__center-item.is-active { background: var(--wharton-blue); color: #fff; }
+    .mega-menu__center-item.is-active span { color: #fff; }
 
     /* All Wharton sub-items (smaller, uppercase) */
     .mega-menu__center-sub { display: none; }
@@ -1055,6 +1059,8 @@
     centerItems.forEach(btn => {
       btn.addEventListener('click', () => {
         const panel = btn.dataset.rightPanel;
+        centerItems.forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
         closeAllRightPanels();
         const el = document.getElementById('rightPanel-' + panel);
         if (el) el.classList.add('is-visible');
@@ -1071,6 +1077,7 @@
 
     function closeAllRightPanels() {
       rightPanels.forEach(p => p.classList.remove('is-visible'));
+      centerItems.forEach(b => b.classList.remove('is-active'));
     }
 
     function resetMegaMenu() {
