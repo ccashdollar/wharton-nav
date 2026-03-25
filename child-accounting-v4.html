@@ -302,6 +302,12 @@
       font-size: 11px; text-transform: uppercase; color: rgba(255,255,255,0.6);
       letter-spacing: 0.08em;
     }
+    .mega-menu__right-landing {
+      display: block; padding: 12px 0; font-size: 20px; color: #fff;
+      font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 8px; transition: opacity 0.15s;
+    }
+    .mega-menu__right-landing:hover { opacity: 0.8; }
     .mega-menu__right-close {
       width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
       color: rgba(255,255,255,0.6); cursor: pointer; border-radius: 50%;
@@ -681,6 +687,7 @@
               </svg>
             </button>
           </div>
+          <a href="#" class="mega-menu__right-landing">Faculty</a>
           <a href="#" class="mega-menu__right-item">Faculty List</a>
           <a href="#" class="mega-menu__right-item">Faculty Awards</a>
           <a href="#" class="mega-menu__right-item">Faculty in the News</a>
@@ -694,6 +701,7 @@
               </svg>
             </button>
           </div>
+          <a href="#" class="mega-menu__right-landing">Research</a>
           <a href="#" class="mega-menu__right-item">Workshops</a>
           <a href="#" class="mega-menu__right-item">Conferences</a>
           <a href="#" class="mega-menu__right-item">Research Papers / Publications</a>
@@ -707,6 +715,7 @@
               </svg>
             </button>
           </div>
+          <a href="#" class="mega-menu__right-landing">Programs</a>
           <a href="#" class="mega-menu__right-item">Undergraduate Program</a>
           <a href="#" class="mega-menu__right-item">MBA Program</a>
           <a href="#" class="mega-menu__right-item">PhD Program</a>
@@ -805,32 +814,37 @@
           <svg viewBox="0 0 8 14"><path d="M7 1L1 7l6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Accounting Department / <strong>Faculty</strong>
         </button>
-        <a href="#" class="mobile-menu__sub-item">Faculty List</a>
+        <a href="#" class="mobile-menu__nav-link" style="font-weight: 600; border-bottom: 1px solid #e5e5e5; padding: 14px 20px; display: block;">Accounting Department /</a>
+          <a href="#" class="mobile-menu__sub-item">Faculty List</a>
         <a href="#" class="mobile-menu__sub-item">Faculty Awards</a>
         <a href="#" class="mobile-menu__sub-item">Faculty in the News</a>
       </div>
       <div class="mobile-menu__level2" id="mobileDrill-research" data-drill-title="Research" data-drill-parent="Accounting Department">
         <button class="mobile-menu__back" data-mobile-back>
-          <svg viewBox="0 0 8 14"><path d="M7 1L1 7l6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg viewBox="0 0 8 14"><path d="M7 1L1 7l6 6" fill="none" stroke<a href="#" class="mobile-menu__nav-link" style="font-weight: 600; border-bottom: 1px solid #e5e5e5; padding: 14px 20px; display: block;">Accounting Department /</a>
+          ="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Accounting Department / <strong>Research</strong>
         </button>
         <a href="#" class="mobile-menu__sub-item">Workshops</a>
         <a href="#" class="mobile-menu__sub-item">Conferences</a>
         <a href="#" class="mobile-menu__sub-item">Research Papers / Publications</a>
       </div>
-      <div class="mobile-menu__level2" id="mobileDrill-dept-programs" data-drill-title="Programs" data-drill-parent="Accounting Department">
+      <div class="mobile-menu__level2" id="mobileDrill-dept-programs" data-drill-title="Programs" da<a href="#" class="mobile-menu__nav-link" style="font-weight: 600; border-bottom: 1px solid #e5e5e5; padding: 14px 20px; display: block;">Accounting Department /</a>
+          ta-drill-parent="Accounting Department">
         <button class="mobile-menu__back" data-mobile-back>
           <svg viewBox="0 0 8 14"><path d="M7 1L1 7l6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Accounting Department / <strong>Programs</strong>
         </button>
         <a href="#" class="mobile-menu__sub-item">Undergraduate Program</a>
         <a href="#" class="mobile-menu__sub-item">MBA Program</a>
-        <a href="#" class="mobile-menu__sub-item">PhD Program</a>
+        <a href="#" class="<a href="#" class="mobile-menu__nav-link" style="font-weight: 600; border-bottom: 1px solid #e5e5e5; padding: 14px 20px; display: block;">Accounting Department /</a>
+          mobile-menu__sub-item">PhD Program</a>
       </div>
       <div class="mobile-menu__level2" id="mobileDrill-dept-info" data-drill-title="Department Information" data-drill-parent="Accounting Department">
         <button class="mobile-menu__back" data-mobile-back>
           <svg viewBox="0 0 8 14"><path d="M7 1L1 7l6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Accounting Department / <strong>Department Information</strong>
+          Accounti<a href="#" class="mobile-menu__nav-link" style="font-weight: 600; border-bottom: 1px solid #e5e5e5; padding: 14px 20px; display: block;">All Wharton /</a>
+          ng Department / <strong>Department Information</strong>
         </button>
         <a href="#" class="mobile-menu__sub-item">Staff</a>
         <a href="#" class="mobile-menu__sub-item">Contact Us</a>
@@ -841,7 +855,8 @@
           <svg viewBox="0 0 8 14"><path d="M7 1L1 7l6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           All Wharton / <strong>Programs</strong>
         </button>
-        <a href="#" class="mobile-menu__sub-item">Undergraduate</a>
+        <a href="#" class="mob<a href="#" class="mobile-menu__nav-link" style="font-weight: 600; border-bottom: 1px solid #e5e5e5; padding: 14px 20px; display: block;">All Wharton /</a>
+          ile-menu__sub-item">Undergraduate</a>
         <a href="#" class="mobile-menu__sub-item">Jacobs MSQF</a>
         <a href="#" class="mobile-menu__sub-item">MBA</a>
         <a href="#" class="mobile-menu__sub-item">EMBA</a>
@@ -850,7 +865,8 @@
         <a href="#" class="mobile-menu__sub-item">Wharton Online</a>
       </div>
       <div class="mobile-menu__level2" id="mobileDrill-m-research" data-drill-title="Research" data-drill-parent="All Wharton">
-        <button class="mobile-menu__back" data-mobile-back>
+        <button class="mobile-menu__back"<a href="#" class="mobile-menu__nav-link" style="font-weight: 600; border-bottom: 1px solid #e5e5e5; padding: 14px 20px; display: block;">All Wharton /</a>
+           data-mobile-back>
           <svg viewBox="0 0 8 14"><path d="M7 1L1 7l6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           All Wharton / <strong>Research</strong>
         </button>
@@ -860,7 +876,8 @@
         <a href="#" class="mobile-menu__sub-item">Faculty Directory</a>
         <a href="#" class="mobile-menu__sub-item">Departments</a>
       </div>
-      <div class="mobile-menu__level2" id="mobileDrill-m-centers" data-drill-title="Centers" data-drill-parent="All Wharton">
+      <div class="mobile-menu__level2" id="mobileDrill-m-cen<a href="#" class="mobile-menu__nav-link" style="font-weight: 600; border-bottom: 1px solid #e5e5e5; padding: 14px 20px; display: block;">All Wharton /</a>
+          ters" data-drill-title="Centers" data-drill-parent="All Wharton">
         <button class="mobile-menu__back" data-mobile-back>
           <svg viewBox="0 0 8 14"><path d="M7 1L1 7l6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           All Wharton / <strong>Centers</strong>

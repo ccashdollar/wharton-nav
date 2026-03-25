@@ -304,6 +304,12 @@
       font-size: 11px; text-transform: uppercase; color: rgba(255,255,255,0.6);
       letter-spacing: 0.08em;
     }
+    .mega-menu__right-landing {
+      display: block; padding: 12px 0; font-size: 20px; color: #fff;
+      font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 8px; transition: opacity 0.15s;
+    }
+    .mega-menu__right-landing:hover { opacity: 0.8; }
     .mega-menu__right-close {
       width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
       color: rgba(255,255,255,0.6); cursor: pointer; border-radius: 50%;
@@ -686,6 +692,7 @@
               </svg>
             </button>
           </div>
+          <a href="#" class="mega-menu__right-landing">About</a>
           <a href="#" class="mega-menu__right-item">History</a>
           <a href="#" class="mega-menu__right-item">The Wharton Way</a>
           <a href="#" class="mega-menu__right-item">Senior Leadership</a>
@@ -704,6 +711,7 @@
               </svg>
             </button>
           </div>
+          <a href="#" class="mega-menu__right-landing">Academics</a>
           <a href="#" class="mega-menu__right-item">Course Descriptions</a>
           <a href="#" class="mega-menu__right-item">Curriculum Overview</a>
           <a href="#" class="mega-menu__right-item">Faculty</a>
@@ -718,6 +726,7 @@
               </svg>
             </button>
           </div>
+          <a href="#" class="mega-menu__right-landing">Events</a>
           <a href="#" class="mega-menu__right-item">Upcoming Events</a>
           <a href="#" class="mega-menu__right-item">Past Events</a>
           <a href="#" class="mega-menu__right-item">Webinars</a>
@@ -801,7 +810,8 @@
           <svg viewBox="0 0 8 14"><path d="M7 1L1 7l6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Jacobs MSQF / <strong>About</strong>
         </button>
-        <a href="#" class="mobile-menu__sub-item">History</a>
+        <a href="#" class="mobile-menu__nav-link" style="font-weight: 600; border-bottom: 1px solid #e5e5e5; padding: 14px 20px; display: block;">Jacobs MSQF /</a>
+          <a href="#" class="mobile-menu__sub-item">History</a>
         <a href="#" class="mobile-menu__sub-item">The Wharton Way</a>
         <a href="#" class="mobile-menu__sub-item">Senior Leadership</a>
         <a href="#" class="mobile-menu__sub-item">About the Dean</a>
@@ -812,7 +822,8 @@
       </div>
       <div class="mobile-menu__level2" id="mobileDrill-academics" data-drill-title="Academics" data-drill-parent="Jacobs MSQF">
         <button class="mobile-menu__back" data-mobile-back>
-          <svg viewBox="0 0 8 14"><path d="M7 1L1 7l6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg viewBox="0 0 8 14"><path d="M7 1L1 7l6 6" fill="none" stroke=<a href="#" class="mobile-menu__nav-link" style="font-weight: 600; border-bottom: 1px solid #e5e5e5; padding: 14px 20px; display: block;">Jacobs MSQF /</a>
+          "currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Jacobs MSQF / <strong>Academics</strong>
         </button>
         <a href="#" class="mobile-menu__sub-item">Course Descriptions</a>
@@ -820,14 +831,16 @@
         <a href="#" class="mobile-menu__sub-item">Faculty</a>
         <a href="#" class="mobile-menu__sub-item">Program Requirements</a>
       </div>
-      <div class="mobile-menu__level2" id="mobileDrill-m-events" data-drill-title="Events" data-drill-parent="Jacobs MSQF">
+      <div class="mobile-menu__level2" id="mobileDrill-m-events" data-drill-title="Events" <a href="#" class="mobile-menu__nav-link" style="font-weight: 600; border-bottom: 1px solid #e5e5e5; padding: 14px 20px; display: block;">Jacobs MSQF /</a>
+          data-drill-parent="Jacobs MSQF">
         <button class="mobile-menu__back" data-mobile-back>
           <svg viewBox="0 0 8 14"><path d="M7 1L1 7l6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Jacobs MSQF / <strong>Events</strong>
         </button>
         <a href="#" class="mobile-menu__sub-item">Upcoming Events</a>
         <a href="#" class="mobile-menu__sub-item">Past Events</a>
-        <a href="#" class="mobile-menu__sub-item">Webinars</a>
+     <a href="#" class="mobile-menu__nav-link" style="font-weight: 600; border-bottom: 1px solid #e5e5e5; padding: 14px 20px; display: block;">All Wharton /</a>
+             <a href="#" class="mobile-menu__sub-item">Webinars</a>
       </div>
       <div class="mobile-menu__level2" id="mobileDrill-programs" data-drill-title="Programs" data-drill-parent="All Wharton">
         <button class="mobile-menu__back" data-mobile-back>
@@ -837,7 +850,8 @@
         <a href="#" class="mobile-menu__sub-item">Undergraduate</a>
         <a href="#" class="mobile-menu__sub-item">Jacobs MSQF</a>
         <a href="#" class="mobile-menu__sub-item">MBA</a>
-        <a href="#" class="mobile-menu__sub-item">EMBA</a>
+        <a href="#" class="mobile-menu__sub-<a href="#" class="mobile-menu__nav-link" style="font-weight: 600; border-bottom: 1px solid #e5e5e5; padding: 14px 20px; display: block;">All Wharton /</a>
+          item">EMBA</a>
         <a href="#" class="mobile-menu__sub-item">Doctorate</a>
         <a href="#" class="mobile-menu__sub-item">Executive Education</a>
         <a href="#" class="mobile-menu__sub-item">Wharton Online</a>
@@ -845,7 +859,8 @@
       <div class="mobile-menu__level2" id="mobileDrill-m-research" data-drill-title="Research" data-drill-parent="All Wharton">
         <button class="mobile-menu__back" data-mobile-back>
           <svg viewBox="0 0 8 14"><path d="M7 1L1 7l6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          All Wharton / <strong>Research</strong>
+          All Wharton <a href="#" class="mobile-menu__nav-link" style="font-weight: 600; border-bottom: 1px solid #e5e5e5; padding: 14px 20px; display: block;">All Wharton /</a>
+          / <strong>Research</strong>
         </button>
         <a href="#" class="mobile-menu__sub-item">Research Centers</a>
         <a href="#" class="mobile-menu__sub-item">Working Papers</a>
@@ -855,7 +870,8 @@
       </div>
       <div class="mobile-menu__level2" id="mobileDrill-m-centers" data-drill-title="Centers" data-drill-parent="All Wharton">
         <button class="mobile-menu__back" data-mobile-back>
-          <svg viewBox="0 0 8 14"><path d="M7 1L1 7l6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg viewBox="0 0 8 14"><path d="M7 1L1 7l6 6" fill="none" stroke="currentColo<a href="#" class="mobile-menu__nav-link" style="font-weight: 600; border-bottom: 1px solid #e5e5e5; padding: 14px 20px; display: block;">All Wharton /</a>
+          r" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           All Wharton / <strong>Centers</strong>
         </button>
         <a href="#" class="mobile-menu__sub-item">Analytics at Wharton</a>
