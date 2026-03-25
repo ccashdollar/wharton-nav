@@ -1143,8 +1143,13 @@
     centerItems.forEach(btn => {
       btn.addEventListener('click', () => {
         const panel = btn.dataset.rightPanel;
+        const wasActive = btn.classList.contains('is-active');
         closeAllRightPanels();
         centerItems.forEach(b => b.classList.remove('is-active'));
+        if (wasActive) {
+          if (rightPromo) rightPromo.style.display = '';
+          return;
+        }
         btn.classList.add('is-active');
         if (rightPromo) rightPromo.style.display = 'none';
         const el = document.getElementById('rightPanel-' + panel);
