@@ -380,9 +380,21 @@
     .mobile-menu__nav-item:hover { background: #f8f8f8; }
     .mobile-menu__nav-item svg { width: 8px; height: 14px; color: #999; flex-shrink: 0; }
     a.mobile-menu__nav-item { display: flex; }
-    .mobile-menu__separator {
-      height: 12px; background: #f5f5f5; border-bottom: 1px solid #e5e5e5;
+    .mobile-menu__tabs {
+      display: flex; gap: 24px; padding: 16px 20px 0;
+      border-bottom: 1px solid #e5e5e5;
     }
+    .mobile-menu__tab {
+      padding: 8px 0 12px; font-size: 14px; letter-spacing: 0.02em;
+      color: #888; background: none; border: none; border-bottom: 2px solid transparent;
+      cursor: pointer; font-family: inherit; transition: color 0.15s;
+    }
+    .mobile-menu__tab.is-active {
+      color: #011F5B; border-bottom-color: #011F5B;
+    }
+    .mobile-menu__tab:hover { color: #333; }
+    .mobile-menu__tab-content { display: none; }
+    .mobile-menu__tab-content.is-active { display: block; }
     .mobile-menu__promo {
       margin: 20px; background: #e8e8e8; border-radius: 8px; height: 120px;
       display: flex; align-items: center; justify-content: center;
@@ -739,40 +751,47 @@
     <div class="mobile-menu__body">
       <!-- Level 1 -->
       <div class="mobile-menu__level1" id="mobileLevel1">
-        <div class="mobile-menu__section-label">Jacobs MSQF</div>
-        <button class="mobile-menu__nav-item" data-mobile-drill="about">
-          About <svg viewBox="0 0 8 14"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <a href="#" class="mobile-menu__nav-item">Why a Jacobs MSQF</a>
-        <button class="mobile-menu__nav-item" data-mobile-drill="academics">
-          Academics <svg viewBox="0 0 8 14"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <a href="#" class="mobile-menu__nav-item">Careers &amp; Recruiting</a>
-        <a href="#" class="mobile-menu__nav-item">Admissions</a>
-        <a href="#" class="mobile-menu__nav-item">Application Guide</a>
-        <button class="mobile-menu__nav-item" data-mobile-drill="m-events">
-          Events <svg viewBox="0 0 8 14"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <a href="#" class="mobile-menu__nav-item">FAQ</a>
+        <!-- Tab bar -->
+        <div class="mobile-menu__tabs">
+          <button class="mobile-menu__tab is-active" data-mobile-tab="school">Jacobs MSQF</button>
+          <button class="mobile-menu__tab" data-mobile-tab="wharton">All Wharton</button>
+        </div>
 
-        <div class="mobile-menu__separator"></div>
+        <!-- Tab 1 content: school nav -->
+        <div class="mobile-menu__tab-content is-active" id="mobileTabSchool">
+          <button class="mobile-menu__nav-item" data-mobile-drill="about">
+            About <svg viewBox="0 0 8 14"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <a href="#" class="mobile-menu__nav-item">Why a Jacobs MSQF</a>
+          <button class="mobile-menu__nav-item" data-mobile-drill="academics">
+            Academics <svg viewBox="0 0 8 14"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <a href="#" class="mobile-menu__nav-item">Careers &amp; Recruiting</a>
+          <a href="#" class="mobile-menu__nav-item">Admissions</a>
+          <a href="#" class="mobile-menu__nav-item">Application Guide</a>
+          <button class="mobile-menu__nav-item" data-mobile-drill="m-events">
+            Events <svg viewBox="0 0 8 14"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <a href="#" class="mobile-menu__nav-item">FAQ</a>
+        </div>
 
-        <div class="mobile-menu__section-label">All Wharton</div>
-        <button class="mobile-menu__nav-item" data-mobile-drill="programs">
-          Programs <svg viewBox="0 0 8 14"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button class="mobile-menu__nav-item" data-mobile-drill="m-research">
-          Research <svg viewBox="0 0 8 14"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button class="mobile-menu__nav-item" data-mobile-drill="m-centers">
-          Centers <svg viewBox="0 0 8 14"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button class="mobile-menu__nav-item" data-mobile-drill="m-wharton-events">
-          Events <svg viewBox="0 0 8 14"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
+        <!-- Tab 2 content: all wharton -->
+        <div class="mobile-menu__tab-content" id="mobileTabWharton">
+          <button class="mobile-menu__nav-item" data-mobile-drill="programs">
+            Programs <svg viewBox="0 0 8 14"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="mobile-menu__nav-item" data-mobile-drill="m-research">
+            Research <svg viewBox="0 0 8 14"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="mobile-menu__nav-item" data-mobile-drill="m-centers">
+            Centers <svg viewBox="0 0 8 14"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="mobile-menu__nav-item" data-mobile-drill="m-wharton-events">
+            Events <svg viewBox="0 0 8 14"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
 
-        <div class="mobile-menu__separator"></div>
-
+        <!-- Promo stays outside tabs -->
         <div class="mobile-menu__promo">Promotional content area</div>
       </div>
 
@@ -1136,6 +1155,18 @@
       resetCenterPanel();
       closeAllRightPanels();
     }
+
+    // ======== MOBILE MENU: TABS ========
+    document.querySelectorAll('.mobile-menu__tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.mobile-menu__tab').forEach(t => t.classList.remove('is-active'));
+        document.querySelectorAll('.mobile-menu__tab-content').forEach(c => c.classList.remove('is-active'));
+        tab.classList.add('is-active');
+        const target = tab.dataset.mobileTab;
+        const content = document.getElementById(target === 'school' ? 'mobileTabSchool' : 'mobileTabWharton');
+        if (content) content.classList.add('is-active');
+      });
+    });
 
     // ======== MOBILE MENU: DRILL-DOWN ========
     const mobileDrillBtns = document.querySelectorAll('[data-mobile-drill]');
