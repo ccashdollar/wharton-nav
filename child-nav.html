@@ -861,6 +861,28 @@
     .proto-switcher__divider {
       height: 1px; background: #e8e8e8; margin: 4px 0;
     }
+
+    /* Skeleton content */
+    .skeleton-block {
+      background: linear-gradient(90deg, #e8e8e8 25%, #f0f0f0 50%, #e8e8e8 75%);
+      background-size: 200% 100%;
+      animation: skeleton-shimmer 2s ease-in-out infinite;
+      border-radius: 4px;
+    }
+    @keyframes skeleton-shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .skeleton-text { height: 14px; margin-bottom: 12px; }
+    .skeleton-text:last-child { width: 60%; }
+    .skeleton-heading { height: 22px; width: 45%; margin-bottom: 20px; }
+    .skeleton-card {
+      background: #fff; border-radius: 8px; padding: 24px; border: 1px solid #e9ecef;
+    }
+    .skeleton-card__img { height: 160px; border-radius: 4px; margin-bottom: 16px; }
+    .skeleton-card__title { height: 18px; width: 70%; margin-bottom: 10px; }
+    .skeleton-card__line { height: 12px; margin-bottom: 8px; }
+    .skeleton-card__line:last-child { width: 80%; }
   </style>
 </head>
 <body>
@@ -1123,100 +1145,92 @@
   <main class="page-content">
     <span class="badge">Child Theme Prototype</span>
     <h1>Dr. Bruce I. Jacobs — Master of Science in Quantitative Finance</h1>
-    <p>This is a functional prototype demonstrating the child-level navigation for a Wharton sub-site. The child theme uses a dark identity bar with the program name alongside the Wharton logo, while maintaining the same universal and primary navigation structure.</p>
-    <p><strong>Key differences from parent theme:</strong></p>
-    <p>
-      &bull; <strong>Dark identity bar</strong> with white Wharton logo + child program name<br>
-      &bull; <strong>Custom primary nav items</strong> specific to this program<br>
-      &bull; <strong>Same responsive behavior</strong> and mobile menu pattern<br>
-      &bull; <strong>"More..."</strong> collects overflow items that don't fit the horizontal nav
-    </p>
-    <p><strong>This pattern works for any child installation</strong> — each child site provides its own nav items and program name; everything else is inherited from the shared navigation framework.</p>
-    <p style="margin-top: 24px;">
-      <a href="parent-nav.html" style="color: var(--wharton-blue); font-weight: 600;">&larr; View Parent Theme</a>
-    </p>
-  
-    <hr style="margin: 40px 0; border: none; border-top: 1px solid #e0e0e0;">
 
-    <h2 style="font-size: 22px; color: #011F5B; margin-bottom: 16px;">Featured Content</h2>
-    <p>This section demonstrates how the navigation behaves as users scroll through longer page content. The sticky header should remain accessible while browsing.</p>
+    <div style="margin-top: 32px;">
+      <div class="skeleton-block skeleton-text" style="width: 90%;"></div>
+      <div class="skeleton-block skeleton-text" style="width: 100%;"></div>
+      <div class="skeleton-block skeleton-text" style="width: 75%;"></div>
+    </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin: 24px 0;">
-      <div style="background: #f8f9fa; border-radius: 8px; padding: 24px; border: 1px solid #e9ecef;">
-        <div style="width: 100%; height: 160px; background: linear-gradient(135deg, #011F5B 0%, #004785 100%); border-radius: 4px; margin-bottom: 16px;"></div>
-        <h3 style="font-size: 18px; color: #333; margin-bottom: 8px;">Research Spotlight</h3>
-        <p style="font-size: 14px; color: #666; line-height: 1.5;">Exploring innovative approaches to business education and their impact on the global economy. Faculty-led research continues to shape industry practices.</p>
-      </div>
-      <div style="background: #f8f9fa; border-radius: 8px; padding: 24px; border: 1px solid #e9ecef;">
-        <div style="width: 100%; height: 160px; background: linear-gradient(135deg, #A90533 0%, #d4264f 100%); border-radius: 4px; margin-bottom: 16px;"></div>
-        <h3 style="font-size: 18px; color: #333; margin-bottom: 8px;">Upcoming Events</h3>
-        <p style="font-size: 14px; color: #666; line-height: 1.5;">Join us for upcoming lectures, conferences, and networking events. Connect with faculty, students, and alumni from around the world.</p>
-      </div>
-      <div style="background: #f8f9fa; border-radius: 8px; padding: 24px; border: 1px solid #e9ecef;">
-        <div style="width: 100%; height: 160px; background: linear-gradient(135deg, #3B3B3B 0%, #666 100%); border-radius: 4px; margin-bottom: 16px;"></div>
-        <h3 style="font-size: 18px; color: #333; margin-bottom: 8px;">Student Stories</h3>
-        <p style="font-size: 14px; color: #666; line-height: 1.5;">Hear from current students and recent graduates about their experiences, career paths, and the lasting impact of their education.</p>
+    <div style="margin-top: 40px;">
+      <div class="skeleton-block skeleton-heading"></div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+        <div class="skeleton-card">
+          <div class="skeleton-block skeleton-card__img"></div>
+          <div class="skeleton-block skeleton-card__title"></div>
+          <div class="skeleton-block skeleton-card__line" style="width: 100%;"></div>
+          <div class="skeleton-block skeleton-card__line" style="width: 90%;"></div>
+          <div class="skeleton-block skeleton-card__line" style="width: 70%;"></div>
+        </div>
+        <div class="skeleton-card">
+          <div class="skeleton-block skeleton-card__img"></div>
+          <div class="skeleton-block skeleton-card__title"></div>
+          <div class="skeleton-block skeleton-card__line" style="width: 100%;"></div>
+          <div class="skeleton-block skeleton-card__line" style="width: 85%;"></div>
+          <div class="skeleton-block skeleton-card__line" style="width: 65%;"></div>
+        </div>
+        <div class="skeleton-card">
+          <div class="skeleton-block skeleton-card__img"></div>
+          <div class="skeleton-block skeleton-card__title"></div>
+          <div class="skeleton-block skeleton-card__line" style="width: 95%;"></div>
+          <div class="skeleton-block skeleton-card__line" style="width: 100%;"></div>
+          <div class="skeleton-block skeleton-card__line" style="width: 75%;"></div>
+        </div>
       </div>
     </div>
 
-    <hr style="margin: 40px 0; border: none; border-top: 1px solid #e0e0e0;">
-
-    <h2 style="font-size: 22px; color: #011F5B; margin-bottom: 16px;">News &amp; Announcements</h2>
-
-    <div style="border-bottom: 1px solid #e9ecef; padding: 20px 0;">
-      <span style="font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 0.05em;">March 15, 2026</span>
-      <h3 style="font-size: 18px; color: #333; margin: 6px 0 8px;"><a href="#" style="color: #004785;">New Initiative Launches Cross-Disciplinary Research Program</a></h3>
-      <p style="font-size: 14px; color: #666; line-height: 1.5;">A new collaborative program brings together faculty from multiple departments to address pressing challenges in technology, sustainability, and global finance.</p>
-    </div>
-    <div style="border-bottom: 1px solid #e9ecef; padding: 20px 0;">
-      <span style="font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 0.05em;">March 8, 2026</span>
-      <h3 style="font-size: 18px; color: #333; margin: 6px 0 8px;"><a href="#" style="color: #004785;">Spring Conference Registration Now Open</a></h3>
-      <p style="font-size: 14px; color: #666; line-height: 1.5;">Register now for the annual spring conference featuring keynote speakers from leading organizations, panel discussions, and networking opportunities.</p>
-    </div>
-    <div style="border-bottom: 1px solid #e9ecef; padding: 20px 0;">
-      <span style="font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 0.05em;">February 28, 2026</span>
-      <h3 style="font-size: 18px; color: #333; margin: 6px 0 8px;"><a href="#" style="color: #004785;">Faculty Member Receives National Award for Innovation</a></h3>
-      <p style="font-size: 14px; color: #666; line-height: 1.5;">Recognition for groundbreaking work in financial modeling and risk assessment that has transformed industry approaches to portfolio management.</p>
-    </div>
-    <div style="border-bottom: 1px solid #e9ecef; padding: 20px 0;">
-      <span style="font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 0.05em;">February 20, 2026</span>
-      <h3 style="font-size: 18px; color: #333; margin: 6px 0 8px;"><a href="#" style="color: #004785;">Alumni Spotlight: From Campus to C-Suite</a></h3>
-      <p style="font-size: 14px; color: #666; line-height: 1.5;">Three recent graduates share their journeys from the classroom to leadership positions at Fortune 500 companies, reflecting on lessons learned along the way.</p>
+    <div style="margin-top: 40px;">
+      <div class="skeleton-block skeleton-heading" style="width: 35%;"></div>
+      <div class="skeleton-block skeleton-text" style="width: 100%;"></div>
+      <div class="skeleton-block skeleton-text" style="width: 95%;"></div>
+      <div class="skeleton-block skeleton-text" style="width: 88%;"></div>
+      <div class="skeleton-block skeleton-text" style="width: 100%;"></div>
+      <div class="skeleton-block skeleton-text" style="width: 72%;"></div>
     </div>
 
-    <hr style="margin: 40px 0; border: none; border-top: 1px solid #e0e0e0;">
-
-    <h2 style="font-size: 22px; color: #011F5B; margin-bottom: 16px;">Quick Links</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 16px 0 32px;">
-      <a href="#" style="display: block; padding: 16px 20px; background: #f0f4f8; border-radius: 6px; color: #004785; font-size: 15px; font-weight: 500; transition: background 0.15s; border: 1px solid #dce3eb;">Academic Calendar &rarr;</a>
-      <a href="#" style="display: block; padding: 16px 20px; background: #f0f4f8; border-radius: 6px; color: #004785; font-size: 15px; font-weight: 500; transition: background 0.15s; border: 1px solid #dce3eb;">Course Catalog &rarr;</a>
-      <a href="#" style="display: block; padding: 16px 20px; background: #f0f4f8; border-radius: 6px; color: #004785; font-size: 15px; font-weight: 500; transition: background 0.15s; border: 1px solid #dce3eb;">Campus Map &rarr;</a>
-      <a href="#" style="display: block; padding: 16px 20px; background: #f0f4f8; border-radius: 6px; color: #004785; font-size: 15px; font-weight: 500; transition: background 0.15s; border: 1px solid #dce3eb;">Library Resources &rarr;</a>
-      <a href="#" style="display: block; padding: 16px 20px; background: #f0f4f8; border-radius: 6px; color: #004785; font-size: 15px; font-weight: 500; transition: background 0.15s; border: 1px solid #dce3eb;">Career Services &rarr;</a>
-      <a href="#" style="display: block; padding: 16px 20px; background: #f0f4f8; border-radius: 6px; color: #004785; font-size: 15px; font-weight: 500; transition: background 0.15s; border: 1px solid #dce3eb;">Student Portal &rarr;</a>
-    </div>
-
-    <hr style="margin: 40px 0; border: none; border-top: 1px solid #e0e0e0;">
-
-    <h2 style="font-size: 22px; color: #011F5B; margin-bottom: 16px;">About</h2>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 32px;">
-      <div>
-        <p style="font-size: 15px; color: #555; line-height: 1.7;">For over a century, Wharton has been at the forefront of business education, producing leaders who shape industries and drive meaningful change. Our commitment to rigorous academic inquiry, combined with real-world application, prepares students for the challenges of tomorrow.</p>
-        <p style="font-size: 15px; color: #555; line-height: 1.7; margin-top: 12px;">With a global network of alumni spanning every continent and virtually every industry, the Wharton community continues to grow and evolve, fostering connections that last a lifetime.</p>
-      </div>
-      <div>
-        <p style="font-size: 15px; color: #555; line-height: 1.7;">Our faculty includes world-renowned researchers, thought leaders, and practitioners who bring diverse perspectives to the classroom. Through cutting-edge research and innovative teaching methods, they inspire students to think critically and act boldly.</p>
-        <p style="font-size: 15px; color: #555; line-height: 1.7; margin-top: 12px;">Whether you are a prospective student, current member of the community, or alumni looking to stay connected, we invite you to explore all that Wharton has to offer.</p>
+    <div style="margin-top: 40px;">
+      <div class="skeleton-block skeleton-heading" style="width: 40%;"></div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+        <div class="skeleton-block" style="height: 48px; border-radius: 6px;"></div>
+        <div class="skeleton-block" style="height: 48px; border-radius: 6px;"></div>
+        <div class="skeleton-block" style="height: 48px; border-radius: 6px;"></div>
+        <div class="skeleton-block" style="height: 48px; border-radius: 6px;"></div>
+        <div class="skeleton-block" style="height: 48px; border-radius: 6px;"></div>
+        <div class="skeleton-block" style="height: 48px; border-radius: 6px;"></div>
       </div>
     </div>
 
-    <div style="background: #011F5B; color: #fff; padding: 40px; border-radius: 8px; margin-bottom: 32px; text-align: center;">
-      <h2 style="font-size: 24px; margin-bottom: 12px; color: #fff;">Stay Connected</h2>
-      <p style="font-size: 15px; color: rgba(255,255,255,0.7); margin-bottom: 20px; max-width: 500px; margin-left: auto; margin-right: auto;">Subscribe to our newsletter for the latest news, events, and research updates delivered directly to your inbox.</p>
-      <div style="display: flex; gap: 8px; max-width: 400px; margin: 0 auto;">
-        <input type="email" placeholder="Email address" style="flex: 1; padding: 12px 16px; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px; background: rgba(255,255,255,0.1); color: #fff; font-size: 14px; font-family: inherit; outline: none;">
-        <button style="padding: 12px 24px; background: #A90533; color: #fff; border: none; border-radius: 4px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit;">Subscribe</button>
+    <div style="margin-top: 40px;">
+      <div class="skeleton-block skeleton-heading" style="width: 30%;"></div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+        <div>
+          <div class="skeleton-block skeleton-text" style="width: 100%;"></div>
+          <div class="skeleton-block skeleton-text" style="width: 95%;"></div>
+          <div class="skeleton-block skeleton-text" style="width: 88%;"></div>
+          <div class="skeleton-block skeleton-text" style="width: 92%;"></div>
+          <div class="skeleton-block skeleton-text" style="width: 70%;"></div>
+        </div>
+        <div>
+          <div class="skeleton-block skeleton-text" style="width: 98%;"></div>
+          <div class="skeleton-block skeleton-text" style="width: 100%;"></div>
+          <div class="skeleton-block skeleton-text" style="width: 85%;"></div>
+          <div class="skeleton-block skeleton-text" style="width: 90%;"></div>
+          <div class="skeleton-block skeleton-text" style="width: 65%;"></div>
+        </div>
       </div>
+    </div>
+
+    <div style="margin-top: 40px;">
+      <div class="skeleton-block" style="height: 180px; border-radius: 8px;"></div>
+    </div>
+
+    <div style="margin-top: 40px;">
+      <div class="skeleton-block skeleton-heading" style="width: 50%;"></div>
+      <div class="skeleton-block skeleton-text" style="width: 100%;"></div>
+      <div class="skeleton-block skeleton-text" style="width: 92%;"></div>
+      <div class="skeleton-block skeleton-text" style="width: 85%;"></div>
+      <div class="skeleton-block skeleton-text" style="width: 95%;"></div>
+      <div class="skeleton-block skeleton-text" style="width: 60%;"></div>
     </div>
 
   </main>
