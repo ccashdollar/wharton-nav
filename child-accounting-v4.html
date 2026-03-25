@@ -280,6 +280,13 @@
       width: 35%; flex-shrink: 0; position: relative;
       overflow-y: auto;
     }
+    .mega-menu__right-promo {
+      padding: 32px; display: flex; flex-direction: column; gap: 16px;
+      height: 100%;
+    }
+    .mega-menu__right-promo-block {
+      background: #e8e8e8; border-radius: 8px; flex: 1;
+    }
     .mega-menu__right-panel {
       position: absolute; inset: 0;
       background: var(--mega-right-bg);
@@ -648,6 +655,11 @@
 
       <!-- RIGHT PANEL -->
       <div class="mega-menu__right">
+        <div class="mega-menu__right-promo" id="rightPromo">
+          <div class="mega-menu__right-promo-block"></div>
+          <div class="mega-menu__right-promo-block"></div>
+          <div class="mega-menu__right-promo-block"></div>
+        </div>
         <div class="mega-menu__right-panel" id="rightPanel-faculty">
           <div class="mega-menu__right-header">
             <span class="mega-menu__right-label">Faculty</span>
@@ -1098,12 +1110,15 @@
     const rightPanels = document.querySelectorAll('.mega-menu__right-panel');
     const rightCloseBtns = document.querySelectorAll('.mega-menu__right-close');
 
+    const rightPromo = document.getElementById('rightPromo');
+
     centerItems.forEach(btn => {
       btn.addEventListener('click', () => {
         const panel = btn.dataset.rightPanel;
         closeAllRightPanels();
         centerItems.forEach(b => b.classList.remove('is-active'));
         btn.classList.add('is-active');
+        if (rightPromo) rightPromo.style.display = 'none';
         const el = document.getElementById('rightPanel-' + panel);
         if (el) el.classList.add('is-visible');
       });
@@ -1115,11 +1130,13 @@
         const el = document.getElementById('rightPanel-' + panel);
         if (el) el.classList.remove('is-visible');
         centerItems.forEach(b => b.classList.remove('is-active'));
+        if (rightPromo) rightPromo.style.display = '';
       });
     });
 
     function closeAllRightPanels() {
       rightPanels.forEach(p => p.classList.remove('is-visible'));
+      if (rightPromo) rightPromo.style.display = '';
     }
 
     function resetMegaMenu() {
