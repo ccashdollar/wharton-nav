@@ -197,6 +197,19 @@
       width: 100%; text-align: left; border: none; background: none; font-family: inherit;
     }
     .mega-menu__left-item:hover { background: #f5f5f5; }
+    .mega-menu__left-separator {
+      height: 1px; background: #e5e5e5; margin: 12px 24px;
+    }
+    .mega-menu__left-section-label {
+      font-size: 11px; text-transform: uppercase; color: #999;
+      letter-spacing: 0.08em; padding: 0 24px; margin-bottom: 8px;
+    }
+    .mega-menu__left-audience-nav { display: flex; flex-direction: column; }
+    .mega-menu__left-audience {
+      display: block; padding: 10px 24px; font-size: 14px;
+      color: #333; transition: background 0.15s, color 0.15s;
+    }
+    .mega-menu__left-audience:hover { background: #f5f5f5; color: var(--wharton-blue); }
     .mega-menu__left-item.is-active {
       background: var(--wharton-blue); color: #fff;
     }
@@ -567,6 +580,14 @@
         <button class="mega-menu__left-item" data-wharton-cat="events">
           Events <span class="mega-menu__left-chevron">&#8250;</span>
         </button>
+        <div class="mega-menu__left-separator"></div>
+        <div class="mega-menu__left-section-label">Audience</div>
+        <nav class="mega-menu__left-audience-nav">
+        <a href="#" class="mega-menu__left-audience">Students</a>
+        <a href="#" class="mega-menu__left-audience">Faculty</a>
+        <a href="#" class="mega-menu__left-audience">Alumni</a>
+        <a href="#" class="mega-menu__left-audience">Recruiters & Employers</a>
+        </nav>
       </div>
 
       <!-- CENTER PANEL -->
@@ -763,6 +784,13 @@
         </div>
 
         <!-- Promo stays outside tabs -->
+        <div style="height: 1px; background: #e5e5e5; margin: 12px 20px;"></div>
+        <div style="font-size: 11px; text-transform: uppercase; color: #999; letter-spacing: 0.08em; padding: 8px 20px;">Audience</div>
+          <a href="#" class="mobile-menu__nav-item">Students</a>
+          <a href="#" class="mobile-menu__nav-item">Faculty</a>
+          <a href="#" class="mobile-menu__nav-item">Alumni</a>
+          <a href="#" class="mobile-menu__nav-item">Recruiters & Employers</a>
+
         <div class="mobile-menu__promo">Promotional content area</div>
       </div>
 
