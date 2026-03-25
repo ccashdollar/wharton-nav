@@ -1094,9 +1094,9 @@
     centerItems.forEach(btn => {
       btn.addEventListener('click', () => {
         const panel = btn.dataset.rightPanel;
+        closeAllRightPanels();
         centerItems.forEach(b => b.classList.remove('is-active'));
         btn.classList.add('is-active');
-        closeAllRightPanels();
         const el = document.getElementById('rightPanel-' + panel);
         if (el) el.classList.add('is-visible');
       });
@@ -1107,12 +1107,12 @@
         const panel = btn.dataset.closeRight;
         const el = document.getElementById('rightPanel-' + panel);
         if (el) el.classList.remove('is-visible');
+        centerItems.forEach(b => b.classList.remove('is-active'));
       });
     });
 
     function closeAllRightPanels() {
       rightPanels.forEach(p => p.classList.remove('is-visible'));
-      centerItems.forEach(b => b.classList.remove('is-active'));
     }
 
     function resetMegaMenu() {
