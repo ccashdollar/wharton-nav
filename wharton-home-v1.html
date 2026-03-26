@@ -218,6 +218,68 @@
       font-weight: 700; color: var(--penn-blue);
     }
 
+    /* ===== STICKY COMPACT HEADER ===== */
+    .sticky-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--penn-blue); display: flex;
+      align-items: center; justify-content: space-between;
+      padding: 0 24px; height: 56px;
+      transform: translateY(-100%); transition: transform 0.3s ease;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+    .sticky-header.is-visible { transform: translateY(0); }
+    .sticky-header__logo {
+      flex-shrink: 0;
+    }
+    .sticky-header__logo img {
+      height: 32px; width: auto; display: block;
+    }
+    .sticky-header__nav {
+      display: flex; align-items: center; gap: 4px;
+      margin: 0 24px; flex: 1; justify-content: flex-end;
+    }
+    .sticky-header__nav-link {
+      font-family: 'Lato', sans-serif; font-size: 14px;
+      font-weight: 600; color: #fff; padding: 8px 12px;
+      white-space: nowrap; transition: opacity 0.15s;
+      border-radius: 4px;
+    }
+    .sticky-header__nav-link:hover { opacity: 0.75; background: rgba(255,255,255,0.08); }
+    .sticky-header__nav-link--more {
+      position: relative;
+    }
+    .sticky-header__buttons {
+      display: flex; flex-shrink: 0; gap: 0;
+    }
+    .sticky-header__btn {
+      display: flex; align-items: center; gap: 6px; height: 36px;
+      padding: 0 14px; border: none; cursor: pointer;
+      font-family: 'Lato', sans-serif; font-size: 12px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      color: #fff; white-space: nowrap; border-radius: 4px;
+    }
+    .sticky-header__btn--menu { background: rgba(255,255,255,0.12); }
+    .sticky-header__btn--menu:hover { background: rgba(255,255,255,0.2); }
+    .sticky-header__btn--search { background: var(--penn-red); margin-left: 6px; }
+    .sticky-header__btn--search:hover { background: #b30039; }
+    .sticky-header__btn svg { width: 14px; height: 14px; fill: #fff; }
+
+    /* Progressive hiding of nav items at smaller widths */
+    .sticky-header__nav-link.hide-1200 { display: inline-flex; }
+    .sticky-header__nav-link.hide-1000 { display: inline-flex; }
+
+    @media (max-width: 1200px) {
+      .sticky-header__nav-link.hide-1200 { display: none; }
+    }
+    @media (max-width: 1000px) {
+      .sticky-header__nav-link.hide-1000 { display: none; }
+    }
+    @media (max-width: 791px) {
+      .sticky-header__nav { display: none; }
+      .sticky-header { padding: 0 16px; }
+      .sticky-header__logo img { height: 28px; }
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1100px) {
       .primary-nav { display: none; }
@@ -251,6 +313,38 @@
   </style>
 </head>
 <body>
+
+  <!-- STICKY COMPACT HEADER -->
+  <header class="sticky-header" id="stickyHeader">
+    <a href="#" class="sticky-header__logo">
+      <img src="assets/wharton-logo-light.svg" alt="Wharton">
+    </a>
+    <nav class="sticky-header__nav">
+      <a href="#" class="sticky-header__nav-link">About</a>
+      <a href="#" class="sticky-header__nav-link">Academics</a>
+      <a href="#" class="sticky-header__nav-link hide-1200">Faculty &amp; Research</a>
+      <a href="#" class="sticky-header__nav-link hide-1200">Alumni</a>
+      <a href="#" class="sticky-header__nav-link hide-1000">News</a>
+      <a href="#" class="sticky-header__nav-link hide-1000">More...</a>
+    </nav>
+    <div class="sticky-header__buttons">
+      <button class="sticky-header__btn sticky-header__btn--menu">
+        <svg viewBox="0 0 20 20">
+          <rect x="2.5" y="4" width="15" height="1.5" rx="0.5" fill="#fff"/>
+          <rect x="2.5" y="9.25" width="15" height="1.5" rx="0.5" fill="#fff"/>
+          <rect x="2.5" y="14.5" width="15" height="1.5" rx="0.5" fill="#fff"/>
+        </svg>
+        Menu
+      </button>
+      <button class="sticky-header__btn sticky-header__btn--search">
+        <svg viewBox="0 0 20 20">
+          <circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="#fff" stroke-width="1.8"/>
+          <line x1="12.5" y1="12.5" x2="17" y2="17" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        Search
+      </button>
+    </div>
+  </header>
 
   <!-- HERO -->
   <section class="hero">
@@ -390,5 +484,21 @@
     </button>
   </div>
 
+  <script>
+    // Sticky header: show after scrolling past the hero
+    (function() {
+      var header = document.getElementById('stickyHeader');
+      var hero = document.querySelector('.hero');
+      var isVisible = false;
+      window.addEventListener('scroll', function() {
+        var heroBottom = hero.offsetHeight - 100;
+        var shouldShow = window.scrollY > heroBottom;
+        if (shouldShow !== isVisible) {
+          isVisible = shouldShow;
+          header.classList.toggle('is-visible', isVisible);
+        }
+      }, { passive: true });
+    })();
+  </script>
 </body>
 </html>
