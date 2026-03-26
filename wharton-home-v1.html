@@ -281,6 +281,91 @@
       .sticky-header__logo img { height: 28px; }
     }
 
+    /* ===== DESKTOP MENU OVERLAY ===== */
+    .desktop-menu {
+      position: fixed; inset: 0; z-index: 1000;
+      background: var(--penn-blue); display: none; flex-direction: column;
+    }
+    .desktop-menu.is-open { display: flex; }
+    .desktop-menu__header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 0 0 50px; min-height: 98px;
+      border-bottom: 1px solid rgba(255,255,255,0.15); flex-shrink: 0;
+    }
+    .desktop-menu__logo-wrap {
+      display: flex; align-items: center; padding: 24px 0;
+    }
+    .desktop-menu__logo { height: 50px; width: auto; }
+    .desktop-menu__controls { display: flex; align-items: center; }
+    .desktop-menu__close,
+    .desktop-menu__search {
+      display: flex; align-items: center; justify-content: center;
+      width: 60px; height: 60px; border: none;
+      color: #fff; cursor: pointer; transition: opacity 0.15s;
+      background: none;
+    }
+    .desktop-menu__close { background: var(--penn-blue); }
+    .desktop-menu__search { background: var(--penn-red); }
+    .desktop-menu__close:hover,
+    .desktop-menu__search:hover { opacity: 0.8; }
+    .desktop-menu__close svg { width: 20px; height: 20px; }
+    .desktop-menu__search svg { width: 24px; height: 24px; }
+    .desktop-menu__body {
+      display: flex; flex: 1; overflow-y: auto;
+    }
+    .desktop-menu__sidebar {
+      width: 267px; flex-shrink: 0; padding: 24px;
+      display: flex; flex-direction: column; gap: 14px;
+      padding-top: 48px;
+    }
+    .desktop-menu__sidebar a {
+      font-size: 14px; text-transform: uppercase; color: rgba(255,255,255,0.6);
+      letter-spacing: 0.02em; line-height: 21px;
+      transition: color 0.15s;
+    }
+    .desktop-menu__sidebar a:hover { color: #fff; }
+    .desktop-menu__sidebar img { height: 12px; width: auto; display: block; filter: brightness(10); }
+    .desktop-menu__sidebar a:has(img) { display: block; padding: 0; margin: 0; line-height: 0; }
+    .desktop-menu__main {
+      flex: 1; padding: 18px 48px;
+      border-left: 1px solid rgba(255,255,255,0.15);
+      columns: 2; column-gap: 32px;
+    }
+    .desktop-menu__nav-group { break-inside: avoid; }
+    .desktop-menu__nav-item {
+      display: flex; align-items: center; gap: 7px;
+      padding: 19px 10px 17px; font-size: 24px; color: rgba(255,255,255,0.85);
+      border-top: 5px solid transparent; line-height: 33px;
+      transition: color 0.15s;
+    }
+    .desktop-menu__nav-item:hover { color: #fff; }
+    .desktop-menu__nav-item--expandable {
+      background: none; border: none; cursor: pointer; font-family: inherit;
+      width: 100%; text-align: left;
+    }
+    .desktop-menu__nav-item--expandable .desktop-menu__nav-chevron {
+      transition: transform 0.25s ease;
+    }
+    .desktop-menu__nav-item--expandable.is-expanded .desktop-menu__nav-chevron {
+      transform: rotate(180deg);
+    }
+    .desktop-menu__sub-list {
+      list-style: none; padding: 0 0 8px 18px; margin: 0;
+      max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+    }
+    .desktop-menu__sub-list.is-open { max-height: 500px; }
+    .desktop-menu__sub-link {
+      display: block; padding: 8px 0; font-size: 16px; color: rgba(255,255,255,0.5);
+      transition: color 0.15s;
+    }
+    .desktop-menu__sub-link:hover { color: #fff; }
+    .desktop-menu__nav-chevron { display: inline-flex; align-items: center; }
+    .desktop-menu__nav-chevron svg { width: 10px; height: 6px; fill: currentColor; }
+    @media (max-width: 791px) {
+      .desktop-menu { display: none !important; }
+    }
+    body.menu-open { overflow: hidden; }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1100px) {
       .primary-nav { display: none; }
@@ -314,6 +399,83 @@
   </style>
 </head>
 <body>
+
+  <!-- DESKTOP MENU OVERLAY -->
+  <div class="desktop-menu" id="desktopMenu">
+    <div class="desktop-menu__header">
+      <div class="desktop-menu__logo-wrap">
+        <img class="desktop-menu__logo" src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania">
+      </div>
+      <div class="desktop-menu__controls">
+        <button class="desktop-menu__close" id="desktopMenuClose" aria-label="Close menu">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/>
+          </svg>
+        </button>
+        <button class="desktop-menu__search" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="desktop-menu__body">
+      <nav class="desktop-menu__sidebar" aria-label="Programs">
+        <a href="#">Wharton Home</a>
+        <a href="#">Faculty</a>
+        <a href="#">Youth Program</a>
+        <a href="#">Undergrad</a>
+        <a href="#">Jacobs MSQF</a>
+        <a href="#">MBA</a>
+        <a href="#">EMBA</a>
+        <a href="#">PhD</a>
+        <a href="#">Exec Ed</a>
+        <a href="#">Wharton Online</a>
+        <a href="#"><img src="assets/kw-logo.svg" alt="Knowledge at Wharton"></a>
+      </nav>
+      <nav class="desktop-menu__main" aria-label="Main navigation">
+        <div class="desktop-menu__nav-group">
+          <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="about">About <span class="desktop-menu__nav-chevron"><svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></span></button>
+          <ul class="desktop-menu__sub-list" id="desktop-sub-about">
+            <li><a href="#" class="desktop-menu__sub-link">About Wharton</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">Leadership</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">History</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">Diversity &amp; Inclusion</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">Global Impact</a></li>
+          </ul>
+        </div>
+        <a href="#" class="desktop-menu__nav-item">Academics</a>
+        <div class="desktop-menu__nav-group">
+          <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="faculty">Faculty &amp; Research <span class="desktop-menu__nav-chevron"><svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></span></button>
+          <ul class="desktop-menu__sub-list" id="desktop-sub-faculty">
+            <li><a href="#" class="desktop-menu__sub-link">Faculty Directory</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">Research Centers</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">Publications</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">Working Papers</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">Departments</a></li>
+          </ul>
+        </div>
+        <a href="#" class="desktop-menu__nav-item">News</a>
+        <a href="#" class="desktop-menu__nav-item">Recruiters &amp; Corporations</a>
+        <a href="#" class="desktop-menu__nav-item">Alumni</a>
+        <div class="desktop-menu__nav-group">
+          <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="locations">Locations <span class="desktop-menu__nav-chevron"><svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></span></button>
+          <ul class="desktop-menu__sub-list" id="desktop-sub-locations">
+            <li><a href="#" class="desktop-menu__sub-link">Philadelphia</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">San Francisco</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">Beijing</a></li>
+            <li><a href="#" class="desktop-menu__sub-link">All Locations</a></li>
+          </ul>
+        </div>
+        <a href="#" class="desktop-menu__nav-item">Wharton Stories</a>
+        <a href="#" class="desktop-menu__nav-item">Give to Wharton</a>
+        <a href="#" class="desktop-menu__nav-item">Student Life</a>
+        <a href="#" class="desktop-menu__nav-item">Conferences</a>
+        <a href="#" class="desktop-menu__nav-item">Wharton Magazine</a>
+        <a href="#" class="desktop-menu__nav-item">Directory</a>
+      </nav>
+    </div>
+  </div>
 
   <!-- STICKY COMPACT HEADER -->
   <header class="sticky-header" id="stickyHeader">
@@ -486,19 +648,53 @@
   </div>
 
   <script>
-    // Sticky header: show after scrolling past the hero
     (function() {
-      var header = document.getElementById('stickyHeader');
-      var hero = document.querySelector('.hero');
+      // Sticky header: show after scrolling past the hero
+      var stickyHeader = document.getElementById('stickyHeader');
       var isVisible = false;
       window.addEventListener('scroll', function() {
-        // Show after logo and top bar have scrolled out (~120px)
         var shouldShow = window.scrollY > 120;
         if (shouldShow !== isVisible) {
           isVisible = shouldShow;
-          header.classList.toggle('is-visible', isVisible);
+          stickyHeader.classList.toggle('is-visible', isVisible);
         }
       }, { passive: true });
+
+      // Desktop menu
+      var desktopMenu = document.getElementById('desktopMenu');
+      var desktopMenuClose = document.getElementById('desktopMenuClose');
+
+      function openDesktopMenu() {
+        desktopMenu.classList.add('is-open');
+        document.body.classList.add('menu-open');
+      }
+      function closeDesktopMenu() {
+        desktopMenu.classList.remove('is-open');
+        document.body.classList.remove('menu-open');
+      }
+
+      // All menu buttons (hero top bar + sticky header)
+      document.querySelectorAll('.top-btn--menu, .sticky-header__btn--menu').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          desktopMenu.classList.contains('is-open') ? closeDesktopMenu() : openDesktopMenu();
+        });
+      });
+
+      desktopMenuClose.addEventListener('click', closeDesktopMenu);
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeDesktopMenu();
+      });
+
+      // Desktop menu accordion
+      document.querySelectorAll('[data-desktop-toggle]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var id = 'desktop-sub-' + this.getAttribute('data-desktop-toggle');
+          var subList = document.getElementById(id);
+          subList.classList.toggle('is-open');
+          this.classList.toggle('is-expanded');
+        });
+      });
     })();
   </script>
 </body>
