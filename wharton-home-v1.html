@@ -223,7 +223,7 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: var(--penn-blue); display: flex;
       align-items: center; justify-content: space-between;
-      padding: 0 24px; height: 56px;
+      padding: 0 0 0 24px; height: 56px;
       transform: translateY(-100%); transition: transform 0.3s ease;
       border-bottom: 1px solid rgba(255,255,255,0.15);
     }
@@ -249,20 +249,20 @@
       position: relative;
     }
     .sticky-header__buttons {
-      display: flex; flex-shrink: 0; gap: 0;
+      display: flex; flex-shrink: 0; margin-right: -24px;
     }
     .sticky-header__btn {
-      display: flex; align-items: center; gap: 6px; height: 36px;
-      padding: 0 14px; border: none; cursor: pointer;
-      font-family: 'Lato', sans-serif; font-size: 12px;
+      display: flex; align-items: center; gap: 8px; height: 56px;
+      padding: 0 16px; border: none; cursor: pointer;
+      font-family: 'Lato', sans-serif; font-size: 13px;
       text-transform: uppercase; letter-spacing: 0.5px;
-      color: #fff; white-space: nowrap; border-radius: 4px;
+      color: #fff; white-space: nowrap; border-radius: 0;
     }
-    .sticky-header__btn--menu { background: rgba(255,255,255,0.12); }
-    .sticky-header__btn--menu:hover { background: rgba(255,255,255,0.2); }
-    .sticky-header__btn--search { background: var(--penn-red); margin-left: 6px; }
+    .sticky-header__btn--menu { background: var(--penn-blue); }
+    .sticky-header__btn--menu:hover { background: #022a6e; }
+    .sticky-header__btn--search { background: var(--penn-red); }
     .sticky-header__btn--search:hover { background: #b30039; }
-    .sticky-header__btn svg { width: 14px; height: 14px; fill: #fff; }
+    .sticky-header__btn svg { width: 18px; height: 18px; fill: #fff; }
 
     /* Progressive hiding of nav items at smaller widths */
     .sticky-header__nav-link.hide-1200 { display: inline-flex; }
@@ -276,7 +276,8 @@
     }
     @media (max-width: 791px) {
       .sticky-header__nav { display: none; }
-      .sticky-header { padding: 0 16px; }
+      .sticky-header { padding: 0 0 0 16px; }
+      .sticky-header__buttons { margin-right: 0; }
       .sticky-header__logo img { height: 28px; }
     }
 
