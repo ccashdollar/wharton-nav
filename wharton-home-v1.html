@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wharton Home — V1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --penn-blue: #011F5B;
+      --penn-red: #990033;
+      --white: #ffffff;
+      --gray-light: #f2f2f2;
+      --marine-gray: #eeedea;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Lato', sans-serif; background: #fff; color: #333;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      position: relative; width: 100%; height: 100vh; min-height: 700px;
+      overflow: hidden; display: flex; flex-direction: column;
+    }
+    .hero__bg {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .hero__bg img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .hero__bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(1, 31, 91, 0.45);
+    }
+
+    /* ===== TOP BAR ===== */
+    .top-bar {
+      position: relative; z-index: 10; display: flex;
+      align-items: flex-start; justify-content: flex-end;
+      padding-right: 0;
+    }
+    .universal-nav {
+      display: flex; align-items: center; height: 50px;
+      padding: 0 16px; gap: 0; overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .universal-nav__link {
+      font-family: 'Lato', sans-serif; font-size: 11px;
+      text-transform: uppercase; letter-spacing: 0.55px;
+      color: var(--gray-light); white-space: nowrap;
+      padding: 8px 10px; transition: opacity 0.15s;
+    }
+    .universal-nav__link:hover { opacity: 0.7; }
+    .universal-nav__dropdown {
+      font-family: 'Lato', sans-serif; font-size: 11px;
+      text-transform: uppercase; letter-spacing: 0.55px;
+      color: var(--gray-light); white-space: nowrap;
+      padding: 8px 10px; border: 1px solid var(--marine-gray);
+      background: none; cursor: pointer; display: flex;
+      align-items: center; gap: 6px;
+    }
+    .universal-nav__dropdown svg { width: 10px; height: 10px; fill: var(--gray-light); }
+    .top-buttons { display: flex; flex-shrink: 0; }
+    .top-btn {
+      display: flex; align-items: center; gap: 8px; height: 50px;
+      padding: 0 16px; border: none; cursor: pointer;
+      font-family: 'Lato', sans-serif; font-size: 13px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      color: #fff; white-space: nowrap;
+    }
+    .top-btn--menu { background: var(--penn-blue); }
+    .top-btn--search { background: var(--penn-red); }
+    .top-btn svg { width: 18px; height: 18px; fill: #fff; }
+
+    /* ===== LOGO ===== */
+    .logo {
+      position: absolute; top: 51px; left: 50px; z-index: 10;
+      width: 250px;
+    }
+    .logo img {
+      width: 100%; height: auto; display: block;
+    }
+
+    /* ===== PRIMARY NAV (over hero, right side) ===== */
+    .primary-nav {
+      position: absolute; right: 80px; top: 50%;
+      transform: translateY(-50%); z-index: 10;
+      display: flex; flex-direction: column; align-items: flex-end;
+      gap: 12px;
+    }
+    .primary-nav__link {
+      font-family: 'Lato', sans-serif; font-weight: 700;
+      font-size: 38px; color: #fff; line-height: 1.1;
+      text-align: right; transition: opacity 0.2s;
+      letter-spacing: -0.2px;
+    }
+    .primary-nav__link:hover { opacity: 0.75; }
+
+    /* ===== LEAD CONTENT ===== */
+    .lead {
+      position: absolute; left: 53px; top: 50%;
+      transform: translateY(-50%); z-index: 10;
+      max-width: 608px; display: flex; flex-direction: column;
+      align-items: flex-start;
+    }
+    .lead__border {
+      width: 100%; max-width: 450px; height: 5px;
+      background: #fff; margin-bottom: 30px;
+    }
+    .lead__heading {
+      font-family: 'Lato', sans-serif; font-weight: 900;
+      font-size: 54px; line-height: 56px; color: #fff;
+      letter-spacing: -0.2px; margin-bottom: 12px;
+    }
+    .lead__subtitle {
+      font-family: 'Lato', sans-serif; font-weight: 600;
+      font-size: 20px; line-height: 26px; color: #fff;
+      margin-bottom: 28px;
+    }
+    .lead__actions {
+      display: flex; align-items: center; gap: 30px;
+    }
+    .lead__cta {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; background: #fff; color: #01256e; padding: 14px 40px;
+      font-family: 'Lato', sans-serif; font-weight: 700;
+      font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
+      transition: background 0.2s, color 0.2s; min-width: 260px;
+    }
+    .lead__cta:hover { background: #e8e8e8; }
+    .lead__cta svg { width: 16px; height: 16px; fill: #01256e; }
+    .lead__link {
+      font-family: 'Lato', sans-serif; font-weight: 700;
+      font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
+      color: #fff; transition: opacity 0.2s;
+    }
+    .lead__link:hover { opacity: 0.7; }
+
+    /* ===== STORY CAROUSEL ===== */
+    .story-carousel {
+      position: absolute; bottom: 50px; right: 80px; z-index: 10;
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(2, 32, 92, 0.85); border-radius: 16px;
+      padding: 10px 10px 10px 10px; max-width: 471px;
+    }
+    .story-carousel__arrow {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.6); background: none;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0; opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+    .story-carousel__arrow:hover { opacity: 1; }
+    .story-carousel__arrow svg { width: 16px; height: 16px; fill: #fff; }
+    .story-carousel__content {
+      display: flex; align-items: center; gap: 16px; flex: 1;
+      padding: 6px 0;
+    }
+    .story-carousel__text { flex: 1; }
+    .story-carousel__label {
+      font-family: 'Lato', sans-serif; font-size: 11px;
+      text-transform: uppercase; letter-spacing: 1px;
+      color: rgba(255,255,255,0.7); margin-bottom: 6px;
+    }
+    .story-carousel__title {
+      font-family: 'Lato', sans-serif; font-size: 16px;
+      line-height: 22px; color: #fff;
+    }
+    .story-carousel__thumb {
+      width: 140px; height: 80px; border-radius: 8px;
+      border: 2px solid rgba(255,255,255,0.3); flex-shrink: 0;
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* ===== BELOW THE FOLD (placeholder) ===== */
+    .below-fold {
+      padding: 60px 53px; max-width: 1440px;
+    }
+    .skeleton-block {
+      background: #e8e8e8; border-radius: 6px; margin-bottom: 16px;
+    }
+
+    /* ===== PROTO SWITCHER ===== */
+    .proto-switcher {
+      position: fixed; bottom: 20px; right: 20px; z-index: 9999;
+    }
+    .proto-switcher__toggle {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 16px; background: #333; color: #fff;
+      border: none; border-radius: 20px; cursor: pointer;
+      font-family: 'Lato', sans-serif; font-size: 13px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: background 0.15s;
+    }
+    .proto-switcher__toggle:hover { background: #555; }
+    .proto-switcher__toggle svg {
+      width: 10px; height: 10px; fill: #fff;
+      transition: transform 0.2s;
+    }
+    .proto-switcher__toggle.is-open svg { transform: rotate(180deg); }
+    .proto-switcher__menu {
+      display: none; position: absolute; bottom: 44px; right: 0;
+      background: #fff; border-radius: 8px; padding: 8px 0;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15); min-width: 160px;
+    }
+    .proto-switcher__menu.is-open { display: block; }
+    .proto-switcher__link {
+      display: block; padding: 8px 20px; font-size: 13px; color: #333;
+      font-family: 'Lato', sans-serif; transition: background 0.1s;
+      white-space: nowrap;
+    }
+    .proto-switcher__link:hover { background: #f5f5f5; }
+    .proto-switcher__link--active {
+      font-weight: 700; color: var(--penn-blue);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1100px) {
+      .primary-nav { display: none; }
+      .lead { max-width: 90%; }
+      .story-carousel { right: 20px; max-width: calc(100% - 40px); }
+    }
+    @media (max-width: 791px) {
+      .hero { min-height: 600px; }
+      .logo { top: 20px; left: 20px; width: 180px; }
+      .universal-nav { display: none; }
+      .lead {
+        left: 20px; right: 20px; max-width: none;
+        top: auto; bottom: 180px; transform: none;
+      }
+      .lead__heading { font-size: 36px; line-height: 40px; }
+      .lead__subtitle { font-size: 16px; line-height: 22px; }
+      .lead__cta { min-width: 200px; padding: 12px 24px; }
+      .story-carousel {
+        bottom: 20px; left: 20px; right: 20px;
+        max-width: none;
+      }
+      .story-carousel__thumb { width: 100px; height: 60px; }
+      .below-fold { padding: 40px 20px; }
+    }
+    @media (max-width: 480px) {
+      .lead__heading { font-size: 28px; line-height: 32px; }
+      .lead__actions { flex-direction: column; gap: 12px; align-items: flex-start; }
+      .story-carousel__content { flex-direction: column; align-items: flex-start; }
+      .story-carousel__thumb { width: 100%; height: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__bg">
+      <img src="assets/hero-1.jpg" alt="Wharton campus">
+    </div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <nav class="universal-nav">
+        <a href="#" class="universal-nav__link">Wharton Home</a>
+        <a href="#" class="universal-nav__link">Faculty &amp; Research</a>
+        <a href="#" class="universal-nav__link">Knowledge at Wharton</a>
+        <button class="universal-nav__dropdown">
+          Programs
+          <svg viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+        </button>
+      </nav>
+      <div class="top-buttons">
+        <button class="top-btn top-btn--menu">
+          <svg viewBox="0 0 20 20">
+            <rect x="2.5" y="4" width="15" height="1.5" rx="0.5"/>
+            <rect x="2.5" y="9.25" width="15" height="1.5" rx="0.5"/>
+            <rect x="2.5" y="14.5" width="15" height="1.5" rx="0.5"/>
+          </svg>
+          Menu
+        </button>
+        <button class="top-btn top-btn--search">
+          <svg viewBox="0 0 20 20">
+            <circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="#fff" stroke-width="1.8"/>
+            <line x1="12.5" y1="12.5" x2="17" y2="17" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          Search
+        </button>
+      </div>
+    </div>
+
+    <!-- Logo -->
+    <a href="#" class="logo">
+      <img src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania">
+    </a>
+
+    <!-- Primary Nav -->
+    <nav class="primary-nav">
+      <a href="#" class="primary-nav__link">About</a>
+      <a href="#" class="primary-nav__link">Academics</a>
+      <a href="#" class="primary-nav__link">Faculty &amp; Research</a>
+      <a href="#" class="primary-nav__link">Alumni</a>
+      <a href="#" class="primary-nav__link">News</a>
+      <a href="#" class="primary-nav__link">More...</a>
+    </nav>
+
+    <!-- Lead Content -->
+    <div class="lead">
+      <div class="lead__border"></div>
+      <h1 class="lead__heading">Impact vs. Time: A Leader's Guide to Slow Productivity</h1>
+      <p class="lead__subtitle">In this Nano Tool for Leaders, author and professor Cal Newport offers practical guidance on how to slow down in order to enhance your productivity.</p>
+      <div class="lead__actions">
+        <a href="#" class="lead__cta">
+          Read More
+          <svg viewBox="0 0 16 16"><path d="M1 8h12M9 4l4 4-4 4" fill="none" stroke="#01256e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#" class="lead__link">Learn More</a>
+      </div>
+    </div>
+
+    <!-- Story Carousel -->
+    <div class="story-carousel">
+      <button class="story-carousel__arrow">
+        <svg viewBox="0 0 16 16"><path d="M10 4l-4 4 4 4" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="story-carousel__content">
+        <div class="story-carousel__text">
+          <div class="story-carousel__label">Next Story</div>
+          <div class="story-carousel__title">Building Tomorrow's Business Leaders Today</div>
+        </div>
+        <div class="story-carousel__thumb"></div>
+      </div>
+      <button class="story-carousel__arrow">
+        <svg viewBox="0 0 16 16"><path d="M6 4l4 4-4 4" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- Below the fold placeholder -->
+  <div class="below-fold">
+    <div class="skeleton-block" style="width: 40%; height: 28px;"></div>
+    <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+    <div class="skeleton-block" style="width: 95%; height: 12px;"></div>
+    <div class="skeleton-block" style="width: 80%; height: 12px; margin-bottom: 32px;"></div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 40px;">
+      <div><div class="skeleton-block" style="width: 100%; height: 180px;"></div><div class="skeleton-block" style="width: 70%; height: 16px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 90%; height: 12px;"></div></div>
+      <div><div class="skeleton-block" style="width: 100%; height: 180px;"></div><div class="skeleton-block" style="width: 60%; height: 16px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 85%; height: 12px;"></div></div>
+      <div><div class="skeleton-block" style="width: 100%; height: 180px;"></div><div class="skeleton-block" style="width: 75%; height: 16px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 88%; height: 12px;"></div></div>
+    </div>
+
+    <div class="skeleton-block" style="width: 35%; height: 24px;"></div>
+    <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+    <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+    <div class="skeleton-block" style="width: 70%; height: 12px; margin-bottom: 32px;"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 40px;">
+      <div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 90%; height: 12px;"></div><div class="skeleton-block" style="width: 95%; height: 12px;"></div><div class="skeleton-block" style="width: 80%; height: 12px;"></div></div>
+      <div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 85%; height: 12px;"></div><div class="skeleton-block" style="width: 92%; height: 12px;"></div><div class="skeleton-block" style="width: 75%; height: 12px;"></div></div>
+    </div>
+
+    <div class="skeleton-block" style="width: 30%; height: 24px;"></div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 16px 0 60px;">
+      <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
+      <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
+      <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
+      <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
+      <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
+      <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
+    </div>
+  </div>
+
+  <!-- Proto Switcher -->
+  <div class="proto-switcher">
+    <div class="proto-switcher__menu" id="protoMenu">
+      <a href="wharton-home-v1.html" class="proto-switcher__link proto-switcher__link--active">V1 Wharton Home</a>
+      <a href="parent-nav-v4.html" class="proto-switcher__link">V4 Parent</a>
+      <a href="child-nav-v4.html" class="proto-switcher__link">V4 Child</a>
+      <a href="child-accounting-v4.html" class="proto-switcher__link">V4 Accounting</a>
+      <a href="parent-nav-v3.html" class="proto-switcher__link">V3 Parent</a>
+      <a href="child-nav-v3.html" class="proto-switcher__link">V3 Child</a>
+      <a href="child-accounting-v3.html" class="proto-switcher__link">V3 Accounting</a>
+      <a href="parent-nav-v2.html" class="proto-switcher__link">V2 Parent</a>
+      <a href="child-nav-v2.html" class="proto-switcher__link">V2 Child</a>
+      <a href="parent-nav.html" class="proto-switcher__link">V1 Parent</a>
+      <a href="child-nav.html" class="proto-switcher__link">V1 Child</a>
+    </div>
+    <button class="proto-switcher__toggle" onclick="document.getElementById('protoMenu').classList.toggle('is-open'); this.classList.toggle('is-open');">
+      V1 Wharton Home
+      <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+</body>
+</html>
