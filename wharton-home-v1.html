@@ -491,8 +491,8 @@
       var hero = document.querySelector('.hero');
       var isVisible = false;
       window.addEventListener('scroll', function() {
-        var heroBottom = hero.offsetHeight - 100;
-        var shouldShow = window.scrollY > heroBottom;
+        // Show after logo and top bar have scrolled out (~120px)
+        var shouldShow = window.scrollY > 120;
         if (shouldShow !== isVisible) {
           isVisible = shouldShow;
           header.classList.toggle('is-visible', isVisible);
