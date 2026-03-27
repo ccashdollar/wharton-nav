@@ -394,13 +394,24 @@
     @media (max-width: 791px) {
       .universal-bar { display: none; }
       .identity-bar {
-        padding: 16px 16px 0 16px; gap: 0;
-        justify-content: space-between;
+        padding: 0; gap: 0;
+        justify-content: space-between; align-items: stretch;
       }
-      .identity-bar__logo img { width: 160px; }
-      .identity-bar__name { display: none; }
+      .identity-bar__logo {
+        padding: 20px 16px;
+      }
+      .identity-bar__logo img { width: 120px; }
+      .identity-bar__name {
+        display: block; font-size: 16px; line-height: 20px;
+        white-space: normal; flex: 1; min-width: 0;
+        padding: 16px 12px 16px 0;
+        align-self: center;
+      }
       .identity-bar__mobile-buttons {
-        display: flex;
+        display: flex; flex-shrink: 0; align-self: stretch;
+      }
+      .identity-bar__mobile-buttons .top-btn {
+        height: 100%; align-self: stretch;
       }
       .local-nav { display: none; }
       .breadcrumb { padding: 16px 16px 0 16px; }
