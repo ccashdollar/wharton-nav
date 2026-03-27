@@ -481,18 +481,19 @@
 
     /* Close button */
     .mobile-menu__close {
-      position: absolute; top: 0; right: 0;
-      background: #990000; border: none; cursor: pointer;
+      position: absolute; top: 32px; right: 20px;
+      background: transparent; border: none; cursor: pointer;
       display: flex; align-items: center; gap: 8px;
-      padding: 14px 16px; height: 44px;
-      color: #fff; z-index: 10;
+      padding: 0; color: rgba(255,255,255,0.7); z-index: 10;
+      transition: color 0.15s;
     }
+    .mobile-menu__close:hover { color: #fff; }
     .mobile-menu__close-icon {
-      font-size: 14px; line-height: 1; color: #fff;
+      font-size: 14px; line-height: 1;
     }
     .mobile-menu__close-label {
-      font-family: var(--font-ss-condensed); font-size: 16px;
-      text-transform: uppercase; letter-spacing: 1px; color: #fff;
+      font-family: var(--font-ss-condensed); font-size: 11px;
+      text-transform: uppercase; letter-spacing: 1px;
     }
 
     /* Header */
