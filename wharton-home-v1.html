@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wharton Home — V1</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://use.typekit.net/ael0dii.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -13,10 +14,13 @@
       --white: #ffffff;
       --gray-light: #f2f2f2;
       --marine-gray: #eeedea;
+      --font-ss: 'acumin-pro', sans-serif;
+      --font-ss-condensed: 'acumin-pro-condensed', sans-serif;
+      --font-serif: 'minion-pro', serif;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Lato', sans-serif; background: #fff; color: #333;
+      font-family: var(--font-ss); background: #fff; color: #333;
       -webkit-font-smoothing: antialiased;
     }
     a { text-decoration: none; color: inherit; }
@@ -49,14 +53,14 @@
       -webkit-overflow-scrolling: touch;
     }
     .universal-nav__link {
-      font-family: 'Lato', sans-serif; font-size: 11px;
+      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 11px;
       text-transform: uppercase; letter-spacing: 0.55px;
       color: var(--gray-light); white-space: nowrap;
       padding: 8px 10px; transition: opacity 0.15s;
     }
     .universal-nav__link:hover { opacity: 0.7; }
     .universal-nav__dropdown {
-      font-family: 'Lato', sans-serif; font-size: 11px;
+      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 11px;
       text-transform: uppercase; letter-spacing: 0.55px;
       color: var(--gray-light); white-space: nowrap;
       padding: 8px 10px; border: 1px solid var(--marine-gray);
@@ -68,7 +72,7 @@
     .top-btn {
       display: flex; align-items: center; gap: 8px; height: 50px;
       padding: 0 16px; border: none; cursor: pointer;
-      font-family: 'Lato', sans-serif; font-size: 13px;
+      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 13px;
       text-transform: uppercase; letter-spacing: 0.5px;
       color: #fff; white-space: nowrap;
     }
@@ -93,12 +97,18 @@
       gap: 12px;
     }
     .primary-nav__link {
-      font-family: 'Lato', sans-serif; font-weight: 700;
-      font-size: 38px; color: #fff; line-height: 1.1;
+      font-family: var(--font-ss-condensed); font-weight: 600;
+      font-size: 38px; color: #fff; line-height: 42px;
       text-align: right; transition: opacity 0.2s;
-      letter-spacing: -0.2px;
+      letter-spacing: -0.2px; display: flex; align-items: center; justify-content: flex-end; gap: 8px;
     }
-    .primary-nav__link:hover { opacity: 0.75; }
+    .primary-nav__link .nav-arrow { 
+      display: inline-flex; align-items: center; transition: opacity 0.2s; 
+      width: 24px; height: 24px;
+    }
+    .primary-nav__link .nav-arrow svg { width: 100%; height: 100%; fill: #fff; }
+    .primary-nav__link:hover .nav-arrow { opacity: 0; }
+    .primary-nav__link:hover { opacity: 0.85; }
 
     /* ===== LEAD CONTENT ===== */
     .lead {
@@ -112,13 +122,13 @@
       background: #fff; margin-bottom: 30px;
     }
     .lead__heading {
-      font-family: 'Lato', sans-serif; font-weight: 900;
-      font-size: 54px; line-height: 56px; color: #fff;
+      font-family: var(--font-ss-condensed); font-weight: 900;
+      font-size: 60px; line-height: 56px; color: #fff;
       letter-spacing: -0.2px; margin-bottom: 12px;
     }
     .lead__subtitle {
-      font-family: 'Lato', sans-serif; font-weight: 600;
-      font-size: 20px; line-height: 26px; color: #fff;
+      font-family: var(--font-ss-condensed); font-weight: 600;
+      font-size: 24px; line-height: 24px; color: #fff;
       margin-bottom: 28px;
     }
     .lead__actions {
@@ -127,14 +137,14 @@
     .lead__cta {
       display: flex; align-items: center; justify-content: center;
       gap: 8px; background: #fff; color: #01256e; padding: 14px 40px;
-      font-family: 'Lato', sans-serif; font-weight: 700;
+      font-family: var(--font-ss-condensed); font-weight: 700;
       font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
       transition: background 0.2s, color 0.2s; min-width: 260px;
     }
     .lead__cta:hover { background: #e8e8e8; }
     .lead__cta svg { width: 16px; height: 16px; fill: #01256e; }
     .lead__link {
-      font-family: 'Lato', sans-serif; font-weight: 700;
+      font-family: var(--font-ss-condensed); font-weight: 700;
       font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
       color: #fff; transition: opacity 0.2s;
     }
@@ -162,12 +172,12 @@
     }
     .story-carousel__text { flex: 1; }
     .story-carousel__label {
-      font-family: 'Lato', sans-serif; font-size: 11px;
+      font-family: var(--font-ss); font-size: 11px;
       text-transform: uppercase; letter-spacing: 1px;
       color: rgba(255,255,255,0.7); margin-bottom: 6px;
     }
     .story-carousel__title {
-      font-family: 'Lato', sans-serif; font-size: 16px;
+      font-family: var(--font-ss); font-size: 16px;
       line-height: 22px; color: #fff;
     }
     .story-carousel__thumb {
@@ -192,7 +202,7 @@
       display: flex; align-items: center; gap: 6px;
       padding: 8px 16px; background: #333; color: #fff;
       border: none; border-radius: 20px; cursor: pointer;
-      font-family: 'Lato', sans-serif; font-size: 13px;
+      font-family: var(--font-ss); font-size: 13px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
       transition: background 0.15s;
     }
@@ -210,7 +220,7 @@
     .proto-switcher__menu.is-open { display: block; }
     .proto-switcher__link {
       display: block; padding: 8px 20px; font-size: 13px; color: #333;
-      font-family: 'Lato', sans-serif; transition: background 0.1s;
+      font-family: var(--font-ss); transition: background 0.1s;
       white-space: nowrap;
     }
     .proto-switcher__link:hover { background: #f5f5f5; }
@@ -239,7 +249,7 @@
       margin: 0 24px; flex: 1; justify-content: flex-end;
     }
     .sticky-header__nav-link {
-      font-family: 'Lato', sans-serif; font-size: 14px;
+      font-family: var(--font-ss); font-size: 14px;
       font-weight: 600; color: #fff; padding: 8px 12px;
       white-space: nowrap; transition: opacity 0.15s;
       border-radius: 4px;
@@ -254,7 +264,7 @@
     .sticky-header__btn {
       display: flex; align-items: center; gap: 8px; height: 56px;
       padding: 0 16px; border: none; cursor: pointer;
-      font-family: 'Lato', sans-serif; font-size: 13px;
+      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 13px;
       text-transform: uppercase; letter-spacing: 0.5px;
       color: #fff; white-space: nowrap; border-radius: 0;
     }

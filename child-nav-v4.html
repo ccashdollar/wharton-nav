@@ -4,11 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wharton Navigation — Child (Jacobs MSQF) V4 Prototype</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://use.typekit.net/ael0dii.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --wharton-blue: #011F5B;
+      --font-ss: 'acumin-pro', sans-serif;
+      --font-ss-condensed: 'acumin-pro-condensed', sans-serif;
+      --font-serif: 'minion-pro', serif;
       --wharton-red: #A90533;
       --universal-bg: #fff;
       --universal-text: #5C6266;
@@ -216,7 +220,7 @@
       padding: 0 24px; margin-bottom: 16px;
     }
     .mega-menu__left-item {
-      display: flex; align-items: center; justify-content: space-between;
+      font-family: var(--font-ss-condensed); font-weight: 600; display: flex; align-items: center; justify-content: space-between;
       padding: 12px 24px; font-size: 14px; text-transform: uppercase;
       color: #333; letter-spacing: 0.02em; cursor: pointer;
       transition: background-color 0.15s, color 0.15s;
@@ -264,7 +268,7 @@
     /* Default school nav items (large) */
     .mega-menu__center-nav { }
     .mega-menu__center-item {
-      display: flex; align-items: center; justify-content: space-between;
+      font-family: var(--font-ss-condensed); display: flex; align-items: center; justify-content: space-between;
       padding: 14px 32px; font-size: 22px; color: #383838;
       cursor: pointer; transition: color 0.15s;
       width: 100%; text-align: left; border: none; background: none; font-family: inherit;
@@ -331,7 +335,7 @@
     .mega-menu__right-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
     .mega-menu__right-close svg { width: 14px; height: 14px; }
     .mega-menu__right-item {
-      display: block; padding: 10px 0; font-size: 20px; color: #fff;
+      font-family: var(--font-ss-condensed); display: block; padding: 10px 0; font-size: 20px; color: #fff;
       transition: opacity 0.15s;
     }
     .mega-menu__right-item:hover { opacity: 0.7; text-decoration: underline; }
@@ -390,7 +394,7 @@
       padding: 20px 20px 8px;
     }
     .mobile-menu__nav-item {
-      display: flex; align-items: center; justify-content: space-between;
+      font-family: var(--font-ss-condensed); display: flex; align-items: center; justify-content: space-between;
       padding: 16px 20px; font-size: 16px; color: #222;
       border-bottom: 1px solid #e5e5e5; width: 100%; text-align: left;
       transition: background-color 0.1s; cursor: pointer;
@@ -470,7 +474,7 @@
     /* ======== PROTO SWITCHER ======== */
     .proto-switcher {
       position: fixed; bottom: 20px; right: 20px; z-index: 9999;
-      font-family: 'Inter', sans-serif;
+      font-family: var(--font-ss);
     }
     .proto-switcher__btn {
       display: flex; align-items: center; gap: 6px;
