@@ -376,8 +376,12 @@
 
     /* Primary nav items */
     .desktop-menu__nav-list {
-      display: flex; flex-direction: column; gap: 0;
+      columns: 2; column-gap: 32px;
       list-style: none; padding: 0; margin: 0;
+    }
+    .desktop-menu__nav-group,
+    .desktop-menu__nav-list > a {
+      break-inside: avoid;
     }
     .desktop-menu__nav-item {
       display: flex; align-items: center; gap: 8px;
