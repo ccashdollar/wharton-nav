@@ -90,8 +90,11 @@
 
     /* ===== IDENTITY BAR ===== */
     .identity-bar {
-      display: flex; align-items: center; gap: 32px;
+      display: flex; align-items: center; gap: 0;
       padding: 32px 48px 0 48px;
+    }
+    .identity-bar__brand {
+      display: flex; align-items: center; gap: 32px; flex: 1; min-width: 0;
     }
     .identity-bar__logo {
       flex-shrink: 0;
@@ -459,6 +462,10 @@
         padding: 0; gap: 0;
         justify-content: space-between; align-items: stretch;
       }
+      .identity-bar__brand {
+        flex-direction: row; align-items: center; gap: 16px;
+        padding: 16px;
+      }
       .identity-bar__logo {
         padding: 20px 16px;
       }
@@ -643,17 +650,13 @@
     }
 
     @media (max-width: 500px) {
-      .identity-bar {
-        flex-wrap: wrap;
-      }
-      .identity-bar__logo {
-        width: auto; order: 1;
+      .identity-bar__brand {
+        flex-direction: column; align-items: flex-start; gap: 8px;
       }
       .identity-bar__name {
-        width: 100%; font-size: 20px; line-height: 24px;
-        padding: 0 16px 16px 16px; order: 3;
+        font-size: 20px; line-height: 24px;
+        padding: 0 0 8px 16px;
       }
-      .identity-bar__mobile-buttons { order: 2; margin-left: auto; }
     }
     @media (max-width: 400px) {
       .btn-label { display: none; }
@@ -895,10 +898,12 @@
 
     <!-- Identity Bar -->
     <div class="identity-bar">
-      <a href="#" class="identity-bar__logo">
-        <img src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania" preserveAspectRatio="xMidYMid meet">
-      </a>
-      <span class="identity-bar__name">Dr. Bruce I. Jacobs Master of Science in Quantitative Finance</span>
+      <div class="identity-bar__brand">
+        <a href="#" class="identity-bar__logo">
+          <img src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania" preserveAspectRatio="xMidYMid meet">
+        </a>
+        <span class="identity-bar__name">Dr. Bruce I. Jacobs Master of Science in Quantitative Finance</span>
+      </div>
       <div class="identity-bar__mobile-buttons">
         <button class="top-btn top-btn--menu">
           <svg viewBox="0 0 20 20">
