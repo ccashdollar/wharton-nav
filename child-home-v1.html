@@ -298,10 +298,15 @@
     /* ===== DESKTOP MENU OVERLAY ===== */
     .desktop-menu {
       position: fixed; inset: 0; z-index: 1000;
-      background: var(--penn-blue); display: none;
-      padding: 48px;
+      background: linear-gradient(135deg, #011f5b 0%, #0240bd 60%, #0242c1 100%);
+      display: none; padding: 48px;
     }
     .desktop-menu.is-open { display: flex; }
+    .desktop-menu__inner {
+      background: rgba(1, 31, 91, 0.85);
+      flex: 1; display: flex; flex-direction: column;
+      position: relative; overflow: hidden;
+    }
 
     /* Close button */
     .desktop-menu__close {
@@ -466,6 +471,7 @@
 
   <!-- DESKTOP MENU OVERLAY -->
   <div class="desktop-menu" id="desktopMenu">
+    <div class="desktop-menu__inner">
     <!-- Close button -->
     <button class="desktop-menu__close" id="desktopMenuClose" aria-label="Close menu">
       <span class="desktop-menu__close-icon">&#10005;</span>
@@ -533,6 +539,7 @@
         <!-- Bottom bar -->
         <div class="desktop-menu__bottom-bar" style="display:none;"></div>
       </div>
+    </div>
     </div>
   </div>
 
