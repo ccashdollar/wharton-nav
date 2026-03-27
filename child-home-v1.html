@@ -284,16 +284,9 @@
     .sticky-header__btn--search:hover { background: #7a0000; }
     .sticky-header__btn svg { width: 18px; height: 18px; fill: #fff; }
 
-    /* Progressive hiding of nav items at smaller widths */
-    .sticky-header__nav-link.hide-1200 { display: inline-flex; }
-    .sticky-header__nav-link.hide-1000 { display: inline-flex; }
-
-    @media (max-width: 1200px) {
-      .sticky-header__nav-link.hide-1200 { display: none; }
-    }
-    @media (max-width: 1000px) {
-      .sticky-header__nav-link.hide-1000 { display: none; }
-    }
+    /* Dynamic overflow for sticky nav */
+    .sticky-header__nav-link.is-overflowed { display: none; }
+    #stickyMoreTrigger.is-hidden { display: none; }
     @media (max-width: 791px) {
       .sticky-header__nav { display: none; }
       .sticky-header__child-name { display: none; }
@@ -388,9 +381,8 @@
     body.menu-open { overflow: hidden; }
 
     /* ===== RESPONSIVE ===== */
-    @media (max-width: 1100px) {
-      .local-nav__link.hide-narrow { display: none; }
-    }
+    .local-nav__link[data-nav-item].is-overflowed { display: none; }
+    .local-nav__more-btn.is-hidden { display: none; }
     @media (max-width: 791px) {
       .universal-bar { display: none; }
       .identity-bar {
@@ -496,12 +488,12 @@
       </a>
       <span class="sticky-header__child-name">Jacobs MSQF</span>
     </div>
-    <nav class="sticky-header__nav">
-      <a href="#" class="sticky-header__nav-link">About</a>
-      <a href="#" class="sticky-header__nav-link hide-1000">Why a Jacobs MSQF</a>
-      <a href="#" class="sticky-header__nav-link">Academics</a>
-      <a href="#" class="sticky-header__nav-link hide-1200">Careers &amp; Recruiting</a>
-      <a href="#" class="sticky-header__nav-link hide-1200">Admissions</a>
+    <nav class="sticky-header__nav" id="stickyNavLinks">
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>About</a>
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>Why a Jacobs MSQF</a>
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>Academics</a>
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>Careers &amp; Recruiting</a>
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>Admissions</a>
       <a href="#" class="sticky-header__nav-link" id="stickyMoreTrigger">More...</a>
     </nav>
     <div class="sticky-header__buttons">
@@ -578,25 +570,24 @@
 
     <!-- Local Nav -->
     <nav class="local-nav">
-      <div class="local-nav__links">
-        <a href="#" class="local-nav__link">About</a>
-        <a href="#" class="local-nav__link hide-narrow">Why a Jacobs MSQF</a>
-        <a href="#" class="local-nav__link">Academics</a>
-        <a href="#" class="local-nav__link hide-narrow">Careers &amp; Recruiting</a>
-        <a href="#" class="local-nav__link">Admissions</a>
+      <div class="local-nav__links" id="localNavLinks">
+        <a href="#" class="local-nav__link" data-nav-item>About</a>
+        <a href="#" class="local-nav__link" data-nav-item>Why a Jacobs MSQF</a>
+        <a href="#" class="local-nav__link" data-nav-item>Academics</a>
+        <a href="#" class="local-nav__link" data-nav-item>Careers &amp; Recruiting</a>
+        <a href="#" class="local-nav__link" data-nav-item>Admissions</a>
+        <a href="#" class="local-nav__link" data-nav-item data-always-overflow>Application Guide</a>
+        <a href="#" class="local-nav__link" data-nav-item data-always-overflow>Events</a>
+        <a href="#" class="local-nav__link" data-nav-item data-always-overflow>FAQ</a>
+        <a href="#" class="local-nav__link" data-nav-item data-always-overflow>Student Resources</a>
+        <a href="#" class="local-nav__link" data-nav-item data-always-overflow>Financial Aid</a>
+        <a href="#" class="local-nav__link" data-nav-item data-always-overflow>Contact Us</a>
         <div style="position:relative; display:inline-flex;">
           <button class="local-nav__more-btn" id="moreDropdownBtn">
             More
             <svg viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
-          <div class="more-dropdown__menu" id="moreDropdownMenu">
-            <a href="#" class="more-dropdown__link">Application Guide</a>
-            <a href="#" class="more-dropdown__link">Events</a>
-            <a href="#" class="more-dropdown__link">FAQ</a>
-            <a href="#" class="more-dropdown__link">Student Resources</a>
-            <a href="#" class="more-dropdown__link">Financial Aid</a>
-            <a href="#" class="more-dropdown__link">Contact Us</a>
-          </div>
+          <div class="more-dropdown__menu" id="moreDropdownMenu"></div>
         </div>
       </div>
       <div class="local-nav__buttons">
@@ -784,6 +775,108 @@
           this.classList.toggle('is-expanded');
         });
       });
+
+      // ===== DYNAMIC NAV OVERFLOW =====
+      function setupOverflow(containerSel, itemAttr, moreBtnSel, moreMenuSel, buttonsWidth) {
+        var container = document.querySelector(containerSel);
+        if (!container) return;
+        var items = container.querySelectorAll('[' + itemAttr + ']');
+        var moreBtn = container.querySelector(moreBtnSel);
+        var moreMenu = container.querySelector(moreMenuSel);
+        if (!items.length) return;
+
+        function recalc() {
+          // Reset all to visible to measure
+          items.forEach(function(el) { el.classList.remove('is-overflowed'); el.style.display = ''; });
+          if (moreBtn) moreBtn.classList.remove('is-hidden');
+
+          var containerWidth = container.parentElement.offsetWidth - (buttonsWidth || 0);
+          var moreBtnWidth = moreBtn ? moreBtn.offsetWidth + 16 : 0;
+          var usedWidth = 0;
+          var overflowed = [];
+
+          items.forEach(function(el) {
+            if (el.hasAttribute('data-always-overflow')) {
+              el.classList.add('is-overflowed');
+              overflowed.push(el);
+              return;
+            }
+            usedWidth += el.offsetWidth;
+            if (usedWidth + moreBtnWidth > containerWidth) {
+              el.classList.add('is-overflowed');
+              overflowed.push(el);
+            }
+          });
+
+          // Build More dropdown content
+          if (moreMenu) {
+            moreMenu.innerHTML = '';
+            overflowed.forEach(function(el) {
+              var a = document.createElement('a');
+              a.href = el.href || '#';
+              a.className = 'more-dropdown__link';
+              a.textContent = el.textContent;
+              moreMenu.appendChild(a);
+            });
+          }
+
+          // Hide More button if nothing overflowed
+          if (moreBtn) {
+            if (overflowed.length === 0) {
+              moreBtn.classList.add('is-hidden');
+            } else {
+              moreBtn.classList.remove('is-hidden');
+            }
+          }
+        }
+
+        recalc();
+        window.addEventListener('resize', recalc);
+      }
+
+      // Local nav bar: measure against buttons (Menu + Search ~200px)
+      setupOverflow('.local-nav__links', 'data-nav-item', '#moreDropdownBtn', '#moreDropdownMenu', 200);
+
+      // Sticky header: measure against buttons (~200px)
+      function setupStickyOverflow() {
+        var stickyNav = document.getElementById('stickyNavLinks');
+        if (!stickyNav) return;
+        var items = stickyNav.querySelectorAll('[data-sticky-item]');
+        var moreTrigger = document.getElementById('stickyMoreTrigger');
+
+        function recalcSticky() {
+          items.forEach(function(el) { el.classList.remove('is-overflowed'); });
+          if (moreTrigger) moreTrigger.classList.remove('is-hidden');
+
+          var header = stickyNav.closest('.sticky-header');
+          if (!header) return;
+          var logoArea = header.querySelector('.sticky-header__logo');
+          var btns = header.querySelector('.sticky-header__buttons');
+          var totalWidth = header.offsetWidth;
+          var reserved = (logoArea ? logoArea.offsetWidth : 200) + (btns ? btns.offsetWidth : 200) + 32;
+          var available = totalWidth - reserved;
+          var moreWidth = moreTrigger ? moreTrigger.offsetWidth + 16 : 0;
+          var usedWidth = 0;
+          var hasOverflow = false;
+
+          items.forEach(function(el) {
+            usedWidth += el.offsetWidth;
+            if (usedWidth + moreWidth > available) {
+              el.classList.add('is-overflowed');
+              hasOverflow = true;
+            }
+          });
+
+          if (moreTrigger) {
+            moreTrigger.classList.toggle('is-hidden', !hasOverflow);
+          }
+        }
+
+        recalcSticky();
+        window.addEventListener('resize', recalcSticky);
+      }
+      setupStickyOverflow();
+
     })();
   </script>
 </body>
