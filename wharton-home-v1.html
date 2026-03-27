@@ -27,7 +27,7 @@
 
     /* ===== HERO SECTION ===== */
     .hero {
-      position: relative; width: 100%; height: 100vh; min-height: 700px;
+      position: relative; width: 100%; height: 80vh; min-height: 600px;
       overflow: hidden; display: flex; flex-direction: column;
     }
     .hero__bg {
@@ -49,8 +49,7 @@
     }
     .universal-nav {
       display: flex; align-items: center; height: 50px;
-      padding: 0 16px; gap: 0; overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+      padding: 0 16px; gap: 0; overflow: visible;
     }
     .universal-nav__link {
       font-family: var(--font-ss-condensed); font-weight: 600; font-size: 11px;
@@ -63,11 +62,30 @@
       font-family: var(--font-ss-condensed); font-weight: 600; font-size: 11px;
       text-transform: uppercase; letter-spacing: 0.55px;
       color: var(--gray-light); white-space: nowrap;
-      padding: 8px 10px; border: 1px solid var(--marine-gray);
+      padding: 8px 10px; border: none;
       background: none; cursor: pointer; display: flex;
       align-items: center; gap: 6px;
     }
-    .universal-nav__dropdown svg { width: 10px; height: 10px; fill: var(--gray-light); }
+    .universal-nav__dropdown svg { width: 10px; height: 10px; fill: var(--gray-light); transition: transform 0.2s; }
+    .universal-nav__dropdown.is-open svg { transform: rotate(180deg); }
+    .programs-dropdown__menu {
+      position: absolute; top: 100%; left: 0; z-index: 100;
+      background: var(--penn-blue); border: 1px solid rgba(255,255,255,0.15);
+      min-width: 200px; padding: 8px 0;
+      opacity: 0; visibility: hidden; transform: translateY(4px);
+      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+    }
+    .universal-nav__dropdown.is-open + .programs-dropdown__menu {
+      opacity: 1; visibility: visible; transform: translateY(0);
+    }
+    .programs-dropdown__link {
+      display: block; padding: 8px 16px;
+      font-family: var(--font-ss-condensed); font-weight: 600;
+      font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;
+      color: rgba(255,255,255,0.7); white-space: nowrap;
+      transition: color 0.15s, background 0.15s;
+    }
+    .programs-dropdown__link:hover { color: #fff; background: rgba(255,255,255,0.1); }
     .top-buttons { display: flex; flex-shrink: 0; }
     .top-btn {
       display: flex; align-items: center; gap: 8px; height: 50px;
@@ -499,7 +517,7 @@
       <a href="#" class="sticky-header__nav-link hide-1200">Faculty &amp; Research</a>
       <a href="#" class="sticky-header__nav-link hide-1200">Alumni</a>
       <a href="#" class="sticky-header__nav-link hide-1000">News</a>
-      <a href="#" class="sticky-header__nav-link hide-1000">More...</a>
+      <a href="#" class="sticky-header__nav-link hide-1000" id="stickyMoreTrigger">More...</a>
     </nav>
     <div class="sticky-header__buttons">
       <button class="sticky-header__btn sticky-header__btn--menu">
@@ -529,13 +547,26 @@
     <!-- Top Bar -->
     <div class="top-bar">
       <nav class="universal-nav">
-        <a href="#" class="universal-nav__link">Wharton Home</a>
+        <a href="#" class="universal-nav__link" style="display:none;">Wharton Home</a>
         <a href="#" class="universal-nav__link">Faculty &amp; Research</a>
         <a href="#" class="universal-nav__link">Knowledge at Wharton</a>
-        <button class="universal-nav__dropdown">
-          Programs
-          <svg viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
-        </button>
+        <div class="programs-dropdown" style="position: relative;">
+          <button class="universal-nav__dropdown" id="programsDropdownBtn">
+            Programs
+            <svg viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+          </button>
+          <div class="programs-dropdown__menu" id="programsDropdownMenu">
+            <a href="#" class="programs-dropdown__link">MBA</a>
+            <a href="#" class="programs-dropdown__link">Executive MBA</a>
+            <a href="#" class="programs-dropdown__link">Undergraduate</a>
+            <a href="#" class="programs-dropdown__link">Jacobs MSQF</a>
+            <a href="#" class="programs-dropdown__link">PhD</a>
+            <a href="#" class="programs-dropdown__link">Executive Education</a>
+            <a href="#" class="programs-dropdown__link">Wharton Online</a>
+            <a href="#" class="programs-dropdown__link">Global Youth Program</a>
+            <a href="#" class="programs-dropdown__link">Wharton Academy</a>
+          </div>
+        </div>
       </nav>
       <div class="top-buttons">
         <button class="top-btn top-btn--menu">
@@ -568,7 +599,7 @@
       <a href="#" class="primary-nav__link">Faculty &amp; Research <span class="nav-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
       <a href="#" class="primary-nav__link">Alumni <span class="nav-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
       <a href="#" class="primary-nav__link">News <span class="nav-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-      <a href="#" class="primary-nav__link">More... <span class="nav-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a href="#" class="primary-nav__link" id="moreMenuTrigger">More... <span class="nav-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </nav>
 
     <!-- Lead Content -->
@@ -692,8 +723,31 @@
       });
 
       desktopMenuClose.addEventListener('click', closeDesktopMenu);
+
+      // "More..." links open the flyout menu
+      document.querySelectorAll('#moreMenuTrigger, #stickyMoreTrigger').forEach(function(el) {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          openDesktopMenu();
+        });
+      });
+
+      // Programs dropdown
+      var progBtn = document.getElementById('programsDropdownBtn');
+      if (progBtn) {
+        progBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          progBtn.classList.toggle('is-open');
+        });
+        document.addEventListener('click', function(e) {
+          if (!progBtn.parentElement.contains(e.target)) {
+            progBtn.classList.remove('is-open');
+          }
+        });
+      }
+
       document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeDesktopMenu();
+        if (e.key === 'Escape') { closeDesktopMenu(); if (progBtn) progBtn.classList.remove('is-open'); }
       });
 
       // Desktop menu accordion
