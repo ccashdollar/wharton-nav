@@ -1237,9 +1237,10 @@
           var header = stickyNav.closest('.sticky-header');
           if (!header) return;
           var logoArea = header.querySelector('.sticky-header__logo');
+          var childName = header.querySelector('.sticky-header__child-name');
           var btns = header.querySelector('.sticky-header__buttons');
           var totalWidth = header.offsetWidth;
-          var reserved = (logoArea ? logoArea.offsetWidth : 200) + (btns ? btns.offsetWidth : 200) + 32;
+          var reserved = (logoArea ? logoArea.offsetWidth : 200) + (childName ? childName.offsetWidth : 0) + (btns ? btns.offsetWidth : 200) + 48;
           var available = totalWidth - reserved;
           var moreWidth = moreTrigger ? moreTrigger.offsetWidth + 16 : 0;
           var usedWidth = 0;
