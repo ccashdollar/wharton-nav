@@ -298,83 +298,127 @@
     /* ===== DESKTOP MENU OVERLAY ===== */
     .desktop-menu {
       position: fixed; inset: 0; z-index: 1000;
-      background: var(--penn-blue); display: none; flex-direction: column;
+      background: var(--penn-blue); display: none;
+      padding: 48px;
     }
     .desktop-menu.is-open { display: flex; }
-    .desktop-menu__header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 0 0 50px; min-height: 98px;
-      border-bottom: 1px solid rgba(255,255,255,0.15); flex-shrink: 0;
+
+    /* Close button */
+    .desktop-menu__close {
+      position: absolute; top: 48px; right: 48px;
+      display: flex; align-items: center; gap: 8px;
+      background: transparent; border: none; cursor: pointer;
+      color: rgba(255,255,255,0.7); transition: color 0.15s;
+      padding: 0; z-index: 10;
     }
-    .desktop-menu__logo-wrap {
-      display: flex; align-items: center; padding: 24px 0;
+    .desktop-menu__close:hover { color: #fff; }
+    .desktop-menu__close-icon {
+      font-size: 16px; line-height: 1; color: inherit;
     }
-    .desktop-menu__logo { height: 50px; width: auto; }
-    .desktop-menu__controls { display: flex; align-items: center; }
-    .desktop-menu__close,
-    .desktop-menu__search {
-      display: flex; align-items: center; justify-content: center;
-      width: 60px; height: 60px; border: none;
-      color: #fff; cursor: pointer; transition: opacity 0.15s;
-      background: none;
+    .desktop-menu__close-label {
+      font-family: var(--font-ss-condensed); font-size: 11px;
+      text-transform: uppercase; letter-spacing: 1px; color: inherit;
     }
-    .desktop-menu__close { background: var(--penn-blue); }
-    .desktop-menu__search { background: var(--penn-red); }
-    .desktop-menu__close:hover,
-    .desktop-menu__search:hover { opacity: 0.8; }
-    .desktop-menu__close svg { width: 20px; height: 20px; }
-    .desktop-menu__search svg { width: 24px; height: 24px; }
+
+    /* Body: 3-column layout */
     .desktop-menu__body {
-      display: flex; flex: 1; overflow-y: auto;
+      display: flex; flex: 1; height: 100%; overflow: hidden;
     }
+
+    /* Left sidebar */
     .desktop-menu__sidebar {
-      width: 267px; flex-shrink: 0; padding: 24px;
-      display: flex; flex-direction: column; gap: 14px;
-      padding-top: 48px;
+      width: 274px; flex-shrink: 0;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      display: flex; flex-direction: column; padding: 0 32px 0 0;
     }
-    .desktop-menu__sidebar a {
-      font-size: 14px; text-transform: uppercase; color: rgba(255,255,255,0.6);
-      letter-spacing: 0.02em; line-height: 21px;
-      transition: color 0.15s;
+    .desktop-menu__sidebar-label {
+      font-family: var(--font-ss-condensed); font-size: 11px;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: rgba(255,255,255,0.4); margin-bottom: 24px;
     }
-    .desktop-menu__sidebar a:hover { color: #fff; }
-    .desktop-menu__sidebar img { height: 12px; width: auto; display: block; filter: brightness(10); }
-    .desktop-menu__sidebar a:has(img) { display: block; padding: 0; margin: 0; line-height: 0; }
-    .desktop-menu__main {
-      flex: 1; padding: 18px 48px;
-      border-left: 1px solid rgba(255,255,255,0.15);
-      columns: 2; column-gap: 32px;
+    .desktop-menu__sidebar-links {
+      display: flex; flex-direction: column; gap: 0;
     }
-    .desktop-menu__nav-group { break-inside: avoid; }
+    .desktop-menu__sidebar-link {
+      font-family: var(--font-ss-condensed); font-size: 16px; font-weight: 600;
+      color: rgba(255,255,255,0.6); padding: 8px;
+      transition: color 0.15s; display: block;
+    }
+    .desktop-menu__sidebar-link:hover { color: #fff; }
+
+    /* Center panel */
+    .desktop-menu__center {
+      flex: 1; display: flex; flex-direction: column;
+      padding: 0 48px; overflow-y: auto; position: relative;
+    }
+    .desktop-menu__center-logo {
+      width: 125px; height: auto; display: block; margin-bottom: 12px;
+    }
+    .desktop-menu__center-title {
+      font-family: var(--font-ss-condensed); font-size: 20px; font-weight: 600;
+      color: rgba(255,255,255,0.7); margin-bottom: 32px; max-width: 258px;
+    }
+
+    /* Primary nav items */
+    .desktop-menu__nav-list {
+      display: flex; flex-direction: column; gap: 0;
+      list-style: none; padding: 0; margin: 0;
+    }
     .desktop-menu__nav-item {
-      display: flex; align-items: center; gap: 7px;
-      padding: 19px 10px 17px; font-size: 24px; color: rgba(255,255,255,0.85);
-      border-top: 5px solid transparent; line-height: 33px;
-      transition: color 0.15s;
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 16px; height: 64px;
+      font-family: var(--font-ss-condensed); font-size: 38px; font-weight: 600;
+      line-height: 42px; color: rgba(255,255,255,0.85);
+      text-decoration: none; transition: color 0.15s;
+      border-left: 3px solid transparent;
     }
     .desktop-menu__nav-item:hover { color: #fff; }
+    .desktop-menu__nav-item.is-active {
+      color: #fff; border-left-color: rgba(255,255,255,0.4);
+    }
+
+    /* Expandable nav button */
     .desktop-menu__nav-item--expandable {
-      background: none; border: none; cursor: pointer; font-family: inherit;
+      background: none; border: none; border-left: 3px solid transparent;
+      cursor: pointer; font-family: var(--font-ss-condensed);
       width: 100%; text-align: left;
     }
-    .desktop-menu__nav-item--expandable .desktop-menu__nav-chevron {
-      transition: transform 0.25s ease;
+    .desktop-menu__nav-item--expandable.is-active {
+      color: #fff; border-left-color: rgba(255,255,255,0.4);
+    }
+
+    /* Chevron */
+    .desktop-menu__nav-chevron {
+      display: inline-flex; align-items: center; font-size: 20px;
+      transition: transform 0.25s ease; color: inherit;
     }
     .desktop-menu__nav-item--expandable.is-expanded .desktop-menu__nav-chevron {
-      transform: rotate(180deg);
+      transform: rotate(90deg);
     }
+
+    /* Sub-items accordion */
     .desktop-menu__sub-list {
-      list-style: none; padding: 0 0 8px 18px; margin: 0;
-      max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+      list-style: none; padding: 0 0 0 32px; margin: 0;
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease;
     }
-    .desktop-menu__sub-list.is-open { max-height: 500px; }
+    .desktop-menu__sub-list.is-open { max-height: 600px; }
     .desktop-menu__sub-link {
-      display: block; padding: 8px 0; font-size: 16px; color: rgba(255,255,255,0.5);
-      transition: color 0.15s;
+      display: flex; align-items: center; height: 46px;
+      padding: 8px 6px;
+      font-family: var(--font-ss-condensed); font-size: 24px; font-weight: 400;
+      line-height: 24px; color: rgba(255,255,255,0.6);
+      transition: color 0.15s; text-decoration: none;
     }
     .desktop-menu__sub-link:hover { color: #fff; }
-    .desktop-menu__nav-chevron { display: inline-flex; align-items: center; }
-    .desktop-menu__nav-chevron svg { width: 10px; height: 6px; fill: currentColor; }
+
+    /* Bottom bar */
+    .desktop-menu__bottom-bar {
+      height: 96px; flex-shrink: 0;
+      background: rgba(255,255,255,0.05);
+      margin-left: 274px; margin-top: auto;
+    }
+
     @media (max-width: 791px) {
       .desktop-menu { display: none !important; }
     }
@@ -418,65 +462,73 @@
 
   <!-- DESKTOP MENU OVERLAY -->
   <div class="desktop-menu" id="desktopMenu">
-    <div class="desktop-menu__header">
-      <div class="desktop-menu__logo-wrap">
-        <img class="desktop-menu__logo" src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania" preserveAspectRatio="xMidYMid meet">
-      </div>
-      <div class="desktop-menu__controls">
-        <button class="desktop-menu__close" id="desktopMenuClose" aria-label="Close menu">
-          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/>
-          </svg>
-        </button>
-        <button class="desktop-menu__search" aria-label="Search">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
-        </button>
-      </div>
-    </div>
+    <!-- Close button -->
+    <button class="desktop-menu__close" id="desktopMenuClose" aria-label="Close menu">
+      <span class="desktop-menu__close-icon">&#10005;</span>
+      <span class="desktop-menu__close-label">Close</span>
+    </button>
+
     <div class="desktop-menu__body">
-      <nav class="desktop-menu__sidebar" aria-label="Programs">
-        <a href="#">Wharton Home</a>
-        <a href="#">Faculty</a>
-        <a href="#">Youth Program</a>
-        <a href="#">Undergrad</a>
-        <a href="#">Jacobs MSQF</a>
-        <a href="#">MBA</a>
-        <a href="#">EMBA</a>
-        <a href="#">PhD</a>
-        <a href="#">Exec Ed</a>
-        <a href="#">Wharton Online</a>
-        <a href="#"><img src="assets/kw-logo.svg" alt="Knowledge at Wharton" preserveAspectRatio="xMidYMid meet"></a>
-      </nav>
-      <nav class="desktop-menu__main" aria-label="Jacobs MSQF navigation">
-        <div class="desktop-menu__nav-group">
-          <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="about">About <span class="desktop-menu__nav-chevron"><svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></span></button>
-          <ul class="desktop-menu__sub-list" id="desktop-sub-about">
-            <li><a href="#" class="desktop-menu__sub-link">Program Overview</a></li>
-            <li><a href="#" class="desktop-menu__sub-link">Leadership</a></li>
-            <li><a href="#" class="desktop-menu__sub-link">Faculty</a></li>
-            <li><a href="#" class="desktop-menu__sub-link">Student Profiles</a></li>
-          </ul>
+      <!-- Left sidebar -->
+      <nav class="desktop-menu__sidebar" aria-label="All Wharton">
+        <div class="desktop-menu__sidebar-label">All Wharton</div>
+        <div class="desktop-menu__sidebar-links">
+          <a href="#" class="desktop-menu__sidebar-link">Faculty &amp; Research</a>
+          <a href="#" class="desktop-menu__sidebar-link">Knowledge at Wharton</a>
+          <a href="#" class="desktop-menu__sidebar-link">MBA</a>
+          <a href="#" class="desktop-menu__sidebar-link">Executive MBA</a>
+          <a href="#" class="desktop-menu__sidebar-link">Undergraduate</a>
+          <a href="#" class="desktop-menu__sidebar-link">Jacobs MSQF</a>
+          <a href="#" class="desktop-menu__sidebar-link">PhD</a>
+          <a href="#" class="desktop-menu__sidebar-link">Executive Education</a>
+          <a href="#" class="desktop-menu__sidebar-link">Wharton Online</a>
+          <a href="#" class="desktop-menu__sidebar-link">Global Youth Program</a>
+          <a href="#" class="desktop-menu__sidebar-link">Wharton Academy</a>
         </div>
-        <a href="#" class="desktop-menu__nav-item">Why a Jacobs MSQF</a>
-        <div class="desktop-menu__nav-group">
-          <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="academics">Academics <span class="desktop-menu__nav-chevron"><svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></span></button>
-          <ul class="desktop-menu__sub-list" id="desktop-sub-academics">
-            <li><a href="#" class="desktop-menu__sub-link">Curriculum</a></li>
-            <li><a href="#" class="desktop-menu__sub-link">Courses</a></li>
-            <li><a href="#" class="desktop-menu__sub-link">Academic Calendar</a></li>
-          </ul>
-        </div>
-        <a href="#" class="desktop-menu__nav-item">Careers &amp; Recruiting</a>
-        <a href="#" class="desktop-menu__nav-item">Admissions</a>
-        <a href="#" class="desktop-menu__nav-item">Application Guide</a>
-        <a href="#" class="desktop-menu__nav-item">Events</a>
-        <a href="#" class="desktop-menu__nav-item">FAQ</a>
-        <a href="#" class="desktop-menu__nav-item">Student Resources</a>
-        <a href="#" class="desktop-menu__nav-item">Financial Aid</a>
-        <a href="#" class="desktop-menu__nav-item">Contact Us</a>
       </nav>
+
+      <!-- Center panel -->
+      <div class="desktop-menu__center">
+        <img class="desktop-menu__center-logo" src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania">
+        <div class="desktop-menu__center-title">Dr. Bruce I. Jacobs Master of Science in Quantitative Finance</div>
+
+        <nav class="desktop-menu__nav-list" aria-label="Jacobs MSQF navigation">
+          <div class="desktop-menu__nav-group">
+            <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="about">About <span class="desktop-menu__nav-chevron">&#8250;</span></button>
+            <ul class="desktop-menu__sub-list" id="desktop-sub-about">
+              <li><a href="#" class="desktop-menu__sub-link">History</a></li>
+              <li><a href="#" class="desktop-menu__sub-link">About Dr. Bruce I Jacobs</a></li>
+              <li><a href="#" class="desktop-menu__sub-link">Advisory Board</a></li>
+              <li><a href="#" class="desktop-menu__sub-link">Learn More About Our Faculty</a></li>
+              <li><a href="#" class="desktop-menu__sub-link">Community Engagement</a></li>
+            </ul>
+          </div>
+          <a href="#" class="desktop-menu__nav-item">Why a Jacobs MSQF</a>
+          <div class="desktop-menu__nav-group">
+            <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="academics">Academics <span class="desktop-menu__nav-chevron">&#8250;</span></button>
+            <ul class="desktop-menu__sub-list" id="desktop-sub-academics">
+              <li><a href="#" class="desktop-menu__sub-link">Curriculum</a></li>
+              <li><a href="#" class="desktop-menu__sub-link">Course Descriptions</a></li>
+              <li><a href="#" class="desktop-menu__sub-link">Program Requirements</a></li>
+            </ul>
+          </div>
+          <div class="desktop-menu__nav-group">
+            <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="careers">Careers &amp; Recruiting <span class="desktop-menu__nav-chevron">&#8250;</span></button>
+            <ul class="desktop-menu__sub-list" id="desktop-sub-careers">
+              <li><a href="#" class="desktop-menu__sub-link">Career Services</a></li>
+              <li><a href="#" class="desktop-menu__sub-link">Employer Partners</a></li>
+              <li><a href="#" class="desktop-menu__sub-link">Internships</a></li>
+            </ul>
+          </div>
+          <a href="#" class="desktop-menu__nav-item">Admissions</a>
+          <a href="#" class="desktop-menu__nav-item">Application Guide</a>
+          <a href="#" class="desktop-menu__nav-item">Events</a>
+          <a href="#" class="desktop-menu__nav-item">FAQ</a>
+        </nav>
+
+        <!-- Bottom bar -->
+        <div class="desktop-menu__bottom-bar"></div>
+      </div>
     </div>
   </div>
 
@@ -765,14 +817,29 @@
         }
       });
 
-      // Desktop menu accordion
+      // Desktop menu accordion (only one open at a time)
       document.querySelectorAll('[data-desktop-toggle]').forEach(function(btn) {
         btn.addEventListener('click', function(e) {
           e.preventDefault();
           var id = 'desktop-sub-' + this.getAttribute('data-desktop-toggle');
           var subList = document.getElementById(id);
-          subList.classList.toggle('is-open');
-          this.classList.toggle('is-expanded');
+          var isCurrentlyOpen = subList.classList.contains('is-open');
+
+          // Close all open sub-lists first
+          document.querySelectorAll('.desktop-menu__sub-list.is-open').forEach(function(list) {
+            list.classList.remove('is-open');
+          });
+          document.querySelectorAll('.desktop-menu__nav-item--expandable.is-expanded').forEach(function(b) {
+            b.classList.remove('is-expanded');
+            b.classList.remove('is-active');
+          });
+
+          // Toggle current if it was closed
+          if (!isCurrentlyOpen) {
+            subList.classList.add('is-open');
+            this.classList.add('is-expanded');
+            this.classList.add('is-active');
+          }
         });
       });
 
