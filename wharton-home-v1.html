@@ -99,16 +99,17 @@
     .primary-nav__link {
       font-family: var(--font-ss-condensed); font-weight: 600;
       font-size: 38px; color: #fff; line-height: 42px;
-      text-align: right; transition: opacity 0.2s;
-      letter-spacing: -0.2px; display: flex; align-items: center; justify-content: flex-end; gap: 8px;
+      text-align: right;
+      letter-spacing: -0.2px; display: flex; align-items: center; justify-content: flex-end; gap: 4px;
     }
-    .primary-nav__link .nav-arrow { 
-      display: inline-flex; align-items: center; transition: opacity 0.2s; 
-      width: 24px; height: 24px;
+    .primary-nav__link .nav-arrow {
+      display: inline-flex; align-items: center;
+      width: 24px; height: 24px; overflow: hidden;
+      transition: width 0.25s ease, opacity 0.25s ease;
     }
-    .primary-nav__link .nav-arrow svg { width: 100%; height: 100%; fill: #fff; }
-    .primary-nav__link:hover .nav-arrow { opacity: 0; }
-    .primary-nav__link:hover { opacity: 0.85; }
+    .primary-nav__link .nav-arrow svg { width: 24px; height: 24px; flex-shrink: 0; }
+    .primary-nav__link .nav-arrow svg path { stroke: #fff; }
+    .primary-nav__link:hover .nav-arrow { width: 0; opacity: 0; }
 
     /* ===== LEAD CONTENT ===== */
     .lead {
