@@ -114,6 +114,19 @@
       display: flex; flex-direction: column; align-items: flex-end;
       gap: 12px;
     }
+    .primary-nav::before {
+      content: ''; position: absolute;
+      top: -60px; right: -80px; bottom: -60px; left: -120px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 70% 50%, rgba(1, 26, 77, 0.55) 0%, rgba(1, 26, 77, 0.2) 40%, transparent 70%);
+      opacity: 0.4;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .primary-nav:hover::before {
+      opacity: 0.75;
+    }
     .primary-nav__link {
       font-family: var(--font-ss-condensed); font-weight: 600;
       font-size: 38px; color: #fff; line-height: 42px;
