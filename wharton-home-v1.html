@@ -115,17 +115,18 @@
       gap: 12px;
     }
     .primary-nav::before {
-      content: ''; position: fixed;
-      top: 0; right: -50vw; bottom: 0; width: 100vw;
+      content: ''; position: absolute;
+      top: -180px; bottom: -180px;
+      left: -280px; right: -200px;
       border-radius: 50%;
-      background: radial-gradient(circle at center, rgba(1, 26, 77, 0.7) 0%, rgba(1, 26, 77, 0.4) 30%, rgba(1, 26, 77, 0.1) 55%, transparent 70%);
+      background: radial-gradient(ellipse at 75% 60%, rgba(1, 31, 91, 0.65) 0%, rgba(1, 31, 91, 0.35) 30%, rgba(1, 31, 91, 0.1) 55%, transparent 70%);
       opacity: 0.5;
       transition: opacity 0.4s ease;
       pointer-events: none;
       z-index: -1;
     }
     .primary-nav:hover::before {
-      opacity: 0.85;
+      opacity: 0.8;
     }
     .primary-nav__link {
       font-family: var(--font-ss-condensed); font-weight: 600;
