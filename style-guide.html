@@ -473,5 +473,63 @@
     </tbody>
   </table>
 
+  <style>
+    .proto-switcher { position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: 'acumin-pro', sans-serif; }
+    .proto-switcher__toggle {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 16px; background: #444; color: #fff;
+      border: none; border-radius: 20px; font-size: 12px; font-weight: 500;
+      cursor: pointer; font-family: inherit; letter-spacing: 0.02em;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2); transition: background 0.15s;
+    }
+    .proto-switcher__toggle:hover { background: #333; }
+    .proto-switcher__toggle svg { width: 10px; height: 6px; transition: transform 0.2s; }
+    .proto-switcher__toggle.is-open svg { transform: rotate(180deg); }
+    .proto-switcher__menu {
+      position: absolute; bottom: 100%; right: 0; margin-bottom: 8px;
+      background: #fff; border-radius: 8px; padding: 6px 0;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15); border: 1px solid #e0e0e0;
+      min-width: 180px;
+      opacity: 0; visibility: hidden; transform: translateY(8px);
+      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+    }
+    .proto-switcher__menu.is-open { opacity: 1; visibility: visible; transform: translateY(0); }
+    .proto-switcher__link {
+      display: block; padding: 7px 16px 7px 32px; font-size: 13px;
+      color: #555; white-space: nowrap; transition: background 0.1s; position: relative;
+    }
+    .proto-switcher__link:hover { background: #f5f5f5; color: #222; }
+    .proto-switcher__link--active { color: #011F5B; font-weight: 600; }
+    .proto-switcher__link--active::before {
+      content: ''; position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      width: 6px; height: 6px; background: #011F5B; border-radius: 50%;
+    }
+    .proto-switcher__divider { height: 1px; background: #e8e8e8; margin: 4px 0; }
+  </style>
+
+  <div class="proto-switcher">
+    <div class="proto-switcher__menu" id="protoMenu">
+      <a href="wharton-home-v1.html" class="proto-switcher__link">V1 Wharton Home</a>
+      <a href="child-home-v1.html" class="proto-switcher__link">V1 Child Home</a>
+      <a href="child-mba-v1.html" class="proto-switcher__link">V1 MBA</a>
+      <a href="parent-nav-v4.html" class="proto-switcher__link">V4 Parent</a>
+      <a href="child-nav-v4.html" class="proto-switcher__link">V4 Child</a>
+      <a href="child-accounting-v4.html" class="proto-switcher__link">V4 Accounting</a>
+      <a href="parent-nav-v3.html" class="proto-switcher__link">V3 Parent</a>
+      <a href="child-nav-v3.html" class="proto-switcher__link">V3 Child</a>
+      <a href="child-accounting-v3.html" class="proto-switcher__link">V3 Accounting</a>
+      <a href="parent-nav-v2.html" class="proto-switcher__link">V2 Parent</a>
+      <a href="child-nav-v2.html" class="proto-switcher__link">V2 Child</a>
+      <a href="parent-nav.html" class="proto-switcher__link">V1 Parent</a>
+      <a href="child-nav.html" class="proto-switcher__link">V1 Child</a>
+      <div class="proto-switcher__divider"></div>
+      <a href="style-guide.html" class="proto-switcher__link proto-switcher__link--active">Style Guide</a>
+    </div>
+    <button class="proto-switcher__toggle" onclick="document.getElementById('protoMenu').classList.toggle('is-open'); this.classList.toggle('is-open');">
+      Style Guide
+      <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
 </body>
 </html>
