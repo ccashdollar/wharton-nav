@@ -115,17 +115,17 @@
       gap: 12px;
     }
     .primary-nav::before {
-      content: ''; position: absolute;
-      top: -60px; right: -80px; bottom: -60px; left: -120px;
+      content: ''; position: fixed;
+      top: 0; right: -50vw; bottom: 0; width: 100vw;
       border-radius: 50%;
-      background: radial-gradient(ellipse at 70% 50%, rgba(1, 26, 77, 0.55) 0%, rgba(1, 26, 77, 0.2) 40%, transparent 70%);
-      opacity: 0.4;
+      background: radial-gradient(circle at center, rgba(1, 26, 77, 0.7) 0%, rgba(1, 26, 77, 0.4) 30%, rgba(1, 26, 77, 0.1) 55%, transparent 70%);
+      opacity: 0.5;
       transition: opacity 0.4s ease;
       pointer-events: none;
       z-index: -1;
     }
     .primary-nav:hover::before {
-      opacity: 0.75;
+      opacity: 0.85;
     }
     .primary-nav__link {
       font-family: var(--font-ss-condensed); font-weight: 600;
