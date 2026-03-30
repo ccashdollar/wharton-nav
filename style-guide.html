@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wharton Navigation — Style Guide</title>
+  <link rel="stylesheet" href="https://use.typekit.net/ael0dii.css">
+  <style>
+    :root {
+      --penn-blue: #011f5b;
+      --penn-red: #990000;
+      --franklin-red: #c8001e;
+      --sunset-red: #96227d;
+      --impact-purple: #9b69ff;
+      --cobalt: #0064f0;
+      --bay-blue: #06aafc;
+      --pacific-blue: #026cb5;
+      --morning-yellow: #d7bc6a;
+      --marine-gray: #eeedea;
+      --penn-footer-blue: #294982;
+      --text-deep-blue: #111b27;
+      --gray-light: #f2f2f2;
+      --gray-mid-dark: #5c6266;
+      --gray-mid-light: #edeff2;
+      --gray-dark: #4d4d4d;
+      --blue-01-dark: #004785;
+      --blue-03-light: #52b7ff;
+      --blue-02-bright: #0047e0;
+      --orange: #f2c100;
+      --white: #ffffff;
+      --near-black: #111111;
+      --font-ss: 'acumin-pro', sans-serif;
+      --font-ss-condensed: 'acumin-pro-condensed', sans-serif;
+      --font-serif: 'minion-pro', serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-ss); color: #333; background: #fff;
+      -webkit-font-smoothing: antialiased;
+      padding: 48px; max-width: 1200px; margin: 0 auto;
+    }
+    h1 { font-family: var(--font-ss-condensed); font-size: 48px; font-weight: 900; color: var(--penn-blue); margin-bottom: 8px; }
+    .subtitle { font-family: var(--font-ss-condensed); font-size: 20px; font-weight: 400; color: var(--gray-mid-dark); margin-bottom: 48px; }
+    h2 { font-family: var(--font-ss-condensed); font-size: 28px; font-weight: 700; color: var(--penn-blue); margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--penn-blue); }
+    h3 { font-family: var(--font-ss-condensed); font-size: 18px; font-weight: 600; color: var(--gray-mid-dark); margin: 24px 0 12px; text-transform: uppercase; letter-spacing: 1px; }
+    p { font-size: 15px; line-height: 1.6; color: #555; margin-bottom: 16px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 14px; }
+    th { text-align: left; padding: 10px 16px; background: var(--gray-light); font-weight: 600; color: var(--text-deep-blue); border-bottom: 2px solid #ddd; }
+    td { padding: 10px 16px; border-bottom: 1px solid #eee; vertical-align: middle; }
+    code { font-family: 'SF Mono', 'Menlo', monospace; font-size: 13px; background: #f5f5f5; padding: 2px 6px; border-radius: 3px; }
+
+    /* Color swatches */
+    .color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .color-card { border-radius: 8px; overflow: hidden; border: 1px solid #e5e5e5; }
+    .color-card__swatch { height: 80px; }
+    .color-card__info { padding: 12px; }
+    .color-card__name { font-weight: 600; font-size: 13px; color: #333; }
+    .color-card__hex { font-family: 'SF Mono', 'Menlo', monospace; font-size: 12px; color: #888; margin-top: 2px; }
+
+    /* Type specimens */
+    .type-specimen { margin-bottom: 24px; padding: 24px; background: #fafafa; border-radius: 8px; border: 1px solid #eee; }
+    .type-specimen__label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 8px; }
+    .type-specimen--dark { background: var(--penn-blue); }
+    .type-specimen--dark .type-specimen__label { color: rgba(255,255,255,0.5); }
+
+    /* Spacing blocks */
+    .spacing-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; margin-bottom: 24px; }
+    .spacing-card { text-align: center; }
+    .spacing-card__block { background: var(--bay-blue); border-radius: 4px; margin: 0 auto 8px; opacity: 0.3; }
+    .spacing-card__label { font-weight: 600; font-size: 13px; }
+    .spacing-card__value { font-family: 'SF Mono', 'Menlo', monospace; font-size: 12px; color: #888; }
+
+    /* Radius blocks */
+    .radius-grid { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; }
+    .radius-card { text-align: center; }
+    .radius-card__block { width: 64px; height: 64px; background: var(--penn-blue); margin: 0 auto 8px; }
+    .radius-card__label { font-weight: 600; font-size: 13px; }
+    .radius-card__value { font-family: 'SF Mono', 'Menlo', monospace; font-size: 12px; color: #888; }
+
+    @media (max-width: 600px) {
+      body { padding: 24px; }
+      h1 { font-size: 36px; }
+      .color-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Wharton Navigation</h1>
+  <p class="subtitle">Design Tokens &amp; Style Guide</p>
+
+  <!-- ====== COLORS ====== -->
+  <h2>Colors</h2>
+
+  <h3>Primary</h3>
+  <div class="color-grid">
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #011f5b;"></div>
+      <div class="color-card__info"><div class="color-card__name">Penn Blue</div><div class="color-card__hex">#011F5B</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #990000;"></div>
+      <div class="color-card__info"><div class="color-card__name">Penn Red</div><div class="color-card__hex">#990000</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #c8001e;"></div>
+      <div class="color-card__info"><div class="color-card__name">Franklin Red</div><div class="color-card__hex">#C8001E</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #111b27;"></div>
+      <div class="color-card__info"><div class="color-card__name">Text Deep Blue</div><div class="color-card__hex">#111B27</div></div>
+    </div>
+  </div>
+
+  <h3>Blues</h3>
+  <div class="color-grid">
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #004785;"></div>
+      <div class="color-card__info"><div class="color-card__name">Blue 01 Dark</div><div class="color-card__hex">#004785</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #026cb5;"></div>
+      <div class="color-card__info"><div class="color-card__name">Pacific Blue</div><div class="color-card__hex">#026CB5</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #0047e0;"></div>
+      <div class="color-card__info"><div class="color-card__name">Blue 02 Bright</div><div class="color-card__hex">#0047E0</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #0064f0;"></div>
+      <div class="color-card__info"><div class="color-card__name">Cobalt</div><div class="color-card__hex">#0064F0</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #06aafc;"></div>
+      <div class="color-card__info"><div class="color-card__name">Bay Blue</div><div class="color-card__hex">#06AAFC</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #52b7ff;"></div>
+      <div class="color-card__info"><div class="color-card__name">Blue 03 Light</div><div class="color-card__hex">#52B7FF</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #294982;"></div>
+      <div class="color-card__info"><div class="color-card__name">Penn Footer Blue</div><div class="color-card__hex">#294982</div></div>
+    </div>
+  </div>
+
+  <h3>Accents</h3>
+  <div class="color-grid">
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #96227d;"></div>
+      <div class="color-card__info"><div class="color-card__name">Sunset Red</div><div class="color-card__hex">#96227D</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #9b69ff;"></div>
+      <div class="color-card__info"><div class="color-card__name">Impact Purple</div><div class="color-card__hex">#9B69FF</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #d7bc6a;"></div>
+      <div class="color-card__info"><div class="color-card__name">Morning Yellow</div><div class="color-card__hex">#D7BC6A</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #f2c100;"></div>
+      <div class="color-card__info"><div class="color-card__name">Orange</div><div class="color-card__hex">#F2C100</div></div>
+    </div>
+  </div>
+
+  <h3>Neutrals</h3>
+  <div class="color-grid">
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #111111;"></div>
+      <div class="color-card__info"><div class="color-card__name">Near Black</div><div class="color-card__hex">#111111</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #4d4d4d;"></div>
+      <div class="color-card__info"><div class="color-card__name">Gray Dark</div><div class="color-card__hex">#4D4D4D</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #5c6266;"></div>
+      <div class="color-card__info"><div class="color-card__name">Gray Mid Dark</div><div class="color-card__hex">#5C6266</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #eeedea;"></div>
+      <div class="color-card__info"><div class="color-card__name">Marine Gray</div><div class="color-card__hex">#EEEDEA</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #edeff2;"></div>
+      <div class="color-card__info"><div class="color-card__name">Gray Mid Light</div><div class="color-card__hex">#EDEFF2</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #f2f2f2; border: 1px solid #ddd;"></div>
+      <div class="color-card__info"><div class="color-card__name">Gray Light</div><div class="color-card__hex">#F2F2F2</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card__swatch" style="background: #ffffff; border: 1px solid #ddd;"></div>
+      <div class="color-card__info"><div class="color-card__name">White</div><div class="color-card__hex">#FFFFFF</div></div>
+    </div>
+  </div>
+
+  <!-- ====== TYPOGRAPHY ====== -->
+  <h2>Typography</h2>
+
+  <h3>Font Families</h3>
+  <table>
+    <thead><tr><th>Token</th><th>Family</th><th>CSS Variable</th><th>Available Weights</th></tr></thead>
+    <tbody>
+      <tr><td>Sans-serif</td><td style="font-family: 'acumin-pro', sans-serif;">Acumin Pro</td><td><code>--font-ss</code></td><td>400, 500, 600, 700</td></tr>
+      <tr><td>SS Condensed</td><td style="font-family: 'acumin-pro-condensed', sans-serif;">Acumin Pro Condensed</td><td><code>--font-ss-condensed</code></td><td>300, 400, 500, 600, 700, 800</td></tr>
+      <tr><td>Serif</td><td style="font-family: 'minion-pro', serif;">Minion Pro</td><td><code>--font-serif</code></td><td>400, 500, 600, 700</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Display Scale — Desktop</h3>
+  <div class="type-specimen">
+    <div class="type-specimen__label">Display / 72 — Acumin Pro Condensed Black</div>
+    <div style="font-family: var(--font-ss-condensed); font-size: 72px; font-weight: 900; line-height: 72px; color: var(--penn-blue);">The Wharton School</div>
+  </div>
+  <div class="type-specimen">
+    <div class="type-specimen__label">Display / 60 — Acumin Pro Condensed Black</div>
+    <div style="font-family: var(--font-ss-condensed); font-size: 60px; font-weight: 900; line-height: 56px; color: var(--penn-blue);">Impact vs. Time</div>
+  </div>
+  <div class="type-specimen">
+    <div class="type-specimen__label">Display / 50 — Acumin Pro Condensed Bold</div>
+    <div style="font-family: var(--font-ss-condensed); font-size: 50px; font-weight: 700; line-height: 56px; color: var(--penn-blue);">A Leader's Guide</div>
+  </div>
+  <div class="type-specimen">
+    <div class="type-specimen__label">Display / 38 — Acumin Pro Condensed Semibold</div>
+    <div style="font-family: var(--font-ss-condensed); font-size: 38px; font-weight: 600; line-height: 42px; color: var(--penn-blue);">Faculty &amp; Research</div>
+  </div>
+  <div class="type-specimen">
+    <div class="type-specimen__label">Display / 30 — Acumin Pro Condensed Semibold</div>
+    <div style="font-family: var(--font-ss-condensed); font-size: 30px; font-weight: 600; line-height: 34px; color: var(--penn-blue);">Academics Overview</div>
+  </div>
+  <div class="type-specimen">
+    <div class="type-specimen__label">Display / 24 — Acumin Pro Condensed Semibold</div>
+    <div style="font-family: var(--font-ss-condensed); font-size: 24px; font-weight: 600; line-height: 24px; color: var(--penn-blue);">Practical guidance on how to slow down</div>
+  </div>
+  <div class="type-specimen">
+    <div class="type-specimen__label">Display / 20 — Acumin Pro Condensed Medium</div>
+    <div style="font-family: var(--font-ss-condensed); font-size: 20px; font-weight: 500; line-height: 22px; color: var(--penn-blue);">Section heading for smaller contexts</div>
+  </div>
+
+  <h3>Display Scale — On Dark</h3>
+  <div class="type-specimen type-specimen--dark">
+    <div class="type-specimen__label">Display / 60 — Acumin Pro Condensed Black (on Penn Blue)</div>
+    <div style="font-family: var(--font-ss-condensed); font-size: 60px; font-weight: 900; line-height: 56px; color: #fff;">Impact vs. Time</div>
+  </div>
+  <div class="type-specimen type-specimen--dark">
+    <div class="type-specimen__label">Display / 38 — Nav Primary Items (on Penn Blue)</div>
+    <div style="font-family: var(--font-ss-condensed); font-size: 38px; font-weight: 600; line-height: 42px; color: rgba(255,255,255,0.85);">About &nbsp; Academics &nbsp; News</div>
+  </div>
+
+  <h3>Body Scale — Acumin Pro</h3>
+  <div class="type-specimen">
+    <div class="type-specimen__label">Body / 28</div>
+    <div style="font-family: var(--font-ss); font-size: 28px; line-height: 34px;">Leading research and innovation in business education.</div>
+  </div>
+  <div class="type-specimen">
+    <div class="type-specimen__label">Body / 22</div>
+    <div style="font-family: var(--font-ss); font-size: 22px; line-height: 28px;">Preparing students for the challenges of tomorrow through rigorous academic inquiry.</div>
+  </div>
+  <div class="type-specimen">
+    <div class="type-specimen__label">Body / 18</div>
+    <div style="font-family: var(--font-ss); font-size: 18px; line-height: 26px;">Our commitment to real-world application prepares students for leadership positions across industries and continents.</div>
+  </div>
+  <div class="type-specimen">
+    <div class="type-specimen__label">Body / 16 (default)</div>
+    <div style="font-family: var(--font-ss); font-size: 16px; line-height: 24px;">Faculty includes world-renowned researchers, thought leaders, and practitioners who bring diverse perspectives to the classroom. Through cutting-edge research and innovative teaching methods, they inspire students to think critically and act boldly.</div>
+  </div>
+  <div class="type-specimen">
+    <div class="type-specimen__label">Body / 14</div>
+    <div style="font-family: var(--font-ss); font-size: 14px; line-height: 20px;">Whether you are a prospective student, current member of the community, or alumni looking to stay connected, we invite you to explore all that Wharton has to offer.</div>
+  </div>
+  <div class="type-specimen">
+    <div class="type-specimen__label">Body / 12</div>
+    <div style="font-family: var(--font-ss); font-size: 12px; line-height: 16px;">Universal navigation label text and small utility items</div>
+  </div>
+  <div class="type-specimen">
+    <div class="type-specimen__label">Body / 10</div>
+    <div style="font-family: var(--font-ss); font-size: 10px; line-height: 14px;">Fine print and legal text</div>
+  </div>
+
+  <h3>Serif — Minion Pro</h3>
+  <div class="type-specimen">
+    <div class="type-specimen__label">Minion Pro — Display / 38</div>
+    <div style="font-family: var(--font-serif); font-size: 38px; font-weight: 400; line-height: 42px; color: var(--penn-blue);">The Wharton School of the University of Pennsylvania</div>
+  </div>
+  <div class="type-specimen">
+    <div class="type-specimen__label">Minion Pro — Body / 18</div>
+    <div style="font-family: var(--font-serif); font-size: 18px; font-weight: 400; line-height: 26px;">Founded in 1881, the Wharton School was the first collegiate school of business in the world, establishing a tradition of innovation and leadership.</div>
+  </div>
+
+  <h3>Responsive Type Scale</h3>
+  <table>
+    <thead><tr><th>Token</th><th>Desktop</th><th>Mobile</th><th>Line Height (D)</th><th>Line Height (M)</th></tr></thead>
+    <tbody>
+      <tr><td>Display/72</td><td>72px</td><td>60px</td><td>72</td><td>64</td></tr>
+      <tr><td>Display/60</td><td>60px</td><td>52px</td><td>56</td><td>52</td></tr>
+      <tr><td>Display/50</td><td>50px</td><td>48px</td><td>56</td><td>48</td></tr>
+      <tr><td>Display/38</td><td>38px</td><td>30px</td><td>42</td><td>38</td></tr>
+      <tr><td>Display/30</td><td>30px</td><td>26px</td><td>34</td><td>32</td></tr>
+      <tr><td>Display/24</td><td>24px</td><td>20px</td><td>24</td><td>22</td></tr>
+      <tr><td>Display/20</td><td>20px</td><td>16px</td><td>22</td><td>18</td></tr>
+      <tr><td>Body/28</td><td>28px</td><td>22px</td><td>34</td><td>28</td></tr>
+      <tr><td>Body/22</td><td>22px</td><td>20px</td><td>28</td><td>20</td></tr>
+      <tr><td>Body/18</td><td>18px</td><td>16px</td><td>26</td><td>24</td></tr>
+      <tr><td>Body/16</td><td>16px</td><td>14px</td><td>24</td><td>22</td></tr>
+      <tr><td>Body/14</td><td>14px</td><td>14px</td><td>20</td><td>20</td></tr>
+      <tr><td>Body/12</td><td>12px</td><td>12px</td><td>16</td><td>16</td></tr>
+      <tr><td>Body/10</td><td>10px</td><td>10px</td><td>14</td><td>14</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Font Weights</h3>
+  <table>
+    <thead><tr><th>Token</th><th>Value</th><th>Sample (Acumin Pro Condensed)</th></tr></thead>
+    <tbody>
+      <tr><td>Light</td><td>300</td><td style="font-family: var(--font-ss-condensed); font-weight: 300; font-size: 24px;">The quick brown fox</td></tr>
+      <tr><td>Regular</td><td>400</td><td style="font-family: var(--font-ss-condensed); font-weight: 400; font-size: 24px;">The quick brown fox</td></tr>
+      <tr><td>Medium</td><td>500</td><td style="font-family: var(--font-ss-condensed); font-weight: 500; font-size: 24px;">The quick brown fox</td></tr>
+      <tr><td>Semibold</td><td>600</td><td style="font-family: var(--font-ss-condensed); font-weight: 600; font-size: 24px;">The quick brown fox</td></tr>
+      <tr><td>Bold</td><td>700</td><td style="font-family: var(--font-ss-condensed); font-weight: 700; font-size: 24px;">The quick brown fox</td></tr>
+      <tr><td>Black</td><td>900</td><td style="font-family: var(--font-ss-condensed); font-weight: 800; font-size: 24px;">The quick brown fox</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Letter Spacing</h3>
+  <table>
+    <thead><tr><th>Token</th><th>Value</th><th>Usage</th></tr></thead>
+    <tbody>
+      <tr><td>+XL</td><td>6px</td><td>Extreme tracking for decorative caps</td></tr>
+      <tr><td>+L</td><td>3px</td><td>Wide tracking for section labels</td></tr>
+      <tr><td>+M</td><td>2px</td><td>Moderate tracking for uppercase labels</td></tr>
+      <tr><td>+S</td><td>1px</td><td>Subtle tracking for buttons</td></tr>
+      <tr><td>+XS</td><td>0.2px</td><td>Minimal positive tracking</td></tr>
+      <tr><td>none</td><td>0</td><td>Default</td></tr>
+      <tr><td>-XS</td><td>-0.2px</td><td>Tight for large display text</td></tr>
+      <tr><td>-S</td><td>-1px</td><td>Tight for headlines</td></tr>
+      <tr><td>-M</td><td>-2px</td><td>Very tight for oversized type</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ====== SPACING ====== -->
+  <h2>Spacing</h2>
+
+  <h3>Scale</h3>
+  <div class="spacing-grid">
+    <div class="spacing-card">
+      <div class="spacing-card__block" style="width: 4px; height: 4px;"></div>
+      <div class="spacing-card__label">XS</div>
+      <div class="spacing-card__value">4px</div>
+    </div>
+    <div class="spacing-card">
+      <div class="spacing-card__block" style="width: 8px; height: 8px;"></div>
+      <div class="spacing-card__label">SM</div>
+      <div class="spacing-card__value">8px</div>
+    </div>
+    <div class="spacing-card">
+      <div class="spacing-card__block" style="width: 16px; height: 16px;"></div>
+      <div class="spacing-card__label">MD</div>
+      <div class="spacing-card__value">16px</div>
+    </div>
+    <div class="spacing-card">
+      <div class="spacing-card__block" style="width: 20px; height: 20px;"></div>
+      <div class="spacing-card__label">ML</div>
+      <div class="spacing-card__value">20px</div>
+    </div>
+    <div class="spacing-card">
+      <div class="spacing-card__block" style="width: 32px; height: 32px;"></div>
+      <div class="spacing-card__label">LG</div>
+      <div class="spacing-card__value">32px</div>
+    </div>
+    <div class="spacing-card">
+      <div class="spacing-card__block" style="width: 48px; height: 48px;"></div>
+      <div class="spacing-card__label">XLG</div>
+      <div class="spacing-card__value">48px</div>
+    </div>
+    <div class="spacing-card">
+      <div class="spacing-card__block" style="width: 64px; height: 64px;"></div>
+      <div class="spacing-card__label">XL</div>
+      <div class="spacing-card__value">64px</div>
+    </div>
+    <div class="spacing-card">
+      <div class="spacing-card__block" style="width: 80px; height: 80px;"></div>
+      <div class="spacing-card__label">XXL</div>
+      <div class="spacing-card__value">96px</div>
+    </div>
+    <div class="spacing-card">
+      <div class="spacing-card__block" style="width: 100px; height: 100px;"></div>
+      <div class="spacing-card__label">XXXL</div>
+      <div class="spacing-card__value">128px</div>
+    </div>
+  </div>
+
+  <h3>Border Radius</h3>
+  <div class="radius-grid">
+    <div class="radius-card">
+      <div class="radius-card__block" style="border-radius: 0;"></div>
+      <div class="radius-card__label">None</div>
+      <div class="radius-card__value">0px</div>
+    </div>
+    <div class="radius-card">
+      <div class="radius-card__block" style="border-radius: 2px;"></div>
+      <div class="radius-card__label">XS</div>
+      <div class="radius-card__value">2px</div>
+    </div>
+    <div class="radius-card">
+      <div class="radius-card__block" style="border-radius: 4px;"></div>
+      <div class="radius-card__label">SM</div>
+      <div class="radius-card__value">4px</div>
+    </div>
+    <div class="radius-card">
+      <div class="radius-card__block" style="border-radius: 8px;"></div>
+      <div class="radius-card__label">MD</div>
+      <div class="radius-card__value">8px</div>
+    </div>
+    <div class="radius-card">
+      <div class="radius-card__block" style="border-radius: 16px;"></div>
+      <div class="radius-card__label">LG</div>
+      <div class="radius-card__value">16px</div>
+    </div>
+    <div class="radius-card">
+      <div class="radius-card__block" style="border-radius: 50%;"></div>
+      <div class="radius-card__label">Round</div>
+      <div class="radius-card__value">50%</div>
+    </div>
+  </div>
+
+  <!-- ====== NAV-SPECIFIC STYLES ====== -->
+  <h2>Navigation-Specific Styles</h2>
+
+  <h3>Component Typography</h3>
+  <table>
+    <thead><tr><th>Component</th><th>Font</th><th>Weight</th><th>Size</th><th>Line Height</th><th>Color</th></tr></thead>
+    <tbody>
+      <tr><td>Universal nav links</td><td>Acumin Pro Condensed</td><td>600</td><td>13px</td><td>—</td><td>Marine Gray / White</td></tr>
+      <tr><td>Programs dropdown</td><td>Acumin Pro Condensed</td><td>600</td><td>12px</td><td>—</td><td>White 70%</td></tr>
+      <tr><td>Identity bar child name</td><td>Acumin Pro Condensed</td><td>600</td><td>38px</td><td>42px</td><td>Marine Gray</td></tr>
+      <tr><td>Local nav links</td><td>Acumin Pro Condensed</td><td>600</td><td>15px</td><td>—</td><td>White</td></tr>
+      <tr><td>Hero headline</td><td>Acumin Pro Condensed</td><td>900 (Black)</td><td>60px</td><td>56px</td><td>White</td></tr>
+      <tr><td>Hero subhead</td><td>Acumin Pro Condensed</td><td>600</td><td>24px</td><td>24px</td><td>White</td></tr>
+      <tr><td>NavPrimary (hero)</td><td>Acumin Pro Condensed</td><td>600</td><td>38px</td><td>42px</td><td>White</td></tr>
+      <tr><td>Menu overlay nav items</td><td>Acumin Pro Condensed</td><td>600</td><td>38px</td><td>42px</td><td>White 85%</td></tr>
+      <tr><td>Menu overlay sub-items</td><td>Acumin Pro Condensed</td><td>400</td><td>16px</td><td>—</td><td>White 60%</td></tr>
+      <tr><td>Menu sidebar links</td><td>Acumin Pro Condensed</td><td>600</td><td>14px</td><td>21px</td><td>White 60%</td></tr>
+      <tr><td>Sticky header nav</td><td>Acumin Pro Condensed</td><td>600</td><td>14px</td><td>—</td><td>White</td></tr>
+      <tr><td>Menu/Search buttons</td><td>Acumin Pro Condensed</td><td>700</td><td>13px</td><td>—</td><td>White</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Active States</h3>
+  <table>
+    <thead><tr><th>Element</th><th>Indicator</th><th>Color</th></tr></thead>
+    <tbody>
+      <tr><td>Local nav active link</td><td>3px bottom border</td><td>Bay Blue (#06AAFC)</td></tr>
+      <tr><td>Sticky header active link</td><td>3px bottom border</td><td>Bay Blue (#06AAFC)</td></tr>
+      <tr><td>NavPrimary hover (hero)</td><td>Arrow icon appears, shifts left</td><td>White</td></tr>
+      <tr><td>Menu overlay active item</td><td>3px left border</td><td>White 40%</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Key Backgrounds</h3>
+  <table>
+    <thead><tr><th>Element</th><th>Background</th></tr></thead>
+    <tbody>
+      <tr><td>Universal bar</td><td>Penn Blue (#011F5B)</td></tr>
+      <tr><td>Identity bar (parent)</td><td>Transparent over hero</td></tr>
+      <tr><td>Identity bar (child)</td><td>Gradient: #011F5B → #0240BD</td></tr>
+      <tr><td>Local nav bar</td><td>Penn Blue with 1px top border rgba(255,255,255,0.2)</td></tr>
+      <tr><td>Sticky header</td><td>Penn Blue (#011F5B)</td></tr>
+      <tr><td>Menu button</td><td>Penn Blue (#011F5B)</td></tr>
+      <tr><td>Search button</td><td>Penn Red (#990000)</td></tr>
+      <tr><td>Menu overlay</td><td>Penn Blue (#011F5B) + gradient border</td></tr>
+    </tbody>
+  </table>
+
+</body>
+</html>
