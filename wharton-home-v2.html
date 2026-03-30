@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Why a Jacobs MSQF — Jacobs MSQF</title>
+  <title>Wharton Home — V2</title>
   <link rel="stylesheet" href="https://use.typekit.net/ael0dii.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --penn-blue: #011F5B;
-      --penn-red: #990000;
+      --penn-red: #990033;
       --white: #ffffff;
       --gray-light: #f2f2f2;
       --marine-gray: #eeedea;
-      --text-deep-blue: #111b27;
       --font-ss: 'acumin-pro', sans-serif;
       --font-ss-condensed: 'acumin-pro-condensed', sans-serif;
       --font-serif: 'minion-pro', serif;
@@ -24,39 +25,48 @@
     }
     a { text-decoration: none; color: inherit; }
 
-    /* ===== HEADER SECTION (no hero) ===== */
-    .site-header {
-      width: 100%;
-      background: linear-gradient(to right, #011f5b, #0240bd 96%, #0242c1);
+    /* ===== HERO SECTION ===== */
+    .hero {
+      position: relative; width: 100%; height: 80vh; min-height: 600px;
+      overflow: hidden; display: flex; flex-direction: column;
+    }
+    .hero__bg {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .hero__bg img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .hero__bg::after {
+      content: ''; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(107deg, rgba(0, 85, 255, 0.90) 4.85%, rgba(1, 26, 77, 0.80) 47.24%, rgba(2, 31, 89, 0.10) 59.89%, rgba(2, 31, 89, 0.00) 86.21%);
     }
 
-    /* ===== UNIVERSAL BAR ===== */
-    .universal-bar {
-      display: flex; align-items: center; justify-content: flex-end;
-      height: 50px; padding: 0 48px;
-      background: rgba(0,0,0,0.1);
-      border-bottom: 1px solid rgba(224,224,224,0.25);
+    /* ===== TOP BAR ===== */
+    .top-bar {
+      position: relative; z-index: 10; display: flex;
+      align-items: flex-start; justify-content: flex-end;
+      padding-right: 0;
     }
     .universal-nav {
       display: flex; align-items: center; height: 50px;
       padding: 0 16px; gap: 0; overflow: visible;
     }
     .universal-nav__link {
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 16px;
-      text-transform: uppercase; letter-spacing: 0.2px;
-      color: var(--marine-gray); white-space: nowrap;
+      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 13px;
+      text-transform: uppercase; letter-spacing: 0.55px;
+      color: var(--gray-light); white-space: nowrap;
       padding: 8px 10px; transition: opacity 0.15s;
     }
     .universal-nav__link:hover { opacity: 0.7; }
     .universal-nav__dropdown {
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 16px;
-      text-transform: uppercase; letter-spacing: 0.2px;
-      color: var(--marine-gray); white-space: nowrap;
+      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 13px;
+      text-transform: uppercase; letter-spacing: 0.55px;
+      color: var(--gray-light); white-space: nowrap;
       padding: 8px 10px; border: none;
       background: none; cursor: pointer; display: flex;
       align-items: center; gap: 6px;
     }
-    .universal-nav__dropdown svg { width: 10px; height: 10px; fill: var(--marine-gray); transition: transform 0.2s; }
+    .universal-nav__dropdown svg { width: 10px; height: 10px; fill: var(--gray-light); transition: transform 0.2s; }
     .universal-nav__dropdown.is-open svg { transform: rotate(180deg); }
     .programs-dropdown__menu {
       position: absolute; top: 100%; right: 0; z-index: 100;
@@ -76,7 +86,7 @@
       transition: color 0.15s, background 0.15s;
     }
     .programs-dropdown__link:hover { color: #fff; background: rgba(255,255,255,0.1); }
-    .universal-bar .top-buttons { display: flex; flex-shrink: 0; }
+    .top-buttons { display: flex; flex-shrink: 0; }
     .top-btn {
       display: flex; align-items: center; gap: 8px; height: 50px;
       padding: 0 16px; border: none; cursor: pointer;
@@ -88,110 +98,130 @@
     .top-btn--search { background: var(--penn-red); }
     .top-btn svg { width: 18px; height: 18px; fill: #fff; }
 
-    /* ===== IDENTITY BAR ===== */
-    .identity-bar {
-      display: flex; align-items: center; gap: 0;
-      padding: 32px 48px 0 48px;
+    /* ===== LOGO ===== */
+    .logo {
+      position: absolute; top: 51px; left: 50px; z-index: 10;
+      width: 250px;
     }
-    .identity-bar__brand {
-      display: flex; align-items: center; gap: 32px; flex: 1; min-width: 0;
+    .logo img {
+      width: 100%; height: auto; display: block;
     }
-    .identity-bar__logo {
-      flex-shrink: 0;
+
+    /* ===== PRIMARY NAV (over hero, right side) ===== */
+    .primary-nav {
+      position: absolute; right: 80px; top: 50%;
+      transform: translateY(-50%); z-index: 10;
+      display: flex; flex-direction: column; align-items: flex-end;
+      gap: 12px;
     }
-    .identity-bar__logo img {
-      width: 250px; height: auto; display: block;
+    .primary-nav::before {
+      content: ''; position: absolute;
+      top: -180px; bottom: -180px;
+      left: -280px; right: -200px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 75% 60%, rgba(1, 31, 91, 0.65) 0%, rgba(1, 31, 91, 0.35) 30%, rgba(1, 31, 91, 0.1) 55%, transparent 70%);
+      opacity: 0.5;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: -1;
     }
-    .identity-bar__name {
+    .primary-nav:hover::before {
+      opacity: 0.8;
+    }
+    .primary-nav__link {
       font-family: var(--font-ss-condensed); font-weight: 600;
-      font-size: 38px; line-height: 42px;
-      color: var(--marine-gray);
+      font-size: 38px; color: #fff; line-height: 42px;
+      text-align: right;
+      letter-spacing: -0.2px; display: flex; align-items: center; justify-content: flex-end; gap: 4px;
     }
+    .primary-nav__link .nav-arrow {
+      display: inline-flex; align-items: center;
+      width: 0; height: 24px; overflow: hidden; opacity: 0;
+      transition: width 0.25s ease, opacity 0.25s ease;
+    }
+    .primary-nav__link .nav-arrow svg { width: 24px; height: 24px; flex-shrink: 0; }
+    .primary-nav__link .nav-arrow svg path { stroke: #fff; }
+    .primary-nav__link:hover .nav-arrow { width: 24px; opacity: 1; }
 
-    /* ===== LOCAL NAV BAR ===== */
-    .local-nav {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 50px; margin-top: 16px;
+    /* ===== LEAD CONTENT ===== */
+    .lead {
+      position: absolute; left: 53px; top: 50%;
+      transform: translateY(-50%); z-index: 10;
+      max-width: 608px; display: flex; flex-direction: column;
+      align-items: flex-start;
     }
-    .local-nav__links {
-      display: flex; align-items: center; padding-left: 48px;
+    .lead__border {
+      width: 100%; max-width: 450px; height: 5px;
+      background: #fff; margin-bottom: 30px;
     }
-    .local-nav__link {
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 18px;
-      letter-spacing: 0.2px; color: var(--marine-gray);
-      padding: 0 16px; white-space: nowrap;
-      transition: opacity 0.15s; line-height: 50px;
+    .lead__heading {
+      font-family: var(--font-ss-condensed); font-weight: 900;
+      font-size: 60px; line-height: 56px; color: #fff;
+      letter-spacing: -0.2px; margin-bottom: 12px;
     }
-    .local-nav__link:hover { opacity: 0.7; }
-    .local-nav__more-btn {
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 18px;
-      letter-spacing: 0.2px; color: var(--marine-gray);
-      padding: 0 16px; white-space: nowrap; line-height: 50px;
-      background: none; border: none; cursor: pointer;
-      display: flex; align-items: center; gap: 6px;
-      transition: opacity 0.15s; position: relative;
-    }
-    .local-nav__more-btn:hover { opacity: 0.7; }
-    .local-nav__more-btn svg {
-      width: 10px; height: 10px; fill: var(--marine-gray);
-      transition: transform 0.2s;
-    }
-    .local-nav__more-btn.is-open svg { transform: rotate(180deg); }
-
-    /* More dropdown */
-    .more-dropdown__menu {
-      position: absolute; top: 100%; left: 0; z-index: 100;
-      background: var(--penn-blue); border: 1px solid rgba(255,255,255,0.15);
-      min-width: 220px; padding: 8px 0;
-      opacity: 0; visibility: hidden; transform: translateY(4px);
-      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
-    }
-    .local-nav__more-btn.is-open + .more-dropdown__menu {
-      opacity: 1; visibility: visible; transform: translateY(0);
-    }
-    .more-dropdown__link {
-      display: block; padding: 8px 16px;
+    .lead__subtitle {
       font-family: var(--font-ss-condensed); font-weight: 600;
-      font-size: 14px; letter-spacing: 0.3px;
-      color: rgba(255,255,255,0.7); white-space: nowrap;
-      transition: color 0.15s, background 0.15s;
+      font-size: 24px; line-height: 24px; color: #fff;
+      margin-bottom: 28px;
     }
-    .more-dropdown__link:hover { color: #fff; background: rgba(255,255,255,0.1); }
+    .lead__actions {
+      display: flex; align-items: center; gap: 30px;
+    }
+    .lead__cta {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; background: #fff; color: #01256e; padding: 14px 40px;
+      font-family: var(--font-ss-condensed); font-weight: 700;
+      font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
+      transition: background 0.2s, color 0.2s; min-width: 260px;
+    }
+    .lead__cta:hover { background: #e8e8e8; }
+    .lead__cta svg { width: 16px; height: 16px; fill: #01256e; }
+    .lead__link {
+      font-family: var(--font-ss-condensed); font-weight: 700;
+      font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
+      color: #fff; transition: opacity 0.2s;
+    }
+    .lead__link:hover { opacity: 0.7; }
 
-    .local-nav__buttons {
-      display: flex; flex-shrink: 0;
-    }
-    .local-nav__btn {
-      display: flex; align-items: center; gap: 8px; height: 50px;
-      padding: 0 16px; border: none; cursor: pointer;
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 13px;
-      text-transform: uppercase; letter-spacing: 0.5px;
-      color: #fff; white-space: nowrap;
-    }
-    .local-nav__btn--menu { background: var(--penn-blue); }
-    .local-nav__btn--search { background: var(--penn-red); }
-    .local-nav__btn svg { width: 18px; height: 18px; fill: #fff; }
-
-    /* ===== CONTENT AREA ===== */
-    .content-area {
-      background: #fff;
-    }
-    .breadcrumb {
-      padding: 20px 48px 0 48px;
+    /* ===== STORY CAROUSEL ===== */
+    .story-carousel {
+      position: absolute; bottom: 50px; right: 80px; z-index: 10;
       display: flex; align-items: center; gap: 8px;
+      background: rgba(2, 32, 92, 0.85); border-radius: 16px;
+      padding: 10px 10px 10px 10px; max-width: 471px;
     }
-    .breadcrumb__icon {
-      width: 14px; height: 14px; fill: var(--text-deep-blue); opacity: 0.5;
-      flex-shrink: 0;
+    .story-carousel__arrow {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.6); background: none;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0; opacity: 0.6;
+      transition: opacity 0.2s;
     }
-    .breadcrumb__text {
-      font-family: var(--font-ss); font-weight: 400; font-size: 14px;
-      color: var(--text-deep-blue);
+    .story-carousel__arrow:hover { opacity: 1; }
+    .story-carousel__arrow svg { width: 16px; height: 16px; fill: #fff; }
+    .story-carousel__content {
+      display: flex; align-items: center; gap: 16px; flex: 1;
+      padding: 6px 0;
+    }
+    .story-carousel__text { flex: 1; }
+    .story-carousel__label {
+      font-family: var(--font-ss); font-size: 11px;
+      text-transform: uppercase; letter-spacing: 1px;
+      color: rgba(255,255,255,0.7); margin-bottom: 6px;
+    }
+    .story-carousel__title {
+      font-family: var(--font-ss); font-size: 16px;
+      line-height: 22px; color: #fff;
+    }
+    .story-carousel__thumb {
+      width: 140px; height: 80px; border-radius: 8px;
+      border: 2px solid rgba(255,255,255,0.3); flex-shrink: 0;
+      background: rgba(255,255,255,0.1);
     }
 
     /* ===== BELOW THE FOLD (placeholder) ===== */
     .below-fold {
-      padding: 40px 48px 60px; max-width: 1440px;
+      padding: 60px 53px; max-width: 1440px;
     }
     .skeleton-block {
       background: #e8e8e8; border-radius: 6px; margin-bottom: 16px;
@@ -218,7 +248,7 @@
     .proto-switcher__menu {
       display: none; position: absolute; bottom: 44px; right: 0;
       background: #fff; border-radius: 8px; padding: 8px 0;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15); min-width: 180px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15); min-width: 160px;
     }
     .proto-switcher__menu.is-open { display: block; }
     .proto-switcher__link {
@@ -231,18 +261,9 @@
       font-weight: 700; color: var(--penn-blue);
     }
     .proto-switcher__section-label {
-      padding: 6px 16px 2px; font-size: 10px; text-transform: uppercase;
-      letter-spacing: 0.08em; color: #999; font-weight: 600;
-    }
-    .proto-switcher__section-label {
       font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px;
       color: #999; padding: 6px 16px 2px; font-weight: 600;
     }
-    .proto-switcher__section-label {
-      font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px;
-      color: #999; padding: 6px 16px 2px; font-weight: 600;
-    }
-    .proto-switcher__divider { height: 1px; background: #e8e8e8; margin: 4px 0; }
 
     /* ===== STICKY COMPACT HEADER ===== */
     .sticky-header {
@@ -254,17 +275,11 @@
       border-bottom: 1px solid rgba(255,255,255,0.15);
     }
     .sticky-header.is-visible { transform: translateY(0); }
-    .sticky-header__brand {
-      display: flex; align-items: center; gap: 16px; flex-shrink: 0;
+    .sticky-header__logo {
+      flex-shrink: 0;
     }
     .sticky-header__logo img {
-      height: 28px; width: auto; display: block;
-    }
-    .sticky-header__child-name {
-      font-family: var(--font-ss-condensed); font-weight: 600;
-      font-size: 18px; line-height: 22px; color: rgba(255,255,255,0.85);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-      max-width: 400px; flex-shrink: 1; min-width: 0;
+      height: 32px; width: auto; display: block;
     }
     .sticky-header__nav {
       display: flex; align-items: center; gap: 4px;
@@ -278,12 +293,8 @@
     }
     .sticky-header__nav-link:hover { opacity: 0.75; background: rgba(255,255,255,0.08); }
     .sticky-header__nav-link--more {
-      position: relative; background: none; border: none; cursor: pointer;
-      font-family: var(--font-ss); font-size: 14px;
-      font-weight: 600; color: #fff; padding: 8px 12px;
-      white-space: nowrap; display: flex; align-items: center; gap: 4px;
+      position: relative;
     }
-    .sticky-header__nav-link--more:hover { opacity: 0.75; }
     .sticky-header__buttons {
       display: flex; flex-shrink: 0;
     }
@@ -297,18 +308,24 @@
     .sticky-header__btn--menu { background: var(--penn-blue); }
     .sticky-header__btn--menu:hover { background: #022a6e; }
     .sticky-header__btn--search { background: var(--penn-red); }
-    .sticky-header__btn--search:hover { background: #7a0000; }
+    .sticky-header__btn--search:hover { background: #b30039; }
     .sticky-header__btn svg { width: 18px; height: 18px; fill: #fff; }
 
-    /* Dynamic overflow for sticky nav */
-    .sticky-header__nav-link.is-overflowed { display: none; }
-    #stickyMoreTrigger.is-hidden { display: none; }
+    /* Progressive hiding of nav items at smaller widths */
+    .sticky-header__nav-link.hide-1200 { display: inline-flex; }
+    .sticky-header__nav-link.hide-1000 { display: inline-flex; }
+
+    @media (max-width: 1200px) {
+      .sticky-header__nav-link.hide-1200 { display: none; }
+    }
+    @media (max-width: 1000px) {
+      .sticky-header__nav-link.hide-1000 { display: none; }
+    }
     @media (max-width: 791px) {
       .sticky-header__nav { display: none; }
-      .sticky-header__child-name { display: none; }
       .sticky-header { padding: 0 0 0 16px; }
       .sticky-header__buttons { margin-right: 0; }
-      .sticky-header__logo img { height: 24px; }
+      .sticky-header__logo img { height: 28px; }
     }
 
     /* ===== DESKTOP MENU OVERLAY ===== */
@@ -378,7 +395,7 @@
     }
     .desktop-menu__center-title {
       font-family: var(--font-ss-condensed); font-size: 20px; font-weight: 600;
-      color: rgba(255,255,255,0.7); margin-bottom: 32px; max-width: 258px;
+      color: rgba(255,255,255,0.7); margin-bottom: 32px;
     }
 
     /* Primary nav items */
@@ -468,57 +485,35 @@
     }
     body.menu-open { overflow: hidden; }
 
-
-    .local-nav__link.is-active {
-      position: relative;
-    }
-    .local-nav__link.is-active::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 3px; background: #06aafc;
-    }
-    .sticky-header__nav-link.is-active {
-      position: relative;
-    }
-    .sticky-header__nav-link.is-active::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 3px; background: #06aafc;
-    }
     /* ===== RESPONSIVE ===== */
-    .local-nav__link[data-nav-item].is-overflowed { display: none; }
-    .local-nav__more-btn.is-hidden { display: none; }
-    @media (max-width: 791px) {
-      .universal-bar { display: none; }
-      .identity-bar {
-        padding: 0; gap: 0;
-        justify-content: space-between; align-items: stretch;
-      }
-      .identity-bar__brand {
-        flex-direction: row; align-items: center; gap: 16px;
-        padding: 16px;
-      }
-      .identity-bar__logo {
-        padding: 20px 16px;
-      }
-      .identity-bar__logo img { width: 120px; }
-      .identity-bar__name {
-        display: block; font-size: 16px; line-height: 20px;
-        white-space: normal; flex: 1; min-width: 0;
-        padding: 16px 12px 16px 0;
-        align-self: center;
-      }
-      .identity-bar__mobile-buttons {
-        display: flex; flex-shrink: 0; align-self: stretch;
-      }
-      .identity-bar__mobile-buttons .top-btn {
-        height: 100%; align-self: stretch;
-        padding-top: 0; padding-bottom: 0;
-      }
-      .local-nav { display: none; margin: 0; }
-      .breadcrumb { padding: 16px 16px 0 16px; }
-      .below-fold { padding: 40px 16px; }
+    @media (max-width: 1100px) {
+      .primary-nav { display: none; }
+      .lead { max-width: 90%; }
+      .story-carousel { right: 20px; max-width: calc(100% - 40px); }
     }
-    @media (min-width: 792px) {
-      .identity-bar__mobile-buttons { display: none; }
+    @media (max-width: 791px) {
+      .hero { min-height: 600px; }
+      .logo { top: 20px; left: 20px; width: 180px; }
+      .universal-nav { display: none; }
+      .lead {
+        left: 20px; right: 20px; max-width: none;
+        top: auto; bottom: 180px; transform: none;
+      }
+      .lead__heading { font-size: 36px; line-height: 40px; }
+      .lead__subtitle { font-size: 16px; line-height: 22px; }
+      .lead__cta { min-width: 200px; padding: 12px 24px; }
+      .story-carousel {
+        bottom: 20px; left: 20px; right: 20px;
+        max-width: none;
+      }
+      .story-carousel__thumb { width: 100px; height: 60px; }
+      .below-fold { padding: 40px 20px; }
+    }
+    @media (max-width: 480px) {
+      .lead__heading { font-size: 28px; line-height: 32px; }
+      .lead__actions { flex-direction: column; gap: 12px; align-items: flex-start; }
+      .story-carousel__content { flex-direction: column; align-items: flex-start; }
+      .story-carousel__thumb { width: 100%; height: 100px; }
     }
 
     /* ===== MOBILE MENU OVERLAY ===== */
@@ -569,7 +564,7 @@
     }
     .mobile-menu__site-title {
       font-family: var(--font-ss-condensed); font-size: 16px; font-weight: 600;
-      color: rgba(255,255,255,0.7); margin-top: 16px; max-width: 258px;
+      color: rgba(255,255,255,0.7); margin-top: 16px;
     }
 
     /* Content area (scrollable) */
@@ -671,24 +666,7 @@
       text-decoration: none; transition: color 0.15s;
     }
     .mobile-menu__footer-link:hover { color: #fff; }
-  
-    @media (max-width: 950px) {
-      .identity-bar__name { font-size: 30px; line-height: 34px; }
-    }
-    @media (max-width: 800px) {
-      .identity-bar__name { font-size: 24px; line-height: 28px; }
-    }
-
-    @media (max-width: 650px) {
-      .identity-bar__brand {
-        flex-direction: column; align-items: flex-start; gap: 8px;
-      }
-      .identity-bar__name {
-        font-size: 20px; line-height: 24px;
-        padding: 0 0 8px 16px;
-      }
-    }
-    @media (max-width: 400px) {
+      @media (max-width: 400px) {
       .btn-label { display: none; }
     }
   </style>
@@ -726,41 +704,46 @@
 
       <!-- Center panel -->
       <div class="desktop-menu__center">
-        <a href="child-home-v1.html"><img class="desktop-menu__center-logo" src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania"></a>
-        <a href="child-home-v1.html" class="desktop-menu__center-title">Dr. Bruce I. Jacobs Master of Science in Quantitative Finance</a>
+        <img class="desktop-menu__center-logo" src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania">
+        <div class="desktop-menu__center-title">The Wharton School</div>
 
-        <nav class="desktop-menu__nav-list" aria-label="Jacobs MSQF navigation">
+        <nav class="desktop-menu__nav-list" aria-label="Main navigation">
           <div class="desktop-menu__nav-group">
             <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="about">About <span class="desktop-menu__nav-chevron">&#8250;</span></button>
             <ul class="desktop-menu__sub-list" id="desktop-sub-about">
+              <li><a href="#" class="desktop-menu__sub-link">About Wharton</a></li>
+              <li><a href="#" class="desktop-menu__sub-link">Leadership</a></li>
               <li><a href="#" class="desktop-menu__sub-link">History</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">About Dr. Bruce I Jacobs</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Advisory Board</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Learn More About Our Faculty</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Community Engagement</a></li>
+              <li><a href="#" class="desktop-menu__sub-link">Diversity &amp; Inclusion</a></li>
+              <li><a href="#" class="desktop-menu__sub-link">Global Impact</a></li>
             </ul>
           </div>
-          <a href="#" class="desktop-menu__nav-item">Why a Jacobs MSQF</a>
+          <a href="#" class="desktop-menu__nav-item">Academics</a>
           <div class="desktop-menu__nav-group">
-            <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="academics">Academics <span class="desktop-menu__nav-chevron">&#8250;</span></button>
-            <ul class="desktop-menu__sub-list" id="desktop-sub-academics">
-              <li><a href="#" class="desktop-menu__sub-link">Curriculum</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Course Descriptions</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Program Requirements</a></li>
+            <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="faculty">Faculty &amp; Research <span class="desktop-menu__nav-chevron">&#8250;</span></button>
+            <ul class="desktop-menu__sub-list" id="desktop-sub-faculty">
+              <li><a href="#" class="desktop-menu__sub-link">Faculty Directory</a></li>
+              <li><a href="#" class="desktop-menu__sub-link">Research Centers</a></li>
+              <li><a href="#" class="desktop-menu__sub-link">Publications</a></li>
+              <li><a href="#" class="desktop-menu__sub-link">Working Papers</a></li>
+              <li><a href="#" class="desktop-menu__sub-link">Departments</a></li>
             </ul>
           </div>
+          <a href="#" class="desktop-menu__nav-item">News</a>
+          <a href="#" class="desktop-menu__nav-item">Recruiters &amp; Corporations</a>
+          <a href="#" class="desktop-menu__nav-item">Alumni</a>
           <div class="desktop-menu__nav-group">
-            <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="careers">Careers &amp; Recruiting <span class="desktop-menu__nav-chevron">&#8250;</span></button>
-            <ul class="desktop-menu__sub-list" id="desktop-sub-careers">
-              <li><a href="#" class="desktop-menu__sub-link">Career Services</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Employer Partners</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Internships</a></li>
+            <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="locations">Locations <span class="desktop-menu__nav-chevron">&#8250;</span></button>
+            <ul class="desktop-menu__sub-list" id="desktop-sub-locations">
+              <li><a href="#" class="desktop-menu__sub-link">Philadelphia</a></li>
+              <li><a href="#" class="desktop-menu__sub-link">San Francisco</a></li>
+              <li><a href="#" class="desktop-menu__sub-link">Beijing</a></li>
+              <li><a href="#" class="desktop-menu__sub-link">All Locations</a></li>
             </ul>
           </div>
-          <a href="#" class="desktop-menu__nav-item">Admissions</a>
-          <a href="#" class="desktop-menu__nav-item">Application Guide</a>
-          <a href="#" class="desktop-menu__nav-item">Events</a>
-          <a href="#" class="desktop-menu__nav-item">FAQ</a>
+          <a href="#" class="desktop-menu__nav-item">Wharton Stories</a>
+          <a href="#" class="desktop-menu__nav-item">Give to Wharton</a>
+          <a href="#" class="desktop-menu__nav-item">Student Life</a>
         </nav>
 
         <!-- Bottom bar -->
@@ -778,32 +761,23 @@
     </button>
 
     <div class="mobile-menu__header">
-      <a href="child-home-v1.html">
-        <img class="mobile-menu__logo" src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania">
-      </a>
-      <a href="child-home-v1.html" class="mobile-menu__site-title">Dr. Bruce I. Jacobs Master of Science in Quantitative Finance</a>
+      <img class="mobile-menu__logo" src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania">
+      <div class="mobile-menu__site-title">The Wharton School</div>
     </div>
 
-    <div class="mobile-menu__breadcrumb">
-          <a href="wharton-home-v1.html" class="mobile-menu__breadcrumb-link">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"><circle cx="8" cy="8" r="7"/><path d="M4 9.5c0-2 1.8-3.5 4-3.5s4 1.5 4 3.5" stroke-width="1"/><line x1="8" y1="3" x2="8" y2="7" stroke-width="0.8"/><line x1="4.5" y1="5" x2="8" y2="7" stroke-width="0.8"/><line x1="11.5" y1="5" x2="8" y2="7" stroke-width="0.8"/></svg>
-        <span style="color: rgba(255,255,255,0.3);">&#8250;</span>
-        Jacobs MSQF
-      </a>
-      <span style="color: rgba(255,255,255,0.3); margin: 0 2px;">›</span>
-      <span style="font-family: var(--font-ss); font-size: 13px; color: rgba(255,255,255,0.7);">Why a Jacobs MSQF</span>
-    </div>
 
     <div class="mobile-menu__content">
       <nav class="mobile-menu__primary" id="mobilePrimary">
         <button class="mobile-menu__primary-item" data-mobile-drill="about">About <span class="mobile-menu__primary-chevron">&#8250;</span></button>
-        <a href="#" class="mobile-menu__primary-item">Why a Jacobs MSQF</a>
-        <button class="mobile-menu__primary-item" data-mobile-drill="academics">Academics <span class="mobile-menu__primary-chevron">&#8250;</span></button>
-        <button class="mobile-menu__primary-item" data-mobile-drill="careers">Careers &amp; Recruiting <span class="mobile-menu__primary-chevron">&#8250;</span></button>
-        <a href="#" class="mobile-menu__primary-item">Admissions</a>
-        <a href="#" class="mobile-menu__primary-item">Application Guide</a>
-        <a href="#" class="mobile-menu__primary-item">Events</a>
-        <a href="#" class="mobile-menu__primary-item">FAQ</a>
+        <a href="#" class="mobile-menu__primary-item">Academics</a>
+        <button class="mobile-menu__primary-item" data-mobile-drill="faculty">Faculty &amp; Research <span class="mobile-menu__primary-chevron">&#8250;</span></button>
+        <a href="#" class="mobile-menu__primary-item">News</a>
+        <a href="#" class="mobile-menu__primary-item">Recruiters &amp; Corporations</a>
+        <a href="#" class="mobile-menu__primary-item">Alumni</a>
+        <button class="mobile-menu__primary-item" data-mobile-drill="locations">Locations <span class="mobile-menu__primary-chevron">&#8250;</span></button>
+        <a href="#" class="mobile-menu__primary-item">Wharton Stories</a>
+        <a href="#" class="mobile-menu__primary-item">Give to Wharton</a>
+        <a href="#" class="mobile-menu__primary-item">Student Life</a>
       </nav>
 
       <div class="mobile-menu__drilldown" id="mobileDrill-about">
@@ -811,31 +785,34 @@
           <span class="mobile-menu__back-arrow">&#8592;</span>
           <span class="mobile-menu__back-label">About</span>
         </button>
+        <a href="#" class="mobile-menu__drilldown-item">About Wharton</a>
+        <a href="#" class="mobile-menu__drilldown-item">Leadership</a>
         <a href="#" class="mobile-menu__drilldown-item">History</a>
-        <a href="#" class="mobile-menu__drilldown-item">About Dr. Bruce I Jacobs</a>
-        <a href="#" class="mobile-menu__drilldown-item">Advisory Board</a>
-        <a href="#" class="mobile-menu__drilldown-item">Learn More About Our Faculty</a>
-        <a href="#" class="mobile-menu__drilldown-item">Community Engagement</a>
+        <a href="#" class="mobile-menu__drilldown-item">Diversity &amp; Inclusion</a>
+        <a href="#" class="mobile-menu__drilldown-item">Global Impact</a>
       </div>
 
-      <div class="mobile-menu__drilldown" id="mobileDrill-academics">
+      <div class="mobile-menu__drilldown" id="mobileDrill-faculty">
         <button class="mobile-menu__back" data-mobile-back>
           <span class="mobile-menu__back-arrow">&#8592;</span>
-          <span class="mobile-menu__back-label">Academics</span>
+          <span class="mobile-menu__back-label">Faculty &amp; Research</span>
         </button>
-        <a href="#" class="mobile-menu__drilldown-item">Curriculum</a>
-        <a href="#" class="mobile-menu__drilldown-item">Course Descriptions</a>
-        <a href="#" class="mobile-menu__drilldown-item">Program Requirements</a>
+        <a href="#" class="mobile-menu__drilldown-item">Faculty Directory</a>
+        <a href="#" class="mobile-menu__drilldown-item">Research Centers</a>
+        <a href="#" class="mobile-menu__drilldown-item">Publications</a>
+        <a href="#" class="mobile-menu__drilldown-item">Working Papers</a>
+        <a href="#" class="mobile-menu__drilldown-item">Departments</a>
       </div>
 
-      <div class="mobile-menu__drilldown" id="mobileDrill-careers">
+      <div class="mobile-menu__drilldown" id="mobileDrill-locations">
         <button class="mobile-menu__back" data-mobile-back>
           <span class="mobile-menu__back-arrow">&#8592;</span>
-          <span class="mobile-menu__back-label">Careers &amp; Recruiting</span>
+          <span class="mobile-menu__back-label">Locations</span>
         </button>
-        <a href="#" class="mobile-menu__drilldown-item">Career Services</a>
-        <a href="#" class="mobile-menu__drilldown-item">Employer Partners</a>
-        <a href="#" class="mobile-menu__drilldown-item">Internships</a>
+        <a href="#" class="mobile-menu__drilldown-item">Philadelphia</a>
+        <a href="#" class="mobile-menu__drilldown-item">San Francisco</a>
+        <a href="#" class="mobile-menu__drilldown-item">Beijing</a>
+        <a href="#" class="mobile-menu__drilldown-item">All Locations</a>
       </div>
     </div>
 
@@ -865,19 +842,16 @@
 
   <!-- STICKY COMPACT HEADER -->
   <header class="sticky-header" id="stickyHeader">
-    <div class="sticky-header__brand">
-      <a href="#" class="sticky-header__logo">
-        <img src="assets/wharton-logo-light.svg" alt="Wharton" preserveAspectRatio="xMidYMid meet">
-      </a>
-      <span class="sticky-header__child-name">Dr. Bruce I. Jacobs Master of Science in Quantitative Finance</span>
-    </div>
-    <nav class="sticky-header__nav" id="stickyNavLinks">
-      <a href="#" class="sticky-header__nav-link" data-sticky-item>About</a>
-      <a href="#" class="sticky-header__nav-link" data-sticky-item>Why a Jacobs MSQF</a>
-      <a href="#" class="sticky-header__nav-link" data-sticky-item>Academics</a>
-      <a href="#" class="sticky-header__nav-link" data-sticky-item>Careers &amp; Recruiting</a>
-      <a href="#" class="sticky-header__nav-link" data-sticky-item>Admissions</a>
-      <a href="#" class="sticky-header__nav-link" id="stickyMoreTrigger">More...</a>
+    <a href="#" class="sticky-header__logo">
+      <img src="assets/wharton-logo-light.svg" alt="Wharton">
+    </a>
+    <nav class="sticky-header__nav">
+      <a href="#" class="sticky-header__nav-link">About</a>
+      <a href="#" class="sticky-header__nav-link">Academics</a>
+      <a href="#" class="sticky-header__nav-link hide-1200">Faculty &amp; Research</a>
+      <a href="#" class="sticky-header__nav-link hide-1200">Alumni</a>
+      <a href="#" class="sticky-header__nav-link hide-1000">News</a>
+      <a href="#" class="sticky-header__nav-link hide-1000" id="stickyMoreTrigger">More...</a>
     </nav>
     <div class="sticky-header__buttons">
       <button class="sticky-header__btn sticky-header__btn--menu">
@@ -898,12 +872,16 @@
     </div>
   </header>
 
-  <!-- SITE HEADER -->
-  <div class="site-header">
-    <!-- Universal Bar -->
-    <div class="universal-bar">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__bg">
+      <img src="assets/hero-1.jpg" alt="Wharton campus">
+    </div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
       <nav class="universal-nav">
-        <a href="#" class="universal-nav__link">Wharton Home</a>
+        <a href="#" class="universal-nav__link" style="display:none;">Wharton Home</a>
         <a href="#" class="universal-nav__link">Faculty &amp; Research</a>
         <a href="#" class="universal-nav__link">Knowledge at Wharton</a>
         <div class="programs-dropdown" style="position: relative;">
@@ -924,17 +902,7 @@
           </div>
         </div>
       </nav>
-    </div>
-
-    <!-- Identity Bar -->
-    <div class="identity-bar">
-      <div class="identity-bar__brand">
-        <a href="#" class="identity-bar__logo">
-          <img src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania" preserveAspectRatio="xMidYMid meet">
-        </a>
-        <span class="identity-bar__name">Dr. Bruce I. Jacobs Master of Science in Quantitative Finance</span>
-      </div>
-      <div class="identity-bar__mobile-buttons">
+      <div class="top-buttons">
         <button class="top-btn top-btn--menu">
           <svg viewBox="0 0 20 20">
             <rect x="2.5" y="4" width="15" height="1.5" rx="0.5"/>
@@ -953,96 +921,84 @@
       </div>
     </div>
 
-    <!-- Local Nav -->
-    <nav class="local-nav">
-      <div class="local-nav__links" id="localNavLinks">
-        <a href="jacobs-about.html" class="local-nav__link" data-nav-item>About</a>
-        <a href="jacobs-why.html" class="local-nav__link is-active" data-nav-item>Why a Jacobs MSQF</a>
-        <a href="jacobs-academics.html" class="local-nav__link" data-nav-item>Academics</a>
-        <a href="jacobs-careers.html" class="local-nav__link" data-nav-item>Careers &amp; Recruiting</a>
-        <a href="jacobs-admissions.html" class="local-nav__link" data-nav-item>Admissions</a>
-        <a href="jacobs-application-guide.html" class="local-nav__link" data-nav-item data-always-overflow>Application Guide</a>
-        <a href="jacobs-events.html" class="local-nav__link" data-nav-item data-always-overflow>Events</a>
-        <a href="jacobs-faq.html" class="local-nav__link" data-nav-item data-always-overflow>FAQ</a>
-        <a href="jacobs-student-resources.html" class="local-nav__link" data-nav-item data-always-overflow>Student Resources</a>
-        <a href="jacobs-financial-aid.html" class="local-nav__link" data-nav-item data-always-overflow>Financial Aid</a>
-        <a href="jacobs-contact.html" class="local-nav__link" data-nav-item data-always-overflow>Contact Us</a>
-        <div style="position:relative; display:inline-flex;">
-          <button class="local-nav__more-btn" id="moreDropdownBtn">
-            More
-            <svg viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="more-dropdown__menu" id="moreDropdownMenu"></div>
-        </div>
-      </div>
-      <div class="local-nav__buttons">
-        <button class="local-nav__btn local-nav__btn--menu">
-          <svg viewBox="0 0 20 20">
-            <rect x="2.5" y="4" width="15" height="1.5" rx="0.5"/>
-            <rect x="2.5" y="9.25" width="15" height="1.5" rx="0.5"/>
-            <rect x="2.5" y="14.5" width="15" height="1.5" rx="0.5"/>
-          </svg>
-          <span class="btn-label">Menu</span>
-        </button>
-        <button class="local-nav__btn local-nav__btn--search">
-          <svg viewBox="0 0 20 20">
-            <circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="#fff" stroke-width="1.8"/>
-            <line x1="12.5" y1="12.5" x2="17" y2="17" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-          Search
-        </button>
-      </div>
-    </nav>
-  </div>
+    <!-- Logo -->
+    <a href="#" class="logo">
+      <img src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania">
+    </a>
 
-  <!-- CONTENT AREA -->
-  <div class="content-area">
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-      <svg class="breadcrumb__icon" viewBox="0 0 16 16">
-        <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.2"/>
-        <path d="M4 9.5c0-2 1.8-3.5 4-3.5s4 1.5 4 3.5" fill="none" stroke="currentColor" stroke-width="1"/>
-        <line x1="8" y1="3" x2="8" y2="7" stroke="currentColor" stroke-width="1"/>
-        <line x1="4.5" y1="5" x2="8" y2="7" stroke="currentColor" stroke-width="0.8"/>
-        <line x1="11.5" y1="5" x2="8" y2="7" stroke="currentColor" stroke-width="0.8"/>
-      </svg>
-      <a href="child-home-v1.html" class="breadcrumb__text" style="opacity: 0.6; transition: opacity 0.15s;">Jacobs MSQF</a>
-      <span class="breadcrumb__text" style="opacity: 0.4; margin: 0 2px;">›</span>
-      <span class="breadcrumb__text" style="font-weight: 500;">Why a Jacobs MSQF</span>
+    <!-- Primary Nav -->
+    <nav class="primary-nav">
+      <a href="#" class="primary-nav__link">About <span class="nav-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a href="#" class="primary-nav__link">Academics <span class="nav-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a href="#" class="primary-nav__link">Faculty &amp; Research <span class="nav-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a href="#" class="primary-nav__link">Alumni <span class="nav-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a href="#" class="primary-nav__link">News <span class="nav-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a href="#" class="primary-nav__link" id="moreMenuTrigger">More... <span class="nav-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+    </nav>
+
+    <!-- Lead Content -->
+    <div class="lead">
+      <div class="lead__border"></div>
+      <h1 class="lead__heading">Impact vs. Time: A Leader's Guide to Slow Productivity</h1>
+      <p class="lead__subtitle">In this Nano Tool for Leaders, author and professor Cal Newport offers practical guidance on how to slow down in order to enhance your productivity.</p>
+      <div class="lead__actions">
+        <a href="#" class="lead__cta">
+          Read More
+          <svg viewBox="0 0 16 16"><path d="M1 8h12M9 4l4 4-4 4" fill="none" stroke="#01256e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#" class="lead__link">Learn More</a>
+      </div>
     </div>
 
-    <!-- Below the fold placeholder -->
-    <div class="below-fold">
-      <div class="skeleton-block" style="width: 40%; height: 28px;"></div>
-      <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
-      <div class="skeleton-block" style="width: 95%; height: 12px;"></div>
-      <div class="skeleton-block" style="width: 80%; height: 12px; margin-bottom: 32px;"></div>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 40px;">
-        <div><div class="skeleton-block" style="width: 100%; height: 180px;"></div><div class="skeleton-block" style="width: 70%; height: 16px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 90%; height: 12px;"></div></div>
-        <div><div class="skeleton-block" style="width: 100%; height: 180px;"></div><div class="skeleton-block" style="width: 60%; height: 16px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 85%; height: 12px;"></div></div>
-        <div><div class="skeleton-block" style="width: 100%; height: 180px;"></div><div class="skeleton-block" style="width: 75%; height: 16px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 88%; height: 12px;"></div></div>
+    <!-- Story Carousel -->
+    <div class="story-carousel">
+      <button class="story-carousel__arrow">
+        <svg viewBox="0 0 16 16"><path d="M10 4l-4 4 4 4" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="story-carousel__content">
+        <div class="story-carousel__text">
+          <div class="story-carousel__label">Next Story</div>
+          <div class="story-carousel__title">Building Tomorrow's Business Leaders Today</div>
+        </div>
+        <div class="story-carousel__thumb"></div>
       </div>
+      <button class="story-carousel__arrow">
+        <svg viewBox="0 0 16 16"><path d="M6 4l4 4-4 4" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </section>
 
-      <div class="skeleton-block" style="width: 35%; height: 24px;"></div>
-      <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
-      <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
-      <div class="skeleton-block" style="width: 70%; height: 12px; margin-bottom: 32px;"></div>
+  <!-- Below the fold placeholder -->
+  <div class="below-fold">
+    <div class="skeleton-block" style="width: 40%; height: 28px;"></div>
+    <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+    <div class="skeleton-block" style="width: 95%; height: 12px;"></div>
+    <div class="skeleton-block" style="width: 80%; height: 12px; margin-bottom: 32px;"></div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 40px;">
-        <div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 90%; height: 12px;"></div><div class="skeleton-block" style="width: 95%; height: 12px;"></div><div class="skeleton-block" style="width: 80%; height: 12px;"></div></div>
-        <div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 85%; height: 12px;"></div><div class="skeleton-block" style="width: 92%; height: 12px;"></div><div class="skeleton-block" style="width: 75%; height: 12px;"></div></div>
-      </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 40px;">
+      <div><div class="skeleton-block" style="width: 100%; height: 180px;"></div><div class="skeleton-block" style="width: 70%; height: 16px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 90%; height: 12px;"></div></div>
+      <div><div class="skeleton-block" style="width: 100%; height: 180px;"></div><div class="skeleton-block" style="width: 60%; height: 16px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 85%; height: 12px;"></div></div>
+      <div><div class="skeleton-block" style="width: 100%; height: 180px;"></div><div class="skeleton-block" style="width: 75%; height: 16px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 88%; height: 12px;"></div></div>
+    </div>
 
-      <div class="skeleton-block" style="width: 30%; height: 24px;"></div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 16px 0 60px;">
-        <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
-        <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
-        <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
-        <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
-        <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
-        <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
-      </div>
+    <div class="skeleton-block" style="width: 35%; height: 24px;"></div>
+    <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+    <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+    <div class="skeleton-block" style="width: 70%; height: 12px; margin-bottom: 32px;"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 40px;">
+      <div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 90%; height: 12px;"></div><div class="skeleton-block" style="width: 95%; height: 12px;"></div><div class="skeleton-block" style="width: 80%; height: 12px;"></div></div>
+      <div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 85%; height: 12px;"></div><div class="skeleton-block" style="width: 92%; height: 12px;"></div><div class="skeleton-block" style="width: 75%; height: 12px;"></div></div>
+    </div>
+
+    <div class="skeleton-block" style="width: 30%; height: 24px;"></div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 16px 0 60px;">
+      <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
+      <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
+      <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
+      <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
+      <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
+      <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
     </div>
   </div>
 
@@ -1050,11 +1006,11 @@
   <div class="proto-switcher">
     <div class="proto-switcher__menu" id="protoMenu">
       <div class="proto-switcher__section-label">High-Fidelity</div>
-      <a href="wharton-home-v1.html" class="proto-switcher__link">V1 Wharton Home</a>
+      <a href="wharton-home-v1.html" class="proto-switcher__link proto-switcher__link--active">V1 Wharton Home</a>
       <a href="child-home-v1.html" class="proto-switcher__link">V1 Child Home</a>
       <a href="child-mba-v1.html" class="proto-switcher__link">V1 MBA</a>
       <div class="proto-switcher__divider"></div>
-      <a href="wharton-home-v2.html" class="proto-switcher__link">V2 Wharton Home</a>
+      <a href="wharton-home-v2.html" class="proto-switcher__link proto-switcher__link--active">V2 Wharton Home</a>
       <a href="child-home-v2.html" class="proto-switcher__link">V2 Child Home</a>
       <a href="child-mba-v2.html" class="proto-switcher__link">V2 MBA</a>
       <div class="proto-switcher__divider"></div>
@@ -1075,9 +1031,8 @@
       <div class="proto-switcher__divider"></div>
       <a href="style-guide.html" class="proto-switcher__link">Style Guide</a>
     </div>
-
     <button class="proto-switcher__toggle" onclick="document.getElementById('protoMenu').classList.toggle('is-open'); this.classList.toggle('is-open');">
-      V1 Child Home
+      V2 Wharton Home
       <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
   </div>
@@ -1087,7 +1042,7 @@
       // Utility: check if mobile
       function isMobile() { return window.innerWidth <= 791; }
 
-      // Sticky header: show after scrolling past threshold
+      // Sticky header: show after scrolling past the hero
       var stickyHeader = document.getElementById('stickyHeader');
       var isVisible = false;
       window.addEventListener('scroll', function() {
@@ -1135,7 +1090,7 @@
       mobileMenuClose.addEventListener('click', closeMobileMenu);
 
       // All menu buttons — route to desktop or mobile based on viewport
-      document.querySelectorAll('.top-btn--menu, .local-nav__btn--menu, .sticky-header__btn--menu').forEach(function(btn) {
+      document.querySelectorAll('.top-btn--menu, .sticky-header__btn--menu').forEach(function(btn) {
         btn.addEventListener('click', function() {
           if (isMobile()) {
             mobileMenu.classList.contains('is-open') ? closeMobileMenu() : openMobileMenu();
@@ -1145,14 +1100,13 @@
         });
       });
 
-      // "More..." link in sticky header opens the desktop flyout menu (desktop only)
-      var stickyMoreTrigger = document.getElementById('stickyMoreTrigger');
-      if (stickyMoreTrigger) {
-        stickyMoreTrigger.addEventListener('click', function(e) {
+      // "More..." links open the desktop flyout menu (desktop only)
+      document.querySelectorAll('#moreMenuTrigger, #stickyMoreTrigger').forEach(function(el) {
+        el.addEventListener('click', function(e) {
           e.preventDefault();
           if (!isMobile()) openDesktopMenu();
         });
-      }
+      });
 
       // Mobile drill-down navigation
       document.querySelectorAll('[data-mobile-drill]').forEach(function(btn) {
@@ -1192,7 +1146,6 @@
           closeDesktopMenu();
           closeMobileMenu();
           if (progBtn) progBtn.classList.remove('is-open');
-          if (moreBtn) moreBtn.classList.remove('is-open');
         }
       });
 
@@ -1206,20 +1159,6 @@
         document.addEventListener('click', function(e) {
           if (!progBtn.parentElement.contains(e.target)) {
             progBtn.classList.remove('is-open');
-          }
-        });
-      }
-
-      // More dropdown in local nav
-      var moreBtn = document.getElementById('moreDropdownBtn');
-      if (moreBtn) {
-        moreBtn.addEventListener('click', function(e) {
-          e.stopPropagation();
-          moreBtn.classList.toggle('is-open');
-        });
-        document.addEventListener('click', function(e) {
-          if (!moreBtn.parentElement.contains(e.target)) {
-            moreBtn.classList.remove('is-open');
           }
         });
       }
@@ -1249,109 +1188,6 @@
           }
         });
       });
-
-      // ===== DYNAMIC NAV OVERFLOW =====
-      function setupOverflow(containerSel, itemAttr, moreBtnSel, moreMenuSel, buttonsWidth) {
-        var container = document.querySelector(containerSel);
-        if (!container) return;
-        var items = container.querySelectorAll('[' + itemAttr + ']');
-        var moreBtn = container.querySelector(moreBtnSel);
-        var moreMenu = container.querySelector(moreMenuSel);
-        if (!items.length) return;
-
-        function recalc() {
-          // Reset all to visible to measure
-          items.forEach(function(el) { el.classList.remove('is-overflowed'); el.style.display = ''; });
-          if (moreBtn) moreBtn.classList.remove('is-hidden');
-
-          var containerWidth = container.parentElement.offsetWidth - (buttonsWidth || 0);
-          var moreBtnWidth = moreBtn ? moreBtn.offsetWidth + 16 : 0;
-          var usedWidth = 0;
-          var overflowed = [];
-
-          items.forEach(function(el) {
-            if (el.hasAttribute('data-always-overflow')) {
-              el.classList.add('is-overflowed');
-              overflowed.push(el);
-              return;
-            }
-            usedWidth += el.offsetWidth;
-            if (usedWidth + moreBtnWidth > containerWidth) {
-              el.classList.add('is-overflowed');
-              overflowed.push(el);
-            }
-          });
-
-          // Build More dropdown content
-          if (moreMenu) {
-            moreMenu.innerHTML = '';
-            overflowed.forEach(function(el) {
-              var a = document.createElement('a');
-              a.href = el.href || '#';
-              a.className = 'more-dropdown__link';
-              a.textContent = el.textContent;
-              moreMenu.appendChild(a);
-            });
-          }
-
-          // Hide More button if nothing overflowed
-          if (moreBtn) {
-            if (overflowed.length === 0) {
-              moreBtn.classList.add('is-hidden');
-            } else {
-              moreBtn.classList.remove('is-hidden');
-            }
-          }
-        }
-
-        recalc();
-        window.addEventListener('resize', recalc);
-      }
-
-      // Local nav bar: measure against buttons (Menu + Search ~200px)
-      setupOverflow('.local-nav__links', 'data-nav-item', '#moreDropdownBtn', '#moreDropdownMenu', 200);
-
-      // Sticky header: measure against buttons (~200px)
-      function setupStickyOverflow() {
-        var stickyNav = document.getElementById('stickyNavLinks');
-        if (!stickyNav) return;
-        var items = stickyNav.querySelectorAll('[data-sticky-item]');
-        var moreTrigger = document.getElementById('stickyMoreTrigger');
-
-        function recalcSticky() {
-          items.forEach(function(el) { el.classList.remove('is-overflowed'); });
-          if (moreTrigger) moreTrigger.classList.remove('is-hidden');
-
-          var header = stickyNav.closest('.sticky-header');
-          if (!header) return;
-          var logoArea = header.querySelector('.sticky-header__logo');
-          var childName = header.querySelector('.sticky-header__child-name');
-          var btns = header.querySelector('.sticky-header__buttons');
-          var totalWidth = header.offsetWidth;
-          var reserved = (logoArea ? logoArea.offsetWidth : 200) + (childName ? childName.offsetWidth : 0) + (btns ? btns.offsetWidth : 200) + 48;
-          var available = totalWidth - reserved;
-          var moreWidth = moreTrigger ? moreTrigger.offsetWidth + 16 : 0;
-          var usedWidth = 0;
-          var hasOverflow = false;
-
-          items.forEach(function(el) {
-            usedWidth += el.offsetWidth;
-            if (usedWidth + moreWidth > available) {
-              el.classList.add('is-overflowed');
-              hasOverflow = true;
-            }
-          });
-
-          if (moreTrigger) {
-            moreTrigger.classList.toggle('is-hidden', !hasOverflow);
-          }
-        }
-
-        recalcSticky();
-        window.addEventListener('resize', recalcSticky);
-      }
-      setupStickyOverflow();
-
     })();
   </script>
 </body>
