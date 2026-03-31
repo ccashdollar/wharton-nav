@@ -291,6 +291,7 @@
     }
     .sticky-header__logo {
       flex-shrink: 0;
+      align-self: center;
     }
     .sticky-header__logo img {
       height: 32px; width: auto; display: block;
@@ -431,9 +432,9 @@
 
     /* Chevron (down arrow for desktop) */
     .desktop-menu__nav-chevron {
-      display: inline-flex; align-items: center; font-size: 18px;
-      transition: transform 0.25s ease; color: inherit;
-      margin-left: 4px;
+      width: 24px; height: 24px; flex-shrink: 0;
+      transition: transform 0.25s ease;
+      margin-left: 8px;
     }
     .desktop-menu__nav-item--expandable.is-expanded .desktop-menu__nav-chevron {
       transform: rotate(180deg);
@@ -704,7 +705,7 @@
           <div class="desktop-menu__nav-col">
             <a href="wharton-home-v2.html" class="desktop-menu__nav-item is-current">Wharton Home</a>
             <div class="desktop-menu__nav-group">
-              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="about">About <span class="desktop-menu__nav-chevron">&#711;</span></button>
+              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="about">About <svg class="desktop-menu__nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
               <ul class="desktop-menu__sub-list" id="desktop-sub-about">
                 <li><a href="#" class="desktop-menu__sub-link">About Wharton</a></li>
                 <li><a href="#" class="desktop-menu__sub-link">Leadership</a></li>
@@ -715,7 +716,7 @@
             </div>
             <a href="#" class="desktop-menu__nav-item">Academics</a>
             <div class="desktop-menu__nav-group">
-              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="faculty">Faculty &amp; Research <span class="desktop-menu__nav-chevron">&#711;</span></button>
+              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="faculty">Faculty &amp; Research <svg class="desktop-menu__nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
               <ul class="desktop-menu__sub-list" id="desktop-sub-faculty">
                 <li><a href="#" class="desktop-menu__sub-link">Faculty Directory</a></li>
                 <li><a href="#" class="desktop-menu__sub-link">Research Centers</a></li>
@@ -730,7 +731,7 @@
           <div class="desktop-menu__nav-col">
             <a href="#" class="desktop-menu__nav-item">Alumni</a>
             <div class="desktop-menu__nav-group">
-              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="locations">Locations <span class="desktop-menu__nav-chevron">&#711;</span></button>
+              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="locations">Locations <svg class="desktop-menu__nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
               <ul class="desktop-menu__sub-list" id="desktop-sub-locations">
                 <li><a href="#" class="desktop-menu__sub-link">Philadelphia</a></li>
                 <li><a href="#" class="desktop-menu__sub-link">San Francisco</a></li>
