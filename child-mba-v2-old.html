@@ -310,9 +310,17 @@
     /* ===== DESKTOP MENU OVERLAY ===== */
     .desktop-menu {
       position: fixed; inset: 0; z-index: 1000;
-      background: #011F5B;
+      background: linear-gradient(to right, #011f5b, #0240bd 96%, #0242c1);
       display: none; flex-direction: column;
-      padding: 48px;
+      padding: 64px;
+    }
+    .desktop-menu::after {
+      content: '';
+      position: absolute;
+      inset: 48px;
+      background: #011F5B;
+      border-radius: 4px;
+      z-index: -1;
     }
     .desktop-menu.is-open { display: flex; }
 
@@ -357,14 +365,13 @@
       padding-right: 48px; overflow-y: auto;
     }
 
-    /* Primary nav items - two-column CSS columns */
+    /* Primary nav items - two independent columns */
     .desktop-menu__nav-list {
-      columns: 2; column-gap: 32px;
+      display: flex; gap: 32px;
       list-style: none; padding: 0; margin: 0;
     }
-    .desktop-menu__nav-group,
-    .desktop-menu__nav-list > a {
-      break-inside: avoid;
+    .desktop-menu__nav-col {
+      flex: 1; display: flex; flex-direction: column;
     }
     .desktop-menu__nav-item {
       display: flex; align-items: center; gap: 8px;
@@ -695,38 +702,42 @@
       <!-- Left/Center area - primary nav -->
       <div class="desktop-menu__center">
         <nav class="desktop-menu__nav-list" aria-label="MBA Program navigation">
-          <a href="#" class="desktop-menu__nav-item">Home</a>
-          <a href="#" class="desktop-menu__nav-item">Calendars</a>
-          <div class="desktop-menu__nav-group">
-            <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="academics">Academics <span class="desktop-menu__nav-chevron">&#711;</span></button>
-            <ul class="desktop-menu__sub-list" id="desktop-sub-academics">
-              <li><a href="#" class="desktop-menu__sub-link">The Advising Team</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Wharton MBA Academic Policies</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Accommodations at Wharton</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">MBA Curriculum</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Course Match</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">MBA Course Recommendation Guide</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">MBA Course Registration for Non-MBA Students</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Co-Curricular Opportunities</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Dual Degrees</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Academic Awards</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Resources &amp; Forms</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Summer 2026: Practical Training Work Authorization</a></li>
-            </ul>
+          <div class="desktop-menu__nav-col">
+            <a href="#" class="desktop-menu__nav-item">Home</a>
+            <a href="#" class="desktop-menu__nav-item">Calendars</a>
+            <div class="desktop-menu__nav-group">
+              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="academics">Academics <span class="desktop-menu__nav-chevron">&#711;</span></button>
+              <ul class="desktop-menu__sub-list" id="desktop-sub-academics">
+                <li><a href="#" class="desktop-menu__sub-link">The Advising Team</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Wharton MBA Academic Policies</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Accommodations at Wharton</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">MBA Curriculum</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Course Match</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">MBA Course Recommendation Guide</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">MBA Course Registration for Non-MBA Students</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Co-Curricular Opportunities</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Dual Degrees</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Academic Awards</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Resources &amp; Forms</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Summer 2026: Practical Training Work Authorization</a></li>
+              </ul>
+            </div>
+            <a href="#" class="desktop-menu__nav-item">Modular Terms</a>
+            <a href="#" class="desktop-menu__nav-item">Impact Communities</a>
           </div>
-          <a href="#" class="desktop-menu__nav-item">Modular Terms</a>
-          <a href="#" class="desktop-menu__nav-item">Impact Communities</a>
-          <a href="#" class="desktop-menu__nav-item">Financial Aid</a>
-          <a href="#" class="desktop-menu__nav-item">Contact Us</a>
-          <div class="desktop-menu__nav-group">
-            <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="class2028">Class of 2028 <span class="desktop-menu__nav-chevron">&#711;</span></button>
-            <ul class="desktop-menu__sub-list" id="desktop-sub-class2028">
-              <li><a href="#" class="desktop-menu__sub-link">Home</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Welcome Weekend</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Virtual Events</a></li>
-            </ul>
+          <div class="desktop-menu__nav-col">
+            <a href="#" class="desktop-menu__nav-item">Financial Aid</a>
+            <a href="#" class="desktop-menu__nav-item">Contact Us</a>
+            <div class="desktop-menu__nav-group">
+              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="class2028">Class of 2028 <span class="desktop-menu__nav-chevron">&#711;</span></button>
+              <ul class="desktop-menu__sub-list" id="desktop-sub-class2028">
+                <li><a href="#" class="desktop-menu__sub-link">Home</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Welcome Weekend</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Virtual Events</a></li>
+              </ul>
+            </div>
+            <a href="#" class="desktop-menu__nav-item">Class of 2026 Graduation</a>
           </div>
-          <a href="#" class="desktop-menu__nav-item">Class of 2026 Graduation</a>
         </nav>
 
         <!-- All Wharton bottom row (tablet only) -->

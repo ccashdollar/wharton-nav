@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Why a Jacobs MSQF — Jacobs MSQF</title>
+  <title>MBA Academics — Interior V2</title>
   <link rel="stylesheet" href="https://use.typekit.net/ael0dii.css">
   <style>
     :root {
@@ -24,153 +24,44 @@
     }
     a { text-decoration: none; color: inherit; }
 
-    /* ===== HEADER SECTION (no hero) ===== */
+    /* ===== HEADER BAR ===== */
     .site-header {
       width: 100%;
       background: linear-gradient(to right, #011f5b, #0240bd 96%, #0242c1);
     }
-
-    /* ===== UNIVERSAL BAR ===== */
-    .universal-bar {
-      display: flex; align-items: center; justify-content: flex-end;
-      height: 50px; padding: 0 48px;
-      background: rgba(0,0,0,0.1);
-      border-bottom: 1px solid rgba(224,224,224,0.25);
+    .header-bar {
+      display: flex; align-items: center; width: 100%;
     }
-    .universal-nav {
-      display: flex; align-items: center; height: 50px;
-      padding: 0 16px; gap: 0; overflow: visible;
+    .header-bar__left {
+      display: flex; align-items: center; gap: 16px;
+      flex: 1; min-width: 0;
+      padding: 20px 48px;
     }
-    .universal-nav__link {
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 16px;
-      text-transform: uppercase; letter-spacing: 0.2px;
-      color: var(--marine-gray); white-space: nowrap;
-      padding: 8px 10px; transition: opacity 0.15s;
+    .header-bar__logo img {
+      height: 32px; width: auto; display: block;
     }
-    .universal-nav__link:hover { opacity: 0.7; }
-    .universal-nav__dropdown {
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 16px;
-      text-transform: uppercase; letter-spacing: 0.2px;
-      color: var(--marine-gray); white-space: nowrap;
-      padding: 8px 10px; border: none;
-      background: none; cursor: pointer; display: flex;
-      align-items: center; gap: 6px;
-    }
-    .universal-nav__dropdown svg { width: 10px; height: 10px; fill: var(--marine-gray); transition: transform 0.2s; }
-    .universal-nav__dropdown.is-open svg { transform: rotate(180deg); }
-    .programs-dropdown__menu {
-      position: absolute; top: 100%; right: 0; z-index: 100;
-      background: var(--penn-blue); border: 1px solid rgba(255,255,255,0.15);
-      min-width: 200px; padding: 8px 0;
-      opacity: 0; visibility: hidden; transform: translateY(4px);
-      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
-    }
-    .universal-nav__dropdown.is-open + .programs-dropdown__menu {
-      opacity: 1; visibility: visible; transform: translateY(0);
-    }
-    .programs-dropdown__link {
-      display: block; padding: 8px 16px; text-align: right;
+    .header-bar__title {
       font-family: var(--font-ss-condensed); font-weight: 600;
-      font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;
-      color: rgba(255,255,255,0.7); white-space: nowrap;
-      transition: color 0.15s, background 0.15s;
+      font-size: 24px; line-height: 24px;
+      color: var(--marine-gray); padding-top: 6px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
-    .programs-dropdown__link:hover { color: #fff; background: rgba(255,255,255,0.1); }
-    .universal-bar .top-buttons { display: flex; flex-shrink: 0; }
+    .header-bar__right {
+      display: flex; flex-direction: row; flex-shrink: 0; align-self: stretch;
+    }
     .top-btn {
-      display: flex; align-items: center; gap: 8px; height: 50px;
-      padding: 0 16px; border: none; cursor: pointer;
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 13px;
-      text-transform: uppercase; letter-spacing: 0.5px;
-      color: #fff; white-space: nowrap;
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 16px; cursor: pointer;
+      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 16px;
+      text-transform: uppercase; letter-spacing: 0.2px;
+      color: var(--marine-gray); white-space: nowrap;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.25);
+      transition: background 0.15s, border-color 0.15s;
+      gap: 8px;
     }
-    .top-btn--menu { background: var(--penn-blue); }
-    .top-btn--search { background: var(--penn-red); }
-    .top-btn svg { width: 18px; height: 18px; fill: #fff; }
-
-    /* ===== IDENTITY BAR ===== */
-    .identity-bar {
-      display: flex; align-items: center; gap: 0;
-      padding: 32px 48px 0 48px;
-    }
-    .identity-bar__brand {
-      display: flex; align-items: center; gap: 32px; flex: 1; min-width: 0;
-    }
-    .identity-bar__logo {
-      flex-shrink: 0;
-    }
-    .identity-bar__logo img {
-      width: 250px; height: auto; display: block;
-    }
-    .identity-bar__name {
-      font-family: var(--font-ss-condensed); font-weight: 600;
-      font-size: 38px; line-height: 42px;
-      color: var(--marine-gray);
-    }
-
-    /* ===== LOCAL NAV BAR ===== */
-    .local-nav {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 50px; margin-top: 16px;
-    }
-    .local-nav__links {
-      display: flex; align-items: center; padding-left: 48px;
-    }
-    .local-nav__link {
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 18px;
-      letter-spacing: 0.2px; color: var(--marine-gray);
-      padding: 0 16px; white-space: nowrap;
-      transition: opacity 0.15s; line-height: 50px;
-    }
-    .local-nav__link:hover { opacity: 0.7; }
-    .local-nav__more-btn {
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 18px;
-      letter-spacing: 0.2px; color: var(--marine-gray);
-      padding: 0 16px; white-space: nowrap; line-height: 50px;
-      background: none; border: none; cursor: pointer;
-      display: flex; align-items: center; gap: 6px;
-      transition: opacity 0.15s; position: relative;
-    }
-    .local-nav__more-btn:hover { opacity: 0.7; }
-    .local-nav__more-btn svg {
-      width: 10px; height: 10px; fill: var(--marine-gray);
-      transition: transform 0.2s;
-    }
-    .local-nav__more-btn.is-open svg { transform: rotate(180deg); }
-
-    /* More dropdown */
-    .more-dropdown__menu {
-      position: absolute; top: 100%; left: 0; z-index: 100;
-      background: var(--penn-blue); border: 1px solid rgba(255,255,255,0.15);
-      min-width: 220px; padding: 8px 0;
-      opacity: 0; visibility: hidden; transform: translateY(4px);
-      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
-    }
-    .local-nav__more-btn.is-open + .more-dropdown__menu {
-      opacity: 1; visibility: visible; transform: translateY(0);
-    }
-    .more-dropdown__link {
-      display: block; padding: 8px 16px;
-      font-family: var(--font-ss-condensed); font-weight: 600;
-      font-size: 14px; letter-spacing: 0.3px;
-      color: rgba(255,255,255,0.7); white-space: nowrap;
-      transition: color 0.15s, background 0.15s;
-    }
-    .more-dropdown__link:hover { color: #fff; background: rgba(255,255,255,0.1); }
-
-    .local-nav__buttons {
-      display: flex; flex-shrink: 0;
-    }
-    .local-nav__btn {
-      display: flex; align-items: center; gap: 8px; height: 50px;
-      padding: 0 16px; border: none; cursor: pointer;
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 13px;
-      text-transform: uppercase; letter-spacing: 0.5px;
-      color: #fff; white-space: nowrap;
-    }
-    .local-nav__btn--menu { background: var(--penn-blue); }
-    .local-nav__btn--search { background: var(--penn-red); }
-    .local-nav__btn svg { width: 18px; height: 18px; fill: #fff; }
+    .top-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.4); }
+    .top-btn svg { width: 16px; height: 16px; fill: var(--marine-gray); }
 
     /* ===== CONTENT AREA ===== */
     .content-area {
@@ -187,6 +78,63 @@
     .breadcrumb__text {
       font-family: var(--font-ss); font-weight: 400; font-size: 14px;
       color: var(--text-deep-blue);
+    }
+    .breadcrumb__home {
+      display: inline-flex; align-items: center;
+      color: var(--text-deep-blue); opacity: 0.5;
+      transition: opacity 0.15s;
+    }
+    .breadcrumb__home:hover { opacity: 0.8; }
+    .breadcrumb__link {
+      font-family: var(--font-ss); font-weight: 400; font-size: 14px;
+      color: var(--text-deep-blue); text-decoration: none;
+      transition: color 0.15s;
+    }
+    .breadcrumb__link:hover { color: var(--penn-blue); text-decoration: underline; }
+    .breadcrumb__sep {
+      font-family: var(--font-ss); font-size: 14px;
+      color: var(--text-deep-blue); opacity: 0.4;
+    }
+    .breadcrumb__current {
+      position: relative; display: inline-flex; align-items: center; gap: 4px;
+    }
+    .breadcrumb__current-btn {
+      font-family: var(--font-ss); font-weight: 600; font-size: 14px;
+      color: var(--text-deep-blue);
+      background: none; border: none; cursor: pointer;
+      padding: 4px 0; display: inline-flex; align-items: center; gap: 4px;
+      transition: color 0.15s;
+    }
+    .breadcrumb__current-btn:hover { color: var(--penn-blue); }
+    .breadcrumb__current-chevron {
+      width: 12px; height: 12px; fill: none;
+      stroke: currentColor; stroke-width: 2;
+      transition: transform 0.2s;
+    }
+    .breadcrumb__current-btn.is-open .breadcrumb__current-chevron {
+      transform: rotate(180deg);
+    }
+    .breadcrumb__dropdown {
+      position: absolute; top: calc(100% + 6px); left: 0; z-index: 50;
+      background: #fff; border: 1px solid #e0e0e0;
+      border-radius: 8px; padding: 6px 0;
+      min-width: 220px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      opacity: 0; visibility: hidden; transform: translateY(-4px);
+      transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+    }
+    .breadcrumb__current-btn.is-open + .breadcrumb__dropdown {
+      opacity: 1; visibility: visible; transform: translateY(0);
+    }
+    .breadcrumb__dropdown-link {
+      display: block; padding: 8px 16px;
+      font-family: var(--font-ss); font-weight: 400; font-size: 14px;
+      color: #555; text-decoration: none; white-space: nowrap;
+      transition: background 0.1s, color 0.1s;
+    }
+    .breadcrumb__dropdown-link:hover { background: #f5f5f5; color: var(--text-deep-blue); }
+    .breadcrumb__dropdown-link.is-active {
+      font-weight: 600; color: var(--penn-blue);
     }
 
     /* ===== BELOW THE FOLD (placeholder) ===== */
@@ -238,24 +186,23 @@
       font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px;
       color: #999; padding: 6px 16px 2px; font-weight: 600;
     }
-    .proto-switcher__section-label {
-      font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px;
-      color: #999; padding: 6px 16px 2px; font-weight: 600;
-    }
     .proto-switcher__divider { height: 1px; background: #e8e8e8; margin: 4px 0; }
 
     /* ===== STICKY COMPACT HEADER ===== */
     .sticky-header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--penn-blue); display: flex;
-      align-items: center; justify-content: space-between;
-      padding: 0 0 0 24px; height: 56px;
+      background: linear-gradient(to right, #011f5b, #0240bd 96%, #0242c1);
+      display: flex;
+      align-items: stretch; justify-content: space-between;
+      height: 56px;
+      padding: 0 0 0 24px;
       transform: translateY(-100%); transition: transform 0.3s ease;
       border-bottom: 1px solid rgba(255,255,255,0.15);
     }
     .sticky-header.is-visible { transform: translateY(0); }
     .sticky-header__brand {
       display: flex; align-items: center; gap: 16px; flex-shrink: 0;
+      align-self: center;
     }
     .sticky-header__logo img {
       height: 28px; width: auto; display: block;
@@ -267,215 +214,234 @@
       max-width: 400px; flex-shrink: 1; min-width: 0;
     }
     .sticky-header__nav {
-      display: flex; align-items: center; gap: 4px;
-      margin: 0 24px; flex: 1; justify-content: flex-end;
+      display: none;
     }
     .sticky-header__nav-link {
-      font-family: var(--font-ss); font-size: 14px;
-      font-weight: 600; color: #fff; padding: 8px 12px;
+      font-family: var(--font-ss-condensed); font-size: 16px;
+      font-weight: 600; letter-spacing: 0.2px;
+      color: #fff; padding: 8px 12px;
       white-space: nowrap; transition: opacity 0.15s;
       border-radius: 4px;
     }
     .sticky-header__nav-link:hover { opacity: 0.75; background: rgba(255,255,255,0.08); }
     .sticky-header__nav-link--more {
       position: relative; background: none; border: none; cursor: pointer;
-      font-family: var(--font-ss); font-size: 14px;
-      font-weight: 600; color: #fff; padding: 8px 12px;
+      font-family: var(--font-ss-condensed); font-size: 16px;
+      font-weight: 600; letter-spacing: 0.2px;
+      color: #fff; padding: 8px 12px;
       white-space: nowrap; display: flex; align-items: center; gap: 4px;
     }
     .sticky-header__nav-link--more:hover { opacity: 0.75; }
     .sticky-header__buttons {
-      display: flex; flex-shrink: 0;
+      display: flex; flex-shrink: 0; align-items: stretch;
     }
     .sticky-header__btn {
-      display: flex; align-items: center; gap: 8px; height: 56px;
-      padding: 0 16px; border: none; cursor: pointer;
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 13px;
-      text-transform: uppercase; letter-spacing: 0.5px;
-      color: #fff; white-space: nowrap; border-radius: 0;
+      display: flex; align-items: center; justify-content: center;
+      width: 48px;
+      padding: 0; cursor: pointer;
+      color: var(--marine-gray); white-space: nowrap;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.25);
+      transition: background 0.15s, border-color 0.15s;
     }
-    .sticky-header__btn--menu { background: var(--penn-blue); }
-    .sticky-header__btn--menu:hover { background: #022a6e; }
-    .sticky-header__btn--search { background: var(--penn-red); }
-    .sticky-header__btn--search:hover { background: #7a0000; }
-    .sticky-header__btn svg { width: 18px; height: 18px; fill: #fff; }
+    .sticky-header__btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.4); }
+    .sticky-header__btn .btn-label { display: none; }
+    .sticky-header__btn svg { width: 16px; height: 16px; fill: var(--marine-gray); }
 
     /* Dynamic overflow for sticky nav */
     .sticky-header__nav-link.is-overflowed { display: none; }
     #stickyMoreTrigger.is-hidden { display: none; }
     @media (max-width: 791px) {
       .sticky-header__nav { display: none; }
-      .sticky-header__child-name { display: none; }
-      .sticky-header { padding: 0 0 0 16px; }
-      .sticky-header__buttons { margin-right: 0; }
-      .sticky-header__logo img { height: 24px; }
+      .sticky-header { padding: 0 0 0 16px; height: auto; }
+      .sticky-header__brand { gap: 8px; }
+      .sticky-header__child-name {
+        display: block; font-size: 12px; line-height: 14px;
+        color: var(--marine-gray); max-width: none;
+      }
+      .sticky-header__logo img { height: 16px; }
+      .sticky-header__buttons { margin-right: 0; flex-direction: row; }
+      .sticky-header__btn { width: 48px; padding: 0; justify-content: center; }
+      .sticky-header__btn .btn-label { display: none; }
     }
 
     /* ===== DESKTOP MENU OVERLAY ===== */
     .desktop-menu {
       position: fixed; inset: 0; z-index: 1000;
-      background: linear-gradient(135deg, #011f5b 0%, #0240bd 60%, #0242c1 100%);
-      display: none; padding: 48px;
+      background: linear-gradient(to right, rgba(1,31,91,0.7), rgba(2,64,189,0.7) 96%, rgba(2,66,193,0.7));
+      display: flex; flex-direction: column;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      padding: 64px;
     }
-    .desktop-menu.is-open { display: flex; }
-    .desktop-menu__inner {
-      background: rgba(1, 31, 91, 0.85);
-      flex: 1; display: flex; flex-direction: column;
-      position: relative; overflow: hidden;
-      padding: 48px;
+    .desktop-menu::after {
+      content: '';
+      position: absolute;
+      inset: 48px;
+      background: rgba(1,31,91,0.85);
+      border-radius: 4px;
+      z-index: -1;
+    }
+    .desktop-menu.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
+
+    /* Header row */
+    .desktop-menu__header {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-shrink: 0; padding-bottom: 24px;
+      border-bottom: 1px solid rgba(224,224,224,0.25);
+      margin-bottom: 32px;
+    }
+    .desktop-menu__brand {
+      display: flex; align-items: center; gap: 20px;
+    }
+    .desktop-menu__logo {
+      height: 40px; width: auto; display: block;
+    }
+    .desktop-menu__title {
+      font-family: var(--font-ss-condensed); font-weight: 600;
+      font-size: 24px; color: #eeedea;
     }
 
-    /* Close button */
+    /* Close button - outlined border box */
     .desktop-menu__close {
-      position: absolute; top: 48px; right: 48px;
-      display: flex; align-items: center; gap: 8px;
-      background: transparent; border: none; cursor: pointer;
-      color: rgba(255,255,255,0.7); transition: color 0.15s;
-      padding: 0; z-index: 10;
+      border: 1px solid rgba(255,255,255,0.8); background: transparent;
+      padding: 8px 16px; display: flex; align-items: center; gap: 8px;
+      color: #eeedea; font-family: var(--font-ss-condensed); font-weight: 600;
+      font-size: 16px; letter-spacing: 0.2px; text-transform: uppercase;
+      cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .desktop-menu__close:hover { color: #fff; }
-    .desktop-menu__close-icon {
-      font-size: 16px; line-height: 1; color: inherit;
-    }
-    .desktop-menu__close-label {
-      font-family: var(--font-ss-condensed); font-size: 16px;
-      text-transform: uppercase; letter-spacing: 1px; color: inherit;
+    .desktop-menu__close:hover {
+      border-color: #06aafc; box-shadow: 0 0 8px rgba(6, 170, 252, 0.3);
     }
 
-    /* Body: 3-column layout */
+    /* Body: primary nav + right sidebar */
     .desktop-menu__body {
-      display: flex; flex: 1; height: 100%; overflow: hidden;
+      display: flex; flex: 1; overflow: hidden; gap: 0;
     }
 
-    /* Left sidebar */
-    .desktop-menu__sidebar {
-      width: 274px; flex-shrink: 0;
-      border-right: 1px solid rgba(255,255,255,0.1);
-      display: flex; flex-direction: column; padding: 0 32px 0 0;
-    }
-    .desktop-menu__sidebar-label {
-      font-family: var(--font-ss-condensed); font-size: 16px;
-      text-transform: uppercase; letter-spacing: 2px;
-      color: rgba(255,255,255,0.4); margin-bottom: 24px;
-    }
-    .desktop-menu__sidebar-links {
-      display: flex; flex-direction: column; gap: 0;
-    }
-    .desktop-menu__sidebar-link {
-      font-family: var(--font-ss-condensed); font-size: 16px; font-weight: 600;
-      color: rgba(255,255,255,0.6); padding: 8px;
-      transition: color 0.15s; display: block;
-    }
-    .desktop-menu__sidebar-link:hover { color: #fff; }
-
-    /* Center panel */
+    /* Left/Center area (~75%) - primary nav */
     .desktop-menu__center {
-      flex: 1; display: flex; flex-direction: column;
-      padding: 0 48px; overflow-y: auto; position: relative;
-    }
-    .desktop-menu__center-logo {
-      width: 125px; height: auto; display: block; margin-bottom: 12px;
-    }
-    .desktop-menu__center-title {
-      font-family: var(--font-ss-condensed); font-size: 20px; font-weight: 600;
-      color: rgba(255,255,255,0.7); margin-bottom: 32px; max-width: 258px;
+      flex: 3; display: flex; flex-direction: column;
+      padding-right: 48px; overflow-y: auto;
     }
 
-    /* Primary nav items */
+    /* Primary nav items - two independent columns */
     .desktop-menu__nav-list {
-      columns: 2; column-gap: 32px;
+      display: flex; gap: 32px;
       list-style: none; padding: 0; margin: 0;
     }
-    .desktop-menu__nav-group,
-    .desktop-menu__nav-list > a {
-      break-inside: avoid;
+    .desktop-menu__nav-col {
+      flex: 1; display: flex; flex-direction: column;
     }
     .desktop-menu__nav-item {
       display: flex; align-items: center; gap: 8px;
-      padding: 8px 16px; height: 64px;
+      padding: 8px 0; height: 56px;
       font-family: var(--font-ss-condensed); font-size: 38px; font-weight: 600;
-      line-height: 42px; color: rgba(255,255,255,0.85);
+      line-height: 42px; color: #eeedea;
       text-decoration: none; transition: color 0.15s;
-      border-left: 3px solid transparent;
     }
     .desktop-menu__nav-item:hover { color: #fff; }
-    .desktop-menu__nav-item.is-active {
-      color: #fff; border-left-color: rgba(255,255,255,0.4);
-    }
+    .desktop-menu__nav-item.is-active { color: #fff; }
 
     /* Expandable nav button */
     .desktop-menu__nav-item--expandable {
-      background: none; border: none; border-left: 3px solid transparent;
+      background: none; border: none;
       cursor: pointer; font-family: var(--font-ss-condensed);
       width: 100%; text-align: left;
     }
-    .desktop-menu__nav-item--expandable.is-active {
-      color: #fff; border-left-color: rgba(255,255,255,0.4);
-    }
+    .desktop-menu__nav-item--expandable.is-active { color: #fff; }
 
-    /* Chevron */
+    /* Chevron (down arrow for desktop) */
     .desktop-menu__nav-chevron {
-      display: inline-flex; align-items: center; font-size: 20px;
-      transition: transform 0.25s ease; color: inherit;
+      width: 24px; height: 24px; flex-shrink: 0;
+      transition: transform 0.25s ease;
+      margin-left: 8px;
     }
     .desktop-menu__nav-item--expandable.is-expanded .desktop-menu__nav-chevron {
-      transform: rotate(90deg);
+      transform: rotate(180deg);
     }
 
     /* Sub-items accordion */
     .desktop-menu__sub-list {
-      list-style: none; padding: 0 0 0 32px; margin: 0;
+      list-style: none; padding: 0 0 0 16px; margin: 0;
       max-height: 0; overflow: hidden;
       transition: max-height 0.35s ease;
     }
     .desktop-menu__sub-list.is-open { max-height: 600px; }
     .desktop-menu__sub-link {
-      display: flex; align-items: center; height: 46px;
-      padding: 8px 6px;
-      font-family: var(--font-ss-condensed); font-size: 24px; font-weight: 400;
-      line-height: 24px; color: rgba(255,255,255,0.6);
+      display: flex; align-items: center; height: 40px;
+      padding: 6px 0;
+      font-family: var(--font-ss-condensed); font-size: 22px; font-weight: 400;
+      line-height: 24px; color: rgba(238,237,234,0.6);
       transition: color 0.15s; text-decoration: none;
     }
     .desktop-menu__sub-link:hover { color: #fff; }
-
-    /* Bottom bar */
-    .desktop-menu__bottom-bar {
-      height: 96px; flex-shrink: 0;
-      background: rgba(255,255,255,0.05);
-      margin-left: 274px; margin-top: auto;
+    .desktop-menu__sub-link--overview {
+      color: #fff; font-weight: 600; font-size: 22px;
+      height: 44px; transition: color 0.15s;
     }
+    .desktop-menu__sub-link--overview:hover { color: #06aafc; }
+    .desktop-menu__sub-link.is-current { color: #06aafc; }
+    .desktop-menu__nav-item.is-current { color: #06aafc; }
 
-
-    /* Desktop menu responsive */
-    @media (max-width: 1100px) {
-      .desktop-menu__nav-item,
-      .desktop-menu__nav-item--expandable {
-        font-size: 28px; line-height: 34px; height: 52px;
-      }
-      .desktop-menu__center { padding: 0 32px; }
+    /* Right sidebar (~25%) - All Wharton */
+    .desktop-menu__sidebar {
+      flex: 1; flex-shrink: 0;
+      border-left: 1px solid rgba(224,224,224,0.25);
+      display: flex; flex-direction: column; padding-left: 32px;
+      overflow-y: auto;
     }
-    @media (max-width: 900px) {
-      .desktop-menu__nav-list { columns: 1; }
-      .desktop-menu__nav-item,
-      .desktop-menu__nav-item--expandable {
-        font-size: 24px; line-height: 28px; height: 44px;
-      }
-      .desktop-menu__sidebar { width: 200px; }
-      .desktop-menu__center { padding: 0 24px; }
+    .desktop-menu__sidebar-globe {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 16px;
+    }
+    .desktop-menu__sidebar-globe svg {
+      width: 14px; height: 14px; fill: none; stroke: #eeedea; stroke-width: 1.5;
+    }
+    .desktop-menu__sidebar-globe a {
+      font-family: var(--font-ss); font-size: 12px; font-weight: 400;
+      color: rgba(238,237,234,0.7); text-decoration: none; transition: color 0.15s;
+    }
+    .desktop-menu__sidebar-globe a:hover { color: #06aafc; text-decoration: underline; }
+    .desktop-menu__sidebar-links {
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .desktop-menu__sidebar-link {
+      font-family: var(--font-ss); font-size: 12px; font-weight: 400;
+      color: rgba(238,237,234,0.7); padding: 5px 0;
+      transition: color 0.15s; display: block; text-decoration: none;
+    }
+    .desktop-menu__sidebar-link:hover { color: #06aafc; text-decoration: underline; }
+
+    /* All Wharton bottom row (tablet) */
+    .desktop-menu__allwharton-bottom {
+      display: none; flex-wrap: wrap; gap: 0 24px;
+      padding-top: 24px; margin-top: auto;
+    }
+    .desktop-menu__allwharton-bottom a {
+      font-family: var(--font-ss); font-size: 12px; font-weight: 400;
+      color: #eeedea; padding: 5px 0;
+      transition: color 0.15s; text-decoration: none;
+    }
+    .desktop-menu__allwharton-bottom a:hover { color: #fff; }
+
+    /* Desktop menu responsive - narrow */
+    @media (max-width: 1024px) {
+      .desktop-menu__nav-list { flex-direction: column; gap: 0; }
+      .desktop-menu__nav-item { font-size: 30px; line-height: 34px; height: 48px; }
+    }
+    @media (max-width: 860px) {
+      .desktop-menu__sidebar { display: none; }
+      .desktop-menu__center { padding-right: 0; }
+      .desktop-menu__allwharton-bottom { display: flex; }
     }
     @media (max-width: 791px) {
-      .desktop-menu { display: none !important; }
+      .desktop-menu { display: none !important; opacity: 0 !important; visibility: hidden !important; }
     }
     body.menu-open { overflow: hidden; }
 
 
-    .local-nav__link.is-active {
-      position: relative;
-    }
-    .local-nav__link.is-active::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 3px; background: #06aafc;
-    }
     .sticky-header__nav-link.is-active {
       position: relative;
     }
@@ -484,47 +450,27 @@
       height: 3px; background: #06aafc;
     }
     /* ===== RESPONSIVE ===== */
-    .local-nav__link[data-nav-item].is-overflowed { display: none; }
-    .local-nav__more-btn.is-hidden { display: none; }
     @media (max-width: 791px) {
-      .universal-bar { display: none; }
-      .identity-bar {
-        padding: 0; gap: 0;
-        justify-content: space-between; align-items: stretch;
+      .header-bar { flex-wrap: wrap; }
+      .header-bar__left { padding: 16px 20px; gap: 8px; flex-basis: 100%; }
+      .header-bar__logo img { height: 20px; }
+      .header-bar__title { font-size: 14px; line-height: 18px; padding-top: 0; }
+      .header-bar__right { flex-direction: row; width: 100%; }
+      .top-btn {
+        flex: 1; height: auto;
+        padding: 16px; justify-content: center;
+        width: auto; font-size: 14px;
       }
-      .identity-bar__brand {
-        flex-direction: row; align-items: center; gap: 16px;
-        padding: 16px;
-      }
-      .identity-bar__logo {
-        padding: 20px 16px;
-      }
-      .identity-bar__logo img { width: 120px; }
-      .identity-bar__name {
-        display: block; font-size: 16px; line-height: 20px;
-        white-space: normal; flex: 1; min-width: 0;
-        padding: 16px 12px 16px 0;
-        align-self: center;
-      }
-      .identity-bar__mobile-buttons {
-        display: flex; flex-shrink: 0; align-self: stretch;
-      }
-      .identity-bar__mobile-buttons .top-btn {
-        height: 100%; align-self: stretch;
-        padding-top: 0; padding-bottom: 0;
-      }
-      .local-nav { display: none; margin: 0; }
+      .top-btn--menu { width: auto; }
+      .top-btn .btn-label { display: inline; font-size: 14px; }
       .breadcrumb { padding: 16px 16px 0 16px; }
       .below-fold { padding: 40px 16px; }
-    }
-    @media (min-width: 792px) {
-      .identity-bar__mobile-buttons { display: none; }
     }
 
     /* ===== MOBILE MENU OVERLAY ===== */
     .mobile-menu-overlay {
       position: fixed; inset: 0; z-index: 1001;
-      background: #011f5b;
+      background: #011F5B;
       display: none; flex-direction: column;
     }
     .mobile-menu-overlay.is-open { display: flex; }
@@ -532,44 +478,32 @@
       .mobile-menu-overlay { display: none !important; }
     }
 
-    /* Close button */
-    .mobile-menu__close {
-      position: absolute; top: 32px; right: 20px;
-      background: transparent; border: none; cursor: pointer;
-      display: flex; align-items: center; gap: 8px;
-      padding: 0; color: rgba(255,255,255,0.7); z-index: 10;
-      transition: color 0.15s;
-    }
-    .mobile-menu__close:hover { color: #fff; }
-    .mobile-menu__close-icon {
-      font-size: 14px; line-height: 1;
-    }
-    .mobile-menu__close-label {
-      font-family: var(--font-ss-condensed); font-size: 11px;
-      text-transform: uppercase; letter-spacing: 1px;
-    }
-
-    /* Breadcrumb */
-    .mobile-menu__breadcrumb {
-      padding: 8px 28px 0;
-    }
-    .mobile-menu__breadcrumb-link {
-      display: flex; align-items: center; gap: 6px;
-      font-family: var(--font-ss); font-size: 13px; font-weight: 400;
-      color: rgba(255,255,255,0.5); transition: color 0.15s;
-    }
-    .mobile-menu__breadcrumb-link:hover { color: rgba(255,255,255,0.8); }
-
-    /* Header */
+    /* Mobile header */
     .mobile-menu__header {
-      padding: 32px 20px 0 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px; flex-shrink: 0;
     }
     .mobile-menu__logo {
-      width: 125px; height: auto; display: block;
+      width: 100px; height: auto; display: block;
     }
+
+    /* Mobile close button - outlined border box */
+    .mobile-menu__close {
+      border: 1px solid rgba(255,255,255,0.8); background: transparent;
+      padding: 8px 16px; display: flex; align-items: center; gap: 8px;
+      color: #eeedea; font-family: var(--font-ss-condensed); font-weight: 600;
+      font-size: 14px; letter-spacing: 0.2px; text-transform: uppercase;
+      cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s;
+      z-index: 10;
+    }
+    .mobile-menu__close:hover {
+      border-color: #06aafc; box-shadow: 0 0 8px rgba(6, 170, 252, 0.3);
+    }
+
+    /* Child site title */
     .mobile-menu__site-title {
-      font-family: var(--font-ss-condensed); font-size: 16px; font-weight: 600;
-      color: rgba(255,255,255,0.7); margin-top: 16px; max-width: 258px;
+      font-family: var(--font-ss-condensed); font-size: 30px; font-weight: 600;
+      color: #eeedea; padding: 0 20px 16px;
     }
 
     /* Content area (scrollable) */
@@ -580,7 +514,7 @@
 
     /* Primary nav */
     .mobile-menu__primary {
-      padding: 16px 20px;
+      padding: 8px 20px;
       transition: transform 0.3s ease;
     }
     .mobile-menu__primary.is-hidden {
@@ -589,22 +523,22 @@
     }
     .mobile-menu__primary-item {
       display: flex; align-items: center; justify-content: space-between;
-      height: 43px; padding: 4px 8px;
-      font-family: var(--font-ss-condensed); font-size: 28px; font-weight: 600;
-      line-height: 32px; color: rgba(255,255,255,0.85);
+      height: 44px; padding: 4px 8px;
+      font-family: var(--font-ss-condensed); font-size: 24px; font-weight: 600;
+      line-height: 28px; color: #eeedea;
       background: none; border: none; cursor: pointer;
       text-decoration: none; width: 100%; text-align: left;
       transition: color 0.15s;
     }
     .mobile-menu__primary-item:hover { color: #fff; }
     .mobile-menu__primary-chevron {
-      font-size: 16px; color: inherit; flex-shrink: 0;
+      font-size: 18px; color: inherit; flex-shrink: 0;
     }
 
     /* Drill-down (Level 2) */
     .mobile-menu__drilldown {
       position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      padding: 16px 20px;
+      padding: 8px 20px;
       transform: translateX(100%);
       transition: transform 0.3s ease;
     }
@@ -614,21 +548,21 @@
     .mobile-menu__back {
       display: flex; align-items: center; gap: 8px;
       padding: 8px; background: none; border: none; cursor: pointer;
-      margin-bottom: 8px;
+      margin-bottom: 8px; color: #06aafc;
     }
     .mobile-menu__back-arrow {
-      font-size: 16px; color: rgba(255,255,255,0.5);
+      font-size: 18px; color: #06aafc;
     }
     .mobile-menu__back-label {
       font-family: var(--font-ss-condensed); font-size: 16px;
-      text-transform: uppercase; letter-spacing: 1px;
-      color: rgba(255,255,255,0.5);
+      font-weight: 600; letter-spacing: 0.5px;
+      color: #06aafc;
     }
     .mobile-menu__drilldown-item {
       display: flex; align-items: center;
-      height: 43px; padding: 4px 8px;
-      font-family: var(--font-ss-condensed); font-size: 28px; font-weight: 600;
-      line-height: 32px; color: rgba(255,255,255,0.85);
+      height: 44px; padding: 4px 8px;
+      font-family: var(--font-ss-condensed); font-size: 24px; font-weight: 600;
+      line-height: 28px; color: #eeedea;
       text-decoration: none; transition: color 0.15s;
     }
     .mobile-menu__drilldown-item:hover { color: #fff; }
@@ -645,7 +579,7 @@
     .mobile-menu__footer-label {
       font-family: var(--font-ss-condensed); font-size: 16px;
       text-transform: uppercase; letter-spacing: 2px;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.7); font-weight: 600;
     }
     .mobile-menu__footer-chevron {
       font-size: 16px; color: rgba(255,255,255,0.4);
@@ -660,7 +594,7 @@
       padding: 0 20px;
     }
     .mobile-menu__footer-grid.is-expanded {
-      max-height: 232px; padding-bottom: 20px;
+      max-height: 300px; padding-bottom: 20px;
     }
     .mobile-menu__footer-grid-inner {
       display: grid; grid-template-columns: 1fr 1fr; gap: 0;
@@ -672,22 +606,6 @@
     }
     .mobile-menu__footer-link:hover { color: #fff; }
   
-    @media (max-width: 950px) {
-      .identity-bar__name { font-size: 30px; line-height: 34px; }
-    }
-    @media (max-width: 800px) {
-      .identity-bar__name { font-size: 24px; line-height: 28px; }
-    }
-
-    @media (max-width: 650px) {
-      .identity-bar__brand {
-        flex-direction: column; align-items: flex-start; gap: 8px;
-      }
-      .identity-bar__name {
-        font-size: 20px; line-height: 24px;
-        padding: 0 0 8px 16px;
-      }
-    }
     @media (max-width: 400px) {
       .btn-label { display: none; }
     }
@@ -697,19 +615,116 @@
 
   <!-- DESKTOP MENU OVERLAY -->
   <div class="desktop-menu" id="desktopMenu">
-    <div class="desktop-menu__inner">
-    <!-- Close button -->
-    <button class="desktop-menu__close" id="desktopMenuClose" aria-label="Close menu">
-      <span class="desktop-menu__close-icon">&#10005;</span>
-      <span class="desktop-menu__close-label">Close</span>
-    </button>
+    <!-- Header row -->
+    <div class="desktop-menu__header">
+      <div class="desktop-menu__brand">
+        <img class="desktop-menu__logo" src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania">
+        <span class="desktop-menu__title">MBA Program</span>
+      </div>
+      <button class="desktop-menu__close" id="desktopMenuClose" aria-label="Close menu">
+        <span>&#10005;</span>
+        <span>Close</span>
+      </button>
+    </div>
 
     <div class="desktop-menu__body">
-      <!-- Left sidebar -->
+      <!-- Left/Center area - primary nav -->
+      <div class="desktop-menu__center">
+        <nav class="desktop-menu__nav-list" aria-label="MBA Program navigation">
+          <div class="desktop-menu__nav-col">
+            <a href="child-mba-landing-v2.html" class="desktop-menu__nav-item">MBA Home</a>
+            <div class="desktop-menu__nav-group">
+              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="facts">Facts &amp; Figures <svg class="desktop-menu__nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <ul class="desktop-menu__sub-list" id="desktop-sub-facts">
+                <li><a href="#" class="desktop-menu__sub-link desktop-menu__sub-link--overview">Facts &amp; Figures Overview</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Class Profile</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Rankings</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Employment Report</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Tuition &amp; Fees</a></li>
+              </ul>
+            </div>
+            <div class="desktop-menu__nav-group">
+              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable is-current" data-desktop-toggle="academics">Academics <svg class="desktop-menu__nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <ul class="desktop-menu__sub-list" id="desktop-sub-academics">
+                <li><a href="#" class="desktop-menu__sub-link desktop-menu__sub-link--overview is-current">Academics Overview</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">MBA Curriculum</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Course Match</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Majors &amp; Concentrations</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Dual Degrees</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Co-Curricular Opportunities</a></li>
+              </ul>
+            </div>
+            <div class="desktop-menu__nav-group">
+              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="student-life">Student Life <svg class="desktop-menu__nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <ul class="desktop-menu__sub-list" id="desktop-sub-student-life">
+                <li><a href="#" class="desktop-menu__sub-link desktop-menu__sub-link--overview">Student Life Overview</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Clubs &amp; Organizations</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Impact Communities</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Housing</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Philadelphia Life</a></li>
+              </ul>
+            </div>
+            <div class="desktop-menu__nav-group">
+              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="careers">Careers &amp; Network <svg class="desktop-menu__nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <ul class="desktop-menu__sub-list" id="desktop-sub-careers">
+                <li><a href="#" class="desktop-menu__sub-link desktop-menu__sub-link--overview">Careers &amp; Network Overview</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Career Management</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Employment Report</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Alumni Network</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Recruiting</a></li>
+              </ul>
+            </div>
+            <a href="#" class="desktop-menu__nav-item">MBA Stories</a>
+          </div>
+          <div class="desktop-menu__nav-col">
+            <div class="desktop-menu__nav-group">
+              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="applying">Applying <svg class="desktop-menu__nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <ul class="desktop-menu__sub-list" id="desktop-sub-applying">
+                <li><a href="#" class="desktop-menu__sub-link desktop-menu__sub-link--overview">Applying Overview</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Application Guide</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Admissions</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Class Profile</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Visit Campus</a></li>
+              </ul>
+            </div>
+            <a href="#" class="desktop-menu__nav-item">Financing</a>
+            <div class="desktop-menu__nav-group">
+              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="events">Events <svg class="desktop-menu__nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <ul class="desktop-menu__sub-list" id="desktop-sub-events">
+                <li><a href="#" class="desktop-menu__sub-link desktop-menu__sub-link--overview">Events Overview</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Upcoming Events</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Webinars</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Info Sessions</a></li>
+              </ul>
+            </div>
+            <a href="#" class="desktop-menu__nav-item">Contact Us</a>
+          </div>
+        </nav>
+
+        <!-- All Wharton bottom row (tablet only) -->
+        <div class="desktop-menu__allwharton-bottom">
+          <a href="#">wharton.upenn.edu</a>
+          <a href="#">Faculty &amp; Research</a>
+          <a href="#">Knowledge at Wharton</a>
+          <a href="#">MBA</a>
+          <a href="#">Executive MBA</a>
+          <a href="#">Undergraduate</a>
+          <a href="#">Jacobs MSQF</a>
+          <a href="#">PhD</a>
+          <a href="#">Executive Education</a>
+          <a href="#">Wharton Online</a>
+          <a href="#">Global Youth Program</a>
+          <a href="#">Wharton Academy</a>
+        </div>
+      </div>
+
+      <!-- Right sidebar - All Wharton -->
       <nav class="desktop-menu__sidebar" aria-label="All Wharton">
-        <div class="desktop-menu__sidebar-label">All Wharton</div>
+        <div class="desktop-menu__sidebar-globe">
+          <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7"/><path d="M1 8h14M8 1a11 11 0 0 1 0 14M8 1a11 11 0 0 0 0 14"/></svg>
+          <a href="https://www.wharton.upenn.edu">wharton.upenn.edu</a>
+        </div>
         <div class="desktop-menu__sidebar-links">
-              <a href="wharton-home-v1.html" class="desktop-menu__sidebar-link">Wharton Home</a>
           <a href="#" class="desktop-menu__sidebar-link">Faculty &amp; Research</a>
           <a href="#" class="desktop-menu__sidebar-link">Knowledge at Wharton</a>
           <a href="#" class="desktop-menu__sidebar-link">MBA</a>
@@ -723,119 +738,63 @@
           <a href="#" class="desktop-menu__sidebar-link">Wharton Academy</a>
         </div>
       </nav>
-
-      <!-- Center panel -->
-      <div class="desktop-menu__center">
-        <a href="child-home-v1.html"><img class="desktop-menu__center-logo" src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania"></a>
-        <a href="child-home-v1.html" class="desktop-menu__center-title">Dr. Bruce I. Jacobs Master of Science in Quantitative Finance</a>
-
-        <nav class="desktop-menu__nav-list" aria-label="Jacobs MSQF navigation">
-          <div class="desktop-menu__nav-group">
-            <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="about">About <span class="desktop-menu__nav-chevron">&#8250;</span></button>
-            <ul class="desktop-menu__sub-list" id="desktop-sub-about">
-              <li><a href="#" class="desktop-menu__sub-link">History</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">About Dr. Bruce I Jacobs</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Advisory Board</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Learn More About Our Faculty</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Community Engagement</a></li>
-            </ul>
-          </div>
-          <a href="#" class="desktop-menu__nav-item">Why a Jacobs MSQF</a>
-          <div class="desktop-menu__nav-group">
-            <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="academics">Academics <span class="desktop-menu__nav-chevron">&#8250;</span></button>
-            <ul class="desktop-menu__sub-list" id="desktop-sub-academics">
-              <li><a href="#" class="desktop-menu__sub-link">Curriculum</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Course Descriptions</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Program Requirements</a></li>
-            </ul>
-          </div>
-          <div class="desktop-menu__nav-group">
-            <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="careers">Careers &amp; Recruiting <span class="desktop-menu__nav-chevron">&#8250;</span></button>
-            <ul class="desktop-menu__sub-list" id="desktop-sub-careers">
-              <li><a href="#" class="desktop-menu__sub-link">Career Services</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Employer Partners</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Internships</a></li>
-            </ul>
-          </div>
-          <a href="#" class="desktop-menu__nav-item">Admissions</a>
-          <a href="#" class="desktop-menu__nav-item">Application Guide</a>
-          <a href="#" class="desktop-menu__nav-item">Events</a>
-          <a href="#" class="desktop-menu__nav-item">FAQ</a>
-        </nav>
-
-        <!-- Bottom bar -->
-        <div class="desktop-menu__bottom-bar" style="display:none;"></div>
-      </div>
-    </div>
     </div>
   </div>
 
   <!-- MOBILE MENU OVERLAY -->
   <div class="mobile-menu-overlay" id="mobileMenu">
-    <button class="mobile-menu__close" id="mobileMenuClose" aria-label="Close menu">
-      <span class="mobile-menu__close-icon">&#10005;</span>
-      <span class="mobile-menu__close-label">Close</span>
-    </button>
-
     <div class="mobile-menu__header">
-      <a href="child-home-v1.html">
-        <img class="mobile-menu__logo" src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania">
-      </a>
-      <a href="child-home-v1.html" class="mobile-menu__site-title">Dr. Bruce I. Jacobs Master of Science in Quantitative Finance</a>
+      <img class="mobile-menu__logo" src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania">
+      <button class="mobile-menu__close" id="mobileMenuClose" aria-label="Close menu">
+        <span>&#10005;</span>
+        <span>Close</span>
+      </button>
     </div>
 
-    <div class="mobile-menu__breadcrumb">
-          <a href="wharton-home-v1.html" class="mobile-menu__breadcrumb-link">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"><circle cx="8" cy="8" r="7"/><path d="M4 9.5c0-2 1.8-3.5 4-3.5s4 1.5 4 3.5" stroke-width="1"/><line x1="8" y1="3" x2="8" y2="7" stroke-width="0.8"/><line x1="4.5" y1="5" x2="8" y2="7" stroke-width="0.8"/><line x1="11.5" y1="5" x2="8" y2="7" stroke-width="0.8"/></svg>
-        <span style="color: rgba(255,255,255,0.3);">&#8250;</span>
-        Jacobs MSQF
-      </a>
-      <span style="color: rgba(255,255,255,0.3); margin: 0 2px;">›</span>
-      <span style="font-family: var(--font-ss); font-size: 13px; color: rgba(255,255,255,0.7);">Why a Jacobs MSQF</span>
-    </div>
+    <div class="mobile-menu__site-title">MBA Program</div>
 
     <div class="mobile-menu__content">
       <nav class="mobile-menu__primary" id="mobilePrimary">
-        <button class="mobile-menu__primary-item" data-mobile-drill="about">About <span class="mobile-menu__primary-chevron">&#8250;</span></button>
-        <a href="#" class="mobile-menu__primary-item">Why a Jacobs MSQF</a>
+        <a href="#" class="mobile-menu__primary-item">Home</a>
+        <a href="#" class="mobile-menu__primary-item">Calendars</a>
         <button class="mobile-menu__primary-item" data-mobile-drill="academics">Academics <span class="mobile-menu__primary-chevron">&#8250;</span></button>
-        <button class="mobile-menu__primary-item" data-mobile-drill="careers">Careers &amp; Recruiting <span class="mobile-menu__primary-chevron">&#8250;</span></button>
-        <a href="#" class="mobile-menu__primary-item">Admissions</a>
-        <a href="#" class="mobile-menu__primary-item">Application Guide</a>
-        <a href="#" class="mobile-menu__primary-item">Events</a>
-        <a href="#" class="mobile-menu__primary-item">FAQ</a>
+        <a href="#" class="mobile-menu__primary-item">Modular Terms</a>
+        <a href="#" class="mobile-menu__primary-item">Impact Communities</a>
+        <a href="#" class="mobile-menu__primary-item">Financial Aid</a>
+        <a href="#" class="mobile-menu__primary-item">Contact Us</a>
+        <button class="mobile-menu__primary-item" data-mobile-drill="class2028">Class of 2028 <span class="mobile-menu__primary-chevron">&#8250;</span></button>
+        <a href="#" class="mobile-menu__primary-item">Class of 2026 Graduation</a>
       </nav>
 
-      <div class="mobile-menu__drilldown" id="mobileDrill-about">
-        <button class="mobile-menu__back" data-mobile-back>
-          <span class="mobile-menu__back-arrow">&#8592;</span>
-          <span class="mobile-menu__back-label">About</span>
-        </button>
-        <a href="#" class="mobile-menu__drilldown-item">History</a>
-        <a href="#" class="mobile-menu__drilldown-item">About Dr. Bruce I Jacobs</a>
-        <a href="#" class="mobile-menu__drilldown-item">Advisory Board</a>
-        <a href="#" class="mobile-menu__drilldown-item">Learn More About Our Faculty</a>
-        <a href="#" class="mobile-menu__drilldown-item">Community Engagement</a>
-      </div>
-
+      <!-- Drilldown: Academics -->
       <div class="mobile-menu__drilldown" id="mobileDrill-academics">
         <button class="mobile-menu__back" data-mobile-back>
           <span class="mobile-menu__back-arrow">&#8592;</span>
           <span class="mobile-menu__back-label">Academics</span>
         </button>
-        <a href="#" class="mobile-menu__drilldown-item">Curriculum</a>
-        <a href="#" class="mobile-menu__drilldown-item">Course Descriptions</a>
-        <a href="#" class="mobile-menu__drilldown-item">Program Requirements</a>
+        <a href="#" class="mobile-menu__drilldown-item">The Advising Team</a>
+        <a href="#" class="mobile-menu__drilldown-item">Wharton MBA Academic Policies</a>
+        <a href="#" class="mobile-menu__drilldown-item">Accommodations at Wharton</a>
+        <a href="#" class="mobile-menu__drilldown-item">MBA Curriculum</a>
+        <a href="#" class="mobile-menu__drilldown-item">Course Match</a>
+        <a href="#" class="mobile-menu__drilldown-item">MBA Course Recommendation Guide</a>
+        <a href="#" class="mobile-menu__drilldown-item">MBA Course Registration for Non-MBA Students</a>
+        <a href="#" class="mobile-menu__drilldown-item">Co-Curricular Opportunities</a>
+        <a href="#" class="mobile-menu__drilldown-item">Dual Degrees</a>
+        <a href="#" class="mobile-menu__drilldown-item">Academic Awards</a>
+        <a href="#" class="mobile-menu__drilldown-item">Resources &amp; Forms</a>
+        <a href="#" class="mobile-menu__drilldown-item">Summer 2026: Practical Training Work Authorization</a>
       </div>
 
-      <div class="mobile-menu__drilldown" id="mobileDrill-careers">
+      <!-- Drilldown: Class of 2028 -->
+      <div class="mobile-menu__drilldown" id="mobileDrill-class2028">
         <button class="mobile-menu__back" data-mobile-back>
           <span class="mobile-menu__back-arrow">&#8592;</span>
-          <span class="mobile-menu__back-label">Careers &amp; Recruiting</span>
+          <span class="mobile-menu__back-label">Class of 2028</span>
         </button>
-        <a href="#" class="mobile-menu__drilldown-item">Career Services</a>
-        <a href="#" class="mobile-menu__drilldown-item">Employer Partners</a>
-        <a href="#" class="mobile-menu__drilldown-item">Internships</a>
+        <a href="#" class="mobile-menu__drilldown-item">Home</a>
+        <a href="#" class="mobile-menu__drilldown-item">Welcome Weekend</a>
+        <a href="#" class="mobile-menu__drilldown-item">Virtual Events</a>
       </div>
     </div>
 
@@ -846,7 +805,7 @@
       </button>
       <div class="mobile-menu__footer-grid" id="mobileFooterGrid">
         <div class="mobile-menu__footer-grid-inner">
-              <a href="wharton-home-v1.html" class="mobile-menu__footer-link">Wharton Home</a>
+          <a href="wharton-home-v2.html" class="mobile-menu__footer-link">Wharton Home</a>
           <a href="#" class="mobile-menu__footer-link">Faculty &amp; Research</a>
           <a href="#" class="mobile-menu__footer-link">PhD</a>
           <a href="#" class="mobile-menu__footer-link">Knowledge at Wharton</a>
@@ -869,14 +828,18 @@
       <a href="#" class="sticky-header__logo">
         <img src="assets/wharton-logo-light.svg" alt="Wharton" preserveAspectRatio="xMidYMid meet">
       </a>
-      <span class="sticky-header__child-name">Dr. Bruce I. Jacobs Master of Science in Quantitative Finance</span>
+      <span class="sticky-header__child-name">MBA Program</span>
     </div>
     <nav class="sticky-header__nav" id="stickyNavLinks">
-      <a href="#" class="sticky-header__nav-link" data-sticky-item>About</a>
-      <a href="#" class="sticky-header__nav-link" data-sticky-item>Why a Jacobs MSQF</a>
-      <a href="#" class="sticky-header__nav-link" data-sticky-item>Academics</a>
-      <a href="#" class="sticky-header__nav-link" data-sticky-item>Careers &amp; Recruiting</a>
-      <a href="#" class="sticky-header__nav-link" data-sticky-item>Admissions</a>
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>Facts &amp; Figures</a>
+      <a href="#" class="sticky-header__nav-link is-active" data-sticky-item>Academics</a>
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>Student Life</a>
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>Careers &amp; Network</a>
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>MBA Stories</a>
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>Applying</a>
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>Financing</a>
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>Events</a>
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>Contact Us</a>
       <a href="#" class="sticky-header__nav-link" id="stickyMoreTrigger">More...</a>
     </nav>
     <div class="sticky-header__buttons">
@@ -900,115 +863,60 @@
 
   <!-- SITE HEADER -->
   <div class="site-header">
-    <!-- Universal Bar -->
-    <div class="universal-bar">
-      <nav class="universal-nav">
-        <a href="#" class="universal-nav__link">Wharton Home</a>
-        <a href="#" class="universal-nav__link">Faculty &amp; Research</a>
-        <a href="#" class="universal-nav__link">Knowledge at Wharton</a>
-        <div class="programs-dropdown" style="position: relative;">
-          <button class="universal-nav__dropdown" id="programsDropdownBtn">
-            Programs
-            <svg viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
-          </button>
-          <div class="programs-dropdown__menu" id="programsDropdownMenu">
-            <a href="#" class="programs-dropdown__link">MBA</a>
-            <a href="#" class="programs-dropdown__link">Executive MBA</a>
-            <a href="#" class="programs-dropdown__link">Undergraduate</a>
-            <a href="#" class="programs-dropdown__link">Jacobs MSQF</a>
-            <a href="#" class="programs-dropdown__link">PhD</a>
-            <a href="#" class="programs-dropdown__link">Executive Education</a>
-            <a href="#" class="programs-dropdown__link">Wharton Online</a>
-            <a href="#" class="programs-dropdown__link">Global Youth Program</a>
-            <a href="#" class="programs-dropdown__link">Wharton Academy</a>
-          </div>
-        </div>
-      </nav>
-    </div>
-
-    <!-- Identity Bar -->
-    <div class="identity-bar">
-      <div class="identity-bar__brand">
-        <a href="#" class="identity-bar__logo">
-          <img src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania" preserveAspectRatio="xMidYMid meet">
+    <div class="header-bar">
+      <div class="header-bar__left">
+        <a href="child-mba-landing-v2.html" class="header-bar__logo">
+          <img src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania">
         </a>
-        <span class="identity-bar__name">Dr. Bruce I. Jacobs Master of Science in Quantitative Finance</span>
+        <span class="header-bar__title">MBA Program</span>
       </div>
-      <div class="identity-bar__mobile-buttons">
+      <div class="header-bar__right">
         <button class="top-btn top-btn--menu">
           <svg viewBox="0 0 20 20">
             <rect x="2.5" y="4" width="15" height="1.5" rx="0.5"/>
             <rect x="2.5" y="9.25" width="15" height="1.5" rx="0.5"/>
             <rect x="2.5" y="14.5" width="15" height="1.5" rx="0.5"/>
           </svg>
-          <span class="btn-label">Menu</span>
+          <span class="btn-label">MENU</span>
         </button>
         <button class="top-btn top-btn--search">
           <svg viewBox="0 0 20 20">
             <circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="#fff" stroke-width="1.8"/>
             <line x1="12.5" y1="12.5" x2="17" y2="17" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
           </svg>
-          <span class="btn-label">Search</span>
+          <span class="btn-label">SEARCH</span>
         </button>
       </div>
     </div>
-
-    <!-- Local Nav -->
-    <nav class="local-nav">
-      <div class="local-nav__links" id="localNavLinks">
-        <a href="jacobs-about.html" class="local-nav__link" data-nav-item>About</a>
-        <a href="jacobs-why.html" class="local-nav__link is-active" data-nav-item>Why a Jacobs MSQF</a>
-        <a href="jacobs-academics.html" class="local-nav__link" data-nav-item>Academics</a>
-        <a href="jacobs-careers.html" class="local-nav__link" data-nav-item>Careers &amp; Recruiting</a>
-        <a href="jacobs-admissions.html" class="local-nav__link" data-nav-item>Admissions</a>
-        <a href="jacobs-application-guide.html" class="local-nav__link" data-nav-item data-always-overflow>Application Guide</a>
-        <a href="jacobs-events.html" class="local-nav__link" data-nav-item data-always-overflow>Events</a>
-        <a href="jacobs-faq.html" class="local-nav__link" data-nav-item data-always-overflow>FAQ</a>
-        <a href="jacobs-student-resources.html" class="local-nav__link" data-nav-item data-always-overflow>Student Resources</a>
-        <a href="jacobs-financial-aid.html" class="local-nav__link" data-nav-item data-always-overflow>Financial Aid</a>
-        <a href="jacobs-contact.html" class="local-nav__link" data-nav-item data-always-overflow>Contact Us</a>
-        <div style="position:relative; display:inline-flex;">
-          <button class="local-nav__more-btn" id="moreDropdownBtn">
-            More
-            <svg viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="more-dropdown__menu" id="moreDropdownMenu"></div>
-        </div>
-      </div>
-      <div class="local-nav__buttons">
-        <button class="local-nav__btn local-nav__btn--menu">
-          <svg viewBox="0 0 20 20">
-            <rect x="2.5" y="4" width="15" height="1.5" rx="0.5"/>
-            <rect x="2.5" y="9.25" width="15" height="1.5" rx="0.5"/>
-            <rect x="2.5" y="14.5" width="15" height="1.5" rx="0.5"/>
-          </svg>
-          <span class="btn-label">Menu</span>
-        </button>
-        <button class="local-nav__btn local-nav__btn--search">
-          <svg viewBox="0 0 20 20">
-            <circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="#fff" stroke-width="1.8"/>
-            <line x1="12.5" y1="12.5" x2="17" y2="17" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-          Search
-        </button>
-      </div>
-    </nav>
   </div>
 
   <!-- CONTENT AREA -->
   <div class="content-area">
     <!-- Breadcrumb -->
     <div class="breadcrumb">
-      <svg class="breadcrumb__icon" viewBox="0 0 16 16">
-        <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.2"/>
-        <path d="M4 9.5c0-2 1.8-3.5 4-3.5s4 1.5 4 3.5" fill="none" stroke="currentColor" stroke-width="1"/>
-        <line x1="8" y1="3" x2="8" y2="7" stroke="currentColor" stroke-width="1"/>
-        <line x1="4.5" y1="5" x2="8" y2="7" stroke="currentColor" stroke-width="0.8"/>
-        <line x1="11.5" y1="5" x2="8" y2="7" stroke="currentColor" stroke-width="0.8"/>
-      </svg>
-      <a href="child-home-v1.html" class="breadcrumb__text" style="opacity: 0.6; transition: opacity 0.15s;">Jacobs MSQF</a>
-      <span class="breadcrumb__text" style="opacity: 0.4; margin: 0 2px;">›</span>
-      <span class="breadcrumb__text" style="font-weight: 500;">Why a Jacobs MSQF</span>
+      <a href="child-mba-landing-v2.html" class="breadcrumb__home" aria-label="MBA Program home">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 8l6-5.5L14 8"/><path d="M3.5 9v4.5h3.25V10.5h2.5v3h3.25V9"/>
+        </svg>
+      </a>
+      <span class="breadcrumb__sep">&rsaquo;</span>
+      <div class="breadcrumb__current">
+        <button class="breadcrumb__current-btn" id="breadcrumbDropdownBtn">
+          Academics
+          <svg class="breadcrumb__current-chevron" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="breadcrumb__dropdown" id="breadcrumbDropdown">
+          <a href="#" class="breadcrumb__dropdown-link">Facts &amp; Figures</a>
+          <a href="#" class="breadcrumb__dropdown-link is-active">Academics</a>
+          <a href="#" class="breadcrumb__dropdown-link">Student Life</a>
+          <a href="#" class="breadcrumb__dropdown-link">Careers &amp; Network</a>
+          <a href="#" class="breadcrumb__dropdown-link">MBA Stories</a>
+          <a href="#" class="breadcrumb__dropdown-link">Applying</a>
+          <a href="#" class="breadcrumb__dropdown-link">Financing</a>
+          <a href="#" class="breadcrumb__dropdown-link">Events</a>
+          <a href="#" class="breadcrumb__dropdown-link">Contact Us</a>
+        </div>
+      </div>
     </div>
 
     <!-- Below the fold placeholder -->
@@ -1052,7 +960,7 @@
       <div class="proto-switcher__section-label">High-Fidelity</div>
       <a href="wharton-home-v2.html" class="proto-switcher__link">V2 Wharton Home</a>
       <a href="child-mba-landing-v2.html" class="proto-switcher__link">V2 MBA Landing</a>
-      <a href="child-mba-interior-v2.html" class="proto-switcher__link">V2 MBA Interior</a>
+      <a href="child-mba-interior-v2.html" class="proto-switcher__link proto-switcher__link--active">V2 MBA Interior</a>
       <div class="proto-switcher__divider"></div>
       <a href="wharton-home-v1.html" class="proto-switcher__link">V1 Wharton Home</a>
       <a href="child-home-v1.html" class="proto-switcher__link">V1 Child Home</a>
@@ -1076,7 +984,7 @@
       <a href="style-guide.html" class="proto-switcher__link">Style Guide</a>
     </div>
     <button class="proto-switcher__toggle" onclick="document.getElementById('protoMenu').classList.toggle('is-open'); this.classList.toggle('is-open');">
-      V2 Jacobs MSQF
+      V2 MBA Interior
       <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
   </div>
@@ -1104,6 +1012,16 @@
       function openDesktopMenu() {
         desktopMenu.classList.add('is-open');
         document.body.classList.add('menu-open');
+        // Auto-expand the current section
+        var currentBtn = desktopMenu.querySelector('.desktop-menu__nav-item--expandable.is-current');
+        if (currentBtn) {
+          var id = 'desktop-sub-' + currentBtn.getAttribute('data-desktop-toggle');
+          var subList = document.getElementById(id);
+          if (subList && !subList.classList.contains('is-open')) {
+            subList.classList.add('is-open');
+            currentBtn.classList.add('is-expanded', 'is-active');
+          }
+        }
       }
       function closeDesktopMenu() {
         desktopMenu.classList.remove('is-open');
@@ -1134,7 +1052,7 @@
       mobileMenuClose.addEventListener('click', closeMobileMenu);
 
       // All menu buttons — route to desktop or mobile based on viewport
-      document.querySelectorAll('.top-btn--menu, .local-nav__btn--menu, .sticky-header__btn--menu').forEach(function(btn) {
+      document.querySelectorAll('.top-btn--menu, .sticky-header__btn--menu').forEach(function(btn) {
         btn.addEventListener('click', function() {
           if (isMobile()) {
             mobileMenu.classList.contains('is-open') ? closeMobileMenu() : openMobileMenu();
@@ -1185,13 +1103,28 @@
         });
       }
 
-      // Escape key closes both menus
+      // Breadcrumb section dropdown
+      var bcBtn = document.getElementById('breadcrumbDropdownBtn');
+      if (bcBtn) {
+        bcBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          bcBtn.classList.toggle('is-open');
+        });
+        document.addEventListener('click', function(e) {
+          if (!bcBtn.parentElement.contains(e.target)) {
+            bcBtn.classList.remove('is-open');
+          }
+        });
+      }
+
+      // Escape key closes all menus
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
           closeDesktopMenu();
           closeMobileMenu();
           if (progBtn) progBtn.classList.remove('is-open');
           if (moreBtn) moreBtn.classList.remove('is-open');
+          if (bcBtn) bcBtn.classList.remove('is-open');
         }
       });
 
@@ -1308,7 +1241,7 @@
       }
 
       // Local nav bar: measure against buttons (Menu + Search ~200px)
-      setupOverflow('.local-nav__links', 'data-nav-item', '#moreDropdownBtn', '#moreDropdownMenu', 200);
+      // No local nav on interior page (header-bar only)
 
       // Sticky header: measure against buttons (~200px)
       function setupStickyOverflow() {

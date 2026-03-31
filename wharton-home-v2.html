@@ -36,8 +36,12 @@
     .hero__bg img {
       width: 100%; height: 100%; object-fit: cover; display: block;
     }
-    .hero__bg::after {
+    .hero__bg::before {
       content: ''; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0) 50%);
+    }
+    .hero__bg::after {
+      content: ''; position: absolute; inset: 0; z-index: 2;
       background: linear-gradient(107deg, rgba(0, 85, 255, 0.90) 4.85%, rgba(1, 26, 77, 0.80) 47.24%, rgba(2, 31, 89, 0.10) 59.89%, rgba(2, 31, 89, 0.00) 86.21%);
     }
 
@@ -52,15 +56,15 @@
       padding: 0 16px; gap: 0; overflow: visible;
     }
     .universal-nav__link {
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 13px;
-      text-transform: uppercase; letter-spacing: 0.55px;
+      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 16px;
+      text-transform: uppercase; letter-spacing: 0.2px;
       color: var(--gray-light); white-space: nowrap;
       padding: 8px 10px; transition: opacity 0.15s;
     }
     .universal-nav__link:hover { opacity: 0.7; }
     .universal-nav__dropdown {
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 13px;
-      text-transform: uppercase; letter-spacing: 0.55px;
+      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 16px;
+      text-transform: uppercase; letter-spacing: 0.2px;
       color: var(--gray-light); white-space: nowrap;
       padding: 8px 10px; border: none;
       background: none; cursor: pointer; display: flex;
@@ -86,17 +90,19 @@
       transition: color 0.15s, background 0.15s;
     }
     .programs-dropdown__link:hover { color: #fff; background: rgba(255,255,255,0.1); }
-    .top-buttons { display: flex; flex-shrink: 0; }
+    .top-buttons { display: flex; flex-shrink: 0; align-self: stretch; }
     .top-btn {
-      display: flex; align-items: center; gap: 8px; height: 50px;
-      padding: 0 16px; border: none; cursor: pointer;
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 13px;
-      text-transform: uppercase; letter-spacing: 0.5px;
-      color: #fff; white-space: nowrap;
+      display: flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px;
+      padding: 0; cursor: pointer;
+      color: var(--marine-gray); white-space: nowrap;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.25);
+      transition: background 0.15s, border-color 0.15s;
     }
-    .top-btn--menu { background: var(--penn-blue); }
-    .top-btn--search { background: var(--penn-red); }
-    .top-btn svg { width: 18px; height: 18px; fill: #fff; }
+    .top-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.4); }
+    .top-btn .btn-label { display: none; }
+    .top-btn svg { width: 16px; height: 16px; fill: var(--marine-gray); }
 
     /* ===== LOGO ===== */
     .logo {
@@ -152,17 +158,20 @@
     }
     .lead__border {
       width: 100%; max-width: 450px; height: 5px;
-      background: #fff; margin-bottom: 30px;
+      background: #fff; margin-bottom: 0;
+    }
+    .lead__text {
+      display: flex; flex-direction: column; gap: 8px;
+      padding: 0 0 30px;
     }
     .lead__heading {
       font-family: var(--font-ss-condensed); font-weight: 900;
       font-size: 60px; line-height: 56px; color: #fff;
-      letter-spacing: -0.2px; margin-bottom: 12px;
+      letter-spacing: -0.2px;
     }
     .lead__subtitle {
       font-family: var(--font-ss-condensed); font-weight: 600;
       font-size: 24px; line-height: 24px; color: #fff;
-      margin-bottom: 28px;
     }
     .lead__actions {
       display: flex; align-items: center; gap: 30px;
@@ -268,13 +277,18 @@
     /* ===== STICKY COMPACT HEADER ===== */
     .sticky-header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--penn-blue); display: flex;
-      align-items: center; justify-content: space-between;
-      padding: 0 0 0 24px; height: 56px;
+      background: linear-gradient(to right, #011f5b, #0240bd 96%, #0242c1); display: flex;
+      align-items: stretch; justify-content: space-between;
+      height: 56px;
+      padding: 0 0 0 24px;
       transform: translateY(-100%); transition: transform 0.3s ease;
       border-bottom: 1px solid rgba(255,255,255,0.15);
     }
     .sticky-header.is-visible { transform: translateY(0); }
+    .sticky-header__brand {
+      display: flex; align-items: center; gap: 16px; flex-shrink: 0;
+      align-self: center;
+    }
     .sticky-header__logo {
       flex-shrink: 0;
     }
@@ -282,12 +296,12 @@
       height: 32px; width: auto; display: block;
     }
     .sticky-header__nav {
-      display: flex; align-items: center; gap: 4px;
-      margin: 0 24px; flex: 1; justify-content: flex-end;
+      display: none;
     }
     .sticky-header__nav-link {
-      font-family: var(--font-ss); font-size: 14px;
-      font-weight: 600; color: #fff; padding: 8px 12px;
+      font-family: var(--font-ss-condensed); font-size: 16px;
+      font-weight: 600; letter-spacing: 0.2px;
+      color: #fff; padding: 8px 12px;
       white-space: nowrap; transition: opacity 0.15s;
       border-radius: 4px;
     }
@@ -299,16 +313,16 @@
       display: flex; flex-shrink: 0;
     }
     .sticky-header__btn {
-      display: flex; align-items: center; gap: 8px; height: 56px;
-      padding: 0 16px; border: none; cursor: pointer;
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 13px;
-      text-transform: uppercase; letter-spacing: 0.5px;
-      color: #fff; white-space: nowrap; border-radius: 0;
+      display: flex; align-items: center; justify-content: center;
+      width: 48px;
+      padding: 0; cursor: pointer;
+      color: var(--marine-gray); white-space: nowrap;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.25);
+      transition: background 0.15s, border-color 0.15s;
     }
-    .sticky-header__btn--menu { background: var(--penn-blue); }
-    .sticky-header__btn--menu:hover { background: #022a6e; }
-    .sticky-header__btn--search { background: var(--penn-red); }
-    .sticky-header__btn--search:hover { background: #b30039; }
+    .sticky-header__btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.4); }
+    .sticky-header__btn .btn-label { display: none; }
     .sticky-header__btn svg { width: 18px; height: 18px; fill: #fff; }
 
     /* Progressive hiding of nav items at smaller widths */
@@ -331,11 +345,22 @@
     /* ===== DESKTOP MENU OVERLAY ===== */
     .desktop-menu {
       position: fixed; inset: 0; z-index: 1000;
-      background: #011F5B;
-      display: none; flex-direction: column;
-      padding: 48px;
+      background: linear-gradient(to right, rgba(1,31,91,0.7), rgba(2,64,189,0.7) 96%, rgba(2,66,193,0.7));
+      display: flex; flex-direction: column;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      padding: 64px;
     }
-    .desktop-menu.is-open { display: flex; }
+    .desktop-menu::after {
+      content: '';
+      position: absolute;
+      inset: 48px;
+      background: rgba(1,31,91,0.85);
+      border-radius: 4px;
+      z-index: -1;
+    }
+    .desktop-menu.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
 
     /* Header row */
     .desktop-menu__header {
@@ -378,14 +403,13 @@
       padding-right: 48px; overflow-y: auto;
     }
 
-    /* Primary nav items - two-column CSS columns */
+    /* Primary nav items - two independent columns */
     .desktop-menu__nav-list {
-      columns: 2; column-gap: 32px;
+      display: flex; gap: 32px;
       list-style: none; padding: 0; margin: 0;
     }
-    .desktop-menu__nav-group,
-    .desktop-menu__nav-list > a {
-      break-inside: avoid;
+    .desktop-menu__nav-col {
+      flex: 1; display: flex; flex-direction: column;
     }
     .desktop-menu__nav-item {
       display: flex; align-items: center; gap: 8px;
@@ -430,6 +454,7 @@
       transition: color 0.15s; text-decoration: none;
     }
     .desktop-menu__sub-link:hover { color: #fff; }
+    .desktop-menu__nav-item.is-current { color: #06aafc; }
 
     /* Right sidebar (~25%) - All Wharton */
     .desktop-menu__sidebar {
@@ -447,18 +472,18 @@
     }
     .desktop-menu__sidebar-globe a {
       font-family: var(--font-ss); font-size: 12px; font-weight: 400;
-      color: #eeedea; text-decoration: none; transition: color 0.15s;
+      color: rgba(238,237,234,0.7); text-decoration: none; transition: color 0.15s;
     }
-    .desktop-menu__sidebar-globe a:hover { color: #fff; }
+    .desktop-menu__sidebar-globe a:hover { color: #06aafc; text-decoration: underline; }
     .desktop-menu__sidebar-links {
       display: flex; flex-direction: column; gap: 0;
     }
     .desktop-menu__sidebar-link {
       font-family: var(--font-ss); font-size: 12px; font-weight: 400;
-      color: #eeedea; padding: 5px 0;
+      color: rgba(238,237,234,0.7); padding: 5px 0;
       transition: color 0.15s; display: block; text-decoration: none;
     }
-    .desktop-menu__sidebar-link:hover { color: #fff; }
+    .desktop-menu__sidebar-link:hover { color: #06aafc; text-decoration: underline; }
 
     /* All Wharton bottom row (tablet) */
     .desktop-menu__allwharton-bottom {
@@ -479,7 +504,7 @@
       .desktop-menu__allwharton-bottom { display: flex; }
     }
     @media (max-width: 791px) {
-      .desktop-menu { display: none !important; }
+      .desktop-menu { display: none !important; opacity: 0 !important; visibility: hidden !important; }
     }
     body.menu-open { overflow: hidden; }
 
@@ -676,42 +701,47 @@
       <!-- Left/Center area - primary nav -->
       <div class="desktop-menu__center">
         <nav class="desktop-menu__nav-list" aria-label="Main navigation">
-          <div class="desktop-menu__nav-group">
-            <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="about">About <span class="desktop-menu__nav-chevron">&#711;</span></button>
-            <ul class="desktop-menu__sub-list" id="desktop-sub-about">
-              <li><a href="#" class="desktop-menu__sub-link">About Wharton</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Leadership</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">History</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Diversity &amp; Inclusion</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Global Impact</a></li>
-            </ul>
+          <div class="desktop-menu__nav-col">
+            <a href="wharton-home-v2.html" class="desktop-menu__nav-item is-current">Wharton Home</a>
+            <div class="desktop-menu__nav-group">
+              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="about">About <span class="desktop-menu__nav-chevron">&#711;</span></button>
+              <ul class="desktop-menu__sub-list" id="desktop-sub-about">
+                <li><a href="#" class="desktop-menu__sub-link">About Wharton</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Leadership</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">History</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Diversity &amp; Inclusion</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Global Impact</a></li>
+              </ul>
+            </div>
+            <a href="#" class="desktop-menu__nav-item">Academics</a>
+            <div class="desktop-menu__nav-group">
+              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="faculty">Faculty &amp; Research <span class="desktop-menu__nav-chevron">&#711;</span></button>
+              <ul class="desktop-menu__sub-list" id="desktop-sub-faculty">
+                <li><a href="#" class="desktop-menu__sub-link">Faculty Directory</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Research Centers</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Publications</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Working Papers</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Departments</a></li>
+              </ul>
+            </div>
+            <a href="#" class="desktop-menu__nav-item">News</a>
+            <a href="#" class="desktop-menu__nav-item">Recruiters &amp; Corporations</a>
           </div>
-          <a href="#" class="desktop-menu__nav-item">Academics</a>
-          <div class="desktop-menu__nav-group">
-            <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="faculty">Faculty &amp; Research <span class="desktop-menu__nav-chevron">&#711;</span></button>
-            <ul class="desktop-menu__sub-list" id="desktop-sub-faculty">
-              <li><a href="#" class="desktop-menu__sub-link">Faculty Directory</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Research Centers</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Publications</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Working Papers</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Departments</a></li>
-            </ul>
+          <div class="desktop-menu__nav-col">
+            <a href="#" class="desktop-menu__nav-item">Alumni</a>
+            <div class="desktop-menu__nav-group">
+              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="locations">Locations <span class="desktop-menu__nav-chevron">&#711;</span></button>
+              <ul class="desktop-menu__sub-list" id="desktop-sub-locations">
+                <li><a href="#" class="desktop-menu__sub-link">Philadelphia</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">San Francisco</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Beijing</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">All Locations</a></li>
+              </ul>
+            </div>
+            <a href="#" class="desktop-menu__nav-item">Wharton Stories</a>
+            <a href="#" class="desktop-menu__nav-item">Give to Wharton</a>
+            <a href="#" class="desktop-menu__nav-item">Student Life</a>
           </div>
-          <a href="#" class="desktop-menu__nav-item">News</a>
-          <a href="#" class="desktop-menu__nav-item">Recruiters &amp; Corporations</a>
-          <a href="#" class="desktop-menu__nav-item">Alumni</a>
-          <div class="desktop-menu__nav-group">
-            <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="locations">Locations <span class="desktop-menu__nav-chevron">&#711;</span></button>
-            <ul class="desktop-menu__sub-list" id="desktop-sub-locations">
-              <li><a href="#" class="desktop-menu__sub-link">Philadelphia</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">San Francisco</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">Beijing</a></li>
-              <li><a href="#" class="desktop-menu__sub-link">All Locations</a></li>
-            </ul>
-          </div>
-          <a href="#" class="desktop-menu__nav-item">Wharton Stories</a>
-          <a href="#" class="desktop-menu__nav-item">Give to Wharton</a>
-          <a href="#" class="desktop-menu__nav-item">Student Life</a>
         </nav>
 
         <!-- All Wharton bottom row (tablet only) -->
@@ -937,8 +967,10 @@
     <!-- Lead Content -->
     <div class="lead">
       <div class="lead__border"></div>
-      <h1 class="lead__heading">Impact vs. Time: A Leader's Guide to Slow Productivity</h1>
-      <p class="lead__subtitle">In this Nano Tool for Leaders, author and professor Cal Newport offers practical guidance on how to slow down in order to enhance your productivity.</p>
+      <div class="lead__text">
+        <h1 class="lead__heading">Impact vs. Time: A Leader's Guide to Slow Productivity</h1>
+        <p class="lead__subtitle">In this Nano Tool for Leaders, author and professor Cal Newport offers practical guidance on how to slow down in order to enhance your productivity.</p>
+      </div>
       <div class="lead__actions">
         <a href="#" class="lead__cta">
           Read More
@@ -1005,8 +1037,8 @@
     <div class="proto-switcher__menu" id="protoMenu">
       <div class="proto-switcher__section-label">High-Fidelity</div>
       <a href="wharton-home-v2.html" class="proto-switcher__link proto-switcher__link--active">V2 Wharton Home</a>
-      <a href="child-home-v2.html" class="proto-switcher__link">V2 Child Home</a>
-      <a href="child-mba-v2.html" class="proto-switcher__link">V2 MBA</a>
+      <a href="child-mba-landing-v2.html" class="proto-switcher__link">V2 MBA Landing</a>
+      <a href="child-mba-interior-v2.html" class="proto-switcher__link">V2 MBA Interior</a>
       <div class="proto-switcher__divider"></div>
       <a href="wharton-home-v1.html" class="proto-switcher__link">V1 Wharton Home</a>
       <a href="child-home-v1.html" class="proto-switcher__link">V1 Child Home</a>
@@ -1040,7 +1072,7 @@
       // Utility: check if mobile
       function isMobile() { return window.innerWidth <= 791; }
 
-      // Sticky header: show after scrolling past the hero
+      // Sticky header: show after scrolling past threshold
       var stickyHeader = document.getElementById('stickyHeader');
       var isVisible = false;
       window.addEventListener('scroll', function() {

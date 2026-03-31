@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jacobs MSQF — V2</title>
+  <title>MBA Program — Landing V2</title>
   <link rel="stylesheet" href="https://use.typekit.net/ael0dii.css">
   <style>
     :root {
@@ -24,160 +24,187 @@
     }
     a { text-decoration: none; color: inherit; }
 
-    /* ===== HEADER SECTION (no hero) ===== */
+    /* ===== HERO SECTION ===== */
     .site-header {
-      width: 100%;
+      width: 100%; position: relative; overflow: visible;
       background: linear-gradient(to right, #011f5b, #0240bd 96%, #0242c1);
+      z-index: 5;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      overflow: hidden;
+    }
+    .hero-bg img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .hero-bg__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(107deg, rgba(0, 85, 255, 0.90) 4.85%, rgba(1, 26, 77, 0.80) 47.24%, rgba(2, 31, 89, 0.10) 59.89%, rgba(2, 31, 89, 0.00) 86.21%);
     }
 
-    /* ===== UNIVERSAL BAR ===== */
-    .universal-bar {
-      display: flex; align-items: center; justify-content: flex-end;
-      height: 50px; padding: 0 48px;
-      background: rgba(0,0,0,0.1);
-      border-bottom: 1px solid rgba(224,224,224,0.25);
+    /* Header bar (over hero) */
+    .header-bar {
+      position: relative; z-index: 2;
+      display: flex; align-items: center;
+      background: linear-gradient(to right, rgba(1,31,91,0.83), rgba(2,64,189,0.83) 96%, rgba(2,66,193,0.83));
+      border-bottom: 1px solid rgba(255,255,255,0.25);
     }
-    .universal-nav {
-      display: flex; align-items: center; height: 50px;
-      padding: 0 16px; gap: 0; overflow: visible;
+    .header-bar__left {
+      display: flex; align-items: center; gap: 16px;
+      flex: 1; padding: 20px 48px;
     }
-    .universal-nav__link {
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 16px;
-      text-transform: uppercase; letter-spacing: 0.2px;
-      color: var(--marine-gray); white-space: nowrap;
-      padding: 8px 10px; transition: opacity 0.15s;
+    .header-bar__logo img {
+      height: 32px; width: auto; display: block;
     }
-    .universal-nav__link:hover { opacity: 0.7; }
-    .universal-nav__dropdown {
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 16px;
-      text-transform: uppercase; letter-spacing: 0.2px;
-      color: var(--marine-gray); white-space: nowrap;
-      padding: 8px 10px; border: none;
-      background: none; cursor: pointer; display: flex;
-      align-items: center; gap: 6px;
-    }
-    .universal-nav__dropdown svg { width: 10px; height: 10px; fill: var(--marine-gray); transition: transform 0.2s; }
-    .universal-nav__dropdown.is-open svg { transform: rotate(180deg); }
-    .programs-dropdown__menu {
-      position: absolute; top: 100%; right: 0; z-index: 100;
-      background: var(--penn-blue); border: 1px solid rgba(255,255,255,0.15);
-      min-width: 200px; padding: 8px 0;
-      opacity: 0; visibility: hidden; transform: translateY(4px);
-      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
-    }
-    .universal-nav__dropdown.is-open + .programs-dropdown__menu {
-      opacity: 1; visibility: visible; transform: translateY(0);
-    }
-    .programs-dropdown__link {
-      display: block; padding: 8px 16px; text-align: right;
+    .header-bar__title {
       font-family: var(--font-ss-condensed); font-weight: 600;
-      font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;
-      color: rgba(255,255,255,0.7); white-space: nowrap;
-      transition: color 0.15s, background 0.15s;
+      font-size: 24px; line-height: 24px;
+      color: var(--marine-gray); padding-top: 6px;
     }
-    .programs-dropdown__link:hover { color: #fff; background: rgba(255,255,255,0.1); }
-    .universal-bar .top-buttons { display: flex; flex-shrink: 0; }
+    .header-bar__right {
+      display: flex; flex-direction: row; flex-shrink: 0; align-self: stretch;
+    }
     .top-btn {
-      display: flex; align-items: center; gap: 8px;
-      padding: 16px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 16px; cursor: pointer;
       font-family: var(--font-ss-condensed); font-weight: 600; font-size: 16px;
       text-transform: uppercase; letter-spacing: 0.2px;
       color: var(--marine-gray); white-space: nowrap;
       background: transparent;
       border: 1px solid rgba(255,255,255,0.25);
       transition: background 0.15s, border-color 0.15s;
+      gap: 8px;
     }
     .top-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.4); }
-    .top-btn--menu { }
     .top-btn svg { width: 16px; height: 16px; fill: var(--marine-gray); }
 
-    /* ===== IDENTITY BAR ===== */
+    /* Hero content */
+    .hero-content {
+      position: relative; z-index: 1;
+      background: rgba(0,0,0,0.1);
+      padding: 96px 48px 36px 48px;
+    }
+    .hero-text {
+      max-width: 769px; padding: 0 48px;
+    }
+    .hero-text h1 {
+      font-family: var(--font-ss-condensed); font-weight: 900;
+      font-size: 60px; line-height: 56px; letter-spacing: -0.2px;
+      color: var(--marine-gray); margin-bottom: 16px;
+    }
+    .hero-text p {
+      font-family: var(--font-ss-condensed); font-weight: 900;
+      font-size: 20px; line-height: 24px;
+      color: var(--marine-gray);
+    }
+    .hero-ctas {
+      display: flex; gap: 8px; padding: 0 48px; margin-top: 24px;
+    }
+    .hero-cta {
+      display: flex; align-items: center; gap: 8px;
+      padding: 16px 20px; border: none; cursor: pointer;
+      font-family: var(--font-ss-condensed); font-weight: 600;
+      font-size: 16px; letter-spacing: 0.2px; text-transform: uppercase;
+      text-decoration: none;
+    }
+    .hero-cta--primary {
+      background: #fff; color: var(--text-deep-blue);
+    }
+    .hero-cta--primary:hover { background: #f0f0f0; }
+    .hero-cta--secondary {
+      background: transparent; color: #fff;
+    }
+    .hero-cta--secondary:hover { opacity: 0.8; }
+    .hero-cta svg { width: 16px; height: 16px; fill: currentColor; }
+
+    /* ===== PILL NAV BAR ===== */
+    .pill-nav {
+      position: relative; z-index: 10;
+      padding: 0; margin-top: 48px;
+    }
+    .pill-nav__bar {
+      display: flex; align-items: center;
+      background: var(--penn-blue);
+      border: 1px solid rgba(224,224,224,0.25);
+      border-radius: 6px;
+      overflow: visible; position: relative;
+      backdrop-filter: blur(4.5px);
+      -webkit-backdrop-filter: blur(4.5px);
+    }
+    .pill-nav__item {
+      flex: 1 0 0; display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px;
+      font-family: var(--font-ss-condensed); font-weight: 600;
+      font-size: 16px; letter-spacing: 0.2px;
+      color: #edeff2; white-space: nowrap;
+      background: none; border: none; cursor: pointer;
+      border-right: 1px solid rgba(224,224,224,0.25);
+      position: relative;
+      transition: background 0.15s;
+    }
+    .pill-nav__item:first-child { border-radius: 6px 0 0 6px; }
+    .pill-nav__item:last-child { border-right: none; border-radius: 0 6px 6px 0; }
+    .pill-nav__item:hover { background: rgba(255,255,255,0.06); }
+    .pill-nav__item.is-open {
+      background: rgba(255,255,255,0.06);
+      border-bottom-left-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+    .pill-nav__item.is-overflowed { display: none; }
+    .pill-nav__more { display: none; }
+    .pill-nav__more.is-visible { display: flex; }
+    .pill-nav__chevron {
+      width: 16px; height: 16px; fill: none; stroke: #edeff2; stroke-width: 2;
+      transition: transform 0.2s; flex-shrink: 0; margin-left: 8px;
+    }
+    .pill-nav__item.is-open .pill-nav__chevron { transform: rotate(180deg); }
+
+    /* Pill nav dropdown */
+    .pill-nav__dropdown {
+      position: absolute; top: 100%; left: -1px; z-index: 100;
+      min-width: calc(100% + 2px);
+      width: max-content;
+      background: var(--penn-blue);
+      border: 1px solid rgba(224,224,224,0.25); border-top: none;
+      border-radius: 0 0 12px 12px;
+      padding: 4px 0 8px;
+      opacity: 0; visibility: hidden; transform: translateY(-2px);
+      transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+    }
+    .pill-nav__item.is-open .pill-nav__dropdown {
+      opacity: 1; visibility: visible; transform: translateY(0);
+    }
+    .pill-nav__dropdown-link {
+      display: block; padding: 10px 20px; text-align: left;
+      font-family: var(--font-ss-condensed); font-weight: 600;
+      font-size: 15px; letter-spacing: 0.2px;
+      color: rgba(255,255,255,0.65); white-space: nowrap;
+      transition: color 0.15s, background 0.15s; text-decoration: none;
+    }
+    .pill-nav__dropdown-link:hover { color: #fff; background: rgba(255,255,255,0.1); }
+    .pill-nav__dropdown-link--parent {
+      color: #fff; font-weight: 700;
+    }
+
+    /* ===== IDENTITY BAR (mobile only) ===== */
     .identity-bar {
-      display: flex; align-items: center; gap: 0;
+      display: none; align-items: center; gap: 0;
       padding: 32px 48px 0 48px;
     }
     .identity-bar__brand {
       display: flex; align-items: center; gap: 32px; flex: 1; min-width: 0;
     }
-    .identity-bar__logo {
-      flex-shrink: 0;
-    }
-    .identity-bar__logo img {
-      width: 250px; height: auto; display: block;
-    }
+    .identity-bar__logo { flex-shrink: 0; }
+    .identity-bar__logo img { width: 250px; height: auto; display: block; }
     .identity-bar__name {
       font-family: var(--font-ss-condensed); font-weight: 600;
-      font-size: 38px; line-height: 42px;
-      color: var(--marine-gray);
+      font-size: 38px; line-height: 42px; color: var(--marine-gray);
     }
-
-    /* ===== LOCAL NAV BAR ===== */
-    .local-nav {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 50px; margin-top: 16px;
-    }
-    .local-nav__links {
-      display: flex; align-items: center; padding-left: 48px;
-    }
-    .local-nav__link {
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 18px;
-      letter-spacing: 0.2px; color: var(--marine-gray);
-      padding: 0 16px; white-space: nowrap;
-      transition: opacity 0.15s; line-height: 50px;
-    }
-    .local-nav__link:hover { opacity: 0.7; }
-    .local-nav__more-btn {
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 18px;
-      letter-spacing: 0.2px; color: var(--marine-gray);
-      padding: 0 16px; white-space: nowrap; line-height: 50px;
-      background: none; border: none; cursor: pointer;
-      display: flex; align-items: center; gap: 6px;
-      transition: opacity 0.15s; position: relative;
-    }
-    .local-nav__more-btn:hover { opacity: 0.7; }
-    .local-nav__more-btn svg {
-      width: 10px; height: 10px; fill: var(--marine-gray);
-      transition: transform 0.2s;
-    }
-    .local-nav__more-btn.is-open svg { transform: rotate(180deg); }
-
-    /* More dropdown */
-    .more-dropdown__menu {
-      position: absolute; top: 100%; left: 0; z-index: 100;
-      background: var(--penn-blue); border: 1px solid rgba(255,255,255,0.15);
-      min-width: 220px; padding: 8px 0;
-      opacity: 0; visibility: hidden; transform: translateY(4px);
-      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
-    }
-    .local-nav__more-btn.is-open + .more-dropdown__menu {
-      opacity: 1; visibility: visible; transform: translateY(0);
-    }
-    .more-dropdown__link {
-      display: block; padding: 8px 16px;
-      font-family: var(--font-ss-condensed); font-weight: 600;
-      font-size: 14px; letter-spacing: 0.3px;
-      color: rgba(255,255,255,0.7); white-space: nowrap;
-      transition: color 0.15s, background 0.15s;
-    }
-    .more-dropdown__link:hover { color: #fff; background: rgba(255,255,255,0.1); }
-
-    .local-nav__buttons {
-      display: flex; flex-shrink: 0;
-    }
-    .local-nav__btn {
-      display: flex; align-items: center; gap: 8px; height: 50px;
-      padding: 0 16px; border: none; cursor: pointer;
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 13px;
-      text-transform: uppercase; letter-spacing: 0.5px;
-      color: #fff; white-space: nowrap;
-    }
-    .local-nav__btn--menu { background: var(--penn-blue); }
-    .local-nav__btn--search { background: var(--penn-red); }
-    .local-nav__btn svg { width: 18px; height: 18px; fill: #fff; }
 
     /* ===== CONTENT AREA ===== */
     .content-area {
       background: #fff;
+      position: relative; z-index: 1;
     }
     .breadcrumb {
       padding: 20px 48px 0 48px;
@@ -271,16 +298,18 @@
       display: none;
     }
     .sticky-header__nav-link {
-      font-family: var(--font-ss); font-size: 14px;
-      font-weight: 600; color: #fff; padding: 8px 12px;
+      font-family: var(--font-ss-condensed); font-size: 16px;
+      font-weight: 600; letter-spacing: 0.2px;
+      color: #fff; padding: 8px 12px;
       white-space: nowrap; transition: opacity 0.15s;
       border-radius: 4px;
     }
     .sticky-header__nav-link:hover { opacity: 0.75; background: rgba(255,255,255,0.08); }
     .sticky-header__nav-link--more {
       position: relative; background: none; border: none; cursor: pointer;
-      font-family: var(--font-ss); font-size: 14px;
-      font-weight: 600; color: #fff; padding: 8px 12px;
+      font-family: var(--font-ss-condensed); font-size: 16px;
+      font-weight: 600; letter-spacing: 0.2px;
+      color: #fff; padding: 8px 12px;
       white-space: nowrap; display: flex; align-items: center; gap: 4px;
     }
     .sticky-header__nav-link--more:hover { opacity: 0.75; }
@@ -288,27 +317,33 @@
       display: flex; flex-shrink: 0; align-items: stretch;
     }
     .sticky-header__btn {
-      display: flex; align-items: center; gap: 8px;
-      padding: 0 16px; cursor: pointer;
-      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 16px;
-      text-transform: uppercase; letter-spacing: 0.2px;
+      display: flex; align-items: center; justify-content: center;
+      width: 48px;
+      padding: 0; cursor: pointer;
       color: var(--marine-gray); white-space: nowrap;
       background: transparent;
       border: 1px solid rgba(255,255,255,0.25);
       transition: background 0.15s, border-color 0.15s;
     }
     .sticky-header__btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.4); }
-    .sticky-header__btn svg { width: 18px; height: 18px; fill: #fff; }
+    .sticky-header__btn .btn-label { display: none; }
+    .sticky-header__btn svg { width: 16px; height: 16px; fill: var(--marine-gray); }
 
     /* Dynamic overflow for sticky nav */
     .sticky-header__nav-link.is-overflowed { display: none; }
     #stickyMoreTrigger.is-hidden { display: none; }
     @media (max-width: 791px) {
       .sticky-header__nav { display: none; }
-      .sticky-header__child-name { display: none; }
-      .sticky-header { padding: 0 0 0 16px; }
-      .sticky-header__buttons { margin-right: 0; }
-      .sticky-header__logo img { height: 24px; }
+      .sticky-header { padding: 0 0 0 16px; height: auto; }
+      .sticky-header__brand { gap: 8px; }
+      .sticky-header__child-name {
+        display: block; font-size: 12px; line-height: 14px;
+        color: var(--marine-gray); max-width: none;
+      }
+      .sticky-header__logo img { height: 16px; }
+      .sticky-header__buttons { margin-right: 0; flex-direction: row; }
+      .sticky-header__btn { width: 48px; padding: 0; justify-content: center; }
+      .sticky-header__btn .btn-label { display: none; }
     }
 
     /* ===== DESKTOP MENU OVERLAY ===== */
@@ -400,9 +435,9 @@
 
     /* Chevron (down arrow for desktop) */
     .desktop-menu__nav-chevron {
-      display: inline-flex; align-items: center; font-size: 18px;
-      transition: transform 0.25s ease; color: inherit;
-      margin-left: 4px;
+      width: 24px; height: 24px; flex-shrink: 0;
+      transition: transform 0.25s ease;
+      margin-left: 8px;
     }
     .desktop-menu__nav-item--expandable.is-expanded .desktop-menu__nav-chevron {
       transform: rotate(180deg);
@@ -423,6 +458,13 @@
       transition: color 0.15s; text-decoration: none;
     }
     .desktop-menu__sub-link:hover { color: #fff; }
+    .desktop-menu__sub-link--overview {
+      color: #fff; font-weight: 600; font-size: 22px;
+      height: 44px; transition: color 0.15s;
+    }
+    .desktop-menu__sub-link--overview:hover { color: #06aafc; }
+    .desktop-menu__sub-link.is-current { color: #06aafc; }
+    .desktop-menu__nav-item.is-current { color: #06aafc; }
 
     /* Right sidebar (~25%) - All Wharton */
     .desktop-menu__sidebar {
@@ -465,8 +507,12 @@
     }
     .desktop-menu__allwharton-bottom a:hover { color: #fff; }
 
-    /* Desktop menu responsive - tablet */
+    /* Desktop menu responsive - narrow */
     @media (max-width: 1024px) {
+      .desktop-menu__nav-list { flex-direction: column; gap: 0; }
+      .desktop-menu__nav-item { font-size: 30px; line-height: 34px; height: 48px; }
+    }
+    @media (max-width: 860px) {
       .desktop-menu__sidebar { display: none; }
       .desktop-menu__center { padding-right: 0; }
       .desktop-menu__allwharton-bottom { display: flex; }
@@ -477,13 +523,6 @@
     body.menu-open { overflow: hidden; }
 
 
-    .local-nav__link.is-active {
-      position: relative;
-    }
-    .local-nav__link.is-active::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 3px; background: #06aafc;
-    }
     .sticky-header__nav-link.is-active {
       position: relative;
     }
@@ -492,41 +531,40 @@
       height: 3px; background: #06aafc;
     }
     /* ===== RESPONSIVE ===== */
-    .local-nav__link[data-nav-item].is-overflowed { display: none; }
-    .local-nav__more-btn.is-hidden { display: none; }
     @media (max-width: 791px) {
-      .universal-bar { display: none; }
+      .header-bar { display: none; }
+      .hero-content { display: none; }
+      .hero-bg { display: none; }
+      .site-header { background: linear-gradient(to right, #011f5b, #0240bd 96%, #0242c1); }
       .identity-bar {
-        padding: 0; gap: 0;
-        justify-content: space-between; align-items: stretch;
+        display: flex; flex-wrap: wrap; padding: 0; gap: 0;
+        align-items: center;
       }
       .identity-bar__brand {
-        flex-direction: row; align-items: center; gap: 16px;
-        padding: 16px;
+        flex-basis: 100%; flex-direction: row; align-items: center; gap: 8px;
+        padding: 16px 20px;
       }
-      .identity-bar__logo {
-        padding: 20px 16px;
-      }
-      .identity-bar__logo img { width: 120px; }
+      .identity-bar__logo { padding: 0; }
+      .identity-bar__logo img { width: auto; height: 20px; }
       .identity-bar__name {
-        display: block; font-size: 16px; line-height: 20px;
-        white-space: normal; flex: 1; min-width: 0;
-        padding: 16px 12px 16px 0;
-        align-self: center;
+        display: block; font-size: 14px; line-height: 18px;
+        white-space: nowrap; padding: 0;
       }
       .identity-bar__mobile-buttons {
-        display: flex; flex-shrink: 0; align-self: stretch;
+        display: flex; flex-shrink: 0; width: 100%;
       }
       .identity-bar__mobile-buttons .top-btn {
-        height: 100%; align-self: stretch;
-        padding-top: 0; padding-bottom: 0;
+        flex: 1; height: auto;
+        padding: 16px; justify-content: center;
+        width: auto; font-size: 14px;
       }
-      .local-nav { display: none; margin: 0; }
+      .identity-bar__mobile-buttons .top-btn--menu { width: auto; }
+      .identity-bar__mobile-buttons .top-btn .btn-label { display: inline; font-size: 14px; }
       .breadcrumb { padding: 16px 16px 0 16px; }
       .below-fold { padding: 40px 16px; }
     }
     @media (min-width: 792px) {
-      .identity-bar__mobile-buttons { display: none; }
+      .identity-bar { display: none; }
     }
 
     /* ===== MOBILE MENU OVERLAY ===== */
@@ -641,7 +679,7 @@
     .mobile-menu__footer-label {
       font-family: var(--font-ss-condensed); font-size: 16px;
       text-transform: uppercase; letter-spacing: 2px;
-      color: rgba(255,255,255,0.4); font-weight: 600;
+      color: rgba(255,255,255,0.7); font-weight: 600;
     }
     .mobile-menu__footer-chevron {
       font-size: 16px; color: rgba(255,255,255,0.4);
@@ -697,7 +735,7 @@
     <div class="desktop-menu__header">
       <div class="desktop-menu__brand">
         <img class="desktop-menu__logo" src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania">
-        <span class="desktop-menu__title">Dr. Bruce I. Jacobs Master of Science in Quantitative Finance</span>
+        <span class="desktop-menu__title">MBA Program</span>
       </div>
       <button class="desktop-menu__close" id="desktopMenuClose" aria-label="Close menu">
         <span>&#10005;</span>
@@ -708,41 +746,74 @@
     <div class="desktop-menu__body">
       <!-- Left/Center area - primary nav -->
       <div class="desktop-menu__center">
-        <nav class="desktop-menu__nav-list" aria-label="Jacobs MSQF navigation">
+        <nav class="desktop-menu__nav-list" aria-label="MBA Program navigation">
           <div class="desktop-menu__nav-col">
+            <a href="child-mba-landing-v2.html" class="desktop-menu__nav-item is-current">MBA Home</a>
             <div class="desktop-menu__nav-group">
-              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="about">About <span class="desktop-menu__nav-chevron">&#711;</span></button>
-              <ul class="desktop-menu__sub-list" id="desktop-sub-about">
-                <li><a href="#" class="desktop-menu__sub-link">History</a></li>
-                <li><a href="#" class="desktop-menu__sub-link">About Dr. Bruce I Jacobs</a></li>
-                <li><a href="#" class="desktop-menu__sub-link">Advisory Board</a></li>
-                <li><a href="#" class="desktop-menu__sub-link">Learn More About Our Faculty</a></li>
-                <li><a href="#" class="desktop-menu__sub-link">Community Engagement</a></li>
+              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="facts">Facts &amp; Figures <svg class="desktop-menu__nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <ul class="desktop-menu__sub-list" id="desktop-sub-facts">
+                <li><a href="#" class="desktop-menu__sub-link desktop-menu__sub-link--overview">Facts &amp; Figures Overview</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Class Profile</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Rankings</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Employment Report</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Tuition &amp; Fees</a></li>
               </ul>
             </div>
-            <a href="#" class="desktop-menu__nav-item">Why a Jacobs MSQF</a>
             <div class="desktop-menu__nav-group">
-              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="academics">Academics <span class="desktop-menu__nav-chevron">&#711;</span></button>
+              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="academics">Academics <svg class="desktop-menu__nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
               <ul class="desktop-menu__sub-list" id="desktop-sub-academics">
-                <li><a href="#" class="desktop-menu__sub-link">Curriculum</a></li>
-                <li><a href="#" class="desktop-menu__sub-link">Course Descriptions</a></li>
-                <li><a href="#" class="desktop-menu__sub-link">Program Requirements</a></li>
+                <li><a href="child-mba-interior-v2.html" class="desktop-menu__sub-link desktop-menu__sub-link--overview">Academics Overview</a></li>
+                <li><a href="child-mba-interior-v2.html" class="desktop-menu__sub-link">MBA Curriculum</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Course Match</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Majors &amp; Concentrations</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Dual Degrees</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Co-Curricular Opportunities</a></li>
               </ul>
             </div>
             <div class="desktop-menu__nav-group">
-              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="careers">Careers &amp; Recruiting <span class="desktop-menu__nav-chevron">&#711;</span></button>
-              <ul class="desktop-menu__sub-list" id="desktop-sub-careers">
-                <li><a href="#" class="desktop-menu__sub-link">Career Services</a></li>
-                <li><a href="#" class="desktop-menu__sub-link">Employer Partners</a></li>
-                <li><a href="#" class="desktop-menu__sub-link">Internships</a></li>
+              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="student-life">Student Life <svg class="desktop-menu__nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <ul class="desktop-menu__sub-list" id="desktop-sub-student-life">
+                <li><a href="#" class="desktop-menu__sub-link desktop-menu__sub-link--overview">Student Life Overview</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Clubs &amp; Organizations</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Impact Communities</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Housing</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Philadelphia Life</a></li>
               </ul>
             </div>
+            <div class="desktop-menu__nav-group">
+              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="careers">Careers &amp; Network <svg class="desktop-menu__nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <ul class="desktop-menu__sub-list" id="desktop-sub-careers">
+                <li><a href="#" class="desktop-menu__sub-link desktop-menu__sub-link--overview">Careers &amp; Network Overview</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Career Management</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Employment Report</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Alumni Network</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Recruiting</a></li>
+              </ul>
+            </div>
+            <a href="#" class="desktop-menu__nav-item">MBA Stories</a>
           </div>
           <div class="desktop-menu__nav-col">
-            <a href="#" class="desktop-menu__nav-item">Admissions</a>
-            <a href="#" class="desktop-menu__nav-item">Application Guide</a>
-            <a href="#" class="desktop-menu__nav-item">Events</a>
-            <a href="#" class="desktop-menu__nav-item">FAQ</a>
+            <div class="desktop-menu__nav-group">
+              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="applying">Applying <svg class="desktop-menu__nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <ul class="desktop-menu__sub-list" id="desktop-sub-applying">
+                <li><a href="#" class="desktop-menu__sub-link desktop-menu__sub-link--overview">Applying Overview</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Application Guide</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Admissions</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Class Profile</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Visit Campus</a></li>
+              </ul>
+            </div>
+            <a href="#" class="desktop-menu__nav-item">Financing</a>
+            <div class="desktop-menu__nav-group">
+              <button class="desktop-menu__nav-item desktop-menu__nav-item--expandable" data-desktop-toggle="events">Events <svg class="desktop-menu__nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <ul class="desktop-menu__sub-list" id="desktop-sub-events">
+                <li><a href="#" class="desktop-menu__sub-link desktop-menu__sub-link--overview">Events Overview</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Upcoming Events</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Webinars</a></li>
+                <li><a href="#" class="desktop-menu__sub-link">Info Sessions</a></li>
+              </ul>
+            </div>
+            <a href="#" class="desktop-menu__nav-item">Contact Us</a>
           </div>
         </nav>
 
@@ -796,50 +867,97 @@
       </button>
     </div>
 
-    <div class="mobile-menu__site-title">Dr. Bruce I. Jacobs Master of Science in Quantitative Finance</div>
+    <div class="mobile-menu__site-title">MBA Program</div>
 
     <div class="mobile-menu__content">
       <nav class="mobile-menu__primary" id="mobilePrimary">
-        <button class="mobile-menu__primary-item" data-mobile-drill="about">About <span class="mobile-menu__primary-chevron">&#8250;</span></button>
-        <a href="#" class="mobile-menu__primary-item">Why a Jacobs MSQF</a>
+        <button class="mobile-menu__primary-item" data-mobile-drill="facts">Facts &amp; Figures <span class="mobile-menu__primary-chevron">&#8250;</span></button>
         <button class="mobile-menu__primary-item" data-mobile-drill="academics">Academics <span class="mobile-menu__primary-chevron">&#8250;</span></button>
-        <button class="mobile-menu__primary-item" data-mobile-drill="careers">Careers &amp; Recruiting <span class="mobile-menu__primary-chevron">&#8250;</span></button>
-        <a href="#" class="mobile-menu__primary-item">Admissions</a>
-        <a href="#" class="mobile-menu__primary-item">Application Guide</a>
-        <a href="#" class="mobile-menu__primary-item">Events</a>
-        <a href="#" class="mobile-menu__primary-item">FAQ</a>
+        <button class="mobile-menu__primary-item" data-mobile-drill="student-life">Student Life <span class="mobile-menu__primary-chevron">&#8250;</span></button>
+        <button class="mobile-menu__primary-item" data-mobile-drill="careers">Careers &amp; Network <span class="mobile-menu__primary-chevron">&#8250;</span></button>
+        <a href="#" class="mobile-menu__primary-item">MBA Stories</a>
+        <button class="mobile-menu__primary-item" data-mobile-drill="applying">Applying <span class="mobile-menu__primary-chevron">&#8250;</span></button>
+        <a href="#" class="mobile-menu__primary-item">Financing</a>
+        <button class="mobile-menu__primary-item" data-mobile-drill="events">Events <span class="mobile-menu__primary-chevron">&#8250;</span></button>
+        <a href="#" class="mobile-menu__primary-item">Contact Us</a>
       </nav>
 
-      <div class="mobile-menu__drilldown" id="mobileDrill-about">
+      <!-- Drilldown: Facts & Figures -->
+      <div class="mobile-menu__drilldown" id="mobileDrill-facts">
         <button class="mobile-menu__back" data-mobile-back>
           <span class="mobile-menu__back-arrow">&#8592;</span>
-          <span class="mobile-menu__back-label">About</span>
+          <span class="mobile-menu__back-label">Facts &amp; Figures</span>
         </button>
-        <a href="#" class="mobile-menu__drilldown-item">History</a>
-        <a href="#" class="mobile-menu__drilldown-item">About Dr. Bruce I Jacobs</a>
-        <a href="#" class="mobile-menu__drilldown-item">Advisory Board</a>
-        <a href="#" class="mobile-menu__drilldown-item">Learn More About Our Faculty</a>
-        <a href="#" class="mobile-menu__drilldown-item">Community Engagement</a>
+        <a href="#" class="mobile-menu__drilldown-item">Facts &amp; Figures Overview</a>
+        <a href="#" class="mobile-menu__drilldown-item">Class Profile</a>
+        <a href="#" class="mobile-menu__drilldown-item">Rankings</a>
+        <a href="#" class="mobile-menu__drilldown-item">Employment Report</a>
+        <a href="#" class="mobile-menu__drilldown-item">Tuition &amp; Fees</a>
       </div>
 
+      <!-- Drilldown: Academics -->
       <div class="mobile-menu__drilldown" id="mobileDrill-academics">
         <button class="mobile-menu__back" data-mobile-back>
           <span class="mobile-menu__back-arrow">&#8592;</span>
           <span class="mobile-menu__back-label">Academics</span>
         </button>
-        <a href="#" class="mobile-menu__drilldown-item">Curriculum</a>
-        <a href="#" class="mobile-menu__drilldown-item">Course Descriptions</a>
-        <a href="#" class="mobile-menu__drilldown-item">Program Requirements</a>
+        <a href="child-mba-interior-v2.html" class="mobile-menu__drilldown-item">Academics Overview</a>
+        <a href="child-mba-interior-v2.html" class="mobile-menu__drilldown-item">MBA Curriculum</a>
+        <a href="#" class="mobile-menu__drilldown-item">Course Match</a>
+        <a href="#" class="mobile-menu__drilldown-item">Majors &amp; Concentrations</a>
+        <a href="#" class="mobile-menu__drilldown-item">Dual Degrees</a>
+        <a href="#" class="mobile-menu__drilldown-item">Co-Curricular Opportunities</a>
       </div>
 
+      <!-- Drilldown: Student Life -->
+      <div class="mobile-menu__drilldown" id="mobileDrill-student-life">
+        <button class="mobile-menu__back" data-mobile-back>
+          <span class="mobile-menu__back-arrow">&#8592;</span>
+          <span class="mobile-menu__back-label">Student Life</span>
+        </button>
+        <a href="#" class="mobile-menu__drilldown-item">Student Life Overview</a>
+        <a href="#" class="mobile-menu__drilldown-item">Clubs &amp; Organizations</a>
+        <a href="#" class="mobile-menu__drilldown-item">Impact Communities</a>
+        <a href="#" class="mobile-menu__drilldown-item">Housing</a>
+        <a href="#" class="mobile-menu__drilldown-item">Philadelphia Life</a>
+      </div>
+
+      <!-- Drilldown: Careers & Network -->
       <div class="mobile-menu__drilldown" id="mobileDrill-careers">
         <button class="mobile-menu__back" data-mobile-back>
           <span class="mobile-menu__back-arrow">&#8592;</span>
-          <span class="mobile-menu__back-label">Careers &amp; Recruiting</span>
+          <span class="mobile-menu__back-label">Careers &amp; Network</span>
         </button>
-        <a href="#" class="mobile-menu__drilldown-item">Career Services</a>
-        <a href="#" class="mobile-menu__drilldown-item">Employer Partners</a>
-        <a href="#" class="mobile-menu__drilldown-item">Internships</a>
+        <a href="#" class="mobile-menu__drilldown-item">Careers &amp; Network Overview</a>
+        <a href="#" class="mobile-menu__drilldown-item">Career Management</a>
+        <a href="#" class="mobile-menu__drilldown-item">Employment Report</a>
+        <a href="#" class="mobile-menu__drilldown-item">Alumni Network</a>
+        <a href="#" class="mobile-menu__drilldown-item">Recruiting</a>
+      </div>
+
+      <!-- Drilldown: Applying -->
+      <div class="mobile-menu__drilldown" id="mobileDrill-applying">
+        <button class="mobile-menu__back" data-mobile-back>
+          <span class="mobile-menu__back-arrow">&#8592;</span>
+          <span class="mobile-menu__back-label">Applying</span>
+        </button>
+        <a href="#" class="mobile-menu__drilldown-item">Applying Overview</a>
+        <a href="#" class="mobile-menu__drilldown-item">Application Guide</a>
+        <a href="#" class="mobile-menu__drilldown-item">Admissions</a>
+        <a href="#" class="mobile-menu__drilldown-item">Class Profile</a>
+        <a href="#" class="mobile-menu__drilldown-item">Visit Campus</a>
+      </div>
+
+      <!-- Drilldown: Events -->
+      <div class="mobile-menu__drilldown" id="mobileDrill-events">
+        <button class="mobile-menu__back" data-mobile-back>
+          <span class="mobile-menu__back-arrow">&#8592;</span>
+          <span class="mobile-menu__back-label">Events</span>
+        </button>
+        <a href="#" class="mobile-menu__drilldown-item">Events Overview</a>
+        <a href="#" class="mobile-menu__drilldown-item">Upcoming Events</a>
+        <a href="#" class="mobile-menu__drilldown-item">Webinars</a>
+        <a href="#" class="mobile-menu__drilldown-item">Info Sessions</a>
       </div>
     </div>
 
@@ -873,14 +991,18 @@
       <a href="#" class="sticky-header__logo">
         <img src="assets/wharton-logo-light.svg" alt="Wharton" preserveAspectRatio="xMidYMid meet">
       </a>
-      <span class="sticky-header__child-name">Dr. Bruce I. Jacobs Master of Science in Quantitative Finance</span>
+      <span class="sticky-header__child-name">MBA Program</span>
     </div>
     <nav class="sticky-header__nav" id="stickyNavLinks">
-      <a href="#" class="sticky-header__nav-link" data-sticky-item>About</a>
-      <a href="#" class="sticky-header__nav-link" data-sticky-item>Why a Jacobs MSQF</a>
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>Facts &amp; Figures</a>
       <a href="#" class="sticky-header__nav-link" data-sticky-item>Academics</a>
-      <a href="#" class="sticky-header__nav-link" data-sticky-item>Careers &amp; Recruiting</a>
-      <a href="#" class="sticky-header__nav-link" data-sticky-item>Admissions</a>
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>Student Life</a>
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>Careers &amp; Network</a>
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>MBA Stories</a>
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>Applying</a>
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>Financing</a>
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>Events</a>
+      <a href="#" class="sticky-header__nav-link" data-sticky-item>Contact Us</a>
       <a href="#" class="sticky-header__nav-link" id="stickyMoreTrigger">More...</a>
     </nav>
     <div class="sticky-header__buttons">
@@ -902,41 +1024,153 @@
     </div>
   </header>
 
-  <!-- SITE HEADER -->
-  <div class="site-header">
-    <!-- Universal Bar -->
-    <div class="universal-bar">
-      <nav class="universal-nav">
-        <a href="#" class="universal-nav__link">Wharton Home</a>
-        <a href="#" class="universal-nav__link">Faculty &amp; Research</a>
-        <a href="#" class="universal-nav__link">Knowledge at Wharton</a>
-        <div class="programs-dropdown" style="position: relative;">
-          <button class="universal-nav__dropdown" id="programsDropdownBtn">
-            Programs
-            <svg viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+  <!-- SITE HEADER / HERO -->
+  <div class="site-header" id="heroSection">
+    <!-- Background image + overlay -->
+    <div class="hero-bg">
+      <img src="assets/jmhh-exterior-hero.jpg" alt="Jon M. Huntsman Hall exterior">
+      <div class="hero-bg__overlay"></div>
+    </div>
+
+    <!-- Header bar -->
+    <div class="header-bar">
+      <div class="header-bar__left">
+        <a href="#" class="header-bar__logo">
+          <img src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania">
+        </a>
+        <span class="header-bar__title">MBA Program</span>
+      </div>
+      <div class="header-bar__right">
+        <button class="top-btn top-btn--menu">
+          <svg viewBox="0 0 20 20">
+            <rect x="2.5" y="4" width="15" height="1.5" rx="0.5"/>
+            <rect x="2.5" y="9.25" width="15" height="1.5" rx="0.5"/>
+            <rect x="2.5" y="14.5" width="15" height="1.5" rx="0.5"/>
+          </svg>
+          <span class="btn-label">MENU</span>
+        </button>
+        <button class="top-btn top-btn--search">
+          <svg viewBox="0 0 20 20">
+            <circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="#fff" stroke-width="1.8"/>
+            <line x1="12.5" y1="12.5" x2="17" y2="17" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span class="btn-label">SEARCH</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Hero content -->
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Two Years of Growth.<br>A Lifetime of Learning.</h1>
+        <p>With Wharton's rigorous yet flexible curriculum, you'll gain a strong foundation of business knowledge with the freedom to explore new areas of study. Discover new interests and follow your passions through majors, electives, and interdisciplinary programs. Along the way, join a community of classmates who will both inspire and push you forward.</p>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="#" class="hero-cta hero-cta--primary">
+          START YOUR APPLICATION
+          <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#" class="hero-cta hero-cta--secondary">
+          DOWNLOAD BROCHURE
+          <svg viewBox="0 0 16 16"><path d="M8 2v8M4 7l4 4 4-4M3 13h10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <!-- Pill-shaped local nav -->
+      <nav class="pill-nav" id="pillNav">
+        <div class="pill-nav__bar">
+          <button class="pill-nav__item" data-pill-item data-pill-dropdown="facts">
+            <span>Facts &amp; Figures</span>
+            <svg class="pill-nav__chevron" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="pill-nav__dropdown">
+              <a href="#" class="pill-nav__dropdown-link pill-nav__dropdown-link--parent">Facts &amp; Figures Overview</a>
+              <a href="#" class="pill-nav__dropdown-link">Class Profile</a>
+              <a href="#" class="pill-nav__dropdown-link">Rankings</a>
+              <a href="#" class="pill-nav__dropdown-link">Employment Report</a>
+              <a href="#" class="pill-nav__dropdown-link">Tuition &amp; Fees</a>
+            </div>
           </button>
-          <div class="programs-dropdown__menu" id="programsDropdownMenu">
-            <a href="#" class="programs-dropdown__link">MBA</a>
-            <a href="#" class="programs-dropdown__link">Executive MBA</a>
-            <a href="#" class="programs-dropdown__link">Undergraduate</a>
-            <a href="#" class="programs-dropdown__link">Jacobs MSQF</a>
-            <a href="#" class="programs-dropdown__link">PhD</a>
-            <a href="#" class="programs-dropdown__link">Executive Education</a>
-            <a href="#" class="programs-dropdown__link">Wharton Online</a>
-            <a href="#" class="programs-dropdown__link">Global Youth Program</a>
-            <a href="#" class="programs-dropdown__link">Wharton Academy</a>
-          </div>
+          <button class="pill-nav__item" data-pill-item data-pill-dropdown="academics">
+            <span>Academics</span>
+            <svg class="pill-nav__chevron" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="pill-nav__dropdown">
+              <a href="child-mba-interior-v2.html" class="pill-nav__dropdown-link pill-nav__dropdown-link--parent">Academics Overview</a>
+              <a href="child-mba-interior-v2.html" class="pill-nav__dropdown-link">MBA Curriculum</a>
+              <a href="#" class="pill-nav__dropdown-link">Course Match</a>
+              <a href="#" class="pill-nav__dropdown-link">Majors &amp; Concentrations</a>
+              <a href="#" class="pill-nav__dropdown-link">Dual Degrees</a>
+              <a href="#" class="pill-nav__dropdown-link">Co-Curricular Opportunities</a>
+            </div>
+          </button>
+          <button class="pill-nav__item" data-pill-item data-pill-dropdown="student-life">
+            <span>Student Life</span>
+            <svg class="pill-nav__chevron" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="pill-nav__dropdown">
+              <a href="#" class="pill-nav__dropdown-link pill-nav__dropdown-link--parent">Student Life Overview</a>
+              <a href="#" class="pill-nav__dropdown-link">Clubs &amp; Organizations</a>
+              <a href="#" class="pill-nav__dropdown-link">Impact Communities</a>
+              <a href="#" class="pill-nav__dropdown-link">Housing</a>
+              <a href="#" class="pill-nav__dropdown-link">Philadelphia Life</a>
+            </div>
+          </button>
+          <button class="pill-nav__item" data-pill-item data-pill-dropdown="careers">
+            <span>Careers &amp; Network</span>
+            <svg class="pill-nav__chevron" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="pill-nav__dropdown">
+              <a href="#" class="pill-nav__dropdown-link pill-nav__dropdown-link--parent">Careers &amp; Network Overview</a>
+              <a href="#" class="pill-nav__dropdown-link">Career Management</a>
+              <a href="#" class="pill-nav__dropdown-link">Employment Report</a>
+              <a href="#" class="pill-nav__dropdown-link">Alumni Network</a>
+              <a href="#" class="pill-nav__dropdown-link">Recruiting</a>
+            </div>
+          </button>
+          <a href="#" class="pill-nav__item" data-pill-item style="justify-content: flex-start;">
+            <span>MBA Stories</span>
+          </a>
+          <button class="pill-nav__item" data-pill-item data-pill-dropdown="applying">
+            <span>Applying</span>
+            <svg class="pill-nav__chevron" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="pill-nav__dropdown">
+              <a href="#" class="pill-nav__dropdown-link pill-nav__dropdown-link--parent">Applying Overview</a>
+              <a href="#" class="pill-nav__dropdown-link">Application Guide</a>
+              <a href="#" class="pill-nav__dropdown-link">Admissions</a>
+              <a href="#" class="pill-nav__dropdown-link">Class Profile</a>
+              <a href="#" class="pill-nav__dropdown-link">Visit Campus</a>
+            </div>
+          </button>
+          <a href="#" class="pill-nav__item" data-pill-item style="justify-content: flex-start;">
+            <span>Financing</span>
+          </a>
+          <button class="pill-nav__item" data-pill-item data-pill-dropdown="events">
+            <span>Events</span>
+            <svg class="pill-nav__chevron" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="pill-nav__dropdown">
+              <a href="#" class="pill-nav__dropdown-link pill-nav__dropdown-link--parent">Events Overview</a>
+              <a href="#" class="pill-nav__dropdown-link">Upcoming Events</a>
+              <a href="#" class="pill-nav__dropdown-link">Webinars</a>
+              <a href="#" class="pill-nav__dropdown-link">Info Sessions</a>
+            </div>
+          </button>
+          <a href="#" class="pill-nav__item" data-pill-item style="justify-content: flex-start;">
+            <span>Contact Us</span>
+          </a>
+          <button class="pill-nav__item pill-nav__more" data-pill-dropdown="pill-more" style="border-right: none; border-radius: 0 6px 6px 0;">
+            <span>More...</span>
+            <svg class="pill-nav__chevron" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="pill-nav__dropdown" id="pillMoreDropdown"></div>
+          </button>
         </div>
       </nav>
     </div>
 
-    <!-- Identity Bar -->
+    <!-- Mobile identity bar (hidden on desktop) -->
     <div class="identity-bar">
       <div class="identity-bar__brand">
         <a href="#" class="identity-bar__logo">
-          <img src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania" preserveAspectRatio="xMidYMid meet">
+          <img src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania">
         </a>
-        <span class="identity-bar__name">Dr. Bruce I. Jacobs Master of Science in Quantitative Finance</span>
+        <span class="identity-bar__name">MBA Program</span>
       </div>
       <div class="identity-bar__mobile-buttons">
         <button class="top-btn top-btn--menu">
@@ -956,62 +1190,10 @@
         </button>
       </div>
     </div>
-
-    <!-- Local Nav -->
-    <nav class="local-nav">
-      <div class="local-nav__links" id="localNavLinks">
-        <a href="jacobs-about.html" class="local-nav__link" data-nav-item>About</a>
-        <a href="jacobs-why.html" class="local-nav__link" data-nav-item>Why a Jacobs MSQF</a>
-        <a href="jacobs-academics.html" class="local-nav__link" data-nav-item>Academics</a>
-        <a href="jacobs-careers.html" class="local-nav__link" data-nav-item>Careers &amp; Recruiting</a>
-        <a href="jacobs-admissions.html" class="local-nav__link" data-nav-item>Admissions</a>
-        <a href="jacobs-application-guide.html" class="local-nav__link" data-nav-item data-always-overflow>Application Guide</a>
-        <a href="jacobs-events.html" class="local-nav__link" data-nav-item data-always-overflow>Events</a>
-        <a href="jacobs-faq.html" class="local-nav__link" data-nav-item data-always-overflow>FAQ</a>
-        <a href="jacobs-student-resources.html" class="local-nav__link" data-nav-item data-always-overflow>Student Resources</a>
-        <a href="jacobs-financial-aid.html" class="local-nav__link" data-nav-item data-always-overflow>Financial Aid</a>
-        <a href="jacobs-contact.html" class="local-nav__link" data-nav-item data-always-overflow>Contact Us</a>
-        <div style="position:relative; display:inline-flex;">
-          <button class="local-nav__more-btn" id="moreDropdownBtn">
-            More
-            <svg viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="more-dropdown__menu" id="moreDropdownMenu"></div>
-        </div>
-      </div>
-      <div class="local-nav__buttons">
-        <button class="local-nav__btn local-nav__btn--menu">
-          <svg viewBox="0 0 20 20">
-            <rect x="2.5" y="4" width="15" height="1.5" rx="0.5"/>
-            <rect x="2.5" y="9.25" width="15" height="1.5" rx="0.5"/>
-            <rect x="2.5" y="14.5" width="15" height="1.5" rx="0.5"/>
-          </svg>
-          <span class="btn-label">Menu</span>
-        </button>
-        <button class="local-nav__btn local-nav__btn--search">
-          <svg viewBox="0 0 20 20">
-            <circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="#fff" stroke-width="1.8"/>
-            <line x1="12.5" y1="12.5" x2="17" y2="17" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-          Search
-        </button>
-      </div>
-    </nav>
   </div>
 
   <!-- CONTENT AREA -->
   <div class="content-area">
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-      <svg class="breadcrumb__icon" viewBox="0 0 16 16">
-        <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.2"/>
-        <path d="M4 9.5c0-2 1.8-3.5 4-3.5s4 1.5 4 3.5" fill="none" stroke="currentColor" stroke-width="1"/>
-        <line x1="8" y1="3" x2="8" y2="7" stroke="currentColor" stroke-width="1"/>
-        <line x1="4.5" y1="5" x2="8" y2="7" stroke="currentColor" stroke-width="0.8"/>
-        <line x1="11.5" y1="5" x2="8" y2="7" stroke="currentColor" stroke-width="0.8"/>
-      </svg>
-      <span class="breadcrumb__text">Jacobs MSQF</span>
-    </div>
 
     <!-- Below the fold placeholder -->
     <div class="below-fold">
@@ -1045,6 +1227,139 @@
         <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
         <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
       </div>
+
+      <!-- Full-width feature image -->
+      <div class="skeleton-block" style="width: 100%; height: 320px; margin-bottom: 40px;"></div>
+
+      <!-- Two-column content with sidebar -->
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px; margin-bottom: 48px;">
+        <div>
+          <div class="skeleton-block" style="width: 55%; height: 28px;"></div>
+          <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 92%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 85%; height: 12px; margin-bottom: 24px;"></div>
+          <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 78%; height: 12px;"></div>
+        </div>
+        <div>
+          <div class="skeleton-block" style="width: 100%; height: 200px;"></div>
+          <div class="skeleton-block" style="width: 80%; height: 14px;"></div>
+          <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 60%; height: 12px;"></div>
+        </div>
+      </div>
+
+      <!-- Stat blocks row -->
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 48px;">
+        <div style="text-align: center;">
+          <div class="skeleton-block" style="width: 60%; height: 40px; margin: 0 auto 8px;"></div>
+          <div class="skeleton-block" style="width: 80%; height: 12px; margin: 0 auto 4px;"></div>
+          <div class="skeleton-block" style="width: 50%; height: 12px; margin: 0 auto;"></div>
+        </div>
+        <div style="text-align: center;">
+          <div class="skeleton-block" style="width: 50%; height: 40px; margin: 0 auto 8px;"></div>
+          <div class="skeleton-block" style="width: 70%; height: 12px; margin: 0 auto 4px;"></div>
+          <div class="skeleton-block" style="width: 55%; height: 12px; margin: 0 auto;"></div>
+        </div>
+        <div style="text-align: center;">
+          <div class="skeleton-block" style="width: 55%; height: 40px; margin: 0 auto 8px;"></div>
+          <div class="skeleton-block" style="width: 75%; height: 12px; margin: 0 auto 4px;"></div>
+          <div class="skeleton-block" style="width: 60%; height: 12px; margin: 0 auto;"></div>
+        </div>
+        <div style="text-align: center;">
+          <div class="skeleton-block" style="width: 45%; height: 40px; margin: 0 auto 8px;"></div>
+          <div class="skeleton-block" style="width: 85%; height: 12px; margin: 0 auto 4px;"></div>
+          <div class="skeleton-block" style="width: 50%; height: 12px; margin: 0 auto;"></div>
+        </div>
+      </div>
+
+      <!-- Testimonial / quote block -->
+      <div style="background: #f5f5f5; border-radius: 8px; padding: 40px 48px; margin-bottom: 48px;">
+        <div class="skeleton-block" style="width: 100%; height: 16px; background: #ddd;"></div>
+        <div class="skeleton-block" style="width: 100%; height: 16px; background: #ddd;"></div>
+        <div class="skeleton-block" style="width: 70%; height: 16px; background: #ddd; margin-bottom: 20px;"></div>
+        <div class="skeleton-block" style="width: 25%; height: 12px; background: #ccc;"></div>
+        <div class="skeleton-block" style="width: 15%; height: 12px; background: #ccc;"></div>
+      </div>
+
+      <!-- Three-column cards with images -->
+      <div class="skeleton-block" style="width: 45%; height: 28px;"></div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px;">
+        <div><div class="skeleton-block" style="width: 100%; height: 200px;"></div><div class="skeleton-block" style="width: 65%; height: 16px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 85%; height: 12px;"></div></div>
+        <div><div class="skeleton-block" style="width: 100%; height: 200px;"></div><div class="skeleton-block" style="width: 75%; height: 16px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 90%; height: 12px;"></div></div>
+        <div><div class="skeleton-block" style="width: 100%; height: 200px;"></div><div class="skeleton-block" style="width: 55%; height: 16px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 80%; height: 12px;"></div></div>
+      </div>
+
+      <!-- Full-width CTA banner -->
+      <div style="background: #011F5B; border-radius: 8px; padding: 48px; margin-bottom: 48px; display: flex; align-items: center; justify-content: space-between;">
+        <div style="flex: 1;">
+          <div class="skeleton-block" style="width: 50%; height: 24px; background: rgba(255,255,255,0.15);"></div>
+          <div class="skeleton-block" style="width: 80%; height: 12px; background: rgba(255,255,255,0.1);"></div>
+          <div class="skeleton-block" style="width: 65%; height: 12px; background: rgba(255,255,255,0.1);"></div>
+        </div>
+        <div class="skeleton-block" style="width: 180px; height: 48px; background: rgba(255,255,255,0.15); margin: 0; flex-shrink: 0;"></div>
+      </div>
+
+      <!-- Two-column text content -->
+      <div class="skeleton-block" style="width: 40%; height: 28px;"></div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 48px;">
+        <div>
+          <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 88%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 95%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 72%; height: 12px;"></div>
+        </div>
+        <div>
+          <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 82%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 90%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 68%; height: 12px;"></div>
+        </div>
+      </div>
+
+      <!-- Four-column link grid -->
+      <div class="skeleton-block" style="width: 35%; height: 24px;"></div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 16px 0 60px;">
+        <div class="skeleton-block" style="height: 56px; margin: 0;"></div>
+        <div class="skeleton-block" style="height: 56px; margin: 0;"></div>
+        <div class="skeleton-block" style="height: 56px; margin: 0;"></div>
+        <div class="skeleton-block" style="height: 56px; margin: 0;"></div>
+        <div class="skeleton-block" style="height: 56px; margin: 0;"></div>
+        <div class="skeleton-block" style="height: 56px; margin: 0;"></div>
+        <div class="skeleton-block" style="height: 56px; margin: 0;"></div>
+        <div class="skeleton-block" style="height: 56px; margin: 0;"></div>
+      </div>
+
+      <!-- Footer-style info block -->
+      <div style="border-top: 2px solid #e0e0e0; padding-top: 40px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 60px;">
+        <div>
+          <div class="skeleton-block" style="width: 60%; height: 20px;"></div>
+          <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 75%; height: 12px;"></div>
+        </div>
+        <div>
+          <div class="skeleton-block" style="width: 50%; height: 16px;"></div>
+          <div class="skeleton-block" style="width: 70%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 65%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 80%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 55%; height: 12px;"></div>
+        </div>
+        <div>
+          <div class="skeleton-block" style="width: 50%; height: 16px;"></div>
+          <div class="skeleton-block" style="width: 75%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 60%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 70%; height: 12px;"></div>
+          <div class="skeleton-block" style="width: 45%; height: 12px;"></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1053,7 +1368,7 @@
     <div class="proto-switcher__menu" id="protoMenu">
       <div class="proto-switcher__section-label">High-Fidelity</div>
       <a href="wharton-home-v2.html" class="proto-switcher__link">V2 Wharton Home</a>
-      <a href="child-mba-landing-v2.html" class="proto-switcher__link">V2 MBA Landing</a>
+      <a href="child-mba-landing-v2.html" class="proto-switcher__link proto-switcher__link--active">V2 MBA Landing</a>
       <a href="child-mba-interior-v2.html" class="proto-switcher__link">V2 MBA Interior</a>
       <div class="proto-switcher__divider"></div>
       <a href="wharton-home-v1.html" class="proto-switcher__link">V1 Wharton Home</a>
@@ -1078,7 +1393,7 @@
       <a href="style-guide.html" class="proto-switcher__link">Style Guide</a>
     </div>
     <button class="proto-switcher__toggle" onclick="document.getElementById('protoMenu').classList.toggle('is-open'); this.classList.toggle('is-open');">
-      V2 Jacobs MSQF
+      V2 MBA Landing
       <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
   </div>
@@ -1088,11 +1403,13 @@
       // Utility: check if mobile
       function isMobile() { return window.innerWidth <= 791; }
 
-      // Sticky header: show after scrolling past threshold
+      // Sticky header: show after scrolling past hero
       var stickyHeader = document.getElementById('stickyHeader');
+      var heroSection = document.getElementById('heroSection');
       var isVisible = false;
       window.addEventListener('scroll', function() {
-        var shouldShow = window.scrollY > 120;
+        var threshold = heroSection ? heroSection.offsetHeight - 60 : 120;
+        var shouldShow = window.scrollY > threshold;
         if (shouldShow !== isVisible) {
           isVisible = shouldShow;
           stickyHeader.classList.toggle('is-visible', isVisible);
@@ -1211,19 +1528,72 @@
         });
       }
 
-      // More dropdown in local nav
-      var moreBtn = document.getElementById('moreDropdownBtn');
-      if (moreBtn) {
-        moreBtn.addEventListener('click', function(e) {
+      // Pill nav dropdowns
+      document.querySelectorAll('[data-pill-dropdown]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
           e.stopPropagation();
-          moreBtn.classList.toggle('is-open');
+          var wasOpen = this.classList.contains('is-open');
+          // Close all pill dropdowns
+          document.querySelectorAll('[data-pill-dropdown]').forEach(function(b) {
+            b.classList.remove('is-open');
+          });
+          // Toggle this one
+          if (!wasOpen) this.classList.add('is-open');
         });
-        document.addEventListener('click', function(e) {
-          if (!moreBtn.parentElement.contains(e.target)) {
-            moreBtn.classList.remove('is-open');
+      });
+      // Close pill dropdowns on outside click
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.pill-nav__bar')) {
+          document.querySelectorAll('[data-pill-dropdown]').forEach(function(b) {
+            b.classList.remove('is-open');
+          });
+        }
+      });
+
+      // Pill nav overflow — hide items that don't fit, show in More dropdown
+      (function() {
+        var pillBar = document.querySelector('.pill-nav__bar');
+        var pillItems = document.querySelectorAll('.pill-nav__item[data-pill-item]');
+        var pillMore = document.querySelector('.pill-nav__more');
+        var pillMoreDropdown = document.getElementById('pillMoreDropdown');
+        if (!pillBar || !pillItems.length || !pillMore) return;
+
+        function recalcPillOverflow() {
+          // Reset all items to visible to measure
+          pillItems.forEach(function(el) { el.classList.remove('is-overflowed'); });
+          pillMore.classList.remove('is-visible');
+
+          var barWidth = pillBar.offsetWidth;
+          var moreWidth = 120; // reserve space for More... button
+          var usedWidth = 0;
+          var overflowed = [];
+
+          pillItems.forEach(function(el) {
+            usedWidth += el.offsetWidth;
+            if (usedWidth + moreWidth > barWidth) {
+              el.classList.add('is-overflowed');
+              overflowed.push(el);
+            }
+          });
+
+          // Build More dropdown
+          if (overflowed.length > 0) {
+            pillMore.classList.add('is-visible');
+            pillMoreDropdown.innerHTML = '';
+            overflowed.forEach(function(el) {
+              var label = el.querySelector('span').textContent;
+              var a = document.createElement('a');
+              a.href = el.href || '#';
+              a.className = 'pill-nav__dropdown-link';
+              a.textContent = label;
+              pillMoreDropdown.appendChild(a);
+            });
           }
-        });
-      }
+        }
+
+        recalcPillOverflow();
+        window.addEventListener('resize', recalcPillOverflow);
+      })();
 
       // Desktop menu accordion (only one open at a time)
       document.querySelectorAll('[data-desktop-toggle]').forEach(function(btn) {
@@ -1310,7 +1680,8 @@
       }
 
       // Local nav bar: measure against buttons (Menu + Search ~200px)
-      setupOverflow('.local-nav__links', 'data-nav-item', '#moreDropdownBtn', '#moreDropdownMenu', 200);
+      // Sticky header overflow for landing page
+      setupOverflow('#stickyNavLinks', 'data-sticky-item', '#stickyMoreTrigger', null, 250);
 
       // Sticky header: measure against buttons (~200px)
       function setupStickyOverflow() {
