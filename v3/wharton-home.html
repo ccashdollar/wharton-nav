@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wharton Home — V4</title>
+  <link rel="stylesheet" href="https://use.typekit.net/ael0dii.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --penn-blue: #011F5B;
+      --penn-red: #990000;
+      --bay-blue: #06AAFC;
+      --text-deep-blue: #111B27;
+      --white: #ffffff;
+      --gray-light: #f2f2f2;
+      --marine-gray: #eeedea;
+      --grey-mid-light-25: rgba(237, 239, 242, 0.25);
+      --font-ss: 'acumin-pro', sans-serif;
+      --font-ss-condensed: 'acumin-pro-condensed', sans-serif;
+      --font-serif: 'minion-pro', serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-ss); background: #fff; color: #333;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      position: relative; width: 100%; height: 80vh; min-height: 600px;
+      overflow: hidden; display: flex; flex-direction: column;
+    }
+    .hero__bg {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .hero__bg img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .hero__bg::before {
+      content: ''; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0) 50%);
+    }
+    .hero__bg::after {
+      content: ''; position: absolute; inset: 0; z-index: 2;
+      background: linear-gradient(107deg, rgba(0, 85, 255, 0.90) 4.85%, rgba(1, 26, 77, 0.80) 47.24%, rgba(2, 31, 89, 0.10) 59.89%, rgba(2, 31, 89, 0.00) 86.21%);
+    }
+
+    /* ===== TOP BAR (Header) ===== */
+    .top-bar {
+      position: relative; z-index: 20; display: flex;
+      align-items: flex-start; justify-content: space-between;
+      padding: 32px 48px;
+    }
+    .top-bar__logo {
+      flex-shrink: 0;
+    }
+    .top-bar__logo img {
+      width: 250px; height: auto; display: block;
+    }
+    .top-buttons { display: flex; flex-shrink: 0; gap: 8px; align-items: center; }
+    .top-btn {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; height: 48px;
+      padding: 16px 32px; cursor: pointer;
+      color: var(--marine-gray); white-space: nowrap;
+      background: transparent;
+      border: 1px solid var(--grey-mid-light-25);
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .top-btn:hover { opacity: 0.85; }
+    .top-btn .btn-label {
+      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 16px;
+      text-transform: uppercase; letter-spacing: 0.2px;
+      color: var(--marine-gray); line-height: 20px;
+    }
+    .top-btn svg { width: 16px; height: 16px; fill: var(--marine-gray); flex-shrink: 0; }
+    .top-btn--search { background: var(--penn-red); border-color: var(--penn-red); }
+    .top-btn--menu   { background: var(--penn-blue); border-color: var(--penn-blue); }
+
+
+    /* ===== LEAD CONTENT ===== */
+    .lead {
+      position: absolute; left: 48px; top: 50%;
+      transform: translateY(-50%); z-index: 10;
+      max-width: 608px; display: flex; flex-direction: column;
+      align-items: flex-start;
+    }
+    .lead__border {
+      width: 100%; max-width: 450px; height: 5px;
+      background: #fff; margin-bottom: 0;
+    }
+    .lead__text {
+      display: flex; flex-direction: column; gap: 8px;
+      padding: 0 0 30px;
+    }
+    .lead__heading {
+      font-family: var(--font-ss-condensed); font-weight: 900;
+      font-size: 60px; line-height: 56px; color: #fff;
+      letter-spacing: -0.2px;
+    }
+    .lead__subtitle {
+      font-family: var(--font-ss-condensed); font-weight: 600;
+      font-size: 24px; line-height: 24px; color: #fff;
+    }
+    .lead__actions {
+      display: flex; align-items: center; gap: 30px;
+    }
+    .lead__cta {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; background: #fff; color: #01256e; padding: 14px 40px;
+      font-family: var(--font-ss-condensed); font-weight: 700;
+      font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
+      transition: background 0.2s, color 0.2s; min-width: 260px;
+    }
+    .lead__cta:hover { background: #e8e8e8; }
+    .lead__cta svg { width: 16px; height: 16px; fill: #01256e; }
+    .lead__link {
+      font-family: var(--font-ss-condensed); font-weight: 700;
+      font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
+      color: #fff; transition: opacity 0.2s;
+    }
+    .lead__link:hover { opacity: 0.7; }
+
+    /* ===== STORY CAROUSEL ===== */
+    .story-carousel {
+      position: absolute; bottom: 50px; right: 80px; z-index: 10;
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(2, 32, 92, 0.85); border-radius: 16px;
+      padding: 10px 10px 10px 10px; max-width: 471px;
+    }
+    .story-carousel__arrow {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.6); background: none;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0; opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+    .story-carousel__arrow:hover { opacity: 1; }
+    .story-carousel__arrow svg { width: 16px; height: 16px; fill: #fff; }
+    .story-carousel__content {
+      display: flex; align-items: center; gap: 16px; flex: 1;
+      padding: 6px 0;
+    }
+    .story-carousel__text { flex: 1; }
+    .story-carousel__label {
+      font-family: var(--font-ss); font-size: 11px;
+      text-transform: uppercase; letter-spacing: 1px;
+      color: rgba(255,255,255,0.7); margin-bottom: 6px;
+    }
+    .story-carousel__title {
+      font-family: var(--font-ss); font-size: 16px;
+      line-height: 22px; color: #fff;
+    }
+    .story-carousel__thumb {
+      width: 140px; height: 80px; border-radius: 8px;
+      border: 2px solid rgba(255,255,255,0.3); flex-shrink: 0;
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* ===== BELOW THE FOLD (placeholder) ===== */
+    .below-fold {
+      padding: 60px 53px; max-width: 1440px;
+    }
+    .skeleton-block {
+      background: #e8e8e8; border-radius: 6px; margin-bottom: 16px;
+    }
+
+    /* ===== PROTO SWITCHER ===== */
+    .proto-switcher {
+      position: fixed; bottom: 120px; right: 20px; z-index: 9999;
+    }
+    .proto-switcher__toggle {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 16px; background: #333; color: #fff;
+      border: none; border-radius: 20px; cursor: pointer;
+      font-family: var(--font-ss); font-size: 13px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: background 0.15s;
+    }
+    .proto-switcher__toggle:hover { background: #555; }
+    .proto-switcher__toggle svg {
+      width: 10px; height: 10px; fill: #fff;
+      transition: transform 0.2s;
+    }
+    .proto-switcher__toggle.is-open svg { transform: rotate(180deg); }
+    .proto-switcher__menu {
+      display: none; position: absolute; bottom: 44px; right: 0;
+      background: #fff; border-radius: 8px; padding: 8px 0;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15); min-width: 160px;
+    }
+    .proto-switcher__menu.is-open { display: block; }
+    .proto-switcher__link {
+      display: block; padding: 8px 20px; font-size: 13px; color: #333;
+      font-family: var(--font-ss); transition: background 0.1s;
+      white-space: nowrap;
+    }
+    .proto-switcher__link:hover { background: #f5f5f5; }
+    .proto-switcher__link--active {
+      font-weight: 700; color: var(--penn-blue);
+    }
+
+    /* ===== STICKY COMPACT HEADER ===== */
+    .sticky-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: linear-gradient(122deg, #0240BD 23%, #0242C1 35.7%, rgba(0,0,0,0) 97.4%);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 32px 48px;
+      transform: translateY(-100%); transition: transform 0.3s ease;
+    }
+    .sticky-header.is-visible { transform: translateY(0); }
+    .sticky-header__logo {
+      flex-shrink: 0;
+    }
+    .sticky-header__logo img {
+      height: 48px; width: auto; display: block;
+    }
+    .sticky-header__buttons {
+      display: flex; flex-shrink: 0; gap: 8px;
+    }
+    .sticky-header__btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px;
+      padding: 16px; cursor: pointer;
+      color: var(--marine-gray); white-space: nowrap;
+      border: 1px solid var(--grey-mid-light-25);
+      transition: opacity 0.15s;
+    }
+    .sticky-header__btn:hover { opacity: 0.85; }
+    .sticky-header__btn--search { background: var(--penn-red); }
+    .sticky-header__btn--menu { background: var(--penn-blue); }
+    .sticky-header__btn .btn-label { display: none; }
+    .sticky-header__btn svg { width: 16px; height: 16px; fill: var(--marine-gray); }
+
+    /* ===== DESKTOP MENU OVERLAY ===== */
+    .desktop-menu {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(255, 255, 255, 0.92);
+      display: flex; flex-direction: column;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .desktop-menu.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
+
+    .desktop-menu__body {
+      display: flex; flex: 1; overflow: hidden;
+    }
+
+    /* Left column - Level 1 nav */
+    .desktop-menu__col-l1 {
+      flex: 1; display: flex; flex-direction: column;
+      padding: 32px 16px 48px 48px;
+      overflow-y: auto; min-height: 0;
+    }
+    .desktop-menu__logo {
+      height: 48px; width: 191px; display: block; object-fit: contain;
+      object-position: left;
+    }
+    .desktop-menu__nav-list {
+      display: flex; flex-direction: column;
+      padding-top: 48px; gap: 0;
+      list-style: none; margin: 0;
+    }
+    .desktop-menu__nav-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 4px 0;
+      font-family: var(--font-ss-condensed); font-size: 30px; font-weight: 600;
+      line-height: 34px; color: var(--penn-blue);
+      text-decoration: none; transition: color 0.15s;
+      background: none; border: none; cursor: pointer; text-align: left;
+    }
+    .desktop-menu__nav-item:hover { color: var(--bay-blue); }
+    .desktop-menu__nav-item.is-current-page { color: var(--bay-blue); }
+    .desktop-menu__nav-item.is-current-page.is-dimmed { color: var(--penn-blue); }
+    .desktop-menu__nav-item.is-current-page.is-dimmed:hover { color: var(--bay-blue); }
+    .desktop-menu__nav-item.is-l2-active { color: var(--bay-blue); }
+    .desktop-menu__nav-arrow {
+      width: 20px; height: 20px; flex-shrink: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .desktop-menu__nav-arrow svg {
+      width: 20px; height: 20px; fill: currentColor; stroke: none;
+    }
+
+    /* Middle column - Level 2 panels */
+    .desktop-menu__col-l2 {
+      flex: 1; position: relative;
+      padding: 0 16px 0 0;
+    }
+    .desktop-menu__l2-panel {
+      position: absolute; top: 124px; left: 0; right: 16px;
+      border-left: 2px solid var(--bay-blue);
+      padding: 24px 0 24px 32px;
+      display: flex; flex-direction: column; gap: 4px;
+      opacity: 0; transform: translateX(15px);
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    .desktop-menu__l2-panel.is-visible {
+      opacity: 1; transform: translateX(0); pointer-events: auto;
+    }
+    .desktop-menu__l2-title {
+      font-family: var(--font-ss-condensed); font-size: 16px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+      text-decoration: underline;
+      color: var(--penn-blue); padding: 4px 0 12px;
+    }
+    .desktop-menu__l2-link {
+      display: flex; align-items: center;
+      padding: 4px 0;
+      font-family: var(--font-ss); font-size: 18px; font-weight: 400;
+      line-height: 26px; color: var(--penn-blue);
+      text-decoration: none; transition: color 0.15s;
+    }
+    .desktop-menu__l2-link:hover { color: var(--bay-blue); }
+
+    /* Right column - Close/Search buttons */
+    .desktop-menu__col-r {
+      flex: 1; display: flex; flex-direction: column;
+      padding: 32px 48px 0 32px;
+    }
+    .desktop-menu__actions {
+      display: flex; gap: 8px; justify-content: flex-end;
+    }
+    .desktop-menu__action-btn {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; height: 48px; padding: 0 32px;
+      border: 1px solid var(--grey-mid-light-25);
+      font-family: var(--font-ss-condensed); font-weight: 600;
+      font-size: 16px; text-transform: uppercase; letter-spacing: 0.2px;
+      color: var(--marine-gray); cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .desktop-menu__action-btn:hover { opacity: 0.85; }
+    .desktop-menu__action-btn svg { width: 16px; height: 16px; fill: var(--marine-gray); flex-shrink: 0; }
+    .desktop-menu__action-btn--search { display: none; }
+    .desktop-menu__action-btn--close {
+      background: transparent; width: 123px;
+      border-color: var(--penn-blue); color: var(--penn-blue);
+    }
+
+    /* Universal Nav Bar */
+    .desktop-menu__universal-bar {
+      flex-shrink: 0;
+      background: linear-gradient(161.9deg, #0240BD 3.8%, #0242C1 11.4%, #011F5B 67.9%);
+      padding: 20px 48px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .desktop-menu__universal-links {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+      gap: 20px; padding: 12px 12px;
+    }
+    .desktop-menu__universal-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-family: var(--font-ss-condensed); font-size: 16px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.2px;
+      color: var(--marine-gray); text-decoration: none;
+      white-space: nowrap;
+    }
+    .desktop-menu__universal-link::after {
+      content: '';
+      display: block;
+      width: 16px; height: 11px;
+      background: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M14.412 6.07757C14.7375 5.75214 15.2651 5.75214 15.5906 6.07757L18.9239 9.41091C19.2493 9.73634 19.2493 10.264 18.9239 10.5894L15.5906 13.9228C15.2651 14.2482 14.7375 14.2482 14.412 13.9228C14.0866 13.5973 14.0866 13.0697 14.412 12.7442L17.1561 10.0002L14.412 7.25608C14.0866 6.93065 14.0866 6.40301 14.412 6.07757Z' fill='%23eeedea'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.832031 9.99984C0.832031 9.5396 1.20513 9.1665 1.66536 9.1665H18.332C18.7923 9.1665 19.1654 9.5396 19.1654 9.99984C19.1654 10.4601 18.7923 10.8332 18.332 10.8332H1.66536C1.20513 10.8332 0.832031 10.4601 0.832031 9.99984Z' fill='%23eeedea'/%3E%3C/svg%3E") center/contain no-repeat;
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .desktop-menu__universal-link:hover::after {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Desktop menu responsive */
+    @media (max-width: 1024px) {
+      .desktop-menu__col-r { display: none; }
+      .desktop-menu__col-l1 { padding: 32px 16px 48px 32px; }
+      /* Float close button over content */
+      .desktop-menu__tablet-close {
+        display: flex; position: absolute; top: 32px; right: 32px; z-index: 10;
+      }
+      /* Tighter top-bar buttons */
+      .top-btn { padding: 12px 16px; }
+      /* Tighter universal bar */
+      .desktop-menu__universal-links { gap: 20px; padding: 12px 16px; }
+    }
+    @media (min-width: 1025px) {
+      .desktop-menu__tablet-close { display: none; }
+    }
+    @media (max-width: 791px) {
+      .desktop-menu { display: none !important; opacity: 0 !important; visibility: hidden !important; }
+    }
+    body.menu-open { overflow: hidden; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1100px) {
+      .lead { max-width: 90%; }
+      .story-carousel { right: 20px; max-width: calc(100% - 40px); }
+    }
+    @media (max-width: 791px) {
+      .hero { min-height: 600px; }
+      .top-bar { padding: 16px 20px; }
+      .top-bar__logo img { width: 180px; }
+      .top-btn { width: 48px; height: 48px; padding: 16px; gap: 0; }
+      .top-btn .btn-label { display: none; }
+      .lead {
+        left: 20px; right: 20px; max-width: none;
+        top: auto; bottom: 180px; transform: none;
+      }
+      .lead__heading { font-size: 36px; line-height: 40px; }
+      .lead__subtitle { font-size: 16px; line-height: 22px; }
+      .lead__cta { min-width: 200px; padding: 12px 24px; }
+      .story-carousel {
+        bottom: 20px; left: 20px; right: 20px;
+        max-width: none;
+      }
+      .story-carousel__thumb { width: 100px; height: 60px; }
+      .sticky-header { padding: 16px 20px; }
+      .sticky-header__logo img { height: 32px; }
+      .below-fold { padding: 40px 20px; }
+    }
+    @media (max-width: 480px) {
+      .lead__heading { font-size: 28px; line-height: 32px; }
+      .lead__actions { flex-direction: column; gap: 12px; align-items: flex-start; }
+      .story-carousel__content { flex-direction: column; align-items: flex-start; }
+      .story-carousel__thumb { width: 100%; height: 100px; }
+    }
+
+    /* ===== MOBILE MENU OVERLAY ===== */
+    .mobile-menu-overlay {
+      position: fixed; inset: 0; z-index: 1001;
+      background: #011F5B;
+      display: none; flex-direction: column;
+    }
+    .mobile-menu-overlay.is-open { display: flex; }
+    @media (min-width: 792px) {
+      .mobile-menu-overlay { display: none !important; }
+    }
+
+    /* Mobile header */
+    .mobile-menu__header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px; flex-shrink: 0;
+    }
+    .mobile-menu__logo {
+      width: 100px; height: auto; display: block;
+    }
+
+    /* Mobile close button */
+    .mobile-menu__close {
+      border: 1px solid rgba(255,255,255,0.8); background: transparent;
+      padding: 8px 16px; display: flex; align-items: center; gap: 8px;
+      color: #eeedea; font-family: var(--font-ss-condensed); font-weight: 600;
+      font-size: 14px; letter-spacing: 0.2px; text-transform: uppercase;
+      cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s;
+      z-index: 10;
+    }
+    .mobile-menu__close:hover {
+      border-color: #06aafc; box-shadow: 0 0 8px rgba(6, 170, 252, 0.3);
+    }
+
+    /* Content area (scrollable) */
+    .mobile-menu__content {
+      flex: 1; overflow-y: auto; overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Primary nav */
+    .mobile-menu__primary {
+      padding: 8px 20px;
+      transition: transform 0.3s ease;
+    }
+    .mobile-menu__primary.is-hidden {
+      transform: translateX(-100%);
+      position: absolute; width: 100%;
+    }
+    .mobile-menu__primary-item {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 44px; padding: 4px 8px;
+      font-family: var(--font-ss-condensed); font-size: 24px; font-weight: 600;
+      line-height: 28px; color: #eeedea;
+      background: none; border: none; cursor: pointer;
+      text-decoration: none; width: 100%; text-align: left;
+      transition: color 0.15s;
+    }
+    .mobile-menu__primary-item:hover,
+    .mobile-menu__primary-item:active { color: var(--bay-blue); }
+    .mobile-menu__primary-chevron {
+      display: flex; align-items: center; flex-shrink: 0; color: inherit;
+    }
+
+    /* Drill-down (Level 2) */
+    .mobile-menu__drilldown {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      padding: 8px 20px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+    .mobile-menu__drilldown.is-active {
+      transform: translateX(0);
+    }
+    .mobile-menu__back {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px; background: none; border: none; cursor: pointer;
+      margin-bottom: 8px; color: #06aafc;
+    }
+    .mobile-menu__back-arrow {
+      font-size: 18px; color: #06aafc;
+    }
+    .mobile-menu__back-label {
+      font-family: var(--font-ss-condensed); font-size: 16px;
+      font-weight: 600; letter-spacing: 0.5px;
+      color: #06aafc;
+    }
+    .mobile-menu__drilldown-item {
+      display: flex; align-items: center;
+      height: 44px; padding: 4px 8px;
+      font-family: var(--font-ss-condensed); font-size: 24px; font-weight: 600;
+      line-height: 28px; color: #eeedea;
+      text-decoration: none; transition: color 0.15s;
+    }
+    .mobile-menu__drilldown-item:hover,
+    .mobile-menu__drilldown-item:active { color: var(--bay-blue); }
+
+    /* Footer ("ALL WHARTON") */
+    .mobile-menu__footer {
+      flex-shrink: 0;
+      background: linear-gradient(161.9deg, #0240BD 3.8%, #0242C1 11.4%, #011F5B 67.9%);
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .mobile-menu__footer-toggle {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; padding: 20px;
+      background: none; border: none; cursor: pointer;
+    }
+    .mobile-menu__footer-label {
+      font-family: var(--font-ss-condensed); font-size: 16px;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: white; font-weight: 600;
+    }
+    .mobile-menu__footer-chevron {
+      font-size: 16px; color: rgba(255,255,255,0.7);
+      transition: transform 0.3s ease;
+    }
+    .mobile-menu__footer-toggle.is-expanded .mobile-menu__footer-chevron {
+      transform: rotate(180deg);
+    }
+    .mobile-menu__footer-grid {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding: 0 20px;
+    }
+    .mobile-menu__footer-grid.is-expanded {
+      max-height: 300px; padding-bottom: 20px;
+    }
+    .mobile-menu__footer-grid-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    }
+    .mobile-menu__footer-link {
+      font-family: var(--font-ss-condensed); font-size: 16px;
+      color: rgba(255,255,255,0.85); padding: 8px;
+      text-decoration: none; transition: color 0.15s;
+    }
+    .mobile-menu__footer-link:hover { color: #fff; }
+    @media (max-width: 400px) {
+      .btn-label { display: none; }
+    }
+
+    /* ===== SEARCH OVERLAY ===== */
+    .search-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(1, 31, 91, 0.94);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      display: flex; flex-direction: column;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+    .search-overlay.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
+    .search-overlay__header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 32px 48px;
+    }
+    .search-overlay__logo img { height: 48px; width: auto; }
+    .search-overlay__actions { display: flex; gap: 8px; align-items: center; }
+    .search-overlay__action-btn {
+      display: flex; align-items: center; gap: 8px;
+      height: 48px; padding: 16px 32px; cursor: pointer;
+      color: var(--marine-gray); font-family: var(--font-ss-condensed);
+      font-weight: 600; font-size: 16px; letter-spacing: 0.2px;
+      border: 1.5px solid transparent; transition: opacity 0.15s;
+    }
+    .search-overlay__action-btn--search { display: none; }
+    .search-overlay__action-btn--close { background: transparent; border-color: rgba(237,239,242,0.5); text-transform: uppercase; }
+    .search-overlay__action-btn:hover { opacity: 0.85; }
+    .search-overlay__body {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 0 48px 80px; gap: 40px;
+    }
+    .search-overlay__heading {
+      font-family: var(--font-ss-condensed); font-size: 40px;
+      font-weight: 600; color: white; text-align: center;
+    }
+    .search-overlay__input-row {
+      display: flex; align-items: center;
+      width: 100%; max-width: 560px;
+      background: white; border-radius: 100px;
+      padding: 0 0 0 20px; overflow: hidden;
+    }
+    .search-overlay__input-icon { color: #888; display: flex; align-items: center; flex-shrink: 0; margin-right: 8px; }
+    .search-overlay__input {
+      flex: 1; border: none; outline: none; background: transparent;
+      font-family: var(--font-ss); font-size: 16px; color: var(--text-deep-blue);
+      padding: 14px 12px 14px 0; -webkit-appearance: none; appearance: none;
+    }
+    .search-overlay__input::placeholder { color: #888; }
+    .search-overlay__submit {
+      background: #0047E0; color: white; border: none; outline: none; cursor: pointer;
+      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 16px;
+      padding: 14px 24px; border-radius: 0;
+      transition: opacity 0.15s; white-space: nowrap; align-self: stretch;
+    }
+    .search-overlay__submit:hover { opacity: 0.85; }
+    .search-overlay__popular {
+      width: 100%; max-width: 560px; display: flex; flex-direction: column;
+    }
+    .search-overlay__popular-label {
+      font-family: var(--font-ss-condensed); font-size: 13px; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--marine-gray); margin-bottom: 12px;
+    }
+    .search-overlay__popular-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+    .search-overlay__popular-item {
+      display: flex; align-items: center; gap: 12px;
+      background: none; border: none; cursor: pointer; text-align: left;
+      font-family: var(--font-ss); font-size: 17px; color: white;
+      padding: 6px 0; transition: color 0.15s;
+    }
+    .search-overlay__popular-item:hover { color: var(--bay-blue); }
+    .search-overlay__popular-item:hover svg circle { stroke: var(--bay-blue); }
+    .search-overlay__popular-item:hover svg line { stroke: var(--bay-blue); }
+    .search-overlay__popular-item svg { flex-shrink: 0; }
+    @media (max-width: 791px) {
+      .search-overlay__header { padding: 16px 20px; }
+      .search-overlay__logo img { height: 20px; }
+      .search-overlay__action-btn--close { width: 48px; height: 48px; padding: 16px; gap: 0; border-color: rgba(237,239,242,0.5); }
+      .search-overlay__action-btn--close span { display: none; }
+      .search-overlay__body { padding: 0 20px 60px; gap: 28px; }
+      .search-overlay__heading { font-size: 28px; }
+      .search-overlay__input-row { max-width: 100%; }
+      .search-overlay__popular { max-width: 100%; }
+    }
+
+    /* ===== SITE FOOTER ===== */
+    .site-footer {
+      background: var(--penn-blue);
+      padding: 20px 48px;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .site-footer__top {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .site-footer__social { display: flex; align-items: center; gap: 16px; }
+    .site-footer__social-link {
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.15s;
+    }
+    .site-footer__social-link:hover { opacity: 0.7; }
+    .site-footer__support {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 16px; background: #0047E0;
+      font-family: var(--font-ss-condensed); font-weight: 600; font-size: 16px;
+      letter-spacing: 0.2px; color: var(--marine-gray); transition: opacity 0.15s;
+    }
+    .site-footer__support:hover { opacity: 0.85; }
+    .site-footer__bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 20px; border-top: 1px solid var(--grey-mid-light-25);
+    }
+    .site-footer__copyright { display: flex; align-items: center; gap: 16px; }
+    .site-footer__penn-logo { height: 32px; width: auto; display: block; }
+    .site-footer__copyright-text {
+      font-family: var(--font-ss); font-size: 14px; letter-spacing: 0.2px;
+      color: white; white-space: nowrap;
+    }
+    .site-footer__links { display: flex; gap: 16px; align-items: center; }
+    .site-footer__links a {
+      font-family: var(--font-ss); font-size: 14px; letter-spacing: 0.2px;
+      color: white; transition: opacity 0.15s; white-space: nowrap;
+    }
+    .site-footer__links a:hover { opacity: 0.7; }
+    @media (max-width: 791px) {
+      .site-footer { padding: 20px; }
+      .site-footer__bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .site-footer__copyright-text { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SEARCH OVERLAY -->
+  <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search Wharton">
+    <div class="search-overlay__header">
+      <a href="#" class="search-overlay__logo">
+        <img src="assets/wharton-logo-light.svg" alt="Wharton – University of Pennsylvania">
+      </a>
+      <div class="search-overlay__actions">
+        <button class="search-overlay__action-btn search-overlay__action-btn--search" id="searchOverlaySearchBtn" aria-label="Search">
+          <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="6.5" cy="6.5" r="4.5"/><line x1="9.5" y1="9.5" x2="14" y2="14"/></svg>
+          <span>Search</span>
+        </button>
+        <button class="search-overlay__action-btn search-overlay__action-btn--close" id="searchOverlayClose" aria-label="Close search">
+          <svg viewBox="0 0 16 16" width="16" height="16" fill="none"><line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span>Close</span>
+        </button>
+      </div>
+    </div>
+    <div class="search-overlay__body">
+      <h2 class="search-overlay__heading">Search Wharton</h2>
+      <div class="search-overlay__input-row">
+        <span class="search-overlay__input-icon">
+          <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round"><circle cx="6.5" cy="6.5" r="4.5"/><line x1="9.5" y1="9.5" x2="14" y2="14"/></svg>
+        </span>
+        <input type="search" class="search-overlay__input" placeholder="What are you looking for?" aria-label="Search">
+        <button class="search-overlay__submit" type="button">Search →</button>
+      </div>
+      <div class="search-overlay__popular">
+        <p class="search-overlay__popular-label">Popular Searches</p>
+        <ul class="search-overlay__popular-list">
+          <li><button class="search-overlay__popular-item" type="button"><svg viewBox="0 0 16 16" width="16" height="16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><line x1="8" y1="5" x2="8" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="5" y1="8" x2="11" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>MBA Programs</button></li>
+          <li><button class="search-overlay__popular-item" type="button"><svg viewBox="0 0 16 16" width="16" height="16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><line x1="8" y1="5" x2="8" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="5" y1="8" x2="11" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Executive Education</button></li>
+          <li><button class="search-overlay__popular-item" type="button"><svg viewBox="0 0 16 16" width="16" height="16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><line x1="8" y1="5" x2="8" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="5" y1="8" x2="11" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Faculty Directory</button></li>
+          <li><button class="search-overlay__popular-item" type="button"><svg viewBox="0 0 16 16" width="16" height="16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><line x1="8" y1="5" x2="8" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="5" y1="8" x2="11" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Research Centers</button></li>
+          <li><button class="search-overlay__popular-item" type="button"><svg viewBox="0 0 16 16" width="16" height="16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><line x1="8" y1="5" x2="8" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="5" y1="8" x2="11" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Career Services</button></li>
+          <li><button class="search-overlay__popular-item" type="button"><svg viewBox="0 0 16 16" width="16" height="16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><line x1="8" y1="5" x2="8" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="5" y1="8" x2="11" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Alumni Network</button></li>
+          <li><button class="search-overlay__popular-item" type="button"><svg viewBox="0 0 16 16" width="16" height="16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><line x1="8" y1="5" x2="8" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="5" y1="8" x2="11" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Events Calendar</button></li>
+          <li><button class="search-overlay__popular-item" type="button"><svg viewBox="0 0 16 16" width="16" height="16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><line x1="8" y1="5" x2="8" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="5" y1="8" x2="11" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Knowledge@Wharton</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESKTOP MENU OVERLAY -->
+  <div class="desktop-menu" id="desktopMenu">
+    <!-- Tablet-only close button (shown when right column is hidden) -->
+    <button class="desktop-menu__tablet-close desktop-menu__action-btn desktop-menu__action-btn--close" id="desktopMenuCloseTablet" aria-label="Close menu">
+      <svg viewBox="0 0 16 16"><line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span>Close</span>
+    </button>
+
+    <div class="desktop-menu__body">
+      <!-- Left column - Level 1 nav -->
+      <div class="desktop-menu__col-l1">
+        <img class="desktop-menu__logo" src="assets/wharton-logo.svg" alt="Wharton - University of Pennsylvania">
+        <nav class="desktop-menu__nav-list" aria-label="Main navigation">
+          <a href="#" class="desktop-menu__nav-item is-current-page">Home</a>
+          <button class="desktop-menu__nav-item" data-l2-target="about">About <span class="desktop-menu__nav-arrow"><svg viewBox="0 0 20 20" width="20" height="20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.412 6.07757C14.7375 5.75214 15.2651 5.75214 15.5906 6.07757L18.9239 9.41091C19.2493 9.73634 19.2493 10.264 18.9239 10.5894L15.5906 13.9228C15.2651 14.2482 14.7375 14.2482 14.412 13.9228C14.0866 13.5973 14.0866 13.0697 14.412 12.7442L17.1561 10.0002L14.412 7.25608C14.0866 6.93065 14.0866 6.40301 14.412 6.07757Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M0.832031 9.99984C0.832031 9.5396 1.20513 9.1665 1.66536 9.1665H18.332C18.7923 9.1665 19.1654 9.5396 19.1654 9.99984C19.1654 10.4601 18.7923 10.8332 18.332 10.8332H1.66536C1.20513 10.8332 0.832031 10.4601 0.832031 9.99984Z"/></svg></span></button>
+          <a href="#" class="desktop-menu__nav-item">Academics</a>
+          <button class="desktop-menu__nav-item" data-l2-target="faculty">Faculty &amp; Research <span class="desktop-menu__nav-arrow"><svg viewBox="0 0 20 20" width="20" height="20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.412 6.07757C14.7375 5.75214 15.2651 5.75214 15.5906 6.07757L18.9239 9.41091C19.2493 9.73634 19.2493 10.264 18.9239 10.5894L15.5906 13.9228C15.2651 14.2482 14.7375 14.2482 14.412 13.9228C14.0866 13.5973 14.0866 13.0697 14.412 12.7442L17.1561 10.0002L14.412 7.25608C14.0866 6.93065 14.0866 6.40301 14.412 6.07757Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M0.832031 9.99984C0.832031 9.5396 1.20513 9.1665 1.66536 9.1665H18.332C18.7923 9.1665 19.1654 9.5396 19.1654 9.99984C19.1654 10.4601 18.7923 10.8332 18.332 10.8332H1.66536C1.20513 10.8332 0.832031 10.4601 0.832031 9.99984Z"/></svg></span></button>
+          <a href="#" class="desktop-menu__nav-item">News</a>
+          <a href="#" class="desktop-menu__nav-item">Recruiters &amp; Corporations</a>
+          <a href="#" class="desktop-menu__nav-item">Alumni</a>
+          <button class="desktop-menu__nav-item" data-l2-target="locations">Locations <span class="desktop-menu__nav-arrow"><svg viewBox="0 0 20 20" width="20" height="20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.412 6.07757C14.7375 5.75214 15.2651 5.75214 15.5906 6.07757L18.9239 9.41091C19.2493 9.73634 19.2493 10.264 18.9239 10.5894L15.5906 13.9228C15.2651 14.2482 14.7375 14.2482 14.412 13.9228C14.0866 13.5973 14.0866 13.0697 14.412 12.7442L17.1561 10.0002L14.412 7.25608C14.0866 6.93065 14.0866 6.40301 14.412 6.07757Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M0.832031 9.99984C0.832031 9.5396 1.20513 9.1665 1.66536 9.1665H18.332C18.7923 9.1665 19.1654 9.5396 19.1654 9.99984C19.1654 10.4601 18.7923 10.8332 18.332 10.8332H1.66536C1.20513 10.8332 0.832031 10.4601 0.832031 9.99984Z"/></svg></span></button>
+          <a href="#" class="desktop-menu__nav-item">Wharton Stories</a>
+        </nav>
+      </div>
+
+      <!-- Middle column - Level 2 panels -->
+      <div class="desktop-menu__col-l2">
+        <div class="desktop-menu__l2-panel" id="l2-about">
+          <div class="desktop-menu__l2-title">About</div>
+          <a href="#" class="desktop-menu__l2-link">About Wharton</a>
+          <a href="#" class="desktop-menu__l2-link">Leadership</a>
+          <a href="#" class="desktop-menu__l2-link">History</a>
+          <a href="#" class="desktop-menu__l2-link">Diversity &amp; Inclusion</a>
+          <a href="#" class="desktop-menu__l2-link">Global Impact</a>
+        </div>
+        <div class="desktop-menu__l2-panel" id="l2-faculty">
+          <div class="desktop-menu__l2-title">Faculty &amp; Research</div>
+          <a href="#" class="desktop-menu__l2-link">Faculty Directory</a>
+          <a href="#" class="desktop-menu__l2-link">Research Centers</a>
+          <a href="#" class="desktop-menu__l2-link">Publications</a>
+          <a href="#" class="desktop-menu__l2-link">Working Papers</a>
+          <a href="#" class="desktop-menu__l2-link">Departments</a>
+        </div>
+        <div class="desktop-menu__l2-panel" id="l2-locations">
+          <div class="desktop-menu__l2-title">Locations</div>
+          <a href="#" class="desktop-menu__l2-link">Philadelphia</a>
+          <a href="#" class="desktop-menu__l2-link">San Francisco</a>
+          <a href="#" class="desktop-menu__l2-link">Beijing</a>
+          <a href="#" class="desktop-menu__l2-link">All Locations</a>
+        </div>
+      </div>
+
+      <!-- Right column - Search/Close buttons -->
+      <div class="desktop-menu__col-r">
+        <div class="desktop-menu__actions">
+          <button class="desktop-menu__action-btn desktop-menu__action-btn--search" aria-label="Search">
+            <svg viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="10.5" y1="10.5" x2="14" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>Search</span>
+          </button>
+          <button class="desktop-menu__action-btn desktop-menu__action-btn--close" id="desktopMenuClose" aria-label="Close menu">
+            <svg viewBox="0 0 16 16"><line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span>Close</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Universal Nav Bar -->
+    <div class="desktop-menu__universal-bar">
+      <div class="desktop-menu__universal-links">
+        <a href="#" class="desktop-menu__universal-link">EMBA</a>
+        <a href="#" class="desktop-menu__universal-link">Exec Ed</a>
+        <a href="#" class="desktop-menu__universal-link">Faculty</a>
+        <a href="#" class="desktop-menu__universal-link">Jacobs MSQF</a>
+        <a href="#" class="desktop-menu__universal-link">Knowledge at Wharton</a>
+        <a href="#" class="desktop-menu__universal-link">MBA</a>
+        <a href="#" class="desktop-menu__universal-link">PhD</a>
+        <a href="#" class="desktop-menu__universal-link">Undergrad</a>
+        <a href="#" class="desktop-menu__universal-link">Wharton Online</a>
+        <a href="#" class="desktop-menu__universal-link">Youth Program</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOBILE MENU OVERLAY -->
+  <div class="mobile-menu-overlay" id="mobileMenu">
+    <div class="mobile-menu__header">
+      <img class="mobile-menu__logo" src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania">
+      <button class="mobile-menu__close" id="mobileMenuClose" aria-label="Close menu">
+        <span>&#10005;</span>
+        <span>Close</span>
+      </button>
+    </div>
+
+    <div class="mobile-menu__content">
+      <nav class="mobile-menu__primary" id="mobilePrimary">
+        <a href="#" class="mobile-menu__primary-item" style="color: #06aafc;">Home</a>
+        <button class="mobile-menu__primary-item" data-mobile-drill="about">About <span class="mobile-menu__primary-chevron"><svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.412 6.07757C14.7375 5.75214 15.2651 5.75214 15.5906 6.07757L18.9239 9.41091C19.2493 9.73634 19.2493 10.264 18.9239 10.5894L15.5906 13.9228C15.2651 14.2482 14.7375 14.2482 14.412 13.9228C14.0866 13.5973 14.0866 13.0697 14.412 12.7442L17.1561 10.0002L14.412 7.25608C14.0866 6.93065 14.0866 6.40301 14.412 6.07757Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M0.832031 9.99984C0.832031 9.5396 1.20513 9.1665 1.66536 9.1665H18.332C18.7923 9.1665 19.1654 9.5396 19.1654 9.99984C19.1654 10.4601 18.7923 10.8332 18.332 10.8332H1.66536C1.20513 10.8332 0.832031 10.4601 0.832031 9.99984Z"/></svg></span></button>
+        <a href="#" class="mobile-menu__primary-item">Academics</a>
+        <button class="mobile-menu__primary-item" data-mobile-drill="faculty">Faculty &amp; Research <span class="mobile-menu__primary-chevron"><svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.412 6.07757C14.7375 5.75214 15.2651 5.75214 15.5906 6.07757L18.9239 9.41091C19.2493 9.73634 19.2493 10.264 18.9239 10.5894L15.5906 13.9228C15.2651 14.2482 14.7375 14.2482 14.412 13.9228C14.0866 13.5973 14.0866 13.0697 14.412 12.7442L17.1561 10.0002L14.412 7.25608C14.0866 6.93065 14.0866 6.40301 14.412 6.07757Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M0.832031 9.99984C0.832031 9.5396 1.20513 9.1665 1.66536 9.1665H18.332C18.7923 9.1665 19.1654 9.5396 19.1654 9.99984C19.1654 10.4601 18.7923 10.8332 18.332 10.8332H1.66536C1.20513 10.8332 0.832031 10.4601 0.832031 9.99984Z"/></svg></span></button>
+        <a href="#" class="mobile-menu__primary-item">News</a>
+        <a href="#" class="mobile-menu__primary-item">Recruiters &amp; Corporations</a>
+        <a href="#" class="mobile-menu__primary-item">Alumni</a>
+        <button class="mobile-menu__primary-item" data-mobile-drill="locations">Locations <span class="mobile-menu__primary-chevron"><svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.412 6.07757C14.7375 5.75214 15.2651 5.75214 15.5906 6.07757L18.9239 9.41091C19.2493 9.73634 19.2493 10.264 18.9239 10.5894L15.5906 13.9228C15.2651 14.2482 14.7375 14.2482 14.412 13.9228C14.0866 13.5973 14.0866 13.0697 14.412 12.7442L17.1561 10.0002L14.412 7.25608C14.0866 6.93065 14.0866 6.40301 14.412 6.07757Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M0.832031 9.99984C0.832031 9.5396 1.20513 9.1665 1.66536 9.1665H18.332C18.7923 9.1665 19.1654 9.5396 19.1654 9.99984C19.1654 10.4601 18.7923 10.8332 18.332 10.8332H1.66536C1.20513 10.8332 0.832031 10.4601 0.832031 9.99984Z"/></svg></span></button>
+        <a href="#" class="mobile-menu__primary-item">Wharton Stories</a>
+      </nav>
+
+      <div class="mobile-menu__drilldown" id="mobileDrill-about">
+        <button class="mobile-menu__back" data-mobile-back>
+          <span class="mobile-menu__back-arrow">&#8592;</span>
+          <span class="mobile-menu__back-label">About</span>
+        </button>
+        <a href="#" class="mobile-menu__drilldown-item">About Wharton</a>
+        <a href="#" class="mobile-menu__drilldown-item">Leadership</a>
+        <a href="#" class="mobile-menu__drilldown-item">History</a>
+        <a href="#" class="mobile-menu__drilldown-item">Diversity &amp; Inclusion</a>
+        <a href="#" class="mobile-menu__drilldown-item">Global Impact</a>
+      </div>
+
+      <div class="mobile-menu__drilldown" id="mobileDrill-faculty">
+        <button class="mobile-menu__back" data-mobile-back>
+          <span class="mobile-menu__back-arrow">&#8592;</span>
+          <span class="mobile-menu__back-label">Faculty &amp; Research</span>
+        </button>
+        <a href="#" class="mobile-menu__drilldown-item">Faculty Directory</a>
+        <a href="#" class="mobile-menu__drilldown-item">Research Centers</a>
+        <a href="#" class="mobile-menu__drilldown-item">Publications</a>
+        <a href="#" class="mobile-menu__drilldown-item">Working Papers</a>
+        <a href="#" class="mobile-menu__drilldown-item">Departments</a>
+      </div>
+
+      <div class="mobile-menu__drilldown" id="mobileDrill-locations">
+        <button class="mobile-menu__back" data-mobile-back>
+          <span class="mobile-menu__back-arrow">&#8592;</span>
+          <span class="mobile-menu__back-label">Locations</span>
+        </button>
+        <a href="#" class="mobile-menu__drilldown-item">Philadelphia</a>
+        <a href="#" class="mobile-menu__drilldown-item">San Francisco</a>
+        <a href="#" class="mobile-menu__drilldown-item">Beijing</a>
+        <a href="#" class="mobile-menu__drilldown-item">All Locations</a>
+      </div>
+    </div>
+
+    <div class="mobile-menu__footer">
+      <button class="mobile-menu__footer-toggle" id="mobileFooterToggle">
+        <span class="mobile-menu__footer-label">All Wharton</span>
+        <span class="mobile-menu__footer-chevron">&#8963;</span>
+      </button>
+      <div class="mobile-menu__footer-grid" id="mobileFooterGrid">
+        <div class="mobile-menu__footer-grid-inner">
+          <a href="#" class="mobile-menu__footer-link">EMBA</a>
+          <a href="#" class="mobile-menu__footer-link">Exec Ed</a>
+          <a href="#" class="mobile-menu__footer-link">Faculty</a>
+          <a href="#" class="mobile-menu__footer-link">Jacobs MSQF</a>
+          <a href="#" class="mobile-menu__footer-link">Knowledge at Wharton</a>
+          <a href="#" class="mobile-menu__footer-link">MBA</a>
+          <a href="#" class="mobile-menu__footer-link">PhD</a>
+          <a href="#" class="mobile-menu__footer-link">Undergrad</a>
+          <a href="#" class="mobile-menu__footer-link">Wharton Online</a>
+          <a href="#" class="mobile-menu__footer-link">Youth Program</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY COMPACT HEADER -->
+  <header class="sticky-header" id="stickyHeader">
+    <a href="#" class="sticky-header__logo">
+      <img src="assets/wharton-logo-light.svg" alt="Wharton">
+    </a>
+    <div class="sticky-header__buttons">
+      <button class="sticky-header__btn sticky-header__btn--menu">
+        <svg viewBox="0 0 20 20">
+          <rect x="2.5" y="4" width="15" height="1.5" rx="0.5" fill="#fff"/>
+          <rect x="2.5" y="9.25" width="15" height="1.5" rx="0.5" fill="#fff"/>
+          <rect x="2.5" y="14.5" width="15" height="1.5" rx="0.5" fill="#fff"/>
+        </svg>
+        <span class="btn-label">Menu</span>
+      </button>
+      <button class="sticky-header__btn sticky-header__btn--search">
+        <svg viewBox="0 0 20 20">
+          <circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="#fff" stroke-width="1.8"/>
+          <line x1="12.5" y1="12.5" x2="17" y2="17" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span class="btn-label">Search</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__bg">
+      <img src="assets/hero-1.jpg" alt="Wharton campus">
+    </div>
+
+    <!-- Top Bar (Header) -->
+    <div class="top-bar">
+      <a href="#" class="top-bar__logo">
+        <img src="assets/wharton-logo-light.svg" alt="Wharton - University of Pennsylvania">
+      </a>
+      <div class="top-buttons">
+        <button class="top-btn top-btn--search">
+          <svg viewBox="0 0 16 16" fill="none">
+            <circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <line x1="10.5" y1="10.5" x2="14" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="btn-label">Search</span>
+        </button>
+        <button class="top-btn top-btn--menu">
+          <svg viewBox="0 0 16 16">
+            <rect x="2" y="3.5" width="12" height="1.3" rx="0.5" fill="currentColor"/>
+            <rect x="2" y="7.35" width="12" height="1.3" rx="0.5" fill="currentColor"/>
+            <rect x="2" y="11.2" width="12" height="1.3" rx="0.5" fill="currentColor"/>
+          </svg>
+          <span class="btn-label">Menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Lead Content -->
+    <div class="lead">
+      <div class="lead__border"></div>
+      <div class="lead__text">
+        <h1 class="lead__heading">Impact vs. Time: A Leader's Guide to Slow Productivity</h1>
+        <p class="lead__subtitle">In this Nano Tool for Leaders, author and professor Cal Newport offers practical guidance on how to slow down in order to enhance your productivity.</p>
+      </div>
+      <div class="lead__actions">
+        <a href="#" class="lead__cta">
+          Read More
+          <svg viewBox="0 0 16 16"><path d="M1 8h12M9 4l4 4-4 4" fill="none" stroke="#01256e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#" class="lead__link">Learn More</a>
+      </div>
+    </div>
+
+    <!-- Story Carousel -->
+    <div class="story-carousel">
+      <button class="story-carousel__arrow">
+        <svg viewBox="0 0 16 16"><path d="M10 4l-4 4 4 4" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="story-carousel__content">
+        <div class="story-carousel__text">
+          <div class="story-carousel__label">Next Story</div>
+          <div class="story-carousel__title">Building Tomorrow's Business Leaders Today</div>
+        </div>
+        <div class="story-carousel__thumb"></div>
+      </div>
+      <button class="story-carousel__arrow">
+        <svg viewBox="0 0 16 16"><path d="M6 4l4 4-4 4" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- Below the fold placeholder -->
+  <div class="below-fold">
+    <div class="skeleton-block" style="width: 40%; height: 28px;"></div>
+    <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+    <div class="skeleton-block" style="width: 95%; height: 12px;"></div>
+    <div class="skeleton-block" style="width: 80%; height: 12px; margin-bottom: 32px;"></div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 40px;">
+      <div><div class="skeleton-block" style="width: 100%; height: 180px;"></div><div class="skeleton-block" style="width: 70%; height: 16px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 90%; height: 12px;"></div></div>
+      <div><div class="skeleton-block" style="width: 100%; height: 180px;"></div><div class="skeleton-block" style="width: 60%; height: 16px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 85%; height: 12px;"></div></div>
+      <div><div class="skeleton-block" style="width: 100%; height: 180px;"></div><div class="skeleton-block" style="width: 75%; height: 16px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 88%; height: 12px;"></div></div>
+    </div>
+
+    <div class="skeleton-block" style="width: 35%; height: 24px;"></div>
+    <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+    <div class="skeleton-block" style="width: 100%; height: 12px;"></div>
+    <div class="skeleton-block" style="width: 70%; height: 12px; margin-bottom: 32px;"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 40px;">
+      <div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 90%; height: 12px;"></div><div class="skeleton-block" style="width: 95%; height: 12px;"></div><div class="skeleton-block" style="width: 80%; height: 12px;"></div></div>
+      <div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 100%; height: 12px;"></div><div class="skeleton-block" style="width: 85%; height: 12px;"></div><div class="skeleton-block" style="width: 92%; height: 12px;"></div><div class="skeleton-block" style="width: 75%; height: 12px;"></div></div>
+    </div>
+
+    <div class="skeleton-block" style="width: 30%; height: 24px;"></div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 16px 0 60px;">
+      <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
+      <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
+      <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
+      <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
+      <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
+      <div class="skeleton-block" style="height: 48px; margin: 0;"></div>
+    </div>
+  </div>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="site-footer__top">
+      <div class="site-footer__social">
+        <a href="#" class="site-footer__social-link" aria-label="Facebook">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.604-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg>
+        </a>
+        <a href="#" class="site-footer__social-link" aria-label="X">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><path d="M12.6 1h2.4L10 6.8 15.8 15h-4.5l-3.3-3.8L3.9 15H1.3l5.4-6.1L1 1h4.6l3 3.5L12.6 1zm-.8 12.5h1.3L4.3 2.3H3L11.8 13.5z"/></svg>
+        </a>
+        <a href="#" class="site-footer__social-link" aria-label="YouTube">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><path d="M15.84 4.65a2 2 0 0 0-1.41-1.42C13.18 3 8 3 8 3S2.82 3 1.57 3.23A2 2 0 0 0 .16 4.65C0 5.91 0 8.55 0 8.55s0 2.63.16 3.89a2 2 0 0 0 1.41 1.42C2.82 14.1 8 14.1 8 14.1s5.18 0 6.43-.24a2 2 0 0 0 1.41-1.42C16 11.18 16 8.55 16 8.55S16 5.91 15.84 4.65zM6.4 10.93V6.16l4.29 2.39-4.29 2.38z"/></svg>
+        </a>
+        <a href="#" class="site-footer__social-link" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><path d="M8 1.44c2.14 0 2.39.01 3.23.05 2.11.1 3.09 1.09 3.19 3.19.04.84.05 1.09.05 3.23s-.01 2.39-.05 3.23c-.1 2.09-1.08 3.09-3.19 3.19-.84.04-1.09.05-3.23.05s-2.39-.01-3.23-.05c-2.12-.1-3.09-1.1-3.19-3.19C1.54 10.39 1.44 10.14 1.44 8s.01-2.39.05-3.23c.1-2.1 1.08-3.09 3.19-3.19C5.61 1.45 5.86 1.44 8 1.44zM8 0C5.83 0 5.56.01 4.7.05 1.9.18.18 1.9.05 4.7.01 5.56 0 5.83 0 8c0 2.17.01 2.44.05 3.3.13 2.8 1.85 4.52 4.65 4.65C5.56 15.99 5.83 16 8 16c2.17 0 2.44-.01 3.3-.05 2.8-.13 4.52-1.85 4.65-4.65.04-.86.05-1.13.05-3.3 0-2.17-.01-2.44-.05-3.3C15.82 1.9 14.1.18 11.3.05 10.44.01 10.17 0 8 0zm0 3.89a4.11 4.11 0 1 0 0 8.22A4.11 4.11 0 0 0 8 3.89zm0 6.78a2.67 2.67 0 1 1 0-5.34 2.67 2.67 0 0 1 0 5.34zm4.25-7.74a.96.96 0 1 1-1.92 0 .96.96 0 0 1 1.92 0z"/></svg>
+        </a>
+      </div>
+      <a href="#" class="site-footer__support">Support Wharton</a>
+    </div>
+    <div class="site-footer__bottom">
+      <div class="site-footer__copyright">
+        <img src="assets/penn-logo-white.svg" alt="University of Pennsylvania" class="site-footer__penn-logo">
+        <span class="site-footer__copyright-text">©2026 The Wharton School, The University of Pennsylvania</span>
+      </div>
+      <div class="site-footer__links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Proto Switcher -->
+  <div class="proto-switcher">
+    <div class="proto-switcher__menu" id="protoMenu">
+      <a href="wharton-home.html" class="proto-switcher__link proto-switcher__link--active">Wharton Home</a>
+      <a href="child-mba-landing.html" class="proto-switcher__link">MBA Landing</a>
+      <a href="child-mba-interior.html" class="proto-switcher__link">MBA Interior</a>
+    </div>
+    <button class="proto-switcher__toggle" onclick="document.getElementById('protoMenu').classList.toggle('is-open'); this.classList.toggle('is-open');">
+      Wharton Home
+      <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <script>
+    (function() {
+      function isMobile() { return window.innerWidth <= 791; }
+
+      // Sticky header
+      var stickyHeader = document.getElementById('stickyHeader');
+      var isVisible = false;
+      window.addEventListener('scroll', function() {
+        var shouldShow = window.scrollY > 120;
+        if (shouldShow !== isVisible) {
+          isVisible = shouldShow;
+          stickyHeader.classList.toggle('is-visible', isVisible);
+        }
+      }, { passive: true });
+
+      // Desktop menu
+      var desktopMenu = document.getElementById('desktopMenu');
+      var desktopMenuClose = document.getElementById('desktopMenuClose');
+      var desktopMenuCloseTablet = document.getElementById('desktopMenuCloseTablet');
+
+      function openDesktopMenu() {
+        // Reset L2 state and restore current-page highlight
+        document.querySelectorAll('.desktop-menu__l2-panel.is-visible').forEach(function(p) {
+          p.classList.remove('is-visible');
+        });
+        document.querySelectorAll('.desktop-menu__nav-item.is-l2-active').forEach(function(b) {
+          b.classList.remove('is-l2-active');
+        });
+        var cp = document.querySelector('.desktop-menu__nav-item.is-current-page');
+        if (cp) cp.classList.remove('is-dimmed');
+        desktopMenu.classList.add('is-open');
+        document.body.classList.add('menu-open');
+      }
+      function closeDesktopMenu() {
+        desktopMenu.classList.remove('is-open');
+        document.body.classList.remove('menu-open');
+      }
+
+      desktopMenuClose.addEventListener('click', closeDesktopMenu);
+      if (desktopMenuCloseTablet) {
+        desktopMenuCloseTablet.addEventListener('click', closeDesktopMenu);
+      }
+
+      // Mobile menu
+      var mobileMenu = document.getElementById('mobileMenu');
+      var mobileMenuClose = document.getElementById('mobileMenuClose');
+      var mobilePrimary = document.getElementById('mobilePrimary');
+
+      function openMobileMenu() {
+        mobilePrimary.classList.remove('is-hidden');
+        document.querySelectorAll('.mobile-menu__drilldown').forEach(function(d) {
+          d.classList.remove('is-active');
+        });
+        mobileMenu.classList.add('is-open');
+        document.body.classList.add('menu-open');
+      }
+      function closeMobileMenu() {
+        mobileMenu.classList.remove('is-open');
+        document.body.classList.remove('menu-open');
+      }
+
+      mobileMenuClose.addEventListener('click', closeMobileMenu);
+
+      // All menu buttons
+      document.querySelectorAll('.top-btn--menu, .sticky-header__btn--menu').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          if (isMobile()) {
+            mobileMenu.classList.contains('is-open') ? closeMobileMenu() : openMobileMenu();
+          } else {
+            desktopMenu.classList.contains('is-open') ? closeDesktopMenu() : openDesktopMenu();
+          }
+        });
+      });
+
+      // Mobile drill-down navigation
+      document.querySelectorAll('[data-mobile-drill]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var target = this.getAttribute('data-mobile-drill');
+          var drilldown = document.getElementById('mobileDrill-' + target);
+          if (drilldown) {
+            mobilePrimary.classList.add('is-hidden');
+            drilldown.classList.add('is-active');
+          }
+        });
+      });
+
+      // Mobile back buttons
+      document.querySelectorAll('[data-mobile-back]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          mobilePrimary.classList.remove('is-hidden');
+          document.querySelectorAll('.mobile-menu__drilldown').forEach(function(d) {
+            d.classList.remove('is-active');
+          });
+        });
+      });
+
+      // Mobile footer toggle
+      var footerToggle = document.getElementById('mobileFooterToggle');
+      var footerGrid = document.getElementById('mobileFooterGrid');
+      if (footerToggle && footerGrid) {
+        footerToggle.addEventListener('click', function() {
+          footerToggle.classList.toggle('is-expanded');
+          footerGrid.classList.toggle('is-expanded');
+        });
+      }
+
+      // ===== SEARCH OVERLAY =====
+      var searchOverlay = document.getElementById('searchOverlay');
+      var searchInput = document.querySelector('.search-overlay__input');
+
+      function openSearch() {
+        closeDesktopMenu();
+        closeMobileMenu();
+        searchOverlay.classList.add('is-open');
+        document.body.classList.add('menu-open');
+        setTimeout(function() { if (searchInput) searchInput.focus(); }, 50);
+      }
+
+      function closeSearch() {
+        searchOverlay.classList.remove('is-open');
+        document.body.classList.remove('menu-open');
+      }
+
+      // Top-bar Search buttons open search
+      document.querySelectorAll('.top-btn--search').forEach(function(btn) {
+        btn.addEventListener('click', openSearch);
+      });
+
+      // Close button inside overlay
+      var searchOverlayClose = document.getElementById('searchOverlayClose');
+      if (searchOverlayClose) searchOverlayClose.addEventListener('click', closeSearch);
+
+      // Search button inside overlay closes overlay
+      var searchOverlaySearchBtn = document.getElementById('searchOverlaySearchBtn');
+      if (searchOverlaySearchBtn) searchOverlaySearchBtn.addEventListener('click', closeSearch);
+
+      // Desktop menu Search button — close menu, open search
+      var desktopMenuSearchBtn = document.querySelector('.desktop-menu__action-btn--search');
+      if (desktopMenuSearchBtn) desktopMenuSearchBtn.addEventListener('click', function() {
+        closeDesktopMenu();
+        openSearch();
+      });
+
+      // Escape key closes menus
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeDesktopMenu();
+          closeMobileMenu();
+          closeSearch();
+        }
+      });
+
+      // Non-L2 nav items close the flyout on click
+      document.querySelectorAll('.desktop-menu__nav-item:not([data-l2-target])').forEach(function(link) {
+        link.addEventListener('click', function() {
+          closeDesktopMenu();
+        });
+      });
+
+      // Desktop Level 2 panel handler
+      var currentPageItem = document.querySelector('.desktop-menu__nav-item.is-current-page');
+
+      document.querySelectorAll('[data-l2-target]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var target = this.getAttribute('data-l2-target');
+          var panel = document.getElementById('l2-' + target);
+          var isCurrentlyVisible = panel && panel.classList.contains('is-visible');
+
+          // Close all panels and deactivate all buttons
+          document.querySelectorAll('.desktop-menu__l2-panel.is-visible').forEach(function(p) {
+            p.classList.remove('is-visible');
+          });
+          document.querySelectorAll('.desktop-menu__nav-item.is-l2-active').forEach(function(b) {
+            b.classList.remove('is-l2-active');
+          });
+
+          // Toggle: if it was closed, open it
+          if (!isCurrentlyVisible && panel) {
+            panel.classList.add('is-visible');
+            this.classList.add('is-l2-active');
+            // Dim the current-page item so only the exploration item is highlighted
+            if (currentPageItem) currentPageItem.classList.add('is-dimmed');
+          } else {
+            // All panels closed — restore current-page highlight
+            if (currentPageItem) currentPageItem.classList.remove('is-dimmed');
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
